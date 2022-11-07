@@ -1,0 +1,73 @@
+@charset "UTF-8";
+@import url(style_Reset.css);
+@import url(style.css);
+
+
+/* 로그인 */
+div#signin{
+    width: 50%;
+    heigth : 1000px;
+    padding: 20px;
+	border: 1px solid #red;
+    margin: 150px auto;
+}
+
+div#signin table {
+    width: 50%;
+    margin: 20px auto;
+}
+
+div#signin th, td {
+    padding: 13px 6px;
+    font-weight: bold;
+}
+div#signin table>caption {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 30px;
+    margin-bottom: 40px;
+    position: relative;
+}
+div#signin caption>h3{
+    position: absolute;
+    top: 45%;
+    left: 41%;
+    background: #fff;
+    transform: translateY(-50%);
+    padding: 10px;
+}
+div#signin td{
+    text-align: center;
+}
+
+div#signin input {
+    font-size: 20px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+div#signin input.loginInput{
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 10px;
+    outline: none;
+}
+div#signin input:hover{
+    border: 1px solid #ff0000;
+}
+
+div#signin button {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 4px 10px;
+    cursor: pointer;
+    transform: translateY(2px);
+    border: none;
+    background: #fff;
+    color:#000;
+    margin-top: 10px;
+    opacity: 60%;
+}
+
+div#signin button:hover{
+    opacity: 100%;
+    color: red;
+}

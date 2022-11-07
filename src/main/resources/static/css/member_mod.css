@@ -1,0 +1,154 @@
+@charset "UTF-8";
+@import url(style_Reset.css);
+@import url(style.css);
+
+div#signup{
+    width: 600px;
+    padding: 15px;
+    margin: 80px auto;
+}
+div#mod{
+    width: 800px;
+    padding: 15px;
+    margin: 30px auto 80px;
+}
+table {
+    width: 100%;
+}
+th, td {
+    padding: 15px 6px;
+    font-weight: bold;
+}
+table>caption {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 30px;
+    margin-bottom: 60px;
+    position: relative;
+}
+caption>h3{
+    position: absolute;
+    top: 45%;
+    left: 34.5%;
+    background: #fff;
+    transform: translateY(-50%);
+    padding: 7px;
+}
+td:first-child {
+    text-align: left;
+    padding-left: 140px;
+}
+td.req::before { 
+    content: " *";
+    color: #ec665d;
+    font-size: 20px;
+    padding: 5px;
+}
+input {
+    font-size: 14px;
+    padding: 4px 10px;
+}
+input.umem {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    outline: none;
+}
+input.loginInput{
+    border: none;
+    border-bottom: 1px solid #ddd;
+    outline: none;
+}
+input.umem:hover{
+    border-bottom: 1px solid #ec665d;
+}
+button {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 10px;
+    cursor: pointer;
+    transform: translateY(1px);
+    border: none;
+    opacity: 50%;
+    border: 1px solid #ddd;
+}
+button:hover{
+    opacity: 100%;
+}
+button:first-child{
+    margin: 0 auto;
+    width: 300px;
+    font-size: 25px;
+}
+
+div#chk span{
+    padding: 10px;
+}
+div#chk input{
+    margin: 10px;
+}
+
+
+/* 로그인 */
+div#signin{
+    width: 600px;
+    padding: 20px;
+    /* border: 1px solid #000; */
+    margin: 80px auto;
+}
+div#signin table {
+    width: 100%;
+}
+div#signin th, td {
+    padding: 10px 6px;
+    font-weight: bold;
+}
+div#signin table>caption {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 30px;
+    margin-bottom: 40px;
+    position: relative;
+}
+div#signin caption>h3{
+    position: absolute;
+    top: 45%;
+    left: 41%;
+    background: #fff;
+    transform: translateY(-50%);
+    padding: 10px;
+}
+div#signin td{
+    text-align: center;
+}
+div#signin input {
+    font-size: 20px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+div#signin input.loginInput{
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 10px;
+    outline: none;
+}
+div#signin input:hover{
+    border: 1px solid rgb(255, 128, 128);
+}
+div#signin button {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 4px 10px;
+    cursor: pointer;
+    transform: translateY(2px);
+    border: none;
+    background: #fff;
+    color:#000;
+    margin-top: 10px;
+    opacity: 60%;
+}
+div#signin button:hover{
+    opacity: 100%;
+}
+
+footer#footer{
+    border-top: 1px solid #ddd;
+}

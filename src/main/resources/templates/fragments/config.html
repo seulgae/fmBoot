@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:fragment="configFragment">
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Title</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+
+   <!-- 공통 css -->
+   <th:block th:replace="common/styles"></th:block>
+
+   <!-- 컨텐츠 페이지의 css -->
+   <th:block layout:fragment="css"></th:block>
+
+   <!-- 공통 js -->
+   <th:block th:replace="common/scripts"></th:block>
+
+   <!-- 컨텐츠 페이지의 js -->
+   <th:block layout:fragment="script"></th:block>
+
+</head>
+</th:block>
+</html>
