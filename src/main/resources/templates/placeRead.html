@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+
+<body>
+<br>
+<!-- placeRead css -->
+<link rel="stylesheet" href="/css/placeRead.css">
+<div id="wrap">
+  <table id="placeRead">
+    <thead>
+    <tr>
+      <td calss="info_td" style="border-bottom: 1px solid #808080; height: 30px" colspan="7">
+        <span style="font-weight: bold;">구장 상세정보</span>
+        <span class="info">구장 상세정보를 확인하세요</span>
+      </td>
+    </tr>
+
+    </thead>
+    <tbody>
+    <tr>
+      <td colspan="7">
+        <img src="img.jpg" width="1000px" height="300px"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
+      </td>
+      <td>
+        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
+      </td>
+      <td>
+        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
+      </td>
+      <td>
+        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
+      </td>
+      <td>
+        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
+      </td>
+      <td>
+        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
+      </td>
+      <td>
+        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table id="placeTitle">
+    <thead>
+    <tr>
+      <th style="text-align: left;">
+        <h2>하남 미사풋살파크 야외 A구장</h2>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <span>경기도 하남시 미사동로 37번길 45-54</span>&nbsp;&nbsp;
+        <a href src="https://map.naver.com/v5/search/변수이름" target="_blank" style="color:blue; font-weight:bold;">길찾기</a>
+      </td>
+  </table>
+
+  <table id="main">
+    <tbody>
+    <tr>
+      <td width="600px">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="guTitle">구장안내</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>구장크기 : 40m x 20m</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>추가인원 : 6vs6</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>구장정보 : 야외 인조잔디</span><br>
+      </td>
+      <td>
+        <table>
+          <tbody>
+          <tr>
+            <td>
+              <img src="/images/placeimg/parking_on.png" name="parking" width="140px" height="140px"/>
+            </td>
+            <td>
+              <img src="/images/placeimg/parking_on.png" width="140px" height="140px"/>
+            </td>
+            <td>
+              <img src="/images/placeimg/parking_on.png" width="140px" height="140px"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="/images/placeimg/parking_on.png" width="140px" height="140px"/>
+            </td>
+            <td>
+              <img src="/images/placeimg/parking_on.png" width="140px" height="140px"/>
+            </td>
+            <td>
+              <img src="/images/placeimg/parking_on.png" width="140px" height="140px"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <form accept="/" method="post">
+    <table id="payment">
+      <tbody>
+      <tr>
+        <td>
+          <!-- 만약에 예약 가능한 value 값이 1이라면 예약하지 못하도록 조건문 주기. -->
+          <label for="dateSet">예약 가능 날짜 : </label>
+          <input type="date" id="dateSet"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span>예약시간을 선택해주세요 : </span>
+          <select>
+            <option value="1">08시 ~ 12시(4시간)</option>
+            <option value="2">13시 ~ 17시(4시간)</option>
+            <option value="3">17시 ~ 21시(4시간)</option>
+          </select>
+        <td>
+      </tr>
+      <tr>
+        <td>
+          <h2>총 결제 금액 : 100000원</h2>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <!-- 만약에 예약 가능한 시간이 아니라면 버튼 비활성화하기. -->
+          <input type="submit" value="예약 신청하기" class="paymentBtn">
+          <br>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <div id="placeContent">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <hr style="width:1000px;">
+            <h3>이용안내</h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- 본문에 아래와 같은 양식 맞춰서 출력될 수 있도록 구현 -->
+            (본문내용 기입예정)
+
+            <!-- 서머노트 학습 후 기입 예정 -->
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hr style="width:1000px;">
+            <h3>이용규칙</h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- 본문에 아래와 같은 양식 맞춰서 출력될 수 있도록 구현 -->
+            (본문내용 기입예정)
+
+            <!-- 서머노트 학습 후 기입 예정 -->
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hr style="width:1000px;">
+            <h3>환불 규정</h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- 본문에 아래와 같은 양식 맞춰서 출력될 수 있도록 구현 -->
+            (본문내용 기입예정)
+
+            <!-- 서머노트 학습 후 기입 예정 -->
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hr style="width:1000px;">
+            <h3>변경 규정</h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- 본문에 아래와 같은 양식 맞춰서 출력될 수 있도록 구현 -->
+            (본문내용 기입예정)
+
+            <!-- 서머노트 학습 후 기입 예정 -->
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hr style="width:1000px;">
+            <h3>이용안내</h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- 본문에 아래와 같은 양식 맞춰서 출력될 수 있도록 구현 -->
+            (본문내용 기입예정)
+
+            <!-- 서머노트 학습 후 기입 예정 -->
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hr style="width:1000px;">
+            <h3>이용안내</h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- 본문에 아래와 같은 양식 맞춰서 출력될 수 있도록 구현 -->
+            (본문내용 기입예정)
+
+            <!-- 서머노트 학습 후 기입 예정 -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- div#wrap -->
+<br>
+
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</body>
+</html>

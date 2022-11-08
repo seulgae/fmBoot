@@ -1,7 +1,8 @@
 $(function(){
+
 	//////////////  아이디 중복 검사 시작 //////////////////////			
 	function idCheck() {
-		
+
 		//// 아이디 => 영어, 숫자, 특수기호(_), 5글자 이상 20글자 이하
 		let uId = $("#m_id").val();
 		let uIdLen  = uId.length;
@@ -15,7 +16,7 @@ $(function(){
 			$("#m_id").focus();
 			return;
 		}
-		
+
 		let url = "/idCheck?uId=" + uId;
 		let w = screen.width;
 		let popW = 400;
@@ -24,12 +25,16 @@ $(function(){
 		let popH = 300;
 		let topP = (h-popH)/2;
 		//alert("w : " + w + "\nh : " + h);
-		
+
 		window.open(url, "IdCheck", "width="+popW+", height="+popH+", left="+leftP+", top="+topP);
-		
+
 	}
-	
-	
+
+    $("#m_id2").click(function(){
+        alert(1234);
+    });
+
+
 	$("#idChkBtn").click(function(){
 		idCheck();
 	});

@@ -18,14 +18,7 @@ public class LoginController {
     public String home(){
         return "index";
     }
-	
-	@GetMapping("/test")
-	public String test () {
-		String mid = "123";
-        memberService.test(mid);
-        System.out.println("완료됨");
-        return "redirect:/";
-	}
+    
 
     @GetMapping("/login")
     public String login() {
