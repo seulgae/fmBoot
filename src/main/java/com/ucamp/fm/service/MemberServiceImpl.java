@@ -12,6 +12,8 @@ public class MemberServiceImpl implements MemberService{
 	MemberMapper memberMapper;
 
 	@Override
-	public void test(String m_id) {}
+	public void test(String m_id) {
+		memberMapper.test(m_id);
+	}
 	
 }

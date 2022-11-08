@@ -1,6 +1,6 @@
 package com.ucamp.fm.controller;
 
-import com.ucamp.fm.service.MemberServiceImpl;
+import com.ucamp.fm.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 	
 	@Autowired
-    MemberServiceImpl memberService;
+    MemberService memberService;
 
     @GetMapping("/")
     public String home(){

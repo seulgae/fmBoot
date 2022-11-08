@@ -4,8 +4,8 @@
 
 <mapper namespace="com.ucamp.fm.mapper.MemberMapper">
 
-	<insert id="test">
-			insert into member (m_id) values (#{m_id})
-	</insert>
+<!--	<insert id="test">-->
+<!--			insert into member (m_id) values (#{m_id})-->
+<!--	</insert>-->
 	
 </mapper>
