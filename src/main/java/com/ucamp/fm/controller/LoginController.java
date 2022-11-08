@@ -1,13 +1,10 @@
 package com.ucamp.fm.controller;
 
+import com.ucamp.fm.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.ucamp.fm.dto.MemberDto;
-import com.ucamp.fm.service.MemberService;
 
 
 @Controller
@@ -15,16 +12,19 @@ import com.ucamp.fm.service.MemberService;
 public class LoginController {
 	
 	@Autowired
-	MemberService memberService;
+    MemberServiceImpl memberService;
 
     @GetMapping("/")
     public String home(){
         return "index";
     }
 	
-	@PostMapping("/test")
-	public void test (MemberDto memberDto) {
-		memberService.test(memberDto);
+	@GetMapping("/test")
+	public String test () {
+		String mid = "123";
+        memberService.test(mid);
+        System.out.println("완료됨");
+        return "redirect:/";
 	}
 
     @GetMapping("/login")
@@ -32,7 +32,7 @@ public class LoginController {
         return "login";
     }
     
-	@PostMapping("/join")
+	@GetMapping("/join")
     public String join() {
         return "join";
     }
