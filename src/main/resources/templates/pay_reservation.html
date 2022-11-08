@@ -10,19 +10,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-<div style="width: 50%; text-align:center; ">
-   <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
-   <div style="padding-top: 100px;">
-         <table class="table table-condensed">
+<div style="width: 50%; margin: 20px auto;">
+    <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
+    <div style="padding-top: 50px;">
+        <table class="table table-condensed">
             <tr>
-               <td><p
-                     style="font-size: 30px; font-family: 'Noto Sans KR', sans-serif;">
-                     경기장 예약하기 &nbsp;|&nbsp; 구장 이름<small>(구장주소)</small>
-                  </p></td>
+                <td><p
+                        style="font-size: 30px; font-family: 'Noto Sans KR', sans-serif;">
+                    경기장 예약하기 &nbsp;|&nbsp; 구장 이름<small>(구장주소)</small>
+                </p></td>
             </tr>
             <tr>
-               <td colspan="2"><p style="font-weight: bold;">■개인정보 제 3자 제공 방침 및 시설 이용 약관</p> <textarea readonly="readonly"
-                     style="width: 100%; height: 100px;">대관 서비스 개인정보 제3자 제공 방침
+                <td colspan="2"><p style="font-weight: bold;">■개인정보 제 3자 제공 방침 및 시설 이용 약관</p> <textarea readonly="readonly"
+                                                                                                        style="width: 100%; height: 100px;">대관 서비스 개인정보 제3자 제공 방침
 1. 수집 항목 : 실명, 휴대전화번호, 이메일, 주소, 생년월일, ID 등
 2. 수집 목적 : 시설 대관 관리
 3. 보관 기간 : 대관 일시로부터 1년
@@ -32,14 +32,14 @@
             </textarea></td>
             </tr>
             <tr>
-               <td colspan="2">위의 개인정보 취급방침에 동의합니다.&nbsp;
-               <input id="chk" type="checkbox" /></td>
+                <td colspan="2">위의 개인정보 취급방침에 동의합니다.&nbsp;
+                    <input id="chk" type="checkbox" /></td>
             </tr>
 
             <tr>
-               <td colspan="2"><textarea readonly="readonly"
-                     style="width: 100%; height: 100px;">시설 이용 약관
-                     
+                <td colspan="2"><textarea readonly="readonly"
+                                          style="width: 100%; height: 100px;">시설 이용 약관
+
 1. 건물 내부 및 근처에서 절대 금연입니다.
 2. 체육시설 내 음식물, 주류, 음료 반입 금지합니다.
 3. 시설 이용 중 시설물 및 기물 파손은 즉각 담당자에게 보고해야하며, 대관 신청자가 원상복구 혹은 변상해야 합니다.
@@ -58,40 +58,40 @@
 16. 대관 신청자는 시설의 공지 사항, 환불규정, 이용규칙 등 모든 안내 내용을 숙지해야하며 해당 내용을 준수하는 것에 동의 합니다. 내용 미숙지로 인한 책임은 이용자 본인에게 있습니다.
 17. 본 내용에 대한 동의 서명은 생략하며, 서비스 내 동의 버튼으로 이를 대체합니다.
          </textarea></td>
-         </tr>
-            <tr>
-               <td colspan="2">위의 개인정보 취급방침에 동의합니다.&nbsp;
-               <input id="chk" type="checkbox" /></td>
             </tr>
-         </table>
-         <table class="table table-condensed">
+            <tr>
+                <td colspan="2">위의 개인정보 취급방침에 동의합니다.&nbsp;
+                    <input id="chk" type="checkbox" /></td>
+            </tr>
+        </table>
+        <table class="table table-condensed">
             <tr style="background-color: #D3D3D3;">
-               <th>일 자</th>
-               <th>예약 시간</th>
-               <th>가 격</th>
+                <th>일 자</th>
+                <th>예약 시간</th>
+                <th>가 격</th>
             </tr>
             <tr>
-               <td>2022-10-31</td>
-               <td>22:00 ~ 24:00</td>
-               <td>130000</td>
+                <td>2022-10-31</td>
+                <td>22:00 ~ 24:00</td>
+                <td>130000</td>
             </tr>
-         </table>
-         <p style="font-weight: bold; padding-left: 83%;">총 금액: 130,000원</p><br>
-         <p style="font-weight: bold">신청팀 : 
-         <select name="t">
-            <option>----------------</option>
-            <option value="t"></option>
-         </select>
-         </p><br>
-         <p style="font-weight: bold">신청자 : 홍길동</p><br>
-         <p style="font-weight: bold">연락처 : 010-0000-0000</p>
-         <form method="post" action="/kakaoPay">
-         <div class="box on">
-                  <button type="submit" class="btn btn-outline-dark" style="margin-left: 91%;" onclick="pay()">예약</button>
-         </div>   
-         </form>      
-   </div>
-   <!-- footer import  -->
+        </table>
+        <p style="font-weight: bold; padding-left: 83%;">총 금액: 130,000원</p><br>
+        <p style="font-weight: bold;">신청팀 :
+            <select name="t">
+                <option>----------------</option>
+                <option value="t"></option>
+            </select>
+        </p><br>
+        <p style="font-weight: bold;">신청자 : 홍길동</p><br>
+        <p style="font-weight: bold;">연락처 : 010-0000-0000</p>
+        <form method="post" action="/kakaoPay">
+            <div class="box on">
+                <button type="submit" class="btn btn-outline-dark" style="margin-left: 91%; margin-bottom: 20px;" onclick="pay()">예약</button>
+            </div>
+        </form>
+    </div>
+    <!-- footer import  -->
 </div>
 <!-- div#wrap -->
 

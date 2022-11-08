@@ -15,10 +15,16 @@ public class PayController {
 		return "pay_reservation";
 	}
 
-	@GetMapping("/placeRead")
+	@GetMapping("/placelist")
+	public String placelist(Model model) {
+
+		return "placelist";
+	}
+
+	@GetMapping("/placeread")
 	public String placeRead(Model model) {
 
-		return "placeRead";
+		return "placeread";
 	}
 
 }

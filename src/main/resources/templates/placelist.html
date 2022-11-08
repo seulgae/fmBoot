@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<link rel="stylesheet" type="text/css" href="/css/placelist.css">
+<body>
+<div style="width: 100%; height: 100%; margin: 20px auto;">
+    <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
+    <div style="padding-top: 20px; margin:20px auto; width:1000px;">
+      <span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
+            예약 가능 구장 &nbsp;|&nbsp; <small>FM그라운드 제휴 구장</small></span><br>
+        <hr style="width: 1000px;">
+        <form action="" style="margin-left:770px;">
+            <input type="text" />
+            <input type="submit" value="검색">
+        </form>
+    </div>
+    <div style="border:1px solid #c8c8c8; margin: 20px auto; justify-content: space-between; display:flex; width:1000px">
+        <div>
+            <img src="/images/banner1.jpg" width="300px";/> <br>
+            <div style="padding: 5px 10px; text-align: center; background-color: black;"><span style="font-size: 15px; color: white;">하남 미사 푸마타운 야외풋살장 A구장</span>
+            </div>
+        </div>
+        <div>
+            <div style="font-weight: bold; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; margin-right: 550px;"> 2022.11.08 (화) </div>
+            <div style="font-size: 15px; font-family: 'Noto Sans KR', sans-serif;  margin-left: 440px;"> 경기도 하남시 미사동로 37번길 85 </div>
+            <div style="margin-left: 120px; margin-top:30px; display: inline-block;"></div>
+            <div class="select-wrap">
+                <select style="padding-right:20px;">
+                    <option selected>날짜를 선택해주세요.</option>
+                    <option>2020.11.08</option>
+                    <option>2020.11.09</option>
+                    <option>2020.11.10</option>
+                </select>
+            </div>&nbsp;
+            <div class="select-wrap">
+                <select style="padding-right:20px";>
+                    <option selected>시간을 선택해주세요.</option>
+                    <option>20:00</option>
+                    <option>21:00</option>
+                    <option>22:00</option>
+                </select>
+            </div>
+            <div style="margin-top:10px;"></div>
+            <div style="margin-left: 100px; display: inline-block;"></div>
+            <div class="box"><h6>6vs6</h6></div>
+            <div class="box"><h6>주차</h6></div>
+            <div class="box"><h6>냉난방</h6></div>
+            <div class="box"><h6>공대여</h6></div>
+            <div class="box" ><h6>팀조끼</h6></div>
+            <div class="box"><h6>풋살화</h6></div>
+            <div class="box"><h6>샤워실</h6></div>
+            <div style="margin-top:20px;"></div>
+            <div><button class="btn btn-outline-dark" style="width:99.6%;" onclick="location.href='/payment/placeRead'">예약</button></div>
+        </div>
+    </div>
+    <div style="text-align: center";>페이징</div>
+    <!-- 페이징 요소 작업 예정-->
+</div>
+</div>
+<!-- div#wrap -->
+
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</body>
+</html>
