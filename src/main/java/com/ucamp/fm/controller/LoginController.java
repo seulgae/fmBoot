@@ -16,19 +16,19 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-	
-	@Autowired
+
+    @Autowired
     MemberService memberService;
 
     @GetMapping("/")
-    public String home(){
+    public String home() {
         return "index";
     }
 
     @GetMapping("/login")
     public String login() {
         return "member/login";
-    
+    }
 
     @RequestMapping("/join")
     public String join() {
@@ -75,3 +75,4 @@ public class LoginController {
         return "redirect:/";
     }
 }
+
