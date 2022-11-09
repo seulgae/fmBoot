@@ -1,12 +1,16 @@
 package com.ucamp.fm.controller;
 
+import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -21,10 +25,10 @@ public class LoginController {
         return "index";
     }
 
-    @RequestMapping("/login")
-    public String login(){
-        return "redirect:/list";
-    }
+    @GetMapping("/login")
+    public String login() {
+        return "member/login";
+    
 
     @RequestMapping("/join")
     public String join() {
@@ -46,5 +50,23 @@ public class LoginController {
     public int idCheck(String m_id){
         int flag = memberService.idCheck(m_id);
         return flag;
+    }
+
+    @RequestMapping("/joinInsert")
+    public String joinInsert(MemberDto member){
+        memberService.join(member);
+        return "redirect:/";
+    }
+
+    @RequestMapping("/loginCheck")
+    @ResponseBody
+    public String loginCheck(String m_id, String m_pw, Model model, HttpServletRequest request){
+        return Integer.toString(memberService.loginCheck(m_id,m_pw));
+    }
+
+    @RequestMapping("/loginOk")
+    public String loginOk(String m_id,HttpServletRequest request){
+        request.getSession().setAttribute("m_id",m_id);
+        return "redirect:/";
     }
 }
