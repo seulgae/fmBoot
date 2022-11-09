@@ -1,13 +1,11 @@
 package com.ucamp.fm.controller;
 
+import com.ucamp.fm.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.ucamp.fm.dto.MemberDto;
-import com.ucamp.fm.service.MemberService;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -15,35 +13,37 @@ import com.ucamp.fm.service.MemberService;
 public class LoginController {
 	
 	@Autowired
-	MemberService memberService;
+    MemberService memberService;
 
     @GetMapping("/")
     public String home(){
         return "index";
     }
-	
-	@PostMapping("/test")
-	public void test (MemberDto memberDto) {
-		memberService.test(memberDto);
-	}
 
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-    
-	@PostMapping("/join")
+
+    @RequestMapping("/join")
     public String join() {
-        return "join";
+        return "member/join";
     }
-	
-	@GetMapping("/join_Mod")
+
+    @GetMapping("/join_Mod")
     public String join_Mod() {
-        return "join_Mod";
+        return "member/join_Mod";
     }
-    
+
     @GetMapping("/mypage")
     public String mypage() {
         return "mypage";
+    }
+
+    @RequestMapping("/idCheck")
+    @ResponseBody
+    public int idCheck(String m_id){
+        int flag = memberService.idCheck(m_id);
+        return flag;
     }
 }

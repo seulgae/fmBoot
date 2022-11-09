@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<style>
+/* thead {
+	background-color: #81D4F4;
+} */
+</style>
+
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<div style="width: 100%; margin: 20px auto; margin-left: 30%;">
+	<div id="container" class="col-xs-12">
+		<div class="title">
+			<h3 class="title-name">팀 목록</h3>
+			<small>풋살 매니저에 가입된 풋살팀 목록입니다.</small>
+		</div>
+		<div class="container-fluid" id="teamRank">
+			<div class="row">
+				<div class="search-group-team input-group">
+					<div class="col-xs-9" style="margin-top: 1%;">
+						<button type="button" onclick="location.href='/teammanage/teamcreate'" style="width: 100px; border: 1px solid silver;">팀 생성</button>
+					</div>
+					<div class="col-xs-3" style="margin-left: 20%">
+						<input type="text" class="form-control" id="searchTeam" placeholder="팀 검색">
+						<label class="control-label" id="searchLabel" style="font-size: 8px;">팀 명으로 검색하여주세요</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<table class="table table-hover" id="teamRankTable" style="text-align: center;">
+						<thead style="background-color: #B3E5FC; color: white;">
+							<tr>
+								<!--<th rowspan="2" style="width:6%;">순 위</th>-->
+								<th rowspan="2" style="width: 17%;">팀 명</th>
+								<th colspan="4" style="width: 27%;">전 적</th>
+								<th rowspan="2" style="width: 17%;">연 고</th>
+								<th rowspan="2" style="width: 16%;">연령대</th>
+								<th rowspan="2" style="width: 9%;">실 력</th>
+								<th rowspan="2" style="width: 25%;">유 형</th>
+							</tr>
+							<tr>
+								<th>경기</th>
+								<th>승</th>
+								<th>무</th>
+								<th>패</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr onclick="location.href='/teammanage/teamdetail'">
+								<!--<td>1</td>-->
+								<td class="align-left">FS놀자</td>
+								<td>12</td>
+								<td>5</td>
+								<td>5</td>
+								<td>2</td>
+								<td>기타 지역</td>
+								<td>20대 초반 ~ 30대 중반</td>
+								<td>하</td>
+								<td class="align-left">자유 유형</td>
+							</tr>
+							<tr onclick="window.location.href='/teamfut52835'">
+								<!--<td>2</td>-->
+								<td class="align-left">백두범FC</td>
+								<td>10</td>
+								<td>9</td>
+								<td>0</td>
+								<td>1</td>
+								<td>기타 지역</td>
+								<td>20대 초반 ~ 30대 중반</td>
+								<td>하</td>
+								<td class="align-left">자유 유형</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</html>

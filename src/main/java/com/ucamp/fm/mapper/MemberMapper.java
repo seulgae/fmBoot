@@ -1,12 +1,13 @@
 package com.ucamp.fm.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-
-import com.ucamp.fm.dto.MemberDto;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface MemberMapper {
-	
-	void test(MemberDto memberDto);
+
+	@Select("select count(*) from member where m_id = #{m_id}")
+	public int idCheck(String m_id);
 
 }
