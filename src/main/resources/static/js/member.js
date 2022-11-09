@@ -5,6 +5,9 @@ $(function(){
         if($('input[type=radio][name=m_level]').val()=="1"){
             $(".manager").css('display', 'none');
             $(".userchk").css('display', 'inline-block');
+            $("#m_zip").attr("placeholder","우편번호를 입력해주세요.");
+            $("#m_addr1").attr("placeholder","주소를 입력해주세요.");
+            $("#m_addr2").attr("placeholder","상세주소를 입력해주세요.");
         }
 
         /* 초기 라디오버튼 사용자 셀렉트 (END)*/
@@ -42,6 +45,7 @@ $(function(){
 						}else{
 				            $("#idCheck").css("color","red");
 							$("#idCheck").html("이미 사용중인 ID입니다.");
+							$("#idCheckFlag").val("0");
 						}
 					}
 				});
@@ -50,28 +54,26 @@ $(function(){
         /* 아이디 중복 및 글자 수 검사(END) */
 
         /* 패스워드 체크 (START)*/
+
         $("#m_pw").keyup(function(){
-            if($("#m_pw").val() == $("#m_pw_re").val()){
-                $("#pwCheck").css("color","blue");
-                $("#pwCheck").html("비밀번호가 일치합니다.");
-                $("pwCheckFlag").val("1");
-            }else{
-                $("#pwCheck").css("color","red");
-                $("#pwCheck").html("비밀번호가 일치하지 않습니다.");
-                $("pwCheckFlag").val("0");
-            }
+            pwTest();
         })
+
         $("#m_pw_re").keyup(function(){
-            if($("#m_pw").val() == $("#m_pw_re").val()){
+            pwTest();
+        })
+
+        function pwTest(){
+            if($("#m_pw").val() != "" &&$("#m_pw").val() == $("#m_pw_re").val()){
                 $("#pwCheck").css("color","blue");
                 $("#pwCheck").html("비밀번호가 일치합니다.");
-                $("pwCheckFlag").val("1");
+                $("#pwCheckFlag").val("1");
             }else{
                 $("#pwCheck").css("color","red");
                 $("#pwCheck").html("비밀번호가 일치하지 않습니다.");
-                $("pwCheckFlag").val("0");
+                $("#pwCheckFlag").val("0");
             }
-        })
+        }
         /* 패스워드 체크 (END)*/
 
         /* 전화번호 이벤트 (START)*/
@@ -86,12 +88,20 @@ $(function(){
 
         $('input[type=radio][name=m_level]').change(function() {
         	if (this.value == '1') {
-        		$("tr#manager").css('display', 'none')
-        		$("tr#userchk").css('display', 'inline-block')
+        		$(".manager").css('display', 'none');
+        		$(".userchk").css('display', 'inline-block');
+                $("#m_zip").attr("placeholder","우편번호를 입력해주세요.");
+                $("#m_addr1").attr("placeholder","주소를 입력해주세요.");
+                $("#m_addr2").attr("placeholder","상세주소를 입력해주세요.");
+                $("#mFlag").val("0");
         	}
         	else if (this.value == '2') {
-        		$("tr#userchk").css('display', 'none')
-        		$("tr#manager").css('display', 'inline-block')
+        		$(".userchk").css('display', 'none');
+        		$(".manager").css('display', 'inline-block');
+                $("#m_zip").attr("placeholder","구장 우편번호를 입력해주세요.");
+                $("#m_addr1").attr("placeholder","구장 주소를 입력해주세요.");
+                $("#m_addr2").attr("placeholder","구장 상세주소를 입력해주세요.");
+                $("#mFlag").val("1");
         	}
         });
 
@@ -117,42 +127,105 @@ $(function(){
 
         /* 우편번호 찾기 이벤트 (END) */
 
+        /* 전체동의 체크 이벤트 (START)*/
+
+        $("input:checkbox[id='allChk']").change(function(){
+            if($("input:checkbox[id='allChk']").prop("checked",true)){
+                $("input:checkbox[id='uChk1']").prop("checked",true);
+                $("input:checkbox[id='uChk2']").prop("checked",true);
+                $("input:checkbox[id='uChk3']").prop("checked",true);
+            }
+        })
+
+        /* 전체동의 체크 이벤트 (END)*/
+
         /* join버튼 클릭 이벤튼 (START)*/
 
         $("#joinBtn").click(function(){
             let idCheck = $("#idCheckFlag").val();//아이디 중복체크
             let pwCheck = $("#pwCheckFlag").val();//패스워드 비교 체크
-
             if(idCheck == "0"){
                 alert("아이디를 확인해주세요.");
-                $("m_id").focus();
+                $("#m_id").focus();
                 return false;
             }
 
             if(pwCheck == "0"){
                 alert("패스워드를 확인해주세요.");
-                $("m_pw").focus();
+                $("#m_pw").focus();
                 return false;
             }
 
             if($("#m_name").val() == ""){
                 alert("이름을 입력해주세요.");
-                $("m_name").focus();
+                $("#m_name").focus();
                 return false;
             }
 
             if($("#m_phone").val() == ""){
                 alert("전화번호를 입력해주세요.");
-                $("m_name").focus();
+                $("#m_phone").focus();
                 return false;
             }
 
             if($("#m_email").val() == ""){
                 alert("이메일을 입력해주세요.");
-                $("m_name").focus();
+                $("#m_name").focus();
                 return false;
             }
 
+            if($("#m_zip").val() == ""){
+                alert("우편번호를 입력해주세요.");
+                $("#m_zip").focus();
+                return false;
+            }
+
+            if($("#m_addr1").val() == ""){
+                alert("주소를 입력해주세요.");
+                $("#m_addr1").focus();
+                return false;
+            }
+
+            if($("#m_addr2").val() == ""){
+                alert("상세주소를 입력해주세요.");
+                $("#m_addr2").focus();
+                return false;
+            }
+
+            if($("#mFlag").val()=="1"){
+                if($("#m_pname").val() == ""){
+                    alert("구장명을 입력해주세요.");
+                    $("#m_pname").focus();
+                    return false;
+                }
+                if($("#m_bank").val() == ""){
+                    alert("은행명을 입력해주세요.");
+                    $("#m_bank").focus();
+                    return false;
+                }
+                if($("#m_account").val() == ""){
+                    alert("계좌번호를 입력해주세요.");
+                    $("#m_account").focus();
+                    return false;
+                }
+            }
+
+            if($("#uChk1").prop("checked")==false){
+                alert("만 14세이상 동의를 체크해주세요.");
+                return false;
+            }
+
+            if($("#uChk2").prop("checked")==false){
+                alert("이용약관 동의를 체크해주세요.");
+                return false;
+            }
+
+            if($("#uChk3").prop("checked")==false){
+                alert("개인정보 수집·이용 동의를 체크해주세요.");
+                return false;
+            }
+
+            $("#joinFrm").submit();
         });
 
         /* join버튼 클릭 이벤튼 (END)*/
