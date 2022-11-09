@@ -16,57 +16,58 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-	
-	@Autowired
+
+    @Autowired
     MemberService memberService;
 
     @GetMapping("/")
-    public String home(){
+    public String home() {
         return "index";
     }
 
     @GetMapping("/login")
     public String login() {
         return "member/login";
-    
+    }
 
     @RequestMapping("/join")
-    public String join() {
+    public String join () {
         return "member/join";
     }
 
     @GetMapping("/join_Mod")
-    public String join_Mod() {
+    public String join_Mod () {
         return "member/join_Mod";
     }
 
     @GetMapping("/mypage")
-    public String mypage() {
+    public String mypage () {
         return "member/mypage";
     }
 
     @RequestMapping("/idCheck")
     @ResponseBody
-    public int idCheck(String m_id){
+    public int idCheck (String m_id){
         int flag = memberService.idCheck(m_id);
         return flag;
     }
 
     @RequestMapping("/joinInsert")
-    public String joinInsert(MemberDto member){
+    public String joinInsert (MemberDto member){
         memberService.join(member);
         return "redirect:/";
     }
 
     @RequestMapping("/loginCheck")
     @ResponseBody
-    public String loginCheck(String m_id, String m_pw, Model model, HttpServletRequest request){
-        return Integer.toString(memberService.loginCheck(m_id,m_pw));
+    public String loginCheck (String m_id, String m_pw, Model model, HttpServletRequest request){
+        return Integer.toString(memberService.loginCheck(m_id, m_pw));
     }
 
     @RequestMapping("/loginOk")
-    public String loginOk(String m_id,HttpServletRequest request){
-        request.getSession().setAttribute("m_id",m_id);
+    public String loginOk (String m_id, HttpServletRequest request){
+        request.getSession().setAttribute("m_id", m_id);
         return "redirect:/";
     }
+
 }
