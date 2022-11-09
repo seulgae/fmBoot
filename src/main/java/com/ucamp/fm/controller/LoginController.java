@@ -35,7 +35,7 @@ public class LoginController {
         return "member/join";
     }
 
-    @GetMapping("/join_Mod")
+    @RequestMapping("/join_Mod")
     public String join_Mod () {
         return "member/join_Mod";
     }
@@ -43,6 +43,11 @@ public class LoginController {
     @GetMapping("/mypage")
     public String mypage () {
         return "member/mypage";
+    }
+
+    @GetMapping("/mypage_request")
+    public String pay_reservation(Model model) {
+        return "member/mypage_request";
     }
 
     @RequestMapping("/idCheck")
@@ -71,3 +76,4 @@ public class LoginController {
     }
 
 }
+

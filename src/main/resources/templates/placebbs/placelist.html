@@ -29,16 +29,11 @@
             <div style="font-weight: bold; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; margin-right: 550px;"> 2022.11.08 (화) </div>
             <div style="font-size: 15px; font-family: 'Noto Sans KR', sans-serif;  margin-left: 440px;"> 경기도 하남시 미사동로 37번길 85 </div>
             <div style="margin-left: 120px; margin-top:30px; display: inline-block;"></div>
-            <div class="select-wrap">
-                <select style="padding-right:20px;">
-                    <option selected>날짜를 선택해주세요.</option>
-                    <option>2020.11.08</option>
-                    <option>2020.11.09</option>
-                    <option>2020.11.10</option>
-                </select>
+            <div class="select-wrap" id="date">
+                <input style="padding-right:20px; width: 175px; height: 22px;" type='date' id='currentDate'/>
             </div>&nbsp;
             <div class="select-wrap">
-                <select style="padding-right:20px";>
+                <select style="padding-right:20px; width: 175px; height: 20px;">
                     <option selected>시간을 선택해주세요.</option>
                     <option>20:00</option>
                     <option>21:00</option>
@@ -67,4 +62,7 @@
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
+<script>
+  document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
+</script>
 </html>
