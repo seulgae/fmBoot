@@ -35,7 +35,7 @@ public class LoginController {
         return "member/join";
     }
 
-    @GetMapping("/join_Mod")
+    @RequestMapping("/join_Mod")
     public String join_Mod () {
         return "member/join_Mod";
     }
