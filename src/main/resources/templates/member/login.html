@@ -6,49 +6,51 @@
 <!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
-<link rel="stylesheet" href="/css/login.css/">
-<!-- 로그인시작 -->
-<div id="signin">
-	<form action="/login/loginOk" id="loginFrm" name="loginFrm" method="post">
-		<table>
-			<tbody>
+<link rel="stylesheet" href="/css/login.css">
+
+<div id="wrap">
+	<!-- 로그인시작 -->
+	<div id="signin">
+		<form action="/login/loginOk" id="loginFrm" name="loginFrm" method="post">
+			<table>
+				<tbody>
 				<tr>
 					<td colspan="2">
-						<span class="loginlogo" style="font-size: 40px; font-weight: bold; margin: 25px 10px 0px 0px; color: red;">FM</span>
-						<span style="font-size: 20px; font-weight: bold;">Manger Login</span>
+						<a href="/">
+							<span class="loginlogo">FM</span>
+							<span class="loginfont">Manger Login</span>
+						</a>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="text" class="loginInput" name="m_id" id="m_id"
-						autofocus size="30" placeholder="아이디를 입력하세요" /></td>
+										   autofocus size="30" placeholder="아이디를 입력하세요" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="password" class="loginInput" name="m_pw"
-						id="m_pw" size="30" placeholder="비밀번호를 입력하세요" /></td>
+										   id="m_pw" size="30" placeholder="비밀번호를 입력하세요" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button type="button" id="loginBtn" class="btn btn-danger">로그인</button>
+					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="check" style="font-size: 15px;">아이디 기억</label>
-						<input type="checkbox" id="check" name="rememberId"  
-						value="on" ${empty cookie.id.value ? "":"checked"} />
+						<button type="button" id="signUpBtn" class="buttomBtn"
+						style="margin: 0 0 0 40px;" onclick="location.href='/join'">회원가입</button>
 					</td>
 					<td>
-						<a href="" style="font-size: 15px; color:blue; ">아이디/비밀번호 찾기</a>
+						<button type="button" id="loginFind" class="buttomBtn">아이디/비밀번호 찾기</button>
 					<td>
 				</tr>
-				<tr>
-					<td>
-						<button type="button" id="loginBtn">로그인</button>
-					</td>
-					<td>
-						<button type="button" id="signUpBtn">회원가입</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<!-- 로그인끝 -->
 </div>
-<!-- 로그인끝 -->
+<!-- div#wrap -->
 
 <!-- login -->
 <script src="/js/login.js"></script>
