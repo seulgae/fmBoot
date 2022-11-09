@@ -12,19 +12,19 @@ public class PayController {
 	@GetMapping("/pay_reservation")
 	public String pay_reservation(Model model) {
 
-		return "pay_reservation";
+		return "placebbs/pay_reservation";
 	}
 
 	@GetMapping("/placelist")
 	public String placelist(Model model) {
 
-		return "placelist";
+		return "placebbs/placelist";
 	}
 
 	@GetMapping("/placeread")
 	public String placeRead(Model model) {
 
-		return "placeread";
+		return "placebbs/placeread";
 	}
 
 }

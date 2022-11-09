@@ -37,7 +37,7 @@ public class LoginController {
 
     @GetMapping("/mypage")
     public String mypage() {
-        return "mypage";
+        return "member/mypage";
     }
 
     @RequestMapping("/idCheck")
