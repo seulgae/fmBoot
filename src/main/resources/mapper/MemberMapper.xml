@@ -4,8 +4,40 @@
 
 <mapper namespace="com.ucamp.fm.mapper.MemberMapper">
 
-<!--	<insert id="test">-->
-<!--			insert into member (m_id) values (#{m_id})-->
-<!--	</insert>-->
+    <insert id="join" parameterType="com.ucamp.fm.dto.MemberDto">
+        insert into member(
+            m_id,
+            m_pw,
+            m_name,
+            m_phone,
+            m_email,
+            m_level,
+            m_cname,
+            m_zip,
+            m_addr1,
+            m_addr2,
+            m_pname,
+            m_account,
+            m_bank,
+            m_sysdate,
+            m_check
+        )values(
+            #{m_id},
+            #{m_pw},
+            #{m_name},
+            #{m_phone},
+            #{m_email},
+            #{m_level},
+            #{m_cname},
+            #{m_zip},
+            #{m_addr1},
+            #{m_addr2},
+            #{m_pname},
+            #{m_account},
+            #{m_bank},
+            sysdate,
+            '0'
+        )
+    </insert>
 	
 </mapper>
