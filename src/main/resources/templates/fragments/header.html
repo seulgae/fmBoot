@@ -33,11 +33,17 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/notice/noticelist">공지사항</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" th:unless="${session.m_id}">
                   <a class="nav-link" href="/login/join">회원가입</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/login/login">로그인</a>
+                  <a class="nav-link" href="/login/login" th:unless="${session.m_id}">로그인</a>
+                </li>
+                <li class="nav-item" th:if="${session.m_id}">
+                  <a class="nav-link" href="/login/mypage">마이페이지</a>
+                </li>
+                <li class="nav-item" th:if="${session.m_id}">
+                  <a class="nav-link" href="/login/logout">로그아웃</a>
                 </li>
               </ul>
             </div>
