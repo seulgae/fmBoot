@@ -3,22 +3,24 @@
 
 <!-- config -->
 <th:block th:replace="fragments/config :: configFragment"></th:block>
-<!-- header -->
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
 
-<link rel="stylesheet" href="/css/bloglist.css">
+<link rel="stylesheet" href="/css/bloglistajax.css">
 
 <div id="wrap">
     <table id="bloglist" class="table table-hover">
         <thead>
-        <tr>
-            <th colspan="5">
-                <span style="font-size: 20px; font-family:
-                'Noto Sans KR', sans-serif; font-weight: bold;">
-                커뮤니티 게시판 |&nbsp;전체보기
-                </span><br>
-            </th>
-        <tr>
+            <tr>
+                <th colspan="5" style="text-align: right;">
+                    <a th:href="|/blog/bloglist|">더보기+</a>
+                </th>
+            </tr>
+            <tr>
+                <th style="text-align: center; width:50px">번호</th>
+                <th style="text-align: center; width:65px">이미지</th>
+                <th style="text-align: center; width:300px">글제목</th>
+                <th style="text-align: center; width:100px">작성자</th>
+                <th style="text-align: center; width:100px">작성일자</th>
+            <tr>
         </thead>
         <tbody>
         <tr th:each="blog : ${blogs}" style="text-align: center; margin:auto;">
@@ -41,9 +43,5 @@
         </tbody>
     </table>
 </div>
-<!-- div#wrap -->
-
-<!-- footer -->
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 <!-- div#wrap -->
 </html>

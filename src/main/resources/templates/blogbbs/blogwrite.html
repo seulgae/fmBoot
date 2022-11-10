@@ -17,7 +17,7 @@
 
 <body>
     <div class="px-4 py-5 my-5 text-center" style="margin: 20px auto ; width : 1000px">
-        <form action="/blog/blogwriteAction" method="post" enctype="multipart/form-data">
+        <form action="/blog/blogwriteaction" method="post" enctype="multipart/form-data">
             <table>
                 <thead>
                 <tr>
@@ -30,6 +30,16 @@
                 </tr>
                 </thead>
                 <tbody>
+                    <tr><td colspan="2"><hr></td></tr>
+                    <tr>
+                        <td width="130px">
+                            <span style="font-size:15px;">작성자</span>
+                        </td>
+                        <td style="text-align:left;">
+                            <input type="hidden" name="tb_id" th:value="${tb_id}">
+                            <span>[[ ${tb_id} ]]</span>
+                        </td>
+                    </tr>
                     <tr><td colspan="2"><hr></td></tr>
                     <tr>
                         <td width="130px">
@@ -72,6 +82,7 @@
 </body>
 <script>
 	$(document).ready(function() {
+
         $('#summernote').summernote({
              height: 200,
              minHeight: null,
