@@ -8,11 +8,13 @@
 
 <link rel="stylesheet" href="/css/bloglist.css">
 
+<link rel="stylesheet" href="bloglist.css">
+
 <div id="wrap">
     <table id="bloglist" class="table table-hover">
         <thead>
         <tr>
-            <th colspan="5">
+            <th colspan="3">
                 <span style="font-size: 20px; font-family:
                 'Noto Sans KR', sans-serif; font-weight: bold;">
                 커뮤니티 게시판 |&nbsp;전체보기
@@ -21,25 +23,38 @@
         <tr>
         </thead>
         <tbody>
-        <tr th:each="blog : ${blogs}" style="text-align: center; margin:auto;">
-            <td class="align-middle">
-                [[ ${blog.tb_no} ]]
+        <tr th:each="blog : ${blogs}">
+            <td class="text-center" width="250px">
+                <img th:src="|/uploadImg/blog/${blog.tb_thum}|" width="200px" height="150px">
             </td>
-            <td class="align-middle">
-                <img th:src="|/uploadImg/blog/${blog.tb_thum}|" width="50px" height="50px">
-            </td>
-            <td class="align-middle">
-                [[ ${blog.tb_title} ]]
-            </td>
-            <td class="align-middle">
-                [[ ${blog.tb_id} ]]
-            </td>
-            <td class="align-middle">
-                [[ ${blog.tb_date} ]]
+            <td class="text-left">
+                <span>[[ ${blog.tb_title} ]]</span>
+                <p class="content" th:utext="${blog.tb_content}"></p>
             </td>
         </tr>
         </tbody>
     </table>
+
+    <div class="paging-div">
+        <ul class="pagination" id="pagination"></ul>
+    </div>
+
+<script>
+    window.pagObj = $('#pagination').twbsPagination({
+    totalPages: [[${dataListPage.totalPages}]], // 전체 페이지
+    startPage: parseInt([[${dataListPage.number}]] + 1), // 시작(현재) 페이지
+    visiblePages: 10, // 최대로 보여줄 페이지
+    prev: "‹", // Previous Button Label
+    next: "›", // Next Button Label
+    first: '«', // First Button Label
+    last: '»', // Last Button Label
+    onPageClick: function (event, page) { // Page Click event
+        console.info("current page : " + page);
+    }
+    }).on('page', function (event, page) {
+        searchDataList(page);
+    });
+</script>
 </div>
 <!-- div#wrap -->
 
