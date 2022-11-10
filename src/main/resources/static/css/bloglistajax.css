@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+div#wrap{
+    width: 1000px;
+    height: 100%;
+    margin: 20px auto;
+}
+
+table#bloglist{
+    width: 100%;
+}

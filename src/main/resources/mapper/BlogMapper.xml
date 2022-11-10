@@ -19,9 +19,9 @@
         ]]>
     </select>
 
-    <select id="bloglistone" parameterType="com.ucamp.fm.dto.BlogDto"
+    <select id="blogone" parameterType="com.ucamp.fm.dto.BlogDto"
             resultType="com.ucamp.fm.dto.BlogDto">
-        select * from teamblog where = #{tb_no}
+        select * from teamblog where tb_no = #{tb_no};
     </select>
 
     <insert id="bloginsert" parameterType="com.ucamp.fm.dto.BlogDto">

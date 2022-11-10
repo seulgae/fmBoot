@@ -10,6 +10,8 @@ public interface BlogService {
 
     List<BlogDto> bloglistajax(BlogDto blogDto);
 
+    BlogDto blogone(String td_no);
+
     void bloginsert(BlogDto blogDto);
 
     void blogdelete();

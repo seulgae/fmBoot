@@ -46,7 +46,7 @@
                             <span style="font-size:15px;">제목</span>
                         </td>
                         <td>
-                            <input type="text" class="form-control" placeholder="글 제목" name="tb_title">
+                            <input type="text" class="form-control" placeholder="글 제목" name="tb_title" th:value="${tb_title}">
                         </td>
                     </tr>
                     <tr><td colspan="2"><hr></td></tr>
@@ -55,7 +55,7 @@
                             <span style="font-size:15px;">내용</span>
                         </td>
                         <td class="tg-0pky">
-                            <textarea id="summernote" required="required" name="tb_content"></textarea>
+                            <textarea id="summernote" required="required" name="tb_content" th:value="${tb_content}"></textarea>
                         </td>
                     </tr>
                     <tr><td colspan="2"><hr></td></tr>

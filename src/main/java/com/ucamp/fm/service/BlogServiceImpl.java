@@ -25,6 +25,11 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
+    public BlogDto blogone(String td_no) {
+        return blogMapper.blogone(td_no);
+    }
+
+    @Override
     public void bloginsert(BlogDto blogDto) {
         blogMapper.bloginsert(blogDto);
     }

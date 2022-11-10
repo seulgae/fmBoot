@@ -4,7 +4,7 @@
 <!-- config -->
 <th:block th:replace="fragments/config :: configFragment"></th:block>
 
-<link rel="stylesheet" href="/css/bloglist.css">
+<link rel="stylesheet" href="/css/bloglistajax.css">
 
 <div id="wrap">
     <table id="bloglist" class="table table-hover">
@@ -24,7 +24,6 @@
         </thead>
         <tbody>
         <tr th:each="blog : ${blogs}" style="text-align: center; margin:auto;">
-<!--            <td th:text="${i.count}"></td>-->
             <td class="align-middle">
                 [[ ${blog.tb_no} ]]
             </td>

@@ -110,6 +110,9 @@ public class BlogController {
             return "redirect:/login/login";
         }
 
+        model.addAttribute("blogs", blogService.bloglist(blogDto));
+
+
         return "blogbbs/blogmod";
     }
 
