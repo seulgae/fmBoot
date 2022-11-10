@@ -3,17 +3,25 @@ package com.ucamp.fm.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class BlogDto {
 
-    private String tb_no;
-    private String tb_title;
-    private String tb_content;
-    private String tb_date;
-    private String tb_thum;
-    private int tb_filesize;
-    private String tb_state;
+    private String tb_no; // 커뮤니티 게시판 글 번호
+    private String tb_title; // 글 제목
+    private String tb_content; // 글 내용
+    private String tb_date; // 작성일자
+    private String tb_thum; // 섬네일 이름
+    private String tb_state; // 게시물 상태
+
+    public BlogDto(String tb_title, String tb_content, String tb_thum) {
+        this.tb_title = tb_title;
+        this.tb_content = tb_content;
+        this.tb_thum = tb_thum;
+    }
+
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucamp.fm.mapper.BlogMapper">
+
+    <insert id="bloginsert" parameterType="com.ucamp.fm.dto.BlogDto">
+        insert into teamblog(
+            tb_no,
+            tb_title,
+            tb_content,
+            tb_date,
+            tb_thum,
+            tb_state
+        )values(
+            tb_no.NEXTVAL,
+            #{tb_title},
+            #{tb_content},
+            sysdate,
+            #{tb_thum},
+            '2'
+        )
+    </insert>
+	
+</mapper>

@@ -2,9 +2,7 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 
 <style>
-/* thead {
-	background-color: #81D4F4;
-} */
+
 </style>
 
 <!-- config -->
@@ -12,26 +10,21 @@
 <!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
-<div style="width: 100%; margin: 20px auto; margin-left: 30%;">
-	<div id="container" class="col-xs-12">
-		<div class="title">
+<div style="width: 100%; margin: 5% auto; text-align: center;">
+	<div id="container" style="display: inline-block; width: 70%; height: 70%;">
+		<div class="title" align="left">
 			<h3 class="title-name">팀 목록</h3>
 			<small>풋살 매니저에 가입된 풋살팀 목록입니다.</small>
 		</div>
-		<div class="container-fluid" id="teamRank">
-			<div class="row">
-				<div class="search-group-team input-group">
-					<div class="col-xs-9" style="margin-top: 1%;">
-						<button type="button" onclick="location.href='/teammanage/teamcreate'" style="width: 100px; border: 1px solid silver;">팀 생성</button>
-					</div>
-					<div class="col-xs-3" style="margin-left: 20%">
-						<input type="text" class="form-control" id="searchTeam" placeholder="팀 검색">
-						<label class="control-label" id="searchLabel" style="font-size: 8px;">팀 명으로 검색하여주세요</label>
-					</div>
+		<div id="teamRank">
+			<div>
+				<div style="margin-top: 3%; margin-bottom: 1%;" align="left">
+					<button id="cbtn" style="border-radius: 10px; width: 100px;" align="left">팀 생성</button>
+					<input type="text" id="searchTeam" placeholder="팀명으로 검색" style="width: 150px; height: 25px; margin-left: 75%;">
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xs-12">
+			<div>
+				<div>
 					<table class="table table-hover" id="teamRankTable" style="text-align: center;">
 						<thead style="background-color: #B3E5FC; color: white;">
 							<tr>
@@ -82,6 +75,14 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$(function() {
+		$("#cbtn").click(function() {
+			window.open('/teammanage/teamcreate', 'pop01', 'top=10, left=10, width=500, height=400, status=no, menubar=no, toolbar=no, resizable=no');
+		})
+	})
+</script>
 
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>

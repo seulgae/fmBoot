@@ -14,7 +14,7 @@
       <span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
             예약 가능 구장 &nbsp;|&nbsp; <small>FM그라운드 제휴 구장</small></span><br>
         <hr style="width: 1000px;">
-        <form action="" style="margin-left:770px;">
+        <form action="" style="margin-left:765px;">
             <input type="text" />
             <input type="submit" value="검색">
         </form>
@@ -29,16 +29,11 @@
             <div style="font-weight: bold; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; margin-right: 550px;"> 2022.11.08 (화) </div>
             <div style="font-size: 15px; font-family: 'Noto Sans KR', sans-serif;  margin-left: 440px;"> 경기도 하남시 미사동로 37번길 85 </div>
             <div style="margin-left: 120px; margin-top:30px; display: inline-block;"></div>
-            <div class="select-wrap">
-                <select style="padding-right:20px;">
-                    <option selected>날짜를 선택해주세요.</option>
-                    <option>2020.11.08</option>
-                    <option>2020.11.09</option>
-                    <option>2020.11.10</option>
-                </select>
+            <div class="select-wrap" id="date">
+                <input style="padding-right:20px; width: 175px; height: 22px;" type='date' id='currentDate'/>
             </div>&nbsp;
             <div class="select-wrap">
-                <select style="padding-right:20px";>
+                <select style="padding-right:20px; width: 175px; height: 20px;">
                     <option selected>시간을 선택해주세요.</option>
                     <option>20:00</option>
                     <option>21:00</option>
@@ -54,8 +49,8 @@
             <div class="box" ><h6>팀조끼</h6></div>
             <div class="box"><h6>풋살화</h6></div>
             <div class="box"><h6>샤워실</h6></div>
-            <div style="margin-top:20px;"></div>
-            <div><button class="btn btn-outline-dark" style="width:98.7%;" onclick="location.href='/payment/placeread'">예약</button></div>
+            <div style="margin-top:33px;"></div>
+            <div><button class="btn btn-dark" style="width:98.7%; height:100%;" onclick="location.href='/payment/placeread'">예약</button></div>
         </div>
     </div>
     <div style="text-align: center";>페이징</div>
@@ -67,4 +62,7 @@
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
+<script>
+  document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
+</script>
 </html>
