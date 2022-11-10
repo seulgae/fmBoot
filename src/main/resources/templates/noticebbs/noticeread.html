@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+
+<div class = "px-4 py-5 my-5 text-center" style = "margin: 50px auto ; width : 1500px" >
+  <h1 style = "font-size : 55px">게시글 작성</h1> <br/>
+  <hr>
+  <table style = "width : 100%">
+    <tbody >
+
+    <tr>
+      <td style = "font-size : 20px ">제목 </td>
+      <td align="left">제목 불러오기</td>
+    </tr>
+    <tr>
+      <td style = "font-size : 20px">작성자 </td>
+      <td align="left">작성자 불러오기</td>
+    </tr>
+    <tr>
+      <td style = "font-size : 20px">작성일 </td>
+      <td align="left">작성일 불러오기</td>
+    </tr>
+    <tr>
+      <td style = "font-size : 20px">내용 </td>
+      <td align="left">내용 불러오기</td>
+    </tr>
+
+    </tbody>
+  </table>
+  <hr>
+  <button type="button" class="btn btn-danger" style = "float: right">목록</button>
+</div>
+
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</html>
