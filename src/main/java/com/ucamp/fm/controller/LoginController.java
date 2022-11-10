@@ -75,5 +75,11 @@ public class LoginController {
         return "redirect:/";
     }
 
+    @RequestMapping("/logout")
+    public String logout (HttpServletRequest request){
+        request.getSession().removeAttribute("m_id");
+        return "redirect:/";
+    }
+
 }
 
