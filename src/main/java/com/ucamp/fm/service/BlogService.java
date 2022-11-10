@@ -3,6 +3,7 @@ package com.ucamp.fm.service;
 import com.ucamp.fm.dto.BlogDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BlogService {
 
@@ -14,6 +15,6 @@ public interface BlogService {
 
     void bloginsert(BlogDto blogDto);
 
-    void blogdelete();
+    void blogdelete(String tb_no);
 
 }

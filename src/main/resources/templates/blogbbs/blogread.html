@@ -36,47 +36,25 @@
                             <span style="font-size:15px;">제목</span>
                         </td>
                         <td>
-                            <input type="hidden" class="form-control" value="글 제목" name="title">
+                            <span style="font-size:15px;" th:text="${blog.tb_title}"></span>
                         </td>
                     </tr>
                     <tr><td colspan="2"><hr></td></tr>
                     <tr>
-                        <td width="130px">
-                            <span style="font-size:15px;">내용</span>
-                        </td>
-                        <td class="tg-0pky">
-                            <textarea id="summernote" required="required"></textarea>
-                        </td>
-                    </tr>
-                    <tr><td colspan="2"><hr></td></tr>
-                    <tr>
-                        <td width="130px">
-                            <span style="font-size:15px;">대표 이미지</span><br>
-                            <span style="font-size:15px;">(300 * 300)</span>
-                        </td>
-                        <td class="tg-0pky">
-                            <input type="file">
+                        <td colspan="2">
+                            <span style="font-size:15px;" th:utext="${blog.tb_content}"></span>
                         </td>
                     </tr>
                     <tr><td colspan="2"><hr></td></tr>
                 </tbody>
             </table>
+            <!-- 자기 글이라면 버튼 나타나도록 조건줌 -->
+            <button type="button" class="btn btn-success" style="float: right" th:if="${blog.tb_id.toString().equals('${m_id}')}">수정</button>
+            <button type="button" class="btn btn-danger" style="float: right" th:if="${blog.tb_id.toString().equals('${m_id}')}">삭제</button>
             <button type="button" class="btn btn-secondary" style="float: right">취소</button>
-            <button type="button" class="btn btn-danger" style="float: right">등록</button>
         </form>
     </div>
 </body>
-<script>
-	$(document).ready(function() {
-        $('#summernote').summernote({
-             height: 200,
-             minHeight: null,
-             maxHeight: null,
-             lang: "ko-KR",
-             placeholder: '내용을 입력해주세요.'
-        });
-    });
-</script>
 
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>

@@ -21,9 +21,26 @@ public class BlogController {
 
     @Autowired
     BlogService blogService;
+    
+    
+    // 커뮤니티 글읽기 페이지
+    @GetMapping("/blogread/{tb_no}")
+    public String blog_read(@PathVariable String tb_no,
+                            Model model, HttpSession session){
+
+        // 세션 값 넘겨서, 문자열 비교 후 버튼 이벤트를 위한 로직
+        String valid = (String)session.getAttribute("m_id");
+        model.addAttribute("m_id", valid);
+
+        BlogDto blogDto = blogService.blogone(tb_no);
+        model.addAttribute("blog", blogDto);
+
+
+        return "blogbbs/blogread";
+    }
 
     // 커뮤니티 글목록 리스트 페이지(ajax)
-    @GetMapping("bloglist")
+    @GetMapping("/bloglist")
     public String blog_list(Model model, BlogDto blogDto){
 
         model.addAttribute("blogs", blogService.bloglist(blogDto));
@@ -33,7 +50,7 @@ public class BlogController {
 
 
     // 커뮤니티 글목록 리스트 페이지(ajax)
-    @GetMapping("bloglistajax")
+    @GetMapping("/bloglistajax")
     public String blog_list_ajax(Model model, BlogDto blogDto){
 
         // 10개만 출력, 출력 갯수 바꿀 시 쿼리문 수정 할 것
@@ -123,4 +140,22 @@ public class BlogController {
     }
 
     // 커뮤니티 글 삭제
+    @GetMapping("/blogdelete")
+    public String blog_delete(HttpSession session,
+                              Model model, @RequestParam String tb_no){
+
+        // 세션에 있는 아이디값 커뮤니티 게시판 작성자에 저장.
+        String tb_id = (String)session.getAttribute("m_id");
+        // 1. 세션 tb_id가 없다면
+        if(!(tb_id == null)){
+            model.addAttribute("tb_id", tb_id);
+        } else {
+            // 2. 로그인 폼으로 이동.
+            return "redirect:/login/login";
+        }
+
+        blogService.blogdelete(tb_no);
+
+        return "redirect:/bloglist";
+    }
 }
