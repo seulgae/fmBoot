@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -72,6 +71,12 @@ public class LoginController {
     @RequestMapping("/loginOk")
     public String loginOk (String m_id, HttpServletRequest request){
         request.getSession().setAttribute("m_id", m_id);
+        return "redirect:/";
+    }
+
+    @RequestMapping("/logout")
+    public String logout (HttpServletRequest request){
+        request.getSession().removeAttribute("m_id");
         return "redirect:/";
     }
 

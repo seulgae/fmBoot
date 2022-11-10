@@ -4,9 +4,30 @@
 
 <mapper namespace="com.ucamp.fm.mapper.BlogMapper">
 
+    <select id="bloglist" parameterType="com.ucamp.fm.dto.BlogDto"
+            resultType="com.ucamp.fm.dto.BlogDto">
+        select * from teamblog order by tb_no desc
+    </select>
+
+    <select id="bloglistajax" parameterType="com.ucamp.fm.dto.BlogDto"
+            resultType="com.ucamp.fm.dto.BlogDto">
+        select * from
+        ( select * from teamblog order by tb_no desc)
+        where
+        <![CDATA[
+        rownum <= 10
+        ]]>
+    </select>
+
+    <select id="bloglistone" parameterType="com.ucamp.fm.dto.BlogDto"
+            resultType="com.ucamp.fm.dto.BlogDto">
+        select * from teamblog where = #{tb_no}
+    </select>
+
     <insert id="bloginsert" parameterType="com.ucamp.fm.dto.BlogDto">
         insert into teamblog(
             tb_no,
+            tb_id,
             tb_title,
             tb_content,
             tb_date,
@@ -14,6 +35,7 @@
             tb_state
         )values(
             tb_no.NEXTVAL,
+            #{tb_id},
             #{tb_title},
             #{tb_content},
             sysdate,
@@ -21,5 +43,9 @@
             '2'
         )
     </insert>
+
+    <delete id="delete">
+        delete from teamblog where tb_no = #{tb_no}
+    </delete>
 	
 </mapper>

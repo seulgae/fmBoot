@@ -10,19 +10,25 @@
     <table id="bloglist" class="table table-hover">
         <thead>
             <tr>
-                <th class="align-middle">번호</th>
-                <th class="align-middle">이미지</th>
-                <th class="align-middle">글제목</th>
-                <th class="align-middle">작성자</th>
-                <th class="align-middle">작성일자</th>
+                <th colspan="5" style="text-align: right;">
+                    <a th:href="|/blog/bloglist|">더보기+</a>
+                </th>
+            </tr>
+            <tr>
+                <th style="text-align: center; width:50px">번호</th>
+                <th style="text-align: center; width:65px">이미지</th>
+                <th style="text-align: center; width:300px">글제목</th>
+                <th style="text-align: center; width:100px">작성자</th>
+                <th style="text-align: center; width:100px">작성일자</th>
             <tr>
         </thead>
         <tbody>
         <tr th:each="blog : ${blogs}" style="text-align: center; margin:auto;">
-            <td width="50px" class="align-middle">
+<!--            <td th:text="${i.count}"></td>-->
+            <td class="align-middle">
                 [[ ${blog.tb_no} ]]
             </td>
-            <td width="150px" class="align-middle">
+            <td class="align-middle">
                 <img th:src="|/uploadImg/blog/${blog.tb_thum}|" width="50px" height="50px">
             </td>
             <td class="align-middle">
