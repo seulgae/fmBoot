@@ -37,6 +37,6 @@ public class BlogServiceImpl implements BlogService{
 
     @Override
     public void blogdelete(String tb_no) {
-
+        blogMapper.blogdelete(tb_no);
     }
 }

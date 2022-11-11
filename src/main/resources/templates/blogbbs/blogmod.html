@@ -24,7 +24,7 @@
                     <th colspan="2">
                         <span style="font-size: 20px; font-family:
                         'Noto Sans KR', sans-serif; font-weight: bold;">
-                        커뮤니티 게시판 |&nbsp;글 작성
+                        커뮤니티 게시판 |&nbsp;글 수정
                         </span><br>
                     </th>
                 </tr>
@@ -46,7 +46,7 @@
                             <span style="font-size:15px;">제목</span>
                         </td>
                         <td>
-                            <input type="text" class="form-control" placeholder="글 제목" name="tb_title" th:value="${tb_title}">
+                            <input type="text" class="form-control" name="tb_title" th:value="${blog.tb_title}">
                         </td>
                     </tr>
                     <tr><td colspan="2"><hr></td></tr>
@@ -55,7 +55,9 @@
                             <span style="font-size:15px;">내용</span>
                         </td>
                         <td class="tg-0pky">
-                            <textarea id="summernote" required="required" name="tb_content" th:value="${tb_content}"></textarea>
+                            <textarea id="summernote" required="required" name="tb_content">
+                                [[ ${blog.tb_content} ]]
+                            </textarea>
                         </td>
                     </tr>
                     <tr><td colspan="2"><hr></td></tr>
@@ -68,7 +70,11 @@
                             <input type="file" name="tb_thum" multiple="multiple">
                         </td>
                     </tr>
-                    <tr><td colspan="2"><hr></td></tr>
+                    <tr>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
                     <tr>
                         <td colspan="2" style="text-align:right;">
                             <input type="submit" class="btn btn-danger" style="width:100px;" value="제출"/>

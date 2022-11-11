@@ -35,7 +35,7 @@
                         <td width="130px">
                             <span style="font-size:15px;">제목</span>
                         </td>
-                        <td>
+                        <td style="text-align:left;">
                             <span style="font-size:15px;" th:text="${blog.tb_title}"></span>
                         </td>
                     </tr>
@@ -49,12 +49,21 @@
                 </tbody>
             </table>
             <!-- 자기 글이라면 버튼 나타나도록 조건줌 -->
-            <button type="button" class="btn btn-success" style="float: right" th:if="${blog.tb_id.toString().equals('${m_id}')}">수정</button>
-            <button type="button" class="btn btn-danger" style="float: right" th:if="${blog.tb_id.toString().equals('${m_id}')}">삭제</button>
-            <button type="button" class="btn btn-secondary" style="float: right">취소</button>
+            <!-- th:if="${blog.tb_id.toString().equals('${m_id}')}" -->
+            <button type="button" class="btn btn-success" style="float: right;">
+                <a th:href="|/blog/blogmod/${blog.tb_no}|" style="color:#fff;">수정</a>
+            </button>
+            <button type="button" class="btn btn-danger" style="float: right">
+                <a th:href="|/blog/blogdelete/${blog.tb_no}|" style="color:#fff;">삭제</a>
+            </button>
+            <button type="button" class="btn btn-secondary" style="float: right" onClick="history.go(-1)">취소</button>
         </form>
     </div>
+    <br>
 </body>
+<script>
+
+</script>
 
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>

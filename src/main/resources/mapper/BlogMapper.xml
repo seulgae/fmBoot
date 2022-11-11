@@ -19,10 +19,6 @@
         ]]>
     </select>
 
-<!--    <select id="blogone" parameterType="String">-->
-<!--        select * from teamblog where tb_no = #{tb_no};-->
-<!--    </select>-->
-
     <insert id="bloginsert" parameterType="com.ucamp.fm.dto.BlogDto">
         insert into teamblog(
             tb_no,
