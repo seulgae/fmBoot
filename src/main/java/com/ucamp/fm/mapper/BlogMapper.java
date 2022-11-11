@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface BlogMapper {
 
+    BlogDto bloglist();
 
     List<BlogDto> bloglistajax(BlogDto blogDto);
 

@@ -16,6 +16,11 @@ public class BlogServiceImpl implements BlogService{
 
 
     @Override
+    public BlogDto bloglist() {
+        return blogMapper.bloglist();
+    }
+
+    @Override
     public List<BlogDto> bloglistajax(BlogDto blogDto) {
         return blogMapper.bloglistajax(blogDto);
     }
