@@ -3,11 +3,9 @@ package com.ucamp.fm.service;
 import com.ucamp.fm.dto.BlogDto;
 
 import java.util.List;
-import java.util.Map;
 
 public interface BlogService {
 
-    List<BlogDto> bloglist(BlogDto blogDto);
 
     List<BlogDto> bloglistajax(BlogDto blogDto);
 

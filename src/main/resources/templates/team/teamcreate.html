@@ -44,8 +44,7 @@
             </tr>
         </table>
         <div style="margin-top: 10px; margin-left: 260px; width: 50px;">
-            <input type="button" value="등록" id="submitbtn" style="display: inline-block;">
-            <input type="button" value="수정" id="updatebtn" style="display: inline-block;">
+            <input type="button" value="등록" id="submitbtn">
         </div>
     </form>
     </div>
@@ -55,9 +54,6 @@
     $(function(){
         $("#submitbtn").click(function() {
             $("#frmteam").attr("action","/teammanage/teaminsert").submit();
-        })
-        $("#updatebtn").click(function() {
-            $("#frmteam").attr("action","/teammanage/teamupdate").submit();
         })
     })
 </script>

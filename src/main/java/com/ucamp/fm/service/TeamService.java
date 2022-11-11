@@ -13,7 +13,7 @@ public interface TeamService {
 
     public List<TeamDto> searchTeam(String keyword);
 
-    public void teamUpdate(String t_name, String t_age, String t_skill, String t_kind, String t_id);
+    public void teamUpdate(String t_no, String t_name, String t_age, String t_skill, String t_kind, String t_id);
 
-    public List<TeamDto> selectTeam(String t_no);
+    public TeamDto selectTeam(String t_no);
 }

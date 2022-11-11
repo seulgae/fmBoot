@@ -29,6 +29,8 @@ public class BlogController {
                             Model model, HttpSession session){
 
         // 세션 값 넘겨서, 문자열 비교 후 버튼 이벤트를 위한 로직
+        // session 값 null 경우 타임리프 에러로 동작하지 않아,
+        // 기존에 코드 그대로 세션 아이디 valid에 담아 처리.
         String valid = (String)session.getAttribute("m_id");
         model.addAttribute("m_id", valid);
 
@@ -43,13 +45,13 @@ public class BlogController {
     @GetMapping("/bloglist")
     public String blog_list(Model model, BlogDto blogDto){
 
-        model.addAttribute("blogs", blogService.bloglist(blogDto));
+
 
         return "blogbbs/bloglist";
     }
 
 
-    // 커뮤니티 글목록 리스트 페이지(ajax)
+    // 커뮤니티 글목록 리스트 페이지(ajax), 페이징x
     @GetMapping("/bloglistajax")
     public String blog_list_ajax(Model model, BlogDto blogDto){
 

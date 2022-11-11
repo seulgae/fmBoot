@@ -34,12 +34,12 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void teamUpdate(String t_name, String t_age, String t_skill, String t_kind, String t_id) {
-        teamMapper.teamUpdate(t_name, t_age, t_skill, t_kind, t_id);
+    public void teamUpdate(String t_no, String t_name, String t_age, String t_skill, String t_kind, String t_id) {
+        teamMapper.teamUpdate(t_no, t_name, t_age, t_skill, t_kind, t_id);
     }
 
     @Override
-    public List<TeamDto> selectTeam(String t_no) {
+    public TeamDto selectTeam(String t_no) {
         return teamMapper.selectTeam(t_no);
     }
 }

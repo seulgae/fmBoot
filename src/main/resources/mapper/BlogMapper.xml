@@ -6,7 +6,7 @@
 
     <select id="bloglist" parameterType="com.ucamp.fm.dto.BlogDto"
             resultType="com.ucamp.fm.dto.BlogDto">
-        select * from teamblog order by tb_no desc
+        select * from teamblog where 1=1
     </select>
 
     <select id="bloglistajax" parameterType="com.ucamp.fm.dto.BlogDto"
@@ -22,6 +22,7 @@
     <insert id="bloginsert" parameterType="com.ucamp.fm.dto.BlogDto">
         insert into teamblog(
             tb_no,
+            tb_tbno,
             tb_id,
             tb_title,
             tb_content,
@@ -30,6 +31,7 @@
             tb_state
         )values(
             tb_no.NEXTVAL,
+            'teamblog',
             #{tb_id},
             #{tb_title},
             #{tb_content},

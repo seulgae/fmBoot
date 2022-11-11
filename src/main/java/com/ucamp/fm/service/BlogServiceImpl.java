@@ -16,11 +16,6 @@ public class BlogServiceImpl implements BlogService{
 
 
     @Override
-    public List<BlogDto> bloglist(BlogDto blogDto) {
-        return blogMapper.bloglist(blogDto);
-    }
-
-    @Override
     public List<BlogDto> bloglistajax(BlogDto blogDto) {
         return blogMapper.bloglistajax(blogDto);
     }
@@ -39,4 +34,5 @@ public class BlogServiceImpl implements BlogService{
     public void blogdelete(String tb_no) {
         blogMapper.blogdelete(tb_no);
     }
+
 }
