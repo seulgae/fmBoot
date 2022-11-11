@@ -9,13 +9,10 @@
     }
     .container1 {
         width: 100%;
-        margin: 20px auto;
         text-align: center;
     }
     .row_status {
         background-color:#333333;
-        width: 60%;
-        display: inline-block;
     }
     .row1 {
         justify-content: space-between;
@@ -50,6 +47,7 @@
 <!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
+<div style="width: 1000px; margin: 20px auto;">
 <div class="container1">
     <div class="row_status">
         <div class="row1">
@@ -58,9 +56,9 @@
                     <img class="profile" src="/images/logo.png">
                 </div>
                 <div style="width: 50%; margin-top: 20px;">
-                    <h2 style="color: white; margin-right: 15px;">풋살FC</h2>
-                    <h7 style="font-size:8px; margin-right: 20px;">팀 등록일</h7>
-                    <ul style="font-size:9px; margin-top: 15px;">
+                    <h2 style="color: white; margin-right: 15px;"></h2>
+                    <h7 style="font-size:8px; margin-right: 25%; color: #BDBDBD">팀 등록일</h7>
+                    <ul style="font-size:9px; margin-top: 15px; margin-left: 5%" align="left">
                         <li>－연고</li>
                         <li>－연령대</li>
                         <li>－실력</li>
@@ -69,45 +67,44 @@
                     </ul>
                 </div>
             </div>
-            <div style="width: 50%; margin-top: 50px; margin-bottom: 20px;">
-                <h6 style="color: #BDBDBD; margin-right: 200px;">팀 소개</h6>
+            <div style="width: 50%; margin-top: 5%; margin-bottom: 5%;">
+                <h6 style="color: #BDBDBD; margin-right: 45%;">팀 소개</h6>
                 <div>
                     <textarea id="content" name="content"></textarea>
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 log-outer-holder">
-            <div class="log-inner-holder">
-                <table class="table log">
-                    <thead>
-                    <tr>
-                        <th rowspan="2">총</th>
-                        <th rowspan="2">승</th>
-                        <th rowspan="2">무</th>
-                        <th rowspan="2">패</th>
-                        <th rowspan="2">승률</th>
-                        <th colspan="2">경기당</th>
-                    </tr>
-                    <tr>
-                        <th>득점</th>
-                        <th>실점</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="align-middle" rowspan="2" style="text-align: center;">총</th>
+                    <th class="align-middle" rowspan="2" style="text-align: center;">승</th>
+                    <th class="align-middle" rowspan="2" style="text-align: center;">무</th>
+                    <th class="align-middle" rowspan="2" style="text-align: center;">패</th>
+                    <th class="align-middle" rowspan="2" style="text-align: center;">승률</th>
+                    <th class="align-middle" colspan="2" style="text-align: center;">경기당</th>
+                </tr>
+                <tr>
+                    <th class="align-middle" style="text-align: center;">득점</th>
+                    <th class="align-middle" style="text-align: center;">실점</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 </div>
 
 
