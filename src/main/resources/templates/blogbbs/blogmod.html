@@ -7,9 +7,9 @@
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
 <!-- 폰트 관련-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!--<link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">-->
 
 <!-- 서머노트 관련 -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
 
 <body>
     <div class="px-4 py-5 my-5 text-center" style="margin: 20px auto ; width : 1000px">
-        <form>
+        <form action="/blog/blogwriteaction" method="post" enctype="multipart/form-data">
             <table>
                 <thead>
                 <tr>
@@ -33,10 +33,20 @@
                     <tr><td colspan="2"><hr></td></tr>
                     <tr>
                         <td width="130px">
+                            <span style="font-size:15px;">작성자</span>
+                        </td>
+                        <td style="text-align:left;">
+                            <input type="hidden" name="tb_id" th:value="${tb_id}">
+                            <span>[[ ${tb_id} ]]</span>
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><hr></td></tr>
+                    <tr>
+                        <td width="130px">
                             <span style="font-size:15px;">제목</span>
                         </td>
                         <td>
-                            <input type="text" class="form-control" placeholder="글 제목" name="title">
+                            <input type="text" class="form-control" name="tb_title" th:value="${blog.tb_title}">
                         </td>
                     </tr>
                     <tr><td colspan="2"><hr></td></tr>
@@ -45,29 +55,40 @@
                             <span style="font-size:15px;">내용</span>
                         </td>
                         <td class="tg-0pky">
-                            <textarea id="summernote" required="required"></textarea>
+                            <textarea id="summernote" required="required" name="tb_content">
+                                [[ ${blog.tb_content} ]]
+                            </textarea>
                         </td>
                     </tr>
                     <tr><td colspan="2"><hr></td></tr>
                     <tr>
                         <td width="130px">
-                            <span style="font-size:15px;">대표 이미지</span><br>
-                            <span style="font-size:15px;">(300 * 300)</span>
+                            <span style="font-size:15px; font-color:#808080;">대표 이미지</span><br>
+                            <span style="font-size:15px; color:red;">(300 * 300)</span>
                         </td>
                         <td class="tg-0pky">
-                            <input type="file">
+                            <input type="file" name="tb_thum" multiple="multiple">
                         </td>
                     </tr>
-                    <tr><td colspan="2"><hr></td></tr>
+                    <tr>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:right;">
+                            <input type="submit" class="btn btn-danger" style="width:100px;" value="제출"/>
+                            <button type="button" class="btn btn-secondary" style="width:100px;" onClick="history.go(-1)">취소</button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-secondary" style="float: right">취소</button>
-            <button type="button" class="btn btn-danger" style="float: right">등록</button>
         </form>
     </div>
 </body>
 <script>
 	$(document).ready(function() {
+
         $('#summernote').summernote({
              height: 200,
              minHeight: null,

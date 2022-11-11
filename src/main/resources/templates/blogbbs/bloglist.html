@@ -1,10 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>커뮤니티 게시판 목록</title>
-</head>
-<body>
+<html lang="en" xmlns:th="www.thymeleaf.org">
 
-</body>
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<link rel="stylesheet" href="/css/bloglist.css">
+
+<div id="wrap">
+    <table id="bloglist" class="table table-hover">
+        <thead>
+        <tr>
+            <th colspan="3">
+                <span style="font-size: 20px; font-family:
+                'Noto Sans KR', sans-serif; font-weight: bold;">
+                커뮤니티 게시판 |&nbsp;전체보기
+                </span><br>
+            </th>
+        <tr>
+        </thead>
+        <!--th:onclick="|location.href='@{/blog/blogread/${blog.tb_id}}'|"-->
+        <tbody>
+        <tr th:each="blog : ${blogs}">
+            <td class="text-center" width="250px">
+                <a th:href="|/blog/blogread/${blog.tb_no}|">
+                <img th:src="|/uploadImg/blog/${blog.tb_thum}|" width="200px" height="150px">
+                </a>
+            </td>
+            <td class="text-left">
+                <a th:href="|/blog/blogread/${blog.tb_no}|">
+                <span class="title" th:text="${blog.tb_title}" style="font-weight:bold; font-size:20px"></span>
+                <span class="content" th:utext="${blog.tb_content}"></span>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- 페이징 -->
+    <nav aria-label="Page navigation example ">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" th:href="@{/?page=1}" aria-label="Previous">
+                    <span aria-hidden="true">처음</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{/?page={page} (page = ${pagination.prevBlock})}" aria-label="Previous">
+                    <span aria-hidden="true">이전</span>
+                </a>
+            </li>
+            <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                <li class="page-item"
+                    th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+                    th:each="pageButton : ${#numbers.sequence(start, end)}">
+                    <a class="page-link" th:href="@{/?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+                </li>
+            </th:block>
+            <li class="page-item">
+                <a class="page-link" th:href="@{?page={page} (page = ${pagination.nextBlock})}" aria-label="Next">
+                    <span aria-hidden="true">다음</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{?page={page} (page = ${pagination.totalPageCnt})}" aria-label="Previous">
+                    <span aria-hidden="true">끝</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+<!-- div#wrap -->
+<script>
+
+</script>
+
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<!-- div#wrap -->
 </html>
