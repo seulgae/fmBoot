@@ -6,37 +6,75 @@
 
     <insert id="join" parameterType="com.ucamp.fm.dto.MemberDto">
         insert into member(
-            m_id,
-            m_pw,
-            m_name,
-            m_phone,
-            m_email,
-            m_level,
-            m_cname,
-            m_zip,
-            m_addr1,
-            m_addr2,
-            m_pname,
-            m_account,
-            m_bank,
-            m_sysdate,
-            m_check
+        m_id,
+        m_pw,
+        m_name,
+        m_phone,
+        m_email,
+        m_level,
+        m_cname,
+        m_zip,
+        m_addr1,
+        m_addr2,
+        m_pname,
+        m_account,
+        m_bank,
+        m_sysdate,
+        m_check
         )values(
-            #{m_id},
-            #{m_pw},
-            #{m_name},
-            #{m_phone},
-            #{m_email},
-            #{m_level},
-            #{m_cname},
-            #{m_zip},
-            #{m_addr1},
-            #{m_addr2},
-            #{m_pname},
-            #{m_account},
-            #{m_bank},
-            sysdate,
-            '0'
+        #{m_id},
+        #{m_pw},
+        #{m_name},
+        #{m_phone},
+        #{m_email},
+        #{m_level},
+        #{m_cname},
+        #{m_zip},
+        #{m_addr1},
+        #{m_addr2},
+        #{m_pname},
+        #{m_account},
+        #{m_bank},
+        sysdate,
+        '0'
         )
     </insert>
+
+    <insert id="mypage_request" parameterType="com.ucamp.fm.dto.PlaceDto">
+        insert into place (
+        p_no,
+        p_manager,
+        p_pname,
+        p_place,
+        p_explain,
+        p_price,
+        p_max,
+        p_area,
+        p_op1,
+        p_op2,
+        p_op3,
+        p_op4,
+        p_op5,
+        p_op6,
+        p_date
+        )values(
+        PLACE_SEQ.NEXTVAL,
+        #{p_manager},
+        #{p_pname},
+        #{p_place},
+        #{p_explain},
+        #{p_price},
+        #{p_max},
+        #{p_area},
+        #{p_op1},
+        #{p_op2},
+        #{p_op3},
+        #{p_op4},
+        #{p_op5},
+        #{p_op6},
+        sysdate
+        )
+
+    </insert>
+
 </mapper>

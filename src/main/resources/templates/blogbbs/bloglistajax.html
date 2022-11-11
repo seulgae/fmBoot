@@ -25,20 +25,31 @@
         <tbody>
         <tr th:each="blog : ${blogs}" style="text-align: center; margin:auto;">
             <td class="align-middle">
-                [[ ${blog.tb_no} ]]
+                <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
+                    [[ ${blog.tb_no} ]]
+                </a>
             </td>
             <td class="align-middle">
+                <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
                 <img th:src="|/uploadImg/blog/${blog.tb_thum}|" width="50px" height="50px">
+                </a>
             </td>
             <td class="align-middle">
+                <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
                 [[ ${blog.tb_title} ]]
+                </a>
             </td>
             <td class="align-middle">
+                <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
                 [[ ${blog.tb_id} ]]
+                </a>
             </td>
             <td class="align-middle">
+                <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
                 [[ ${blog.tb_date} ]]
+                </a>
             </td>
+            </a>
         </tr>
         </tbody>
     </table>

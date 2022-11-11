@@ -30,4 +30,5 @@ public class PlaceDto {
     private String p_op4;
     private String p_op5;
     private String p_op6;
+    private String p_date;
 }

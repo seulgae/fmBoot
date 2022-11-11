@@ -2,7 +2,15 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 
 <style>
-
+	ubtn, cbtn {
+		border-radius: 10px;
+		color: white;
+		font-family: 'Noto Sans KR', sans-serif;
+		width: 100px;
+		margin-top: 3%;
+		margin-bottom: 2%;
+	}
+	td { text-align: center; }
 </style>
 
 <!-- config -->
@@ -10,68 +18,63 @@
 <!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
-<div style="width: 100%; margin: 5% auto; text-align: center;">
-	<div id="container" style="display: inline-block; width: 70%; height: 70%;">
-		<div class="title" align="left">
-			<h3 class="title-name">팀 목록</h3>
-			<small>풋살 매니저에 가입된 풋살팀 목록입니다.</small>
+<div style="width:1000px; margin: 20px auto; ">
+	<div style="width: 100%;">
+		<div class="container-fluid" id="teamRank">
+		<div class="title" align="left" style="margin-top: 2%;">
+			<span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
+            팀 목록 &nbsp;|&nbsp; <small>풋살 매니저에 가입된 풋살팀 목록입니다.</small></span>
 		</div>
-		<div id="teamRank">
-			<div>
-				<div style="margin-top: 3%; margin-bottom: 1%;" align="left">
-					<button id="cbtn" style="border-radius: 10px; width: 100px;" align="left">팀 생성</button>
-					<input type="text" id="searchTeam" placeholder="팀명으로 검색" style="width: 150px; height: 25px; margin-left: 75%;">
-				</div>
+		<div style="margin: 20px auto;">
+			<div style="float: left; margin:20px auto;">
+				<button class="btn btn-dark" id="cbtn">팀 생성</button>
+				<button class="btn btn-dark" id="ubtn">팀 수정</button>
+				<input type="hidden" id="loginCheck" th:value="${session.m_id}">
 			</div>
-			<div>
-				<div>
-					<table class="table table-hover" id="teamRankTable" style="text-align: center;">
-						<thead style="background-color: #B3E5FC; color: white;">
-							<tr>
-								<!--<th rowspan="2" style="width:6%;">순 위</th>-->
-								<th rowspan="2" style="width: 17%;">팀 명</th>
-								<th colspan="4" style="width: 27%;">전 적</th>
-								<th rowspan="2" style="width: 17%;">연 고</th>
-								<th rowspan="2" style="width: 16%;">연령대</th>
-								<th rowspan="2" style="width: 9%;">실 력</th>
-								<th rowspan="2" style="width: 25%;">유 형</th>
-							</tr>
-							<tr>
-								<th>경기</th>
-								<th>승</th>
-								<th>무</th>
-								<th>패</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr onclick="location.href='/teammanage/teamdetail'">
-								<!--<td>1</td>-->
-								<td class="align-left">FS놀자</td>
-								<td>12</td>
-								<td>5</td>
-								<td>5</td>
-								<td>2</td>
-								<td>기타 지역</td>
-								<td>20대 초반 ~ 30대 중반</td>
-								<td>하</td>
-								<td class="align-left">자유 유형</td>
-							</tr>
-							<tr onclick="window.location.href='/teamfut52835'">
-								<!--<td>2</td>-->
-								<td class="align-left">백두범FC</td>
-								<td>10</td>
-								<td>9</td>
-								<td>0</td>
-								<td>1</td>
-								<td>기타 지역</td>
-								<td>20대 초반 ~ 30대 중반</td>
-								<td>하</td>
-								<td class="align-left">자유 유형</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+			<div style="float: right; margin:20px auto;">
+				<form action="/teammanage/teammanage">
+					<input type="text" name="keyword" placeholder="팀명 검색" style="width: 150px; height: 32px;">
+					<input class="btn btn-dark" type="submit" value="검색">
+				</form>
 			</div>
+		</div>
+		<div>
+			<table class="table table-hover table-striped" id="teamRankTable">
+				<thead style="background-color: #646464; color: white;">
+					<tr>
+						<!--<th rowspan="2" style="width:6%;">순 위</th>-->
+						<th class="align-middle" rowspan="2" style="width: 17%; text-align: center;">팀 명</th>
+						<th class="align-middle" colspan="4" style="width: 27%; text-align: center;">전 적</th>
+						<th class="align-middle" rowspan="2" style="width: 17%; text-align: center;">연 고</th>
+						<th class="align-middle" rowspan="2" style="width: 16%; text-align: center;">연령대</th>
+						<th class="align-middle" rowspan="2" style="width: 9%; text-align: center;">실 력</th>
+						<th class="align-middle" rowspan="2" style="width: 25%; text-align: center;">유 형</th>
+					</tr>
+					<tr>
+						<th class="align-middle" style="text-align: center;">경기</th>
+						<th class="align-middle" style="text-align: center;">승</th>
+						<th class="align-middle" style="text-align: center;">무</th>
+						<th class="align-middle" style="text-align: center;">패</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="team : ${teamlist}">
+					<tr>
+						<!--<td>1</td>-->
+						<td><a style="color: red;" th:href="|/teammanage/teamdetail?t_no=${team.t_no}|"> [[ ${team.t_name} ]] </a></td>
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>
+						<td>기타 지역</td>
+						<td th:text="${team.t_age}"></td>
+						<td th:text="${team.t_skill}"></td>
+						<td th:text="${team.t_kind}"></td>
+					</tr>
+					</th:block>
+				</tbody>
+			</table>
+		</div>
 		</div>
 	</div>
 </div>
@@ -79,11 +82,27 @@
 <script>
 	$(function() {
 		$("#cbtn").click(function() {
-			window.open('/teammanage/teamcreate', 'pop01', 'top=10, left=10, width=500, height=400, status=no, menubar=no, toolbar=no, resizable=no');
+			if($("#loginCheck").val() != ""){
+				window.open('/teammanage/teamcreate', 'pop01', 'top=10, left=10, width=500, height=550, status=no, menubar=no, toolbar=no, resizable=no');
+			} else {
+				alert('로그인을 해주세요');
+				location.href="/login/login";
+			}
+		})
+	})
+	$(function() {
+		$("#ubtn").click(function() {
+			if($("#loginCheck").val() != ""){
+				window.open('/teammanage/teamcreate', 'pop01', 'top=10, left=10, width=500, height=550, status=no, menubar=no, toolbar=no, resizable=no');
+			} else {
+				alert('로그인을 해주세요');
+				location.href="/login/login";
+			}
 		})
 	})
 </script>
 
+<br><br><br>
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </html>

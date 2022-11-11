@@ -109,7 +109,8 @@
     </tbody>
   </table>
 
-  <form accept="/" method="post">
+  <form action="/payment/pay_reservation" id="frmReservation" method="post">
+    <input type="hidden" id="loginCheck" th:value="${session.m_id}">
     <table id="payment">
       <tbody>
       <tr>
@@ -137,7 +138,7 @@
       <tr>
         <td>
           <!-- 만약에 예약 가능한 시간이 아니라면 버튼 비활성화하기. -->
-          <input type="submit" value="예약 신청하기" class="paymentBtn">
+          <input type="button" value="예약 신청하기" id="btnReservation" class="paymentBtn">
           <br>
         </td>
       </tr>
@@ -238,7 +239,18 @@
 </div>
 <!-- div#wrap -->
 <br>
-
+<script>
+  $(function(){
+    $("#btnReservation").click(function(){
+      if($("#loginCheck").val() == ""){
+        alert('로그인을 해주세요.');
+        location.href="/login/login";
+      }else{
+        $("#frmReservation").submit();
+      }
+    })
+  })
+</script>
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>

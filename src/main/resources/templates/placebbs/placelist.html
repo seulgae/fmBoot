@@ -17,22 +17,23 @@
       <span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
             예약 가능 구장 &nbsp;|&nbsp; <small>FM그라운드 제휴 구장</small></span><br>
         <hr style="width: 1000px;">
-        <form action="" style="margin-left:765px;">
+        <div action="" style=" justify-content: space-between; display:flex;">
+            <div id="current_date" style="font-weight: bold; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; margin-right: 636px;"></div>
             <input type="text" />
             <input type="submit" value="검색">
-        </form>
+        </div>
     </div>
 
     <input type="hidden" th:value="${size}" id="list_size">
     <th:block th:each="list ,s : ${lists}">
         <div style="border:1px solid #c8c8c8; margin: 20px auto; justify-content: space-between; display:flex; width:1000px">
             <div>
-                <img th:src="|/images/${list.i_no}|" width="300px";/> <br>
+                <img th:src="|/images/${list.i_no}|" style="width:302px; height:181px;"/> <br>
                 <div style="padding: 5px 10px; text-align: center; background-color: black;"><span style="font-size: 15px; color: white;">[[${list.p_pname}]]</span>
                 </div>
             </div>
             <div>
-                <div id="current_date" style="font-weight: bold; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; margin-right: 550px;"></div>
+                <div style="font-weight: bold; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; margin-right: 600px;"> [구장 안내]</div>
                 <div style="font-size: 15px; font-family: 'Noto Sans KR', sans-serif;  margin-left: 440px;"> [[${list.p_place}]] </div>
                 <div style="margin-left: 120px; margin-top:43px; display: inline-block;"></div>
 
