@@ -18,7 +18,7 @@
 <body>
     <div class="px-4 py-5 my-5 text-center" style="margin: 20px auto ; width : 1000px">
         <form>
-            <table>
+            <table width="100%">
                 <thead>
                     <tr>
                         <th colspan="2">
@@ -49,13 +49,13 @@
                 </tbody>
             </table>
             <!-- 자기 글이라면 버튼 나타나도록 조건줌 -->
-            <button type="button" class="btn btn-success" style="float: right;" th:if="${blog.tb_id.toString().equals(m_id)}">
-                <a th:href="|/blog/blogmod/${blog.tb_no}|" style="color:#fff;">수정</a>
-            </button>
+            <button type="button" class="btn btn-secondary" style="float: right" onClick="history.go(-1)">취소</button>
             <button type="button" class="btn btn-danger" style="float: right" th:if="${blog.tb_id.toString().equals(m_id)}">
                 <a th:href="|/blog/blogdelete/${blog.tb_no}|" style="color:#fff;">삭제</a>
             </button>
-            <button type="button" class="btn btn-secondary" style="float: right" onClick="history.go(-1)">취소</button>
+            <button type="button" class="btn btn-success" style="float: right;" th:if="${blog.tb_id.toString().equals(m_id)}">
+                <a th:href="|/blog/blogmod/${blog.tb_no}|" style="color:#fff;">수정</a>
+            </button>
         </form>
     </div>
     <div id="blogcomment">
