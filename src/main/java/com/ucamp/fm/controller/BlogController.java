@@ -45,7 +45,7 @@ public class BlogController {
     @GetMapping("/bloglist")
     public String blog_list(Model model, BlogDto blogDto){
         
-        model.addAttribute("blogs", blogService.bloglist());
+        model.addAttribute("blogs", blogService.bloglist(blogDto));
         return "blogbbs/bloglist";
     }
 

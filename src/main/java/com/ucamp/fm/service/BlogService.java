@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BlogService {
 
-    BlogDto bloglist();
+    List<BlogDto> bloglist(BlogDto blogDto);
 
     List<BlogDto> bloglistajax(BlogDto blogDto);
 
