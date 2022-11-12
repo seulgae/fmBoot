@@ -6,8 +6,9 @@
 
     <select id="bloglist" parameterType="com.ucamp.fm.dto.BlogDto"
             resultType="com.ucamp.fm.dto.BlogDto">
-        select * from teamblog where 1=1
+        select * from teamblog order by tb_no desc
     </select>
+
 
     <select id="bloglistajax" parameterType="com.ucamp.fm.dto.BlogDto"
             resultType="com.ucamp.fm.dto.BlogDto">

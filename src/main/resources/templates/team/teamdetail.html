@@ -110,31 +110,22 @@
         </div>
     </div>
 </div>
-    <!-- 호출받을 html -->
-    <div class="ajax_inform">
+<div id="blogajaxlist">
 
-    </div>
+</div>
 </div>
 <script>
-    function callContent(){
-
-    var url = "blogbbs/bloglistajax.html";
-
-    $.ajax({
-        type:"GET",
-        url:url,
-        dataType : "html",
-        success: function(html){
-            $(".ajax_inform").html(html);
-
-        },
-        error: function(xhr, status, error) {
-            alert(error);
-        }
-    });
-}
+$(function(){
+  $.ajax({
+          type: 'get'
+        , url: 'http://localhost:8085/blog/bloglistajax'
+        , dataType : 'html'
+        , success: function(data) {
+            $("#blogajaxlist").html(data);
+          }
+  });
+})
 </script>
-
 <br><br><br>
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>

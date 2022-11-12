@@ -20,14 +20,14 @@
         <form>
             <table>
                 <thead>
-                <tr>
-                    <th colspan="2">
-                        <span style="font-size: 20px; font-family:
-                        'Noto Sans KR', sans-serif; font-weight: bold;">
-                        커뮤니티 게시판 |&nbsp;상세 페이지
-                        </span><br>
-                    </th>
-                </tr>
+                    <tr>
+                        <th colspan="2">
+                            <span style="font-size: 20px; font-family:
+                            'Noto Sans KR', sans-serif; font-weight: bold;">
+                            커뮤니티 게시판 |&nbsp;상세 페이지
+                            </span><br>
+                        </th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr><td colspan="2"><hr></td></tr>
@@ -58,12 +58,23 @@
             <button type="button" class="btn btn-secondary" style="float: right" onClick="history.go(-1)">취소</button>
         </form>
     </div>
+    <div id="blogcomment">
+
+    </div>
     <br>
 </body>
 <script>
-
+$(function(){
+  $.ajax({
+          type: 'get'
+        , url: 'http://localhost:8085/blog/blogcomment'
+        , dataType : 'html'
+        , success: function(data) {
+            $("#blogcomment").html(data);
+          }
+  });
+})
 </script>
-
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </html>
