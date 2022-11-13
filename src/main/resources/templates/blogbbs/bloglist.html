@@ -12,11 +12,14 @@
     <table id="bloglist" class="table table-hover">
         <thead>
         <tr>
-            <th colspan="2">
+            <th>
                 <span style="font-size: 20px; font-family:
                 'Noto Sans KR', sans-serif; font-weight: bold;">
                 커뮤니티 게시판 |&nbsp;전체보기
                 </span><br>
+            </th>
+            <th>
+
             </th>
         <tr>
         </thead>
@@ -38,9 +41,12 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="2" class="text-center">
-                    <button id="moreView" class="btn btn-outline-primary btn-block" width="100%">더 보기</button>
-                <td>
+                <form action="/blog/bloglist" method="post">
+                    <td colspan="2" class="text-center">
+                        <input type="hidden" name="pageAdd" th:value="5">
+                        <button class="btn btn-outline-primary btn-block" width="100%">더 보기</button>
+                    <td>
+                </form>
             </tr>
         </tfoot>
     </table>

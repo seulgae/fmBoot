@@ -4,9 +4,14 @@
 
 <mapper namespace="com.ucamp.fm.mapper.BlogMapper">
 
-    <select id="bloglist" parameterType="com.ucamp.fm.dto.BlogDto"
+    <select id="bloglist" parameterType="int"
             resultType="com.ucamp.fm.dto.BlogDto">
-        select * from teamblog order by tb_no desc
+        select * from
+        ( select * from teamblog order by tb_no desc)
+        where
+        <![CDATA[
+        rownum <= #{pageNum}
+        ]]>
     </select>
 
 

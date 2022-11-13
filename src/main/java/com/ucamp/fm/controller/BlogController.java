@@ -22,8 +22,8 @@ public class BlogController {
     @Autowired
     BlogService blogService;
 
-    static int blogcnt = 10;
-    
+    static int pageNum = 10; // 더보기 페이지 변수
+
     // 커뮤니티 글읽기 페이지
     @GetMapping("/blogread/{tb_no}")
     public String blog_read(@PathVariable String tb_no,
@@ -42,11 +42,21 @@ public class BlogController {
     }
 
     // 커뮤니티 글목록 리스트 페이지(더보기 버튼 기능으로 구현)
-    @GetMapping("/bloglist")
-    public String blog_list(Model model, BlogDto blogDto){
-        
-        model.addAttribute("blogs", blogService.bloglist(blogDto));
-        return "blogbbs/bloglist";
+    @RequestMapping("/bloglist")
+    public String blog_list(Model model,
+                            @RequestParam(value = "pageAdd", required = false) String pageAdd){
+        // 예외 : 만약 pageAdd 가 null 값이면
+        if (pageAdd == null){
+            // bloglist 출력
+            model.addAttribute("blogs", blogService.bloglist(pageNum));
+            return "blogbbs/bloglist";
+        }else {
+            // 값이 있다면 페이지값 + 5증가
+            pageNum += Integer.valueOf(pageAdd);
+            System.out.println(pageNum);
+            model.addAttribute("blogs", blogService.bloglist(pageNum));
+            return "blogbbs/bloglist";
+        }
     }
 
     // 커뮤니티 글목록 리스트 페이지(ajax), 페이징x
@@ -88,7 +98,7 @@ public class BlogController {
 
         String PATH = req.getSession().getServletContext().getRealPath("/") + "uploadImg\\blog\\";
 
-        System.out.println(PATH);
+//        System.out.println(PATH); //경로 주소 찍어보기.
         // 프로젝트 내 webapp 폴더를 찾아줌, webapp 폴더 없을 경우 appdate안의 톰캣 캐시 임시저장 폴더에 저장시킴.
         // transferTo : 파일 데이터를 지정한 file로 저장
         // getOriginalFilename : 클라이언트의 원본 파일명 반환
@@ -131,6 +141,7 @@ public class BlogController {
     // 커뮤니티 글 수정 폼전송
     @PostMapping("/blogmodaction")
     public String blog_mod(HttpServletRequest req, RedirectAttributes rattr,
+                           @RequestParam("tb_no") String tb_no,
                            @RequestParam("tb_id") String tb_id,
                            @RequestParam("tb_thum") MultipartFile tb_thum,
                            @RequestParam("tb_title")String tb_title,
@@ -140,7 +151,7 @@ public class BlogController {
 
         String PATH = req.getSession().getServletContext().getRealPath("/") + "uploadImg\\blog\\";
 
-        System.out.println(PATH);
+//        System.out.println(PATH); //경로 주소 찍어보기.
         // 프로젝트 내 webapp 폴더를 찾아줌, webapp 폴더 없을 경우 appdate안의 톰캣 캐시 임시저장 폴더에 저장시킴.
         // transferTo : 파일 데이터를 지정한 file로 저장
         // getOriginalFilename : 클라이언트의 원본 파일명 반환
@@ -149,7 +160,7 @@ public class BlogController {
             tb_thum.transferTo(new File(PATH + tb_thum.getOriginalFilename()));
         }
 
-        blogService.bloginsert(new BlogDto(tb_id, tb_title, tb_content, tb_thum.getOriginalFilename()));
+        blogService.blogupdate(new BlogDto(tb_no, tb_id, tb_title, tb_content, tb_thum.getOriginalFilename()));
 
         return "redirect:/blog/bloglist";
     }

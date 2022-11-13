@@ -3,13 +3,14 @@ package com.ucamp.fm.mapper;
 import com.ucamp.fm.dto.BlogDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
 @Mapper
 public interface BlogMapper {
 
-    List<BlogDto> bloglist(BlogDto blogDto);
+    List<BlogDto> bloglist(int pageNum);
 
     List<BlogDto> bloglistajax(BlogDto blogDto);
 
@@ -19,5 +20,12 @@ public interface BlogMapper {
     void bloginsert(BlogDto blogDto);
 
     void blogdelete(String tb_no);
+
+    @Update("UPDATE teamblog SET " +
+            "tb_id = #{tb_id}, " +
+            "tb_title = #{tb_title}, " +
+            "tb_content=#{tb_content}, " +
+            "tb_thum=#{tb_thum} WHERE tb_no = #{tb_no}")
+    void blogupdate(BlogDto blogDto);
 
 }

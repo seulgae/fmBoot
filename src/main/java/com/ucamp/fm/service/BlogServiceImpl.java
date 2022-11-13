@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class BlogServiceImpl implements BlogService{
@@ -16,8 +15,8 @@ public class BlogServiceImpl implements BlogService{
 
 
     @Override
-    public List<BlogDto> bloglist(BlogDto blogDto) {
-       return  blogMapper.bloglist(blogDto);
+    public List<BlogDto> bloglist(int pageNum) {
+       return  blogMapper.bloglist(pageNum);
     }
 
     @Override
@@ -38,6 +37,11 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public void blogdelete(String tb_no) {
         blogMapper.blogdelete(tb_no);
+    }
+
+    @Override
+    public void blogupdate(BlogDto blogDto) {
+        blogMapper.blogupdate(blogDto);
     }
 
 }
