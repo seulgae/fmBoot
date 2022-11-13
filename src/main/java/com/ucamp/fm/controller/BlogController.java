@@ -23,6 +23,8 @@ public class BlogController {
     BlogService blogService;
 
     static int pageNum = 10; // 더보기 페이지 변수
+    static int addcount = 0; // 값을 증가시켜 추가 여부를 확인할 조건 값
+    static int maincount = 0; // 값을 비교할 저장소.
 
     // 커뮤니티 글읽기 페이지
     @GetMapping("/blogread/{tb_no}")
@@ -45,27 +47,42 @@ public class BlogController {
     @RequestMapping("/bloglist")
     public String blog_list(Model model,
                             @RequestParam(value = "pageAdd", required = false) String pageAdd){
-        // 예외 : 만약 pageAdd 가 null 값이면
+        // 만약 pageAdd 가 null 값이면 or 다시 list를 출력한다면.
+        // GetMapping 2번 실행되는 이유를 모르겠음..
+        // 해당 오류에 대한 알고리즘을 설계하여 더보기 버그 해결.
+        
         if (pageAdd == null){
-            // bloglist 출력
+//            System.out.println("null 문장 실행");
+            if(addcount > 0){
+                maincount++;
+            }
+//            System.out.println("maincount :" + maincount);
+
+            // addcount가 증가되지 않았다면.. 문장을 실행하지 않았다면 새로고침 했으니 다시 10개의 페이지로 이동.
+            if(addcount < maincount){
+                pageNum = 10;
+                maincount=0; // 메인 카운트 초기화
+                addcount=0; // 추가 카운트 초기화
+            }
             model.addAttribute("blogs", blogService.bloglist(pageNum));
+            // 새로고침하면 다시 초기값으로 셋팅되도록 초기화
             return "blogbbs/bloglist";
         }else {
             // 값이 있다면 페이지값 + 5증가
+            System.out.println("추가 문장 실행");
             pageNum += Integer.valueOf(pageAdd);
-            System.out.println(pageNum);
-            model.addAttribute("blogs", blogService.bloglist(pageNum));
-            return "blogbbs/bloglist";
+//            System.out.println(pageNum);
+            addcount+=2;
+            System.out.println("addcount : " + addcount);
+            return "redirect:/blog/bloglist";
         }
     }
 
     // 커뮤니티 글목록 리스트 페이지(ajax), 페이징x
     @GetMapping("/bloglistajax")
     public String blog_list_ajax(Model model, BlogDto blogDto){
-
         // 10개만 출력, 출력 갯수 바꿀 시 쿼리문 수정 할 것
         model.addAttribute("blogs", blogService.bloglistajax(blogDto));
-
         return "blogbbs/bloglistajax";
     }
 
