@@ -70,4 +70,15 @@ public class TeamController {
 
         return "/team/teamdetail";
     }
+
+    @RequestMapping("/addmember")
+    public  String addMember(){
+        return "/team/addmember";
+    }
+
+    @RequestMapping("/findMember")
+    public String findMember(String m_id, Model model){
+        model.addAttribute("findMem",teamService.findMember("%"+m_id+"%"));
+        return "/team/findmember";
+    }
 }

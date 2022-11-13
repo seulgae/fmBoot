@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucamp.fm.mapper.PaymentMapper">
+    <insert id="insertReservation" parameterType="com.ucamp.fm.dto.ReservationDto">
+        insert into reservation values(
+        reservation_seq.NEXTVAL,
+        #{r_m_id},
+        #{r_p_no},
+        #{r_time},
+        #{r_date},
+        sysdate
+        )
+    </insert>
+</mapper>
