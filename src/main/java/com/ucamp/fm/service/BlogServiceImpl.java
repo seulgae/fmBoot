@@ -5,7 +5,9 @@ import com.ucamp.fm.mapper.BlogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BlogServiceImpl implements BlogService{
@@ -15,8 +17,8 @@ public class BlogServiceImpl implements BlogService{
 
 
     @Override
-    public List<BlogDto> bloglist(int pageNum) {
-       return  blogMapper.bloglist(pageNum);
+    public List<BlogDto> bloglist(HashMap<String, Object> map) {
+       return  blogMapper.bloglist(map);
     }
 
     @Override

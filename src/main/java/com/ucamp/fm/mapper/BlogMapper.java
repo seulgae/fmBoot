@@ -5,12 +5,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface BlogMapper {
 
-    List<BlogDto> bloglist(int pageNum);
+    List<BlogDto> bloglist(HashMap<String, Object> map);
 
     List<BlogDto> bloglistajax(BlogDto blogDto);
 

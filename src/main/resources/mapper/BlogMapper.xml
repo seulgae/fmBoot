@@ -4,16 +4,20 @@
 
 <mapper namespace="com.ucamp.fm.mapper.BlogMapper">
 
-    <select id="bloglist" parameterType="int"
+    <select id="bloglist" parameterType="hashmap"
             resultType="com.ucamp.fm.dto.BlogDto">
         select * from
-        ( select * from teamblog order by tb_no desc)
+        (select * from teamblog where tb_title like '%'||#{keyword}||'%' order by tb_no desc)
         where
         <![CDATA[
         rownum <= #{pageNum}
         ]]>
     </select>
 
+<!--    select * from-->
+<!--    ( select * from teamblog where tb_title like '%제목%' order by tb_no desc)-->
+<!--    where-->
+<!--    rownum <= 10;-->
 
     <select id="bloglistajax" parameterType="com.ucamp.fm.dto.BlogDto"
             resultType="com.ucamp.fm.dto.BlogDto">
