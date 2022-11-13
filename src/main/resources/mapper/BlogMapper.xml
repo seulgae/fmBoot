@@ -14,11 +14,6 @@
         ]]>
     </select>
 
-<!--    select * from-->
-<!--    ( select * from teamblog where tb_title like '%제목%' order by tb_no desc)-->
-<!--    where-->
-<!--    rownum <= 10;-->
-
     <select id="bloglistajax" parameterType="com.ucamp.fm.dto.BlogDto"
             resultType="com.ucamp.fm.dto.BlogDto">
         select * from
@@ -54,5 +49,21 @@
     <delete id="blogdelete">
         delete from teamblog where tb_no = #{tb_no}
     </delete>
+
+    <insert id="commentinsert" parameterType="com.ucamp.fm.dto.CmentDto">
+        insert into cment(
+        c_no,
+        c_c_id,
+        c_tbno,
+        c_content,
+        c_date
+        )values(
+        cmt_seq.NEXTVAL,
+        #{c_c_id},
+        'teamblog',
+        #{c_content},
+        sysdate
+        )
+    </insert>
 	
 </mapper>

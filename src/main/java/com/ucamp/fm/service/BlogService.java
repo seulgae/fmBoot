@@ -1,10 +1,10 @@
 package com.ucamp.fm.service;
 
 import com.ucamp.fm.dto.BlogDto;
+import com.ucamp.fm.dto.CmentDto;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public interface BlogService {
 
@@ -20,4 +20,5 @@ public interface BlogService {
 
     void blogupdate(BlogDto blogDto);
 
+    void commentinsert(String c_c_id, String c_content);
 }

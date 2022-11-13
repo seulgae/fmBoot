@@ -1,6 +1,7 @@
 package com.ucamp.fm.mapper;
 
 import com.ucamp.fm.dto.BlogDto;
+import com.ucamp.fm.dto.CmentDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -29,5 +30,7 @@ public interface BlogMapper {
             "tb_content=#{tb_content}, " +
             "tb_thum=#{tb_thum} WHERE tb_no = #{tb_no}")
     void blogupdate(BlogDto blogDto);
+
+    void commentinsert(String c_c_id, String c_content);
 
 }
