@@ -13,11 +13,14 @@ public class TeamDto {
     private String t_date;
     private String t_id;
     private String t_name;
+    private String t_region;
     private String t_gamedate;
     private String t_match;
     private String t_state;
     private String t_age;
     private String t_skill;
+    private String t_uniform;
     private String t_kind;
+    private String t_introduce;
     private String m_id;
 }

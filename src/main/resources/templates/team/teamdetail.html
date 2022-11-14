@@ -12,7 +12,7 @@
         text-align: center;
     }
     .row_status {
-        background-color:#333333;
+        background-color: #333333;
     }
     .row1 {
         justify-content: space-between;
@@ -25,12 +25,14 @@
     }
     #content {
         padding-left: 10px;
-        font-size: 10px;
+        font-size: 15px;
         background-color: #BDBDBD;
+        text-align: center;
         border-radius: 20px;
         width: 250px;
         height: 100px;
         margin-top: 10px;
+        font-family: 'Noto Sans KR', sans-serif;
     }
     td {
         background-color: #BDBDBD;
@@ -48,83 +50,94 @@
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
 <div style="width: 1000px; margin: 20px auto;">
-<div class="container1">
-    <div class="row_status">
-        <div class="row1">
-            <div class="row2">
-                <div style="width: 50%; margin-left: 20px;">
-                    <img class="profile" src="/images/logo.png">
-                </div>
-                <div style="width: 50%; margin-top: 20px;">
-                    <div>
-                        <h2 style="color: white; margin-right: 15px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;" th:text="${team.t_name}"></h2>
-                        <button style="opacity : 0.5;" class="btn" id="ubtn"><img src="/images/update.png" style="width: 10px; height: 10px;"></button>
-                        <button style="opacity : 0.5;" class="btn" id="addbtn"></button>
-                        <input type="hidden" id="loginCheck" th:value="${session.m_id}">
+    <div class="container1">
+        <div class="row_status">
+            <div class="row1">
+                <div class="row2">
+                    <div style="width: 50%; margin-left: 20px;">
+                        <img class="profile" src="/images/logo.png">
                     </div>
-                    <h7 style="font-size:8px; margin-right: 25%; color: #BDBDBD">팀 등록일 : [[ ${team.t_date} ]]</h7>
-                    <ul style="font-size:9px; margin-top: 15px; margin-left: 5%" align="left">
-                        <li>－연고</li>
-                        <li>－연령대 : [[ ${team.t_age} ]]</li>
-                        <li>－실력 : [[ ${team.t_skill} ]]</li>
-                        <li>－유니폼</li>
-                        <li>－유형 : [[ ${team.t_kind} ]]</li>
-                    </ul>
+                    <div style="width: 50%; margin-top: 20px;">
+                        <div style="margin-bottom: 10%;">
+                            <h2 style="color: white; margin-right: 15px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;" th:text="${team.t_name}"></h2>
+                            <button style="opacity : 0.7;" class="btn" id="updatebtn">팀 수정</button>
+                            <button style="opacity : 0.7;" class="btn" id="addbtn">팀원 추가</button>
+                            <input type="hidden" id="loginCheck" th:value="${session.m_id}">
+                            <input type="hidden" id="teamCheck" th:value="${team.t_id}">
+                        </div>
+                        <h7 style="font-size:8px; margin-right: 10%; color: #BDBDBD">팀 등록일 : [[ ${team.t_date} ]]</h7>
+                        <ul style="font-size:9px; margin-top: 15px; margin-left: 15%" align="left">
+                            <li>－연고 : [[ ${team.t_region} ]]</li>
+                            <li>－연령대 : [[ ${team.t_age} ]]</li>
+                            <li>－실력 : [[ ${team.t_skill} ]]</li>
+                            <li>－유니폼 : [[ ${team.t_uniform} ]]</li>
+                            <li>－유형 : [[ ${team.t_kind} ]]</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="width: 50%; margin-top: 10%; margin-bottom: 2%;">
+                    <h6 style="color: #BDBDBD; margin-right: 40%; font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">팀 소개</h6>
+                    <div>
+                        <textarea id="content" name="content" readonly style="resize: none;" th:text="${team.t_introduce}"/>
+                    </div>
                 </div>
             </div>
-            <div style="width: 50%; margin-top: 5%; margin-bottom: 5%;">
-                <h6 style="color: #BDBDBD; margin-right: 45%;">팀 소개</h6>
-                <div>
-                    <textarea id="content" name="content"></textarea>
-                </div>
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="align-middle" rowspan="2" style="text-align: center;">총</th>
+                        <th class="align-middle" rowspan="2" style="text-align: center;">승</th>
+                        <th class="align-middle" rowspan="2" style="text-align: center;">무</th>
+                        <th class="align-middle" rowspan="2" style="text-align: center;">패</th>
+                        <th class="align-middle" rowspan="2" style="text-align: center;">승률</th>
+                        <th class="align-middle" colspan="2" style="text-align: center;">경기당</th>
+                    </tr>
+                    <tr>
+                        <th class="align-middle" style="text-align: center;">득점</th>
+                        <th class="align-middle" style="text-align: center;">실점</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        <div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th class="align-middle" rowspan="2" style="text-align: center;">총</th>
-                    <th class="align-middle" rowspan="2" style="text-align: center;">승</th>
-                    <th class="align-middle" rowspan="2" style="text-align: center;">무</th>
-                    <th class="align-middle" rowspan="2" style="text-align: center;">패</th>
-                    <th class="align-middle" rowspan="2" style="text-align: center;">승률</th>
-                    <th class="align-middle" colspan="2" style="text-align: center;">경기당</th>
-                </tr>
-                <tr>
-                    <th class="align-middle" style="text-align: center;">득점</th>
-                    <th class="align-middle" style="text-align: center;">실점</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                </tbody>
-            </table>
         </div>
     </div>
-</div>
 <div id="blogajaxlist">
 
 </div>
 </div>
 <script>
-$(function(){
-  $.ajax({
-          type: 'get'
-        , url: 'http://localhost:8085/blog/bloglistajax'
-        , dataType : 'html'
-        , success: function(data) {
-            $("#blogajaxlist").html(data);
-          }
-  });
-})
+    $(function(){
+      $.ajax({
+              type: 'get'
+            , url: 'http://localhost:8085/blog/bloglistajax'
+            , dataType : 'html'
+            , success: function(data) {
+                $("#blogajaxlist").html(data);
+              }
+      });
+    })
+    $(function() {
+		$("#updatebtn").click(function() {
+			if($("#loginCheck").val() != ""){
+				window.open('/teammanage/teamupdate', 'pop01', 'top=10, left=10, width=800, height=800, status=no, menubar=no, toolbar=no, resizable=no');
+			} else {
+				alert('로그인을 해주세요');
+				location.href="/login/login";
+			}
+		})
+	})
 </script>
 <br><br><br>
 <!-- footer -->

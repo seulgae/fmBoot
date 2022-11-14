@@ -7,7 +7,7 @@ import java.util.List;
 public interface TeamService {
     public TeamDto teamCreate(String m_id);
 
-    public void teamInsert(String t_name, String t_age, String t_skill, String t_kind, String t_id);
+    public void teamInsert(String t_name, String t_region, String t_age, String t_skill, String t_uniform, String t_kind, String t_introduce, String t_id);
 
     public List<TeamDto> getTeamList();
 
