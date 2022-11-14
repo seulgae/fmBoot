@@ -38,28 +38,19 @@ public class TeamController {
 
     @RequestMapping("/teaminsert")
     @ResponseBody
-    public String teaminsert(HttpServletRequest request, String t_name, String t_age, String t_skill, String t_kind) {
+    public String teaminsert(HttpServletRequest request, String t_name, String t_region, String t_age, String t_skill, String t_uniform, String t_kind, String t_introduce) {
         String t_id = (String) request.getSession().getAttribute("m_id");
-        teamService.teamInsert(t_name, t_age, t_skill, t_kind, t_id);
+        teamService.teamInsert(t_name, t_region, t_age, t_skill, t_uniform, t_kind, t_introduce, t_id);
 
         return "<script>window.opener.location.reload(); window.close();</script>";
     }
 
-    @RequestMapping("/teamupinsert")
+    @RequestMapping("/teamupdate/{t_no}")
     @ResponseBody
-    public String teamupinsert() {
-        
-
-        return "<script>window.opener.location.reload(); window.close();</script>";
-    }
-
-    @RequestMapping("/teamupdate")
-    @ResponseBody
-    public String teamupdate(HttpServletRequest request, String t_no, String t_name, String t_age, String t_skill, String t_kind, Model model) {
-        TeamDto updateTeam = teamService.selectTeam(t_no);
+    public String teamupdate(@PathVariable String t_no, HttpServletRequest request, TeamDto dto, Model model) {
         String t_id = (String) request.getSession().getAttribute("m_id");
-        teamService.teamUpdate(t_no, t_name, t_age, t_skill, t_kind, t_id);
-        model.addAttribute("team", t_id);
+        System.out.println(t_no);
+        model.addAttribute("team", teamService.selectTeam(dto.getT_no()));
 
         return "<script>window.opener.location.reload(); window.close();</script>";
     }
