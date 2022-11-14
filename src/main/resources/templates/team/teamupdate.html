@@ -12,52 +12,60 @@
 <!-- config -->
 <th:block th:replace="fragments/config :: configFragment"></th:block>
 
-<div style="width: 100%; margin: 20px auto; text-align: center;">
-  <div style="display: inline-block; margin-bottom: 80px;">
-    <form id="frmteam" name="frmteam">
-      <table class="table align-middle">
-        <tr>
-          <td><span class="loginlogo" style="font-size: 40px; font-weight: bold; margin: 25px 10px 0px 0px; color: red;">FM</span></td>
-          <td class="align-middle"><span style="font-size: 20px; font-weight: bold; text-align: center;">팀 생성</span></td>
-        </tr>
-        <tr>
-          <td class="align-middle" style="font-size: 15px; font-weight: bold;">팀명</td>
-          <td><input type="text" class="form-control" name="t_name" size="30" placeholder="팀명을 입력해주세요"/></td>
-        </tr>
-        <tr>
-          <td class="align-middle" style="font-size: 15px; font-weight: bold;">연령대</td>
-          <td><select class="form-control selectpicker noborder" name="t_age" style="height: 35px;">
-            <option selected value="10대~20대">10대~20대</option>
-            <option value="20대~30대">20대~30대</option>
-            <option value="30대~40대">30대~40대</option>
-            <option value="40대~50대">40대~50대</option>
-          </select></td>
-          <!--<input type="text" class="tmem" name="t_age" size="30" placeholder="ex) 10대,20대..."/>-->
-        </tr>
-        <tr>
-          <td class="align-middle" style="font-size: 15px; font-weight: bold;">실력</td>
-          <td><input type="text" class="form-control" name="t_skill" size="30" placeholder="ex) 상,중,하..."/></td>
-        </tr>
-        <tr>
-          <td class="align-middle" style="font-size: 15px; font-weight: bold;">유형</td>
-          <td><input type="text" class="form-control" name="t_kind" size="30" placeholder="ex) 친구모임, 자유..."/></td>
-        </tr>
-        <tr>
-          <td class="align-middle" style="font-size: 15px; font-weight: bold;">ㅁㅁㅁ</td>
-          <td><input type="text" class="form-control" name="t_kind" size="30" placeholder="ex) 친구모임, 자유..."/></td>
-        </tr>
-      </table>
-      <div style="margin-top: 10px; margin-left: 260px; width: 50px;">
-        <input type="button" value="수정" id="updatebtn">
-      </div>
-    </form>
-  </div>
-</div>
+<!--<div style="width: 100%; margin: 20px auto; text-align: center;">-->
+<!--  <div style="display: inline-block; margin-bottom: 80px;">-->
+<!--    <form id="frmupdate" name="frmupdate">-->
+<!--      <table class="table align-middle">-->
+<!--        <tr>-->
+<!--          <td><span class="loginlogo" style="font-size: 40px; font-weight: bold; margin: 25px 10px 0px 0px; color: red;">FM</span></td>-->
+<!--          <td class="align-middle"><span style="font-size: 20px; font-weight: bold; text-align: center;">팀 생성</span></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td class="align-middle" style="font-size: 15px; font-weight: bold;">팀명</td>-->
+<!--          <td><input type="text" class="form-control" name="t_name" required size="30" placeholder="팀명을 입력해주세요"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td class="align-middle" style="font-size: 15px; font-weight: bold;">연고</td>-->
+<!--          <td><input type="text" class="form-control" name="t_region" required size="30" placeholder="ex) 서울특별시 양천구"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td class="align-middle" style="font-size: 15px; font-weight: bold;">연령대</td>-->
+<!--          <td><select class="form-control selectpicker noborder" name="t_age" style="height: 35px;">-->
+<!--            <option selected value="10대~20대">10대~20대</option>-->
+<!--            <option value="20대~30대">20대~30대</option>-->
+<!--            <option value="30대~40대">30대~40대</option>-->
+<!--            <option value="40대~50대">40대~50대</option>-->
+<!--          </select></td>-->
+<!--          &lt;!&ndash;<input type="text" class="tmem" name="t_age" size="30" placeholder="ex) 10대,20대..."/>&ndash;&gt;-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td class="align-middle" style="font-size: 15px; font-weight: bold;">실력</td>-->
+<!--          <td><input type="text" class="form-control" name="t_skill" required size="30" placeholder="ex) 상,중,하..."/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td class="align-middle" style="font-size: 15px; font-weight: bold;">유니폼</td>-->
+<!--          <td><input type="text" class="form-control" name="t_uniform" required size="30" placeholder="ex) 흰색, 미정"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td class="align-middle" style="font-size: 15px; font-weight: bold;">유형</td>-->
+<!--          <td><input type="text" class="form-control" name="t_kind" size="30" required placeholder="ex) 친구모임, 자유..."/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td class="align-middle" style="font-size: 15px; font-weight: bold;">팀 소개</td>-->
+<!--          <td><textarea class="form-control" form="frmupdate" name="t_introduce" maxlength="100" cols="30" rows="5" autofocus required placeholder="ex) 100자 이내"></textarea></td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--      <div align="right" style="margin-right : 10px;">-->
+<!--        <input class="btn btn-dark" type="button" value="수정" id="upsubmitbtn">-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
 
 <script>
     $(function(){
-        $("#updatebtn").click(function() {
-            $("#frmteam").attr("action","/teammanage/teamupinsert").submit();
+        $("#upsubmitbtn").click(function() {
+            $("#frmupdate").attr("action","/teammanage/teaminsert").submit();
         })
     })
 </script>

@@ -9,18 +9,21 @@
 	<link rel="stylesheet" href="/css/mypage.css">
 
     <div id="wrap">
-        <table id="mypageTable">
+        <table id="mypageTable" border="1">
             <tbody>
                 <tr>
-                    <td height="50" colspan="6" style="font-weight:bold ;">&nbsp;&nbsp;&nbsp;프로필</td>
+                    <td height="50" colspan="6" style="font-weight:bold ;">
+                        &nbsp;&nbsp;&nbsp;프로필&nbsp;&nbsp;
+                        <img onclick="location.href='/mypage/addphoto'" style="margin-bottom: 6px; width: 35px; height: 35px; cursor:pointer;" id="add" alt="" src="/images/add.png"></a>
+                    </td>
                 </tr>
                 <tr>
                     <td class="userImg" width="150">
-                        <img src="<c:url value='/images/userEdit.png'/>">
+                        <img th:src="|/uploadImg/profileImg/${member.m_thum}|">
                     </td>
                     <td class="user">
                         <span style="font-weight: normal;">&nbsp;&nbsp;&nbsp;[[${member.m_email}]]</span><br>
-                        <span>&nbsp;&nbsp;&nbsp;[[${member.m_name}]]</span>
+                        <span>&nbsp;&nbsp;&nbsp;[[${member.m_name}]]</span><br>
                     </td>
                 </tr>
                 <tr>
@@ -33,9 +36,7 @@
                 <tr>
                     <td>
                         <th:block th:if="${member.m_level.equals('2')}">
-                        <button onclick="location.href='/login/mypage_request'">구장 추가</button>
-                        <button>구장 수정</button>
-                        <button>구장 삭제</button>
+                        <button onclick="location.href='/mypage/mypage_request'">구장 추가</button>
                         </th:block>
                         <button>예약 현황</button>
                         <button type="button" onclick="location.href='/login/memberMod'">내 정보 수정</button>
@@ -49,18 +50,31 @@
                     <th>번호</th>
                     <th>제목</th>
                     <th>날짜</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
 	            <tr th:each="list : ${list}">
 	                <td>[[${list.p_no}]]</td>
-	                <td>[[${list.p_pname}]]</td>
+                    <td><a th:href="|/payment/placeread?p_no=${list.p_no}|">[[${list.p_pname}]]</a></td>
 	                <td>[[${list.p_date}]]</td>
+                    <td>
+                        <a th:href="|/mypage/mypage_update/${list.p_no}|"><img style="width: 15px; height: 15px; cursor:pointer;" id="update" alt="" src="/images/update.png"></a>
+                        <a th:href="|/mypage/place_delete/${list.p_no}|" id="aDelete"><img style="width: 15px; height: 15px; cursor:pointer;" id="delete" alt="" src="/images/delete.png"></a>
+                    </td>
 	            <tr>
             </tbody>
         </table>
     </div>
     <!-- div#wrap -->
+<script>
+$("#delete").click(function(){
+      if(confirm("삭제하시겠습니까?")){
 
+      }else{
+            return false;
+      }
+})
+</script>
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>

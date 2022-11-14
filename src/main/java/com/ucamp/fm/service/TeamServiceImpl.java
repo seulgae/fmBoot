@@ -19,9 +19,9 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void teamInsert(String t_name, String t_age, String t_skill, String t_kind, String t_id) {
+    public void teamInsert(String t_name, String t_region, String t_age, String t_skill, String t_uniform, String t_kind, String t_introduce, String t_id) {
 
-        teamMapper.teamInsert(t_name, t_age, t_skill, t_kind, t_id);
+        teamMapper.teamInsert(t_name, t_region, t_age, t_skill, t_uniform, t_kind, t_introduce, t_id);
     }
 
     @Override

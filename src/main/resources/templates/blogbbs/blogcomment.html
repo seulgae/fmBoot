@@ -27,7 +27,7 @@
                     <tbody>
                     <tr>
                         <td class="writer" colspan="2">
-                            <span>[[ ${session.m_id} ]]ddsadsaf</span>
+                            <span>[[ ${session.m_id} ]]</span>
                         <td>
                     <tr>
                     <tr>
@@ -37,7 +37,7 @@
                     <tr>
                     <tr>
                         <td class="date" style="text-align:left;">
-                            <span>2022/11/11 </span>
+                            <span>[[]]</span>
                             <a href="#">| 신고</a>
                         </td>
                         <td style="text-align:right;" width="300px">
@@ -53,15 +53,15 @@
     </table>
 
     <!-- 댓글 입력 폼-->
-    <form action="" method="get">
+    <form action="/blog/blogcommentac" method="post">
         <table id="blogform">
             <tbody>
                 <tr>
                     <td class="writer">
-                        <input type="hidden" th:value="${session.m_id}" />
+                        <input type="hidden" th:value="${c_c_id}" name="c_c_id"/>
                     </td>
                     <td class="content">
-                        <textarea class="form-control col-sm-12" rows="3"></textarea>
+                        <textarea class="form-control col-sm-12" rows="3" name="c_content" th:value="cc"></textarea>
                     </td>
                 </tr>
                 <tr>

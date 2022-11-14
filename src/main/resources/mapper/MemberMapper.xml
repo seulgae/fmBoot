@@ -74,7 +74,24 @@
         #{p_op6},
         sysdate
         )
-
     </insert>
 
+
+    <update id="mypage_update_do" parameterType="com.ucamp.fm.dto.PlaceDto">
+        update place SET
+        p_pname=#{p_pname},
+        p_place=#{p_place},
+        p_explain=#{p_explain},
+        p_price=#{p_price},
+        p_max=#{p_max},
+        p_area=#{p_area},
+        p_op1=#{p_op1},
+        p_op2=#{p_op2},
+        p_op3=#{p_op3},
+        p_op4=#{p_op4},
+        p_op5=#{p_op5},
+        p_op6=#{p_op6},
+        p_date=sysdate
+        where p_no=#{p_no}
+    </update>
 </mapper>

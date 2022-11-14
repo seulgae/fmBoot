@@ -1,6 +1,7 @@
 package com.ucamp.fm.mapper;
 
 import com.ucamp.fm.dto.MemberDto;
+import com.ucamp.fm.dto.PayDto;
 import com.ucamp.fm.dto.PlaceDto;
 import com.ucamp.fm.dto.ReservationDto;
 import org.apache.ibatis.annotations.Insert;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Mapper
 public interface PaymentMapper {
-    @Select("select m_phone from member where m_id=#{m_id}")
+    @Select("select * from member where m_id=#{m_id}")
     public MemberDto getMember(String m_id);
 
     @Select("select * from place")
@@ -31,4 +32,6 @@ public interface PaymentMapper {
 
     @Select("select r_time from reservation where r_p_no = #{p_no} and r_date = #{r_date}")
     List<String> reserveCheck(String r_date,String p_no);
+
+    void InsertPay(PayDto paydto);
 }

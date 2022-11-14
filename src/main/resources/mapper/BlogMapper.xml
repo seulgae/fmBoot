@@ -4,16 +4,15 @@
 
 <mapper namespace="com.ucamp.fm.mapper.BlogMapper">
 
-    <select id="bloglist" parameterType="int"
+    <select id="bloglist" parameterType="hashmap"
             resultType="com.ucamp.fm.dto.BlogDto">
         select * from
-        ( select * from teamblog order by tb_no desc)
+        (select * from teamblog where tb_title like '%'||#{keyword}||'%' order by tb_no desc)
         where
         <![CDATA[
         rownum <= #{pageNum}
         ]]>
     </select>
-
 
     <select id="bloglistajax" parameterType="com.ucamp.fm.dto.BlogDto"
             resultType="com.ucamp.fm.dto.BlogDto">
@@ -50,5 +49,26 @@
     <delete id="blogdelete">
         delete from teamblog where tb_no = #{tb_no}
     </delete>
+
+    <select id="cmtlist" parameterType="com.ucamp.fm.dto.CmentDto"
+            resultType="com.ucamp.fm.dto.CmentDto">
+        select * from cment order by c_no desc
+    </select>
+
+    <insert id="commentinsert" parameterType="com.ucamp.fm.dto.CmentDto">
+        insert into cment(
+        c_no,
+        c_c_id,
+        c_tbno,
+        c_content,
+        c_date
+        )values(
+        cmt_seq.NEXTVAL,
+        #{c_c_id},
+        'teamblog',
+        #{c_content},
+        sysdate
+        )
+    </insert>
 	
 </mapper>

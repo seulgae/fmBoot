@@ -17,52 +17,50 @@
 
 <body>
     <div class="px-4 py-5 my-5 text-center" style="margin: 20px auto ; width : 1000px">
-        <form>
-            <table width="100%">
-                <thead>
-                    <tr>
-                        <th colspan="2">
-                            <span style="font-size: 20px; font-family:
-                            'Noto Sans KR', sans-serif; font-weight: bold;">
-                            커뮤니티 게시판 |&nbsp;상세 페이지
-                            </span><br>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td colspan="2"><hr></td></tr>
-                    <tr>
-                        <td width="130px">
-                            <span style="font-size:15px;">제목</span>
-                            <input type="hidden" name="tb_no" th:value="${blog.tb_no}">
-                            <input type="hidden" name="tb_id" th:value="${blog.tb_id}">
-                        </td>
-                        <td style="text-align:left;">
-                            <span style="font-size:15px;" th:text="${blog.tb_title}"></span>
-                        </td>
-                    </tr>
-                    <tr><td colspan="2"><hr></td></tr>
-                    <tr>
-                        <td colspan="2">
-                            <span style="font-size:15px;" th:utext="${blog.tb_content}"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <hr>
-                            <!-- 자기 글이라면 버튼 나타나도록 조건줌 -->
-                            <button type="button" class="btn btn-secondary" style="float: right; margin: 0px 0px 0px 5px;" onClick="history.go(-1)">취소</button>
-                            <button type="button" class="btn btn-danger" style="float: right; margin: 0px 0px 0px 5px;" th:if="${blog.tb_id.toString().equals(m_id)}">
-                                <a th:href="|/blog/blogdelete/${blog.tb_no}|" style="color:#fff;">삭제</a>
-                            </button>
-                            <button type="button" class="btn btn-success" style="float: right;" th:if="${blog.tb_id.toString().equals(m_id)}">
-                                <a th:href="|/blog/blogmod/${blog.tb_no}|" style="color:#fff;">수정</a>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        <span style="font-size: 20px; font-family:
+                        'Noto Sans KR', sans-serif; font-weight: bold;">
+                        커뮤니티 게시판 |&nbsp;상세 페이지
+                        </span><br>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="2"><hr></td></tr>
+                <tr>
+                    <td width="130px">
+                        <span style="font-size:15px;">제목</span>
+                        <input type="hidden" name="tb_no" th:value="${blog.tb_no}">
+                        <input type="hidden" name="tb_id" th:value="${blog.tb_id}">
+                    </td>
+                    <td style="text-align:left;">
+                        <span style="font-size:15px;" th:text="${blog.tb_title}"></span>
+                    </td>
+                </tr>
+                <tr><td colspan="2"><hr></td></tr>
+                <tr>
+                    <td colspan="2">
+                        <span style="font-size:15px;" th:utext="${blog.tb_content}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <hr>
+                        <!-- 자기 글이라면 버튼 나타나도록 조건줌 -->
+                        <button type="button" class="btn btn-secondary" style="float: right; margin: 0px 0px 0px 5px;" onClick="history.go(-1)">취소</button>
+                        <button type="button" class="btn btn-danger" style="float: right; margin: 0px 0px 0px 5px;" th:if="${blog.tb_id.toString().equals(m_id)}">
+                            <a th:href="|/blog/blogdelete/${blog.tb_no}|" style="color:#fff;">삭제</a>
+                        </button>
+                        <button type="button" class="btn btn-success" style="float: right;" th:if="${blog.tb_id.toString().equals(m_id)}">
+                            <a th:href="|/blog/blogmod/${blog.tb_no}|" style="color:#fff;">수정</a>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div id="blogcomment">
 

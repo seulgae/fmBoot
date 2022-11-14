@@ -1,10 +1,12 @@
 package com.ucamp.fm.service;
 
 import com.ucamp.fm.dto.BlogDto;
+import com.ucamp.fm.dto.CmentDto;
 import com.ucamp.fm.mapper.BlogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -15,8 +17,8 @@ public class BlogServiceImpl implements BlogService{
 
 
     @Override
-    public List<BlogDto> bloglist(int pageNum) {
-       return  blogMapper.bloglist(pageNum);
+    public List<BlogDto> bloglist(HashMap<String, Object> map) {
+       return  blogMapper.bloglist(map);
     }
 
     @Override
@@ -43,5 +45,16 @@ public class BlogServiceImpl implements BlogService{
     public void blogupdate(BlogDto blogDto) {
         blogMapper.blogupdate(blogDto);
     }
+
+    @Override
+    public void commentinsert(String c_c_id, String c_content) {
+        blogMapper.commentinsert(c_c_id, c_content);
+    }
+
+    @Override
+    public List<CmentDto> cmtlist(CmentDto cmentDto) {
+        return blogMapper.cmtlist(cmentDto);
+    }
+
 
 }

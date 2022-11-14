@@ -7,21 +7,22 @@
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
 <link rel="stylesheet" href="/css/bloglist.css">
-
 <div id="wrap">
+<form action="/blog/bloglist" method="post">
     <table id="bloglist" class="table table-hover">
         <thead>
-        <tr>
-            <th>
-                <span style="font-size: 20px; font-family:
-                'Noto Sans KR', sans-serif; font-weight: bold;">
-                커뮤니티 게시판 |&nbsp;전체보기
-                </span><br>
-            </th>
-            <th>
-
-            </th>
-        <tr>
+            <tr>
+                <th>
+                    <span style="font-size: 18px; font-family:
+                    'Noto Sans KR', sans-serif; font-weight: bold;">
+                    커뮤니티 게시판 |&nbsp;전체보기
+                    </span><br>
+                </th>
+                <th class="text-right">
+                    <input type="text" name="keyword" placeholder="게시판 검색" style="width: 200px; height: 35px;">
+                    <input type="submit" class="btn btn-dark" value="검색">
+                </th>
+            </tr>
         </thead>
         <!--th:onclick="|location.href='@{/blog/blogread/${blog.tb_id}}'|"-->
         <tbody>
@@ -41,15 +42,14 @@
         </tbody>
         <tfoot>
             <tr>
-                <form action="/blog/bloglist" method="post">
-                    <td colspan="2" class="text-center">
-                        <input type="hidden" name="pageAdd" th:value="5">
-                        <button class="btn btn-outline-primary btn-block" width="100%">더 보기</button>
-                    <td>
-                </form>
+                <td colspan="2" class="text-center">
+                    <input type="hidden" name="pageAdd" th:value="5">
+                    <button class="btn btn-outline-primary btn-block" width="100%">더 보기</button>
+                <td>
             </tr>
         </tfoot>
     </table>
+</form>
     <br>
     <!-- bloglist -->
 </div>
