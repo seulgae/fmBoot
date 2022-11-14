@@ -14,6 +14,7 @@
 <!-- placeRead css -->
 <link rel="stylesheet" href="/css/placeRead.css">
 <div id="wrap">
+  <input type="hidden" th:value="${place.p_explain}" id="hidden_explain">
   <table id="placeRead">
     <thead>
     <tr>
@@ -161,10 +162,7 @@
         </tr>
         <tr>
           <td>
-            <!-- 본문에 아래와 같은 양식 맞춰서 출력될 수 있도록 구현 -->
-            [[${place.p_explain}]]
-
-            <!-- 서머노트 학습 후 기입 예정 -->
+            <div id="div_explain"></div>
           </td>
         </tr>
         <tr>

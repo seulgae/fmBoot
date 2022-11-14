@@ -32,10 +32,13 @@ function pay(){
 						p_no: "[[${p_info.p_no}]]",
 						pay_price: "[[${p_info.p_price}]]",
 						m_id: "[[${member.m_id}]]"
-					},
-					success : function(data){
-					    alert("결제 성공");
+					}
+                }).done(function (data) {
+					if (rsp.success) {
+						alert("결제 성공");
                         $("#frmPay").submit();
+					} else {
+						alert("결제 실패");
 					}
 				});
 			});

@@ -156,6 +156,7 @@ public class MypageController {
     }
     //사진 추가
     @RequestMapping("/addphoto.do")
+    @ResponseBody
     public String addphoto_do(HttpServletRequest request,
                            @RequestParam("m_thum") MultipartFile m_thum) throws IllegalStateException, IOException {
         String m_id = (String) request.getSession().getAttribute("m_id");
@@ -173,7 +174,7 @@ public class MypageController {
 
         memberService.addPhoto(new MemberDto(m_id,m_thum.getOriginalFilename()));
 
-        return "redirect:/mypage/mypage";
+        return "<script>window.opener.location.reload(); window.close();</script>";
 
     }
 }
