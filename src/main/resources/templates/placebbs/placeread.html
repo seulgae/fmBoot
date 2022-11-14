@@ -27,36 +27,22 @@
     </thead>
     <tbody>
     <tr>
-      <td colspan="7">
-        <img src="img.jpg" width="1000px" height="300px"/>
+      <td colspan="7" align="center" height="150">
+        <img th:src="${firstImg}" id="mainImg" width="300" height="150"/>
       </td>
     </tr>
     <tr>
-      <td>
-        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
-      </td>
-      <td>
-        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
-      </td>
-      <td>
-        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
-      </td>
-      <td>
-        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
-      </td>
-      <td>
-        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
-      </td>
-      <td>
-        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
-      </td>
-      <td>
-        <a href="\"><img src="img.jpg" width="140px" height="140px"/></a>
+      <td th:each="img : ${arrImg}">
+        <a th:href="|javascript:mainImg('${img}')|"><img th:src="${img}" width="140px" height="140px"/></a>
       </td>
     </tr>
     </tbody>
   </table>
-
+<script>
+  function mainImg(img){
+    $("#mainImg").attr("src",img);
+  }
+</script>
   <table id="placeTitle">
     <thead>
     <tr>
@@ -118,14 +104,14 @@
     <table id="payment">
       <tbody>
       <tr>
-        <td>
+        <td colspan="3">
           <!-- 만약에 예약 가능한 value 값이 1이라면 예약하지 못하도록 조건문 주기. -->
           <label for="dateSet">예약 가능 날짜 : </label>
           <input type="date" id="dateSet" name="dateSet" th:min="${today}"/>
         </td>
       </tr>
       <tr>
-        <td>
+        <td colspan="3">
           <span>예약시간을 선택해주세요 : </span>
           <select name="time" id="time">
             <option value="" selected>--시간을 선택해주세요.--</option>
@@ -136,12 +122,29 @@
         <td>
       </tr>
       <tr>
-        <td>
+        <td colspan="3" align="center">
+          <div style="background-color:gray; width:100px; height:20px; display:inline-block; text-align:center">예약가능</div>
+          <div style="background-color:red; width:100px; height:20px; display:inline-block;text-align:center; margin-bottom:5px;">예약불가</div>
+        </td>
+      </tr>
+      <tr align="center">
+        <td  id="td_1" style="background-color:gray;">
+          12:00 ~ 14: 00
+        </td>
+        <td  id="td_2"  style="background-color:gray;">
+          14:00 ~ 16: 00
+        </td>
+        <td  id="td_3"  style="background-color:gray;">
+          16:00 ~ 18: 00
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
           <h2  style="display:inline-block">총 결제 금액 : </h2><h2 style="display:inline-block" th:text="|${#numbers.formatInteger(place.p_price,3,'COMMA')}원|"></h2>
         </td>
       </tr>
       <tr>
-        <td>
+        <td colspan="3">
           <!-- 만약에 예약 가능한 시간이 아니라면 버튼 비활성화하기. -->
           <input type="button" value="예약 신청하기" id="btnReservation" class="paymentBtn">
           <br>
