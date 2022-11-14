@@ -9,11 +9,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CmentDto {
-    private String c_no;
-    private String c_c_id;
-    private String c_tbno;
-    private String c_content;
-    private String c_date;
-
+public class ReservationDto {
+    private int r_no;
+    private String r_m_id;
+    private String r_p_no;
+    private String r_time;
+    private String r_date;
+    private String r_wdate;
 }

@@ -7,45 +7,71 @@
 <link rel="stylesheet" href="/css/blogcomment.css">
 
 <div id="commentwrap">
+    <!-- 댓글 입력 출력 테이블-->
     <table id="bloglist">
-        <form action="">
+        <thead>
+            <tr>
+                <th colspan="2">
+                    <span style="font-size:20px">댓글 작성</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        <hr width="970px">
+        <tr>
+            <td width="60px" class="writerimg" style="text-align:left;">
+                <img src="" alt="" width="50px" height="50px">
+            </td>
+            <td>
+                <table width="95%">
+                    <tbody>
+                    <tr>
+                        <td class="writer" colspan="2">
+                            <span>[[ ${session.m_id} ]]</span>
+                        <td>
+                    <tr>
+                    <tr>
+                        <td class="content" colspan="2">
+                            <span style="font-size:15px;">댓글 내용</span>
+                        <td>
+                    <tr>
+                    <tr>
+                        <td class="date" style="text-align:left;">
+                            <span>[[]]</span>
+                            <a href="#">| 신고</a>
+                        </td>
+                        <td style="text-align:right;" width="300px">
+                            <button class="btn btn-success">수정</button>
+                            <button class="btn btn-danger">삭제</button>
+                        </td>
+                    <tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- 댓글 입력 폼-->
+    <form action="/blog/blogcommentac" method="post">
+        <table id="blogform">
             <tbody>
                 <tr>
-                    <hr width="970px">
-                    <td width="80px" class="writerimg" style="text-align:right;">
-                        <img src="" alt="" width="50px" height="50px">
+                    <td class="writer">
+                        <input type="hidden" th:value="${c_c_id}" name="c_c_id"/>
                     </td>
-                    <td>
-                        <table width="95%">
-                            <tbody>
-                                <tr>
-                                    <td class="writer" colspan="2">
-                                        작성자
-                                    <td>
-                                <tr>
-                                <tr>
-                                    <td class="content" colspan="2">
-                                        <textarea class="form-control col-sm-12" rows="3"></textarea>
-                                    <td>
-                                <tr>
-                                <tr>
-                                    <td class="date">
-                                        <span>2022/11/11 </span>
-                                        <a href="#">| 신고</a>
-                                    </td>
-                                    <td style="text-align:right;">
-                                        <button class="btn btn-primary">등록</button>
-                                        <button class="btn btn-success">수정</button>
-                                        <button class="btn btn-danger">삭제</button>
-                                    </td>
-                                <tr>
-                            </tbody>
-                        </table>
+                    <td class="content">
+                        <textarea class="form-control col-sm-12" rows="3" name="c_content" th:value="cc"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;"colspan="2">
+                        <button class="btn btn-primary" style="margin: 5px;">등록</button>
                     </td>
                 </tr>
             </tbody>
-        </form>
-    </table>
+        </table>
+    </form>
 </div>
 <!-- div#wrap -->
 

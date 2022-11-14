@@ -16,7 +16,7 @@
     <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
     <div style="padding-top: 50px;">
         <span style="font-size: 30px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">■구장 신청</span><br><br>
-        <form action="" method="">
+        <form action="/mypage/mypage_update.do" method="post" id="frmUpdate">
             <table class="table table-bordered" >
                 <colgroup>
                     <col style="width: 100px">
@@ -25,66 +25,52 @@
                 <tbody>
                 <tr>
                     <th class="tg-llyw">구장 이름</th>
-                    <td class="tg-0pky"><input class="form-control" name="p_pname" required="required" value="" style="width: 100%; " type="text" autofocus></td>
+                    <td class="tg-0pky"><input class="form-control" name="p_pname" required="required" th:value="${dto.p_pname}" style="width: 100%; " type="text" autofocus></td>
                 </tr>
                 <tr>
                     <th class="tg-llyw">구장 주소</th>
-                    <td class="tg-0pky"><input class="form-control" name="p_place" required="required" value="" style="width: 100%; " type="text"></td>
+                    <td class="tg-0pky"><input class="form-control" name="p_place" required="required" th:value="${dto.p_place}" style="width: 100%; " type="text"></td>
                 </tr>
                 <tr>
                     <th class="tg-llyw">구장 가격</th>
-                    <td class="tg-0pky"><input class="form-control" name="p_price" required="required" value="" style="width: 100%; " type="number"></td>
+                    <td class="tg-0pky"><input class="form-control" name="p_price" required="required" th:value="${dto.p_price}" style="width: 100%; " type="number"></td>
                 </tr>
                 <tr>
                     <th class="tg-llyw">최대 인원</th>
-                    <td class="tg-0pky"><input class="form-control" name="p_max" required="required" value="" style="width: 100%; " type="number"></td>
+                    <td class="tg-0pky"><input class="form-control" name="p_max" required="required" th:value="${dto.p_max}" style="width: 100%; " type="number"></td>
                 </tr>
                 <tr>
                     <th class="tg-llyw">지역</th>
-                    <td class="tg-0pky"><input class="form-control" name="p_area" required="required" value="" style="width: 100%; " type="text"></td>
+                    <td class="tg-0pky"><input class="form-control" name="p_area" required="required" th:value="${dto.p_area}" style="width: 100%; " type="text"></td>
                 </tr>
                 <tr>
                     <th class="tg-llyw">옵션</th>
                     <td>
                         <div>
                             <span>주차장</span>&nbsp;
-                            <input name="p_op1" value="" style=" display: inline-block;" type="checkbox" required="required">
+                            <input name="p_op1" id="p_op1" style=" display: inline-block;" type="checkbox" value="1">
                             <span  style="padding-left:10px">냉난방</span>&nbsp;
-                            <input name="p_op2" value="" style=" display: inline-block;" type="checkbox" required="required">
+                            <input name="p_op2" id="p_op2" style=" display: inline-block;" type="checkbox" value="1">
                             <span  style="padding-left:10px">공대여</span>&nbsp;
-                            <input name="p_op3" value="" style=" display: inline-block;" type="checkbox" required="required">
+                            <input name="p_op3" id="p_op3" style=" display: inline-block;" type="checkbox" value="1">
                             <span  style="padding-left:10px">팀조끼</span>&nbsp;
-                            <input name="p_op4" value="" style=" display: inline-block;" type="checkbox" required="required">
+                            <input name="p_op4" id="p_op4" style=" display: inline-block;" type="checkbox" value="1">
                             <span  style="padding-left:10px">풋살화</span>&nbsp;
-                            <input name="p_op5" value="" style=" display: inline-block;" type="checkbox" required="required">
+                            <input name="p_op5" id="p_op5" style=" display: inline-block;" type="checkbox" value="1">
                             <span  style="padding-left:10px">샤워실</span>&nbsp;
-                            <input name="p_op6" value="" style=" display: inline-block;" type="checkbox" required="required">
+                            <input name="p_op6" id="p_op6" style=" display: inline-block;" type="checkbox" value="1">
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th class="tg-llyw">예약 날짜</th>
-                    <td class="tg-0pky"><input class="form-control" name="p_book" value="" required="required" style="width: 100%;" type='date' id='currentDate'></td>
-                </tr>
-                <tr>
-                    <th class="tg-llyw">예약 시간</th>
-                    <td class="tg-0pky">
-                        <select name="p_time" value="" class="form-control" required="required" style="width: 100%; height:100%;">
-                            <option selected>시간을 선택해주세요.</option>
-                            <option>20:00</option>
-                            <option>21:00</option>
-                            <option>22:00</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
                     <th class="tg-llyw">상세 내용</th>
-                    <td class="tg-0pky"><textarea name="p_explain" value="" id="summernote" required="required"></textarea></td>
+                    <td class="tg-0pky"><textarea name="p_explain" id="summernote" required="required">[[${dto.p_explain}]]</textarea></td>
                 </tr>
                 </tbody>
             </table>
             <div style="justify-content: space-between; display:flex; width: 0px; margin-left:89%;">
-                <button  type="submit" class="btn btn-dark" style=" margin-bottom: 20px;">저장</button>&nbsp;
+                <input type="hidden" name="p_no" th:value="${dto.p_no }">
+                <button id="btnSubmit" type="button" class="btn btn-dark" style=" margin-bottom: 20px;">수정</button>&nbsp;
                 <button type="submit" class="btn btn-dark" style="margin-bottom: 20px;">취소</button>
             </div>
         </form>
@@ -101,9 +87,15 @@
 				 height: 200,
 				 minHeight: null,
 				 maxHeight: null,
-				 lang: "ko-KR",
-				 placeholder: '내용을 입력해주세요.'
+				 lang: "ko-KR"
 			});
+            $("#btnSubmit").click(function(){
+                if(confirm("수정하시겠습니까?")){
+                    $("#frmUpdate").submit();
+                }else{
+                    return false;
+                }
+            })
 		});
 </script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">

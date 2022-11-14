@@ -19,6 +19,9 @@ public class BlogDto {
     private String tb_date; // 작성일자
     private String tb_thum; // 섬네일 이름
     private String tb_state; // 게시물 상태
+    
+    // 검색과 페이징 기능을 넘겨받기 위한 변수 선언
+
 
     public BlogDto(String tb_id,String tb_title, String tb_content, String tb_thum) {
         this.tb_id = tb_id;
@@ -27,4 +30,11 @@ public class BlogDto {
         this.tb_thum = tb_thum;
     }
 
+    public BlogDto(String tb_no, String tb_id, String tb_title, String tb_content, String tb_thum) {
+        this.tb_no = tb_no;
+        this.tb_id = tb_id;
+        this.tb_title = tb_title;
+        this.tb_content = tb_content;
+        this.tb_thum = tb_thum;
+    }
 }

@@ -1,5 +1,6 @@
 package com.ucamp.fm.mapper;
 
+import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.TeamDto;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -28,4 +29,7 @@ public interface TeamMapper {
 
     @Select("select * from team where t_no = #{t_no}")
     public TeamDto selectTeam(String t_no);
+
+    @Select("select * from member where m_id like #{m_id} and m_level = '1'")
+    public List<MemberDto> findMember(String m_id);
 }

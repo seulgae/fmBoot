@@ -5,12 +5,18 @@ div#commentwrap{
 }
 
 table#bloglist{
-    width: 100%;
+    width: 97%;
+    margin: 20px auto;
+}
+
+table#blogform{
+    width: 95%;
     margin: 20px auto;
 }
 
 .content{
     vertical-align : top;
+    height: 50px;
 }
 
 .writer{

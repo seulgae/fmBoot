@@ -1,5 +1,6 @@
 package com.ucamp.fm.service;
 
+import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.TeamDto;
 import com.ucamp.fm.mapper.TeamMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,10 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public TeamDto selectTeam(String t_no) {
         return teamMapper.selectTeam(t_no);
+    }
+
+    @Override
+    public List<MemberDto> findMember(String m_id) {
+        return teamMapper.findMember(m_id);
     }
 }
