@@ -1,6 +1,7 @@
 package com.ucamp.fm.service;
 
 import com.ucamp.fm.dto.MemberDto;
+import com.ucamp.fm.dto.PayDto;
 import com.ucamp.fm.dto.PlaceDto;
 import com.ucamp.fm.dto.ReservationDto;
 
@@ -22,4 +23,5 @@ public interface PaymentService {
 
     List<String> reserveCheck(String r_date,String p_no);
 
+    void Insert(PayDto paydto);
 }

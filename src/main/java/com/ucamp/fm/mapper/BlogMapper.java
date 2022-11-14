@@ -33,4 +33,6 @@ public interface BlogMapper {
 
     void commentinsert(String c_c_id, String c_content);
 
+    List<CmentDto> cmtlist(CmentDto cmentDto);
+
 }

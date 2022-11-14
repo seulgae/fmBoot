@@ -47,18 +47,21 @@ public class TeamController {
 
     @RequestMapping("/teamupdate/{t_no}")
     @ResponseBody
-    public String teamupdate(@PathVariable String t_no, HttpServletRequest request, TeamDto dto, Model model) {
-        String t_id = (String) request.getSession().getAttribute("m_id");
+    public String teamupdate(HttpServletRequest request
+                            , String t_no
+                            , Model model) {
+
         System.out.println(t_no);
-        model.addAttribute("team", teamService.selectTeam(dto.getT_no()));
+        String t_id = (String) request.getSession().getAttribute("m_id");
+        model.addAttribute("team", teamService.selectTeam(t_no));
 
         return "<script>window.opener.location.reload(); window.close();</script>";
     }
 
     @RequestMapping("/teamdetail")
-    public String teamdetail(String t_no, Model model) {
+    public String teamdetail(@RequestParam String t_no, Model model) {
         model.addAttribute("team", teamService.selectTeam(t_no));
-
+//        System.out.println(t_no);
         return "/team/teamdetail";
     }
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+
+<body>
+<div class="px-4 py-5 my-5 text-center" style="margin: 20px auto ; width : 1000px text-">
+    <form action="/mypage/addphoto.do" method="post" enctype="multipart/form-data">
+        <table style="margin-left:500px;">
+            <tr>
+                <td width="130px">
+                    <span style="font-size:15px; font-color:#808080;">대표 이미지</span><br>
+                    <span style="font-size:15px; color:red;">(300 * 300)</span>
+                </td>
+                <td class="tg-0pky">
+                    <input type="file" name="m_thum" multiple="multiple">
+                </td>
+            </tr>
+            <tr><td colspan="2"><hr></td></tr>
+            <tr>
+                <td colspan="2" style="text-align:right;">
+                    <input type="submit" class="btn btn-danger" style="width:100px;" value="제출"/>
+        </table>
+    </form>
+</div>
+</body>
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</html>

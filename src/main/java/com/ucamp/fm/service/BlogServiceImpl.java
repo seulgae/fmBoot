@@ -51,4 +51,10 @@ public class BlogServiceImpl implements BlogService{
         blogMapper.commentinsert(c_c_id, c_content);
     }
 
+    @Override
+    public List<CmentDto> cmtlist(CmentDto cmentDto) {
+        return blogMapper.cmtlist(cmentDto);
+    }
+
+
 }

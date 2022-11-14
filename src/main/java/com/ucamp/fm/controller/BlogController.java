@@ -217,10 +217,10 @@ public class BlogController {
 
     // 커뮤니티 댓글 게시판
     @GetMapping("/blogcomment")
-    public String bolg_comment(Model model) {
+    public String bolg_comment(Model model, CmentDto cmentDto) {
 //        여기부터 다시 시작
-//        model.addAttribute("comments", )
-        return "/blogbbs/blogcomment";
+        model.addAttribute("comments", blogService.cmtlist(cmentDto));
+        return "blogbbs/blogcomment";
     }
 
     @PostMapping("/blogcommentac")
@@ -244,4 +244,5 @@ public class BlogController {
 
         return "redirect:/blog/blogcomment";
     }
+
 }

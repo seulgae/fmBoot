@@ -50,6 +50,11 @@
         delete from teamblog where tb_no = #{tb_no}
     </delete>
 
+    <select id="cmtlist" parameterType="com.ucamp.fm.dto.CmentDto"
+            resultType="com.ucamp.fm.dto.CmentDto">
+        select * from cment order by c_no desc
+    </select>
+
     <insert id="commentinsert" parameterType="com.ucamp.fm.dto.CmentDto">
         insert into cment(
         c_no,

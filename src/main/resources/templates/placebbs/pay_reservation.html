@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <!-- 아래 제이쿼리는 1.0이상이면 원하는 버전을 사용하셔도 무방합니다. -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript">
+function pay(){
+		//가맹점 식별코드
+		IMP.init("imp40464124");
+		IMP.request_pay({
+		    pg : "kakaopay.TC0ONETIME",
+		    pay_method : "card",
+		    merchant_uid : "merchant_" + new Date().getTime(),
+		    name : "[[${p_info.p_pname}]]" , //결제창에서 보여질 이름
+		    amount : parseInt("[[${p_info.p_price}]]"), //실제 결제되는 가격
+		    buyer_email : "[[${member.m_email}]]",
+		    buyer_name : "[[${member.m_name}]]",
+		    buyer_tel : "[[${member.m_phone}]]",
+		    buyer_addr : "",
+		    buyer_postcode : "",
+		    digital: false, // 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
+			app_scheme: "" // 돌아올 app scheme
+		}, function (rsp) {
+				$.ajax({
+					type: "POST",
+					url: "/payment/pay_reservation.do/" + rsp.imp_uid,
+					data: {
+						p_no: "[[${p_info.p_no}]]",
+						pay_price: "[[${p_info.p_price}]]",
+						m_id: "[[${member.m_id}]]"
+					},
+					success : function(data){
+					    alert("결제 성공");
+                        $("#frmPay").submit();
+					}
+				});
+			});
+		}
 
+
+</script>
+</head>
 <!-- config -->
 <th:block th:replace="fragments/config :: configFragment"></th:block>
 <!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
 
 <div style="width: 50%; margin: 20px auto;">
     <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
@@ -33,7 +74,7 @@
             </tr>
             <tr>
                 <td colspan="2">위의 개인정보 취급방침에 동의합니다.&nbsp;
-                    <input id="chk" type="checkbox" /></td>
+                    <input id="chk1" type="checkbox" /></td>
             </tr>
 
             <tr>
@@ -61,7 +102,7 @@
             </tr>
             <tr>
                 <td colspan="2">위의 개인정보 취급방침에 동의합니다.&nbsp;
-                    <input id="chk" type="checkbox" /></td>
+                    <input id="chk2" type="checkbox" /></td>
             </tr>
         </table>
         <table class="table table-condensed">
@@ -73,19 +114,19 @@
             <tr>
                 <td>[[${dateSet}]]</td>
                 <td>[[${time}]]</td>
-                <td>100,000원</td>
+                <td>[[${p_info.p_price}]]</td>
             </tr>
         </table>
         <p style="font-weight: bold;display:inline-block padding-left='5%'">신청자 : [[${member.m_name}]]</p>
         <p style="font-weight: bold;display:inline-block  padding-left='5%'">연락처 : [[${member.m_phone}]]</p>
-        <p style="font-weight: bold;  display:inline-block">총 금액: 100,000원</p>
-        <form method="post" action="/payment/kakaoPay">
+        <p style="font-weight: bold;  display:inline-block">총 금액: [[${p_info.p_price}]]원</p>
+        <form method="post" action="/payment/kakaoPay" id="frmPay">
             <input type="hidden" name="r_m_id" th:value="${session.m_id}">
             <input type="hidden" name="r_p_no" th:value="${p_no}">
             <input type="hidden" name="r_time" th:value="${time}">
             <input type="hidden" name="r_date" th:value="${dateSet}">
             <div class="box on">
-                <button type="submit" class="btn btn-dark" style="margin-left: 92%; margin-bottom: 20px;" onclick="pay()">예약</button>
+                <button type="button" class="btn btn-dark" style="margin-left: 92%; margin-bottom: 20px;" onclick="pay()">예약</button>
             </div>
         </form>
     </div>
@@ -97,17 +138,5 @@
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 
 </body>
-<script type="text/javascript">
-   $(".box button").attr("disabled", true);
-   $("#chk").on('click', function() {
-      var chk = $('input:checkbox[id="chk"]').is(":checked");
-      if (chk == true) {
-         $(".box button").removeAttr('disabled');
-         $(".box").removeClass("on");
-      } else {
-         $(".box button").attr("disabled", true);
-         $(".box").addClass("on");
-      }
-   });
-</script>
+
 </html>

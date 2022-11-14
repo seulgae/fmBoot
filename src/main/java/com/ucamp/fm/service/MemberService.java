@@ -20,4 +20,13 @@ public interface MemberService {
 	public void mypage_request(PlaceDto placeDto);
 
 	List<PlaceDto> getList();
+
+    void addPhoto(MemberDto memberDto);
+
+	void place_delete(String p_no);
+
+
+	PlaceDto getDto(String p_no);
+
+	public void mypage_update_do(PlaceDto placeDto);
 }
