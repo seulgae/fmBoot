@@ -19,4 +19,6 @@ public interface TeamService {
     public TeamDto selectTeam(String t_no);
 
     public List<MemberDto> findMember(String m_id);
+
+
 }

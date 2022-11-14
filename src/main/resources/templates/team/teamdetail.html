@@ -118,26 +118,25 @@
 </div>
 </div>
 <script>
-    $(function(){
-      $.ajax({
-              type: 'get'
-            , url: 'http://localhost:8085/blog/bloglistajax'
-            , dataType : 'html'
-            , success: function(data) {
-                $("#blogajaxlist").html(data);
-              }
-      });
+$(function(){
+    $.ajax({
+          type: 'get'
+        , url: 'http://localhost:8085/blog/bloglistajax'
+        , dataType : 'html'
+        , success: function(data) {
+            $("#blogajaxlist").html(data);
+          }
+    });
+    $("#updatebtn").click(function() {
+        if($("#loginCheck").val() != ""){
+            window.open('/teammanage/teamupdate', 'pop01', 'top=10, left=10, width=800, height=800, status=no, menubar=no, toolbar=no, resizable=no');
+        } else {
+            alert('로그인을 해주세요');
+            location.href="/login/login";
+        }
     })
-    $(function() {
-		$("#updatebtn").click(function() {
-			if($("#loginCheck").val() != ""){
-				window.open('/teammanage/teamupdate', 'pop01', 'top=10, left=10, width=800, height=800, status=no, menubar=no, toolbar=no, resizable=no');
-			} else {
-				alert('로그인을 해주세요');
-				location.href="/login/login";
-			}
-		})
-	})
+
+})
 </script>
 <br><br><br>
 <!-- footer -->

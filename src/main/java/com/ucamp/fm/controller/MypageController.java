@@ -2,6 +2,7 @@ package com.ucamp.fm.controller;
 
 import com.ucamp.fm.dto.*;
 import com.ucamp.fm.service.MemberService;
+import com.ucamp.fm.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,6 +26,10 @@ public class MypageController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    PlaceService placeService;
+
 
     @RequestMapping("/mypage")
     public String mypage (HttpServletRequest request, Model model) {
@@ -58,10 +66,23 @@ public class MypageController {
 
     //구장 신청 제출
     @RequestMapping("/mypage_request.do")
-    public String mypage_request_do(Model model, HttpServletRequest request, PlaceDto placeDto) {
+    public String mypage_request_do(@RequestParam("uploadfile") MultipartFile[] uploadfile, HttpServletRequest request, PlaceDto placeDto) throws IOException {
         String m_id = (String) request.getSession().getAttribute("m_id");
+        String PATH = request.getSession().getServletContext().getRealPath("/") + "uploadImg/place/";
 
+        String str = "";
+        for(MultipartFile file : uploadfile){
+            LocalDateTime now = LocalDateTime.now();
+            String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss"));
 
+            String oriName = formatedNow + "-" + file.getOriginalFilename();
+            if (!file.getOriginalFilename().isEmpty()) {
+                file.transferTo(new File(PATH + oriName));
+            }
+            placeService.insertImage(new ImageDto("place","place",oriName,String.valueOf(file.getSize())));
+            String seq = placeService.getSeq();
+            str += seq + " ";
+        }
         if(placeDto.getP_op1() == null){
             placeDto.setP_op1("0");
         }
@@ -81,6 +102,9 @@ public class MypageController {
             placeDto.setP_op6("0");
         }
 
+        placeDto.setI_no(str);
+        System.out.println(str);
+        System.out.println(placeDto.getI_no());
         memberService.mypage_request(placeDto);
 
         return "redirect:/mypage/mypage";
@@ -163,9 +187,8 @@ public class MypageController {
                            @RequestParam("m_thum") MultipartFile m_thum) throws IllegalStateException, IOException {
         String m_id = (String) request.getSession().getAttribute("m_id");
 
-        String PATH = request.getSession().getServletContext().getRealPath("/") + "uploadImg\\profileImg\\";
+        String PATH = request.getSession().getServletContext().getRealPath("/") + "uploadImg/profileImg/";
 
-        System.out.println(m_thum);
         // 프로젝트 내 webapp 폴더를 찾아줌, webapp 폴더 없을 경우 appdate안의 톰캣 캐시 임시저장 폴더에 저장시킴.
         // transferTo : 파일 데이터를 지정한 file로 저장
         // getOriginalFilename : 클라이언트의 원본 파일명 반환
