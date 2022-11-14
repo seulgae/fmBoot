@@ -36,7 +36,7 @@ public class PayController {
 
 
 	@RequestMapping ("/pay_reservation")
-	public String pay_reservation(Model model, HttpServletRequest request,String time,String dateSet, String p_no) {
+	public String pay_reservation(Model model, HttpServletRequest request,String time,String dateSet,@RequestParam String p_no) {
 
 		String m_id = (String) request.getSession().getAttribute("m_id");
 		if(m_id=="" || m_id.equals("")){
@@ -67,9 +67,14 @@ public class PayController {
 	}
 
 	@GetMapping("/placelist")
-	public String placelist(Model model) {
-		model.addAttribute("lists", paymentService.selectAll());
-		model.addAttribute("size", paymentService.selectAll().size());
+	public String placelist(@RequestParam(defaultValue = "") String keyword, Model model) {
+		if (keyword.equals("")) {
+			model.addAttribute("lists", paymentService.selectAll());
+			model.addAttribute("size", paymentService.selectAll().size());
+		} else {
+			keyword = "%" + keyword + "%";
+			model.addAttribute("lists", paymentService.searchPlace(keyword));
+		}
 		return "placebbs/placelist";
 	}
 

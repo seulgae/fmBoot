@@ -34,4 +34,7 @@ public interface PaymentMapper {
     List<String> reserveCheck(String r_date,String p_no);
 
     void InsertPay(PayDto paydto);
+
+    @Select("select * from place where p_pname like #{keyword}")
+    List<PlaceDto> searchPlace(String keyword);
 }

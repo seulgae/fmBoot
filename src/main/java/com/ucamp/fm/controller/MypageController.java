@@ -1,8 +1,6 @@
 package com.ucamp.fm.controller;
 
-import com.ucamp.fm.dto.BlogDto;
-import com.ucamp.fm.dto.MemberDto;
-import com.ucamp.fm.dto.PlaceDto;
+import com.ucamp.fm.dto.*;
 import com.ucamp.fm.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 
 @Controller
@@ -33,6 +32,9 @@ public class MypageController {
             MemberDto member =  memberService.getMember(m_id);
             if (member.getM_level().equals("1")){
                 //예약 테이블 생성 후 작업
+                List<JoinDto> reser = memberService.getList1(m_id);
+
+                model.addAttribute("list1", reser);
             }else{
                 model.addAttribute("list", memberService.getList());
             }

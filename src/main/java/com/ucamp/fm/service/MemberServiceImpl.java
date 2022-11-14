@@ -1,7 +1,9 @@
 package com.ucamp.fm.service;
 
+import com.ucamp.fm.dto.JoinDto;
 import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.PlaceDto;
+import com.ucamp.fm.dto.ReservationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ucamp.fm.mapper.MemberMapper;
@@ -61,6 +63,16 @@ public class MemberServiceImpl implements MemberService{
 	public void mypage_update_do(PlaceDto placeDto) {
 		memberMapper.mypage_update_do(placeDto);
 	}
+
+	@Override
+	public List<JoinDto> getList1(String m_id) {
+		return memberMapper.getList1(m_id);
+	}
+
+//	@Override
+//	public PlaceDto getP_name() {
+//		return memberMapper.getP_neme();
+//	}
 
 
 }
