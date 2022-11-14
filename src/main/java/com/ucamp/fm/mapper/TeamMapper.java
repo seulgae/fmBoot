@@ -32,4 +32,5 @@ public interface TeamMapper {
 
     @Select("select * from member where m_id like #{m_id} and m_level = '1'")
     public List<MemberDto> findMember(String m_id);
+
 }

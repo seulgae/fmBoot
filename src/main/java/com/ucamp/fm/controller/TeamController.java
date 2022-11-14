@@ -75,4 +75,6 @@ public class TeamController {
         model.addAttribute("findMem",teamService.findMember("%"+m_id+"%"));
         return "/team/findmember";
     }
+
+
 }

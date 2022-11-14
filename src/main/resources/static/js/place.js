@@ -18,6 +18,9 @@ $(function(){
         $("#time option[value='12:00~14:00']").prop('disabled',false);
         $("#time option[value='14:00~16:00']").prop('disabled',false);
         $("#time option[value='16:00~18:00']").prop('disabled',false);
+        $("#td_1").css("background-color","gray");
+        $("#td_2").css("background-color","gray");
+        $("#td_3").css("background-color","gray");
         $.ajax({
             type : "POST",
             url : "/payment/rserveCheck",
@@ -28,9 +31,20 @@ $(function(){
             success : function(data){
                 for(var i = 0; i < data.length; i++){
                     $("#time option[value='"+data[i]+"']").prop('disabled',true);
+                    if(data[i] == '12:00~14:00'){
+                        $("#td_1").css("background-color","red");
+                    }
+                    if(data[i] == '14:00~16:00'){
+                        $("#td_2").css("background-color","red");
+                    }
+                    if(data[i] == '16:00~18:00'){
+                        $("#td_2").css("background-color","red");
+                    }
                 }
             }
         })
     })
     $("#div_explain").html($("#hidden_explain").val());
+
  })
+
