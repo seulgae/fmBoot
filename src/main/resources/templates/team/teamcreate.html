@@ -22,7 +22,11 @@
             </tr>
             <tr>
                 <td class="align-middle" style="font-size: 15px; font-weight: bold;">팀명</td>
-                <td><input type="text" class="form-control" name="t_name" size="30" placeholder="팀명을 입력해주세요"/></td>
+                <td><input type="text" class="form-control" name="t_name" required size="30" placeholder="팀명을 입력해주세요"/></td>
+            </tr>
+            <tr>
+                <td class="align-middle" style="font-size: 15px; font-weight: bold;">연고</td>
+                <td><input type="text" class="form-control" name="t_region" required size="30" placeholder="ex) 서울특별시 양천구"/></td>
             </tr>
             <tr>
                 <td class="align-middle" style="font-size: 15px; font-weight: bold;">연령대</td>
@@ -36,15 +40,23 @@
             </tr>
             <tr>
                 <td class="align-middle" style="font-size: 15px; font-weight: bold;">실력</td>
-                <td><input type="text" class="form-control" name="t_skill" size="30" placeholder="ex) 상,중,하..."/></td>
+                <td><input type="text" class="form-control" name="t_skill" required size="30" placeholder="ex) 상,중,하..."/></td>
+            </tr>
+            <tr>
+                <td class="align-middle" style="font-size: 15px; font-weight: bold;">유니폼</td>
+                <td><input type="text" class="form-control" name="t_uniform" required size="30" placeholder="ex) 흰색, 미정"/></td>
             </tr>
             <tr>
                 <td class="align-middle" style="font-size: 15px; font-weight: bold;">유형</td>
-                <td><input type="text" class="form-control" name="t_kind" size="30" placeholder="ex) 친구모임, 자유..."/></td>
+                <td><input type="text" class="form-control" name="t_kind" size="30" required placeholder="ex) 친구모임, 자유..."/></td>
+            </tr>
+            <tr>
+                <td class="align-middle" style="font-size: 15px; font-weight: bold;">팀 소개</td>
+                <td><textarea class="form-control" form="frmteam" name="t_introduce" maxlength="100" cols="30" rows="5" autofocus required placeholder="ex) 100자 이내"></textarea></td>
             </tr>
         </table>
-        <div style="margin-top: 10px; margin-left: 260px; width: 50px;">
-            <input type="button" value="등록" id="submitbtn">
+        <div align="right" style="margin-right : 10px;">
+            <input class="btn btn-dark" type="button" value="등록" id="submitbtn">
         </div>
     </form>
     </div>

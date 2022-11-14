@@ -28,7 +28,6 @@
 		<div style="margin: 20px auto;">
 			<div style="float: left; margin:20px auto;">
 				<button class="btn btn-dark" id="cbtn">팀 생성</button>
-				<button class="btn btn-dark" id="ubtn">팀 수정</button>
 				<input type="hidden" id="loginCheck" th:value="${session.m_id}">
 			</div>
 			<div style="float: right; margin:20px auto;">
@@ -66,7 +65,7 @@
 						<td>-</td>
 						<td>-</td>
 						<td>-</td>
-						<td>기타 지역</td>
+						<td th:text="${team.t_region}"></td>
 						<td th:text="${team.t_age}"></td>
 						<td th:text="${team.t_skill}"></td>
 						<td th:text="${team.t_kind}"></td>
@@ -83,7 +82,7 @@
 	$(function() {
 		$("#cbtn").click(function() {
 			if($("#loginCheck").val() != ""){
-				window.open('/teammanage/teamcreate', 'pop01', 'top=10, left=10, width=500, height=550, status=no, menubar=no, toolbar=no, resizable=no');
+				window.open('/teammanage/teamcreate', 'pop01', 'top=10, left=10, width=800, height=800, status=no, menubar=no, toolbar=no, resizable=no');
 			} else {
 				alert('로그인을 해주세요');
 				location.href="/login/login";

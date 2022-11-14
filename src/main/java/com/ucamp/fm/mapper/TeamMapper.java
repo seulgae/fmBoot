@@ -14,9 +14,9 @@ public interface TeamMapper {
     @Select("select t_name, t_age, t_skill, t_kind from team where m_id = #{m_id}")
     public TeamDto teamCreate(String m_id);
 
-    @Insert("insert into team(t_no, t_name , t_age, t_skill, t_kind, t_id, t_date) values " +
-            "(team_seq.NEXTVAL, #{t_name}, #{t_age}, #{t_skill}, #{t_kind}, #{t_id}, (SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') FROM DUAL))")
-    public void teamInsert(String t_name, String t_age, String t_skill, String t_kind, String t_id);
+    @Insert("insert into team(t_no, t_name, t_region, t_age, t_skill, t_uniform, t_kind, t_introduce, t_id, t_date) values " +
+            "(team_seq.NEXTVAL, #{t_name}, #{t_region}, #{t_age}, #{t_skill}, #{t_uniform}, #{t_kind}, #{t_introduce}, #{t_id}, (SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') FROM DUAL))")
+    public void teamInsert(String t_name, String t_region, String t_age, String t_skill, String t_uniform, String t_kind, String t_introduce, String t_id);
 
     @Select("select * from team order by t_date desc")
     public List<TeamDto> getTeamList();
@@ -32,4 +32,5 @@ public interface TeamMapper {
 
     @Select("select * from member where m_id like #{m_id} and m_level = '1'")
     public List<MemberDto> findMember(String m_id);
+
 }

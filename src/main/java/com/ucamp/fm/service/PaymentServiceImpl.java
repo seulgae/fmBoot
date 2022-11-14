@@ -1,6 +1,7 @@
 package com.ucamp.fm.service;
 
 import com.ucamp.fm.dto.MemberDto;
+import com.ucamp.fm.dto.PayDto;
 import com.ucamp.fm.dto.PlaceDto;
 import com.ucamp.fm.dto.ReservationDto;
 import com.ucamp.fm.mapper.PaymentMapper;
@@ -48,5 +49,15 @@ public class PaymentServiceImpl implements  PaymentService{
     @Override
     public List<String> reserveCheck(String r_date, String p_no) {
         return paymentMapper.reserveCheck(r_date,p_no);
+    }
+
+    @Override
+    public void Insert(PayDto paydto) {
+        paymentMapper.InsertPay(paydto);
+    }
+
+    @Override
+    public List<PlaceDto> searchPlace(String keyword) {
+        return paymentMapper.searchPlace(keyword);
     }
 }

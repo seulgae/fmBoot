@@ -1,10 +1,10 @@
 package com.ucamp.fm.mapper;
 
+import com.ucamp.fm.dto.JoinDto;
 import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.PlaceDto;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import com.ucamp.fm.dto.ReservationDto;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -23,9 +23,26 @@ public interface MemberMapper {
 
 	public void mypage_request(PlaceDto placeDto);
 
-	@Select("select m_level,m_email,m_name from member where m_id=#{m_id}")
+	@Select("select m_level,m_email,m_name,m_thum from member where m_id=#{m_id}")
 	MemberDto getMember(String m_id);
 
 	@Select("select * from place")
 	List<PlaceDto> getList();
+
+	@Update("update member set m_thum=#{m_thum} where m_id=#{m_id}")
+	void addPhoto(MemberDto memberDto);
+
+	@Delete("delete from place where p_no = #{p_no}")
+	void place_delete(String p_no);
+
+	@Select("select * from place where p_no=#{p_no}")
+	PlaceDto getDto(String p_no);
+
+	void mypage_update_do(PlaceDto placeDto);
+
+	@Select("select r_no,r_m_id,r_p_no,r_time,r_date,r_wdate,p_pname from reservation re join place p on re.r_p_no = p.p_no where r_m_id=#{m_id}")
+	List<JoinDto> getList1(String m_id);
+
+//	@Select("select p_pname from place where p_no=#{p_no}")
+//    PlaceDto getP_neme();
 }

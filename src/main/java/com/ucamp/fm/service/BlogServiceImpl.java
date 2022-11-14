@@ -46,9 +46,5 @@ public class BlogServiceImpl implements BlogService{
         blogMapper.blogupdate(blogDto);
     }
 
-    @Override
-    public void commentinsert(String c_c_id, String c_content) {
-        blogMapper.commentinsert(c_c_id, c_content);
-    }
 
 }
