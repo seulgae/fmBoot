@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+<link  href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div style="width: 70%; margin: 20px auto;">
+  <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
+  <div style="padding-top: 50px;">
+      <span style="font-size: 30px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">■구장 신청</span><br><br>
+      <form action="/login/mypage_request.do" method="post" name="request" id="request">
+          <table class="table table-bordered" >
+              <colgroup>
+                  <col style="width: 100px">
+                  <col style="width: 800px">
+              </colgroup>
+              <tbody>
+              <input type="hidden" name="p_manager" th:value="${session.m_id}"/>
+              <input type="hidden" name="p_no"/>
+              <tr>
+                  <th class="tg-llyw">구장 이름</th>
+                  <td class="tg-0pky"><input class="form-control" name="p_pname" required="required" style="width: 100%; " type="text" autofocus></td>
+              </tr>
+              <tr>
+                  <th class="tg-llyw">구장 주소</th>
+                  <td class="tg-0pky"><input class="form-control" name="p_place" required="required" style="width: 100%; " type="text"></td>
+              </tr>
+              <tr>
+                  <th class="tg-llyw">구장 가격</th>
+                  <td class="tg-0pky"><input class="form-control" name="p_price" required="required" style="width: 100%; " type="number"></td>
+              </tr>
+              <tr>
+                  <th class="tg-llyw">최대 인원</th>
+                  <td class="tg-0pky"><input class="form-control" name="p_max" required="required" style="width: 100%; " type="number"></td>
+              </tr>
+              <tr>
+                  <th class="tg-llyw">지역</th>
+                  <td class="tg-0pky"><input class="form-control" name="p_area" required="required" style="width: 100%; " type="text"></td>
+              </tr>
+              <tr>
+                  <th class="tg-llyw">옵션</th>
+                  <td>
+                      <div>
+                          <span>주차장</span>&nbsp;
+                          <input name="p_op1" id="p_op1" style=" display: inline-block;" type="checkbox" value="1">
+                          <span  style="padding-left:10px">냉난방</span>&nbsp;
+                          <input name="p_op2" id="p_op2" style=" display: inline-block;" type="checkbox" value="1">
+                          <span  style="padding-left:10px">공대여</span>&nbsp;
+                          <input name="p_op3" id="p_op3" style=" display: inline-block;" type="checkbox" value="1">
+                          <span  style="padding-left:10px">팀조끼</span>&nbsp;
+                          <input name="p_op4" id="p_op4" style=" display: inline-block;" type="checkbox" value="1">
+                          <span  style="padding-left:10px">풋살화</span>&nbsp;
+                          <input name="p_op5" id="p_op5" style=" display: inline-block;" type="checkbox" value="1">
+                          <span  style="padding-left:10px">샤워실</span>&nbsp;
+                          <input name="p_op6" id="p_op6" style=" display: inline-block;" type="checkbox" value="1">
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <th class="tg-llyw">상세 내용</th>
+                  <td class="tg-0pky"><textarea name="p_explain" id="summernote" required="required"></textarea></td>
+              </tr>
+              </tbody>
+          </table>
+          <div style="justify-content: space-between; display:flex; width: 0px; margin-left:89%;">
+                  <button  type="submit" id="btnSubmit" class="btn btn-dark" style=" margin-bottom: 20px;">저장</button>&nbsp;
+                  <button type="submit" class="btn btn-dark" style="margin-bottom: 20px;">취소</button>
+          </div>
+      </form>
+  </div>
+  <!-- footer import  -->
+</div>
+<!-- div#wrap -->
+
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<script>
+
+
+	$(function() {
+		    $('#summernote').summernote({
+				 height: 200,
+				 minHeight: null,
+				 maxHeight: null,
+				 lang: "ko-KR",
+				 placeholder: '내용을 입력해주세요.'
+			});
+
+		});
+</script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+</html>

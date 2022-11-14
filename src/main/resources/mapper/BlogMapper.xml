@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucamp.fm.mapper.BlogMapper">
+
+    <select id="bloglist" parameterType="hashmap"
+            resultType="com.ucamp.fm.dto.BlogDto">
+        select * from
+        (select * from teamblog where tb_title like '%'||#{keyword}||'%' order by tb_no desc)
+        where
+        <![CDATA[
+        rownum <= #{pageNum}
+        ]]>
+    </select>
+
+    <select id="bloglistajax" parameterType="com.ucamp.fm.dto.BlogDto"
+            resultType="com.ucamp.fm.dto.BlogDto">
+        select * from
+        ( select * from teamblog order by tb_no desc)
+        where
+        <![CDATA[
+        rownum <= 10
+        ]]>
+    </select>
+
+    <insert id="bloginsert" parameterType="com.ucamp.fm.dto.BlogDto">
+        insert into teamblog(
+            tb_no,
+            tb_tbno,
+            tb_id,
+            tb_title,
+            tb_content,
+            tb_date,
+            tb_thum,
+            tb_state
+        )values(
+            tb_no.NEXTVAL,
+            'teamblog',
+            #{tb_id},
+            #{tb_title},
+            #{tb_content},
+            sysdate,
+            #{tb_thum},
+            '2'
+        )
+    </insert>
+
+    <delete id="blogdelete">
+        delete from teamblog where tb_no = #{tb_no}
+    </delete>
+
+    <insert id="commentinsert" parameterType="com.ucamp.fm.dto.CmentDto">
+        insert into cment(
+        c_no,
+        c_c_id,
+        c_tbno,
+        c_content,
+        c_date
+        )values(
+        cmt_seq.NEXTVAL,
+        #{c_c_id},
+        'teamblog',
+        #{c_content},
+        sysdate
+        )
+    </insert>
+	
+</mapper>

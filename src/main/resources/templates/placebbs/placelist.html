@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<!-- placelist.js -->
+<script src="/js/placelist.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/placelist.css">
+<body>
+<div style="width: 100%; height: 100%; margin: 20px auto;">
+    <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
+    <div style="padding-top: 20px; margin:20px auto; width:1000px;">
+      <span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
+            예약 가능 구장 &nbsp;|&nbsp; <small>FM그라운드 제휴 구장</small></span><br>
+        <hr style="width: 1000px;">
+        <div action="" style=" justify-content: space-between; display:flex;">
+            <div id="current_date" style="font-weight: bold; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; margin-right: 636px;"></div>
+            <input type="text" />
+            <input type="submit" value="검색">
+        </div>
+    </div>
+
+    <input type="hidden" th:value="${size}" id="list_size">
+    <th:block th:each="list ,s : ${lists}">
+        <div style="border:1px solid #c8c8c8; margin: 20px auto; justify-content: space-between; display:flex; width:1000px">
+            <div>
+                <img th:src="|/images/${list.i_no}|" style="width:302px; height:181px;"/> <br>
+                <div style="padding: 5px 10px; text-align: center; background-color: black;"><span style="font-size: 15px; color: white;">[[${list.p_pname}]]</span>
+                </div>
+            </div>
+            <div>
+                <div style="font-weight: bold; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; margin-right: 600px;"> [구장 안내]</div>
+                <div style="font-size: 15px; font-family: 'Noto Sans KR', sans-serif;  margin-left: 440px;"> [[${list.p_place}]] </div>
+                <div style="margin-left: 120px; margin-top:43px; display: inline-block;"></div>
+
+                <div style="margin-top:10px;"></div>
+                <div style="margin-left: 100px; display: inline-block;"></div>
+                <div class="box"><h6>6vs6</h6></div>
+                <div class="box" th:id="|${list.p_no}divOp1|"><h6>주차</h6></div>
+                <div class="box" th:id="|${list.p_no}divOp2|"><h6>냉난방</h6></div>
+                <div class="box" th:id="|${list.p_no}divOp3|"><h6>공대여</h6></div>
+                <div class="box" th:id="|${list.p_no}divOp4|"><h6>팀조끼</h6></div>
+                <div class="box" th:id="|${list.p_no}divOp5|"><h6>풋살화</h6></div>
+                <div class="box" th:id="|${list.p_no}divOp6|"><h6>샤워실</h6></div>
+                <input type="hidden" th:value="${list.p_op1}" th:id="|${list.p_no}op1|">
+                <input type="hidden" th:value="${list.p_op2}" th:id="|${list.p_no}op2|">
+                <input type="hidden" th:value="${list.p_op3}" th:id="|${list.p_no}op3|">
+                <input type="hidden" th:value="${list.p_op4}" th:id="|${list.p_no}op4|">
+                <input type="hidden" th:value="${list.p_op5}" th:id="|${list.p_no}op5|">
+                <input type="hidden" th:value="${list.p_op6}" th:id="|${list.p_no}op6|">
+                <input type="hidden" th:value="${list.p_no}" th:id="|${s.index}p_no|" name="p_no">
+                <div style="margin-top:25px;"></div>
+                <script>
+                    $(function(){
+                        let list_size = $("#list_size").val();
+                        for(var j = 0; j < list_size; j++){
+                            let p_no = $("#"+j+"p_no").val();
+                            for(var i = 1; i <= 6; i++){
+                                if($("#"+p_no+"op"+i).val()=="1"){
+                                    $("#"+p_no+"divOp"+i).css("background-color","#646464");
+                                }else{
+                                    $("#"+p_no+"divOp"+i).css("background-color","#FFFFFF");
+                                }
+                            }
+                        }
+                    })
+                    function read(p_no){
+                        location.href="/payment/placeread?p_no="+p_no;
+                    }
+                </script>
+                <div><button class="btn btn-dark" id="btnReservation" style="width:98.7%; height:100%;" th:p_no="${list.p_no}" th:onclick="read(this.getAttribute('p_no'))">예약</button></div>
+            </div>
+        </div>
+    </th:block>
+    <div style="text-align: center";>페이징</div>
+    <!-- 페이징 요소 작업 예정-->
+</div>
+</div>
+<!-- div#wrap -->
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</body>
+</html>

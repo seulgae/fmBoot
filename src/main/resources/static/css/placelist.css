@@ -1,0 +1,25 @@
+.box{
+    display: inline-block;
+    height:45px;
+    weight:45px;
+    border:1px solid #c8c8c8;
+}
+h6{
+    color: #dcdcdc;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.select-wrap {
+
+  display: inline-block;
+  padding: .8em .5em;
+  border: 1px solid #999;
+  font-family: inherit;
+  border-radius: 0px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+}

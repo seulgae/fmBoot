@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<style>
+    .profile {
+        width: 180px;
+        height: 180px;
+        border-radius: 70%;
+        margin-top: 20px;
+    }
+    .container1 {
+        width: 100%;
+        text-align: center;
+    }
+    .row_status {
+        background-color:#333333;
+    }
+    .row1 {
+        justify-content: space-between;
+        display: flex;
+    }
+    .row2 {
+        justify-content: space-between;
+        display: flex;
+        width:50%;
+    }
+    #content {
+        padding-left: 10px;
+        font-size: 10px;
+        background-color: #BDBDBD;
+        border-radius: 20px;
+        width: 250px;
+        height: 100px;
+        margin-top: 10px;
+    }
+    td {
+        background-color: #BDBDBD;
+    }
+    th, li {
+        color: #BDBDBD;
+    }
+</style>
+
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<div style="width: 1000px; margin: 20px auto;">
+<div class="container1">
+    <div class="row_status">
+        <div class="row1">
+            <div class="row2">
+                <div style="width: 50%; margin-left: 20px;">
+                    <img class="profile" src="/images/logo.png">
+                </div>
+                <div style="width: 50%; margin-top: 20px;">
+                    <div>
+                        <h2 style="color: white; margin-right: 15px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;" th:text="${team.t_name}"></h2>
+                        <button style="opacity : 0.5;" class="btn" id="ubtn"><img src="/images/update.png" style="width: 10px; height: 10px;"></button>
+                        <button style="opacity : 0.5;" class="btn" id="addbtn"></button>
+                        <input type="hidden" id="loginCheck" th:value="${session.m_id}">
+                    </div>
+                    <h7 style="font-size:8px; margin-right: 25%; color: #BDBDBD">팀 등록일 : [[ ${team.t_date} ]]</h7>
+                    <ul style="font-size:9px; margin-top: 15px; margin-left: 5%" align="left">
+                        <li>－연고</li>
+                        <li>－연령대 : [[ ${team.t_age} ]]</li>
+                        <li>－실력 : [[ ${team.t_skill} ]]</li>
+                        <li>－유니폼</li>
+                        <li>－유형 : [[ ${team.t_kind} ]]</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="width: 50%; margin-top: 5%; margin-bottom: 5%;">
+                <h6 style="color: #BDBDBD; margin-right: 45%;">팀 소개</h6>
+                <div>
+                    <textarea id="content" name="content"></textarea>
+                </div>
+            </div>
+        </div>
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="align-middle" rowspan="2" style="text-align: center;">총</th>
+                    <th class="align-middle" rowspan="2" style="text-align: center;">승</th>
+                    <th class="align-middle" rowspan="2" style="text-align: center;">무</th>
+                    <th class="align-middle" rowspan="2" style="text-align: center;">패</th>
+                    <th class="align-middle" rowspan="2" style="text-align: center;">승률</th>
+                    <th class="align-middle" colspan="2" style="text-align: center;">경기당</th>
+                </tr>
+                <tr>
+                    <th class="align-middle" style="text-align: center;">득점</th>
+                    <th class="align-middle" style="text-align: center;">실점</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="blogajaxlist">
+
+</div>
+</div>
+<script>
+$(function(){
+  $.ajax({
+          type: 'get'
+        , url: 'http://localhost:8085/blog/bloglistajax'
+        , dataType : 'html'
+        , success: function(data) {
+            $("#blogajaxlist").html(data);
+          }
+  });
+})
+</script>
+<br><br><br>
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</html>
