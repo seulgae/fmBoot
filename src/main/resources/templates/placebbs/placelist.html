@@ -52,9 +52,9 @@
                 <input type="hidden" th:value="${list.p_op4}" th:id="|${list.p_no}op4|">
                 <input type="hidden" th:value="${list.p_op5}" th:id="|${list.p_no}op5|">
                 <input type="hidden" th:value="${list.p_op6}" th:id="|${list.p_no}op6|">
-                <input type="hidden" th:value="${list.p_no}" th:id="|${s.index}p_no|">
+                <input type="hidden" th:value="${list.p_no}" th:id="|${s.index}p_no|" name="p_no">
                 <div style="margin-top:25px;"></div>
-                <script th:inline="javascript">
+                <script>
                     $(function(){
                         let list_size = $("#list_size").val();
                         for(var j = 0; j < list_size; j++){
@@ -68,8 +68,11 @@
                             }
                         }
                     })
-        </script>
-                <div><button class="btn btn-dark" style="width:98.7%; height:100%;" onclick="location.href='/payment/placeread'">예약</button></div>
+                    function read(p_no){
+                        location.href="/payment/placeread?p_no="+p_no;
+                    }
+                </script>
+                <div><button class="btn btn-dark" id="btnReservation" style="width:98.7%; height:100%;" th:p_no="${list.p_no}" th:onclick="read(this.getAttribute('p_no'))">예약</button></div>
             </div>
         </div>
     </th:block>

@@ -16,8 +16,9 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 <body>
+
     <div class="px-4 py-5 my-5 text-center" style="margin: 20px auto ; width : 1000px">
-        <form action="/blog/blogwriteaction" method="post" enctype="multipart/form-data">
+        <form action="/blog/blogmodaction" method="post" enctype="multipart/form-data">
             <table>
                 <thead>
                 <tr>
@@ -36,7 +37,8 @@
                             <span style="font-size:15px;">작성자</span>
                         </td>
                         <td style="text-align:left;">
-                            <input type="hidden" name="tb_id" th:value="${tb_id}">
+                            <input type="hidden" name="tb_no" th:value="${blog.tb_no}">
+                            <input type="hidden" name="tb_id" th:value="${blog.tb_id}">
                             <span>[[ ${tb_id} ]]</span>
                         </td>
                     </tr>

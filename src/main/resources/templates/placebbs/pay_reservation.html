@@ -71,21 +71,19 @@
                 <th>가 격</th>
             </tr>
             <tr>
-                <td>2022-10-31</td>
-                <td>22:00 ~ 24:00</td>
-                <td>130000</td>
+                <td>[[${dateSet}]]</td>
+                <td>[[${time}]]</td>
+                <td>100,000원</td>
             </tr>
         </table>
-        <p style="font-weight: bold; padding-left: 83%;">총 금액: 130,000원</p><br>
-        <p style="font-weight: bold;">신청팀 :
-            <select name="t">
-                <option>----------------</option>
-                <option value="t"></option>
-            </select>
-        </p><br>
-        <p style="font-weight: bold;">신청자 : 홍길동</p><br>
-        <p style="font-weight: bold;">연락처 : [[${m_phone}]]</p>
-        <form method="post" action="/kakaoPay">
+        <p style="font-weight: bold;display:inline-block padding-left='5%'">신청자 : [[${member.m_name}]]</p>
+        <p style="font-weight: bold;display:inline-block  padding-left='5%'">연락처 : [[${member.m_phone}]]</p>
+        <p style="font-weight: bold;  display:inline-block">총 금액: 100,000원</p>
+        <form method="post" action="/payment/kakaoPay">
+            <input type="hidden" name="r_m_id" th:value="${session.m_id}">
+            <input type="hidden" name="r_p_no" th:value="${p_no}">
+            <input type="hidden" name="r_time" th:value="${time}">
+            <input type="hidden" name="r_date" th:value="${dateSet}">
             <div class="box on">
                 <button type="submit" class="btn btn-dark" style="margin-left: 92%; margin-bottom: 20px;" onclick="pay()">예약</button>
             </div>

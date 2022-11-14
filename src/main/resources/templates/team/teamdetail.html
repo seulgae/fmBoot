@@ -56,14 +56,19 @@
                     <img class="profile" src="/images/logo.png">
                 </div>
                 <div style="width: 50%; margin-top: 20px;">
-                    <h2 style="color: white; margin-right: 15px;"></h2>
-                    <h7 style="font-size:8px; margin-right: 25%; color: #BDBDBD">팀 등록일</h7>
+                    <div>
+                        <h2 style="color: white; margin-right: 15px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;" th:text="${team.t_name}"></h2>
+                        <button style="opacity : 0.5;" class="btn" id="ubtn"><img src="/images/update.png" style="width: 10px; height: 10px;"></button>
+                        <button style="opacity : 0.5;" class="btn" id="addbtn"></button>
+                        <input type="hidden" id="loginCheck" th:value="${session.m_id}">
+                    </div>
+                    <h7 style="font-size:8px; margin-right: 25%; color: #BDBDBD">팀 등록일 : [[ ${team.t_date} ]]</h7>
                     <ul style="font-size:9px; margin-top: 15px; margin-left: 5%" align="left">
                         <li>－연고</li>
-                        <li>－연령대</li>
-                        <li>－실력</li>
+                        <li>－연령대 : [[ ${team.t_age} ]]</li>
+                        <li>－실력 : [[ ${team.t_skill} ]]</li>
                         <li>－유니폼</li>
-                        <li>－유형</li>
+                        <li>－유형 : [[ ${team.t_kind} ]]</li>
                     </ul>
                 </div>
             </div>
@@ -105,9 +110,22 @@
         </div>
     </div>
 </div>
+<div id="blogajaxlist">
+
 </div>
-
-
+</div>
+<script>
+$(function(){
+  $.ajax({
+          type: 'get'
+        , url: 'http://localhost:8085/blog/bloglistajax'
+        , dataType : 'html'
+        , success: function(data) {
+            $("#blogajaxlist").html(data);
+          }
+  });
+})
+</script>
 <br><br><br>
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
