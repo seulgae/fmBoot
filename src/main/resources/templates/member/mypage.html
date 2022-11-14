@@ -50,7 +50,29 @@
                 </tr>
             </tbody>
         </table>
-        <th:block th:if="${m_level=='2'}">
+        <th:block th:if="${member.m_level.equals('1')}">
+            <table id="userList" style="width: 1000px; margin: 20px auto; height: 30px; border-collapse: separate; border-spacing: 0 10px;">
+                <thead>
+                <tr>
+                    <th style="text-align: center; border-bottom: 1px solid #000;">번호</th>
+                    <th style="text-align: center; border-bottom: 1px solid #000;">구장명</th>
+                    <th style="text-align: center; border-bottom: 1px solid #000;">예약 시간</th>
+                    <th style="text-align: center; border-bottom: 1px solid #000;">예약 날짜</th>
+                    <th style="text-align: center; border-bottom: 1px solid #000;">결제 날짜</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="list1 : ${list1}">
+                    <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_no}]]</td>
+                    <td style="text-align: center; border: 1px solid #f8f8f8;"><a th:href="|/payment/placeread?p_no=${list1.r_p_no}|">[[${list1.p_pname}]]</a></td>
+                    <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_time}]]</td>
+                    <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_date}]]</td>
+                    <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_wdate}]]</td>
+                </tr>
+                </tbody>
+            </table>
+        </th:block>
+        <th:block th:if="${member.m_level.equals('2')}">
             <table id="managerList">
                 <thead>
                     <tr>
@@ -69,7 +91,7 @@
                             <a th:href="|/mypage/mypage_update/${list.p_no}|"><img style="width: 15px; height: 15px; cursor:pointer;" id="update" alt="" src="/images/update.png"></a>
                             <a th:href="|/mypage/place_delete/${list.p_no}|" id="aDelete"><img style="width: 15px; height: 15px; cursor:pointer;" id="delete" alt="" src="/images/delete.png"></a>
                         </td>
-                    <tr>
+                    </tr>
                 </tbody>
             </table>
         </th:block>

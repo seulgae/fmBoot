@@ -55,4 +55,9 @@ public class PaymentServiceImpl implements  PaymentService{
     public void Insert(PayDto paydto) {
         paymentMapper.InsertPay(paydto);
     }
+
+    @Override
+    public List<PlaceDto> searchPlace(String keyword) {
+        return paymentMapper.searchPlace(keyword);
+    }
 }

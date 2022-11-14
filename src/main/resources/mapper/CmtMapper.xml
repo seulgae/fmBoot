@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucamp.fm.mapper.CmtMapper">
+
+    <select id="cmtlist" parameterType="String"
+            resultType="com.ucamp.fm.dto.CmentDto">
+        select * from cment
+        where c_tbno = 'teamblog'
+        and   c_tbset = ${c_no}
+        order by c_no desc
+    </select>
+
+    <insert id="cmtinsert" parameterType="com.ucamp.fm.dto.CmentDto">
+        insert into cment(
+        c_no,
+        c_c_id,
+        c_m_thum,
+        c_tbno,
+        c_tbset,
+        c_content,
+        c_date
+        )values(
+        cmt_seq.NEXTVAL,
+        #{c_c_id},
+        (select m_thum from member where m_id = #{c_c_id}),
+        'teamblog',
+        #{c_no},
+        #{c_content},
+        sysdate
+        )
+    </insert>
+
+    <delete id="cmtdelete">
+        delete from cment where c_no = #{c_no}
+    </delete>
+</mapper>
