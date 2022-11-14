@@ -32,4 +32,5 @@ $(function(){
             }
         })
     })
+    $("#div_explain").html($("#hidden_explain").val());
  })

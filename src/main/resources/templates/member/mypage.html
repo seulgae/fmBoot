@@ -7,14 +7,20 @@
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
 	<link rel="stylesheet" href="/css/mypage.css">
-
+<script>
+    $(function(){
+        $("#add").click(function(){
+           window.open('/mypage/addphoto', 'pop01', 'top=10, left=10, width=500, height=200, status=no, menubar=no, toolbar=no, resizable=no');
+        })
+    })
+</script>
     <div id="wrap">
         <table id="mypageTable" border="1">
             <tbody>
                 <tr>
                     <td height="50" colspan="6" style="font-weight:bold ;">
                         &nbsp;&nbsp;&nbsp;프로필&nbsp;&nbsp;
-                        <img onclick="location.href='/mypage/addphoto'" style="margin-bottom: 6px; width: 35px; height: 35px; cursor:pointer;" id="add" alt="" src="/images/add.png"></a>
+                        <img style="margin-bottom: 6px; width: 35px; height: 35px; cursor:pointer;" id="add" alt="" src="/images/add.png"></a>
                     </td>
                 </tr>
                 <tr>
@@ -44,27 +50,29 @@
                 </tr>
             </tbody>
         </table>
-        <table id="managerList">
-            <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>날짜</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-	            <tr th:each="list : ${list}">
-	                <td>[[${list.p_no}]]</td>
-                    <td><a th:href="|/payment/placeread?p_no=${list.p_no}|">[[${list.p_pname}]]</a></td>
-	                <td>[[${list.p_date}]]</td>
-                    <td>
-                        <a th:href="|/mypage/mypage_update/${list.p_no}|"><img style="width: 15px; height: 15px; cursor:pointer;" id="update" alt="" src="/images/update.png"></a>
-                        <a th:href="|/mypage/place_delete/${list.p_no}|" id="aDelete"><img style="width: 15px; height: 15px; cursor:pointer;" id="delete" alt="" src="/images/delete.png"></a>
-                    </td>
-	            <tr>
-            </tbody>
-        </table>
+        <th:block th:if="${m_level=='2'}">
+            <table id="managerList">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>날짜</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="list : ${list}">
+                        <td>[[${list.p_no}]]</td>
+                        <td><a th:href="|/payment/placeread?p_no=${list.p_no}|">[[${list.p_pname}]]</a></td>
+                        <td>[[${list.p_date}]]</td>
+                        <td>
+                            <a th:href="|/mypage/mypage_update/${list.p_no}|"><img style="width: 15px; height: 15px; cursor:pointer;" id="update" alt="" src="/images/update.png"></a>
+                            <a th:href="|/mypage/place_delete/${list.p_no}|" id="aDelete"><img style="width: 15px; height: 15px; cursor:pointer;" id="delete" alt="" src="/images/delete.png"></a>
+                        </td>
+                    <tr>
+                </tbody>
+            </table>
+        </th:block>
     </div>
     <!-- div#wrap -->
 <script>

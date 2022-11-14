@@ -76,8 +76,8 @@ public class PayController {
 	@RequestMapping("/placeread")
 	public String placeRead(HttpServletRequest request,Model model,String p_no) {
 		LocalDate today = LocalDate.now();
-		System.out.println(p_no);
 		PlaceDto place = paymentService.selectPlace(p_no);
+
 		model.addAttribute("place",place);
 		model.addAttribute("today",today);
 		return "placebbs/placeread";
@@ -86,7 +86,7 @@ public class PayController {
 	@RequestMapping("/kakaoPay")
 	public String insertReservation(ReservationDto rDto){
 		paymentService.insertReservation(rDto);
-		return "/login/mypage";
+		return "redirect:/mypage/mypage";
 	}
 
 	@RequestMapping("/rserveCheck")
