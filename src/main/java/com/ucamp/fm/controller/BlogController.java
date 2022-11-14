@@ -214,35 +214,4 @@ public class BlogController {
             return "redirect:/login/login";
         }
     }
-
-    // 커뮤니티 댓글 게시판
-    @GetMapping("/blogcomment")
-    public String bolg_comment(Model model, CmentDto cmentDto) {
-//        여기부터 다시 시작
-        model.addAttribute("comments", blogService.cmtlist(cmentDto));
-        return "blogbbs/blogcomment";
-    }
-
-    @PostMapping("/blogcommentac")
-    public String blog_comment_ac(HttpSession session, Model model,
-                                  @RequestParam(value = "c_content", required = false) String c_content) {
-        String c_c_id = (String) session.getAttribute("m_id");
-
-        // 1. 세션 tb_id가 없다면
-        if (!(c_c_id == null)) {
-            model.addAttribute("c_c_id", c_c_id);
-        } else {
-            // 2. 로그인 폼으로 이동.
-            return "redirect:/login/login";
-        }
-        if (c_content == null) {
-            c_content = "";
-        }
-        System.out.println(c_c_id);
-        System.out.println(c_content);
-        blogService.commentinsert(c_c_id, c_content);
-
-        return "redirect:/blog/blogcomment";
-    }
-
 }

@@ -62,7 +62,10 @@
             </tbody>
         </table>
     </div>
-    <div id="blogcomment">
+    <div id="blogcmt">
+
+    </div>
+    <div id="blogwrite">
 
     </div>
     <br>
@@ -71,10 +74,19 @@
 $(function(){
   $.ajax({
           type: 'get'
-        , url: 'http://localhost:8085/blog/blogcomment'
+        , url: 'http://localhost:8085/cmt/blogcmt'
         , dataType : 'html'
         , success: function(data) {
-            $("#blogcomment").html(data);
+            $("#blogcmt").html(data);
+          }
+  });
+
+  $.ajax({
+          type: 'get'
+        , url: 'http://localhost:8085/cmt/blogcmtform'
+        , dataType : 'html'
+        , success: function(data) {
+            $("#blogwrite").html(data);
           }
   });
 })

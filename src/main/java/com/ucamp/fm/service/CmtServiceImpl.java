@@ -1,0 +1,25 @@
+package com.ucamp.fm.service;
+
+import com.ucamp.fm.dto.CmentDto;
+import com.ucamp.fm.mapper.CmtMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class CmtServiceImpl implements CmtService{
+
+    @Autowired
+    CmtMapper cmtMapper;
+
+    @Override
+    public List<CmentDto> cmtlist() {
+        return cmtMapper.cmtlist();
+    }
+
+    @Override
+    public void cmtinsert(String c_no ,String c_c_id, String c_content) {
+        cmtMapper.cmtinsert(c_no, c_c_id, c_content);
+    }
+}
