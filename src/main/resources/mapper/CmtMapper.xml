@@ -4,10 +4,11 @@
 
 <mapper namespace="com.ucamp.fm.mapper.CmtMapper">
 
-    <select id="cmtlist" parameterType="com.ucamp.fm.dto.CmentDto"
+    <select id="cmtlist" parameterType="String"
             resultType="com.ucamp.fm.dto.CmentDto">
         select * from cment
         where c_tbno = 'teamblog'
+        and   c_tbset = ${c_no}
         order by c_no desc
     </select>
 
@@ -31,4 +32,7 @@
         )
     </insert>
 
+    <delete id="cmtdelete">
+        delete from cment where c_no = #{c_no}
+    </delete>
 </mapper>

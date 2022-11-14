@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface CmtService {
 
-    List<CmentDto> cmtlist();
+    List<CmentDto> cmtlist(String c_tbset);
 
     void cmtinsert(String c_no, String c_c_id, String c_content);
+
+    void cmtdelete(String c_no);
 }

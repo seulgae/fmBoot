@@ -14,12 +14,17 @@ public class CmtServiceImpl implements CmtService{
     CmtMapper cmtMapper;
 
     @Override
-    public List<CmentDto> cmtlist() {
-        return cmtMapper.cmtlist();
+    public List<CmentDto> cmtlist(String c_tbset) {
+        return cmtMapper.cmtlist(c_tbset);
     }
 
     @Override
     public void cmtinsert(String c_no ,String c_c_id, String c_content) {
         cmtMapper.cmtinsert(c_no, c_c_id, c_content);
+    }
+
+    @Override
+    public void cmtdelete(String c_no) {
+        cmtMapper.cmtdelete(c_no);
     }
 }

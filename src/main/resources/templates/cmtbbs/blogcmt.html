@@ -42,8 +42,10 @@
                                 <a href="#">| 신고</a>
                             </td>
                             <td style="text-align:right;" width="300px">
-                                <button class="btn btn-success">수정</button>
-                                <button class="btn btn-danger">삭제</button>
+                                <button class="btn btn-danger" th:if="${cment.c_c_id.equals(m_id)}">
+                                    <a th:href="|/cmt/cmddelete/${cment.c_no}|"
+                                       style="color:#fff;">삭제</a>
+                                </button>
                             </td>
                         <tr>
                     </tbody>
