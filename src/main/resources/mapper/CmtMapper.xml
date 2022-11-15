@@ -20,7 +20,8 @@
         c_tbno,
         c_tbset,
         c_content,
-        c_date
+        c_date,
+        c_dec
         )values(
         cmt_seq.NEXTVAL,
         #{c_c_id},
@@ -28,7 +29,8 @@
         'teamblog',
         #{c_no},
         #{c_content},
-        sysdate
+        sysdate,
+        '0'
         )
     </insert>
 

@@ -74,6 +74,7 @@ public class NoticeController {
         if(n_id == null){
             return "redirect:/login/login";
         }
+
         model.addAttribute("notice",noticeService.noticeselect(n_no));
 
         return "noticebbs/noticemod";
@@ -81,11 +82,13 @@ public class NoticeController {
 
     @PostMapping("/noticemodac")
     public String noticemod_ac(HttpSession session,
+                               @RequestParam("n_no") int n_no,
                                @RequestParam("n_title") String n_title,
                                @RequestParam("n_content") String n_content) {
         String n_id = (String) session.getAttribute("m_id");
         HashMap<String, Object> map = new HashMap<String, Object>();
 
+        map.put("n_no", n_no);
         map.put("n_id", n_id);
         map.put("n_title", n_title);
         map.put("n_content", n_content);
@@ -94,7 +97,7 @@ public class NoticeController {
             return "redirect:/login/login";
         }
 
-        noticeService.noticeinsert(map);
+        noticeService.noticeupdate(map);
         return "redirect:/notice/noticehome";
     }
 }

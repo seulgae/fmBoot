@@ -2,42 +2,43 @@
 <html lang="en" xmlns:th="www.thymeleaf.org"><!-- config -->
 <th:block th:replace="fragments/config :: configFragment"></th:block><!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
-<div class="px-4 py-5 my-5 text-center" style="margin: 50px auto ; width : 1000px"><h1 style="font-size : 55px">게시글
-    작성</h1> <br/>
-    <form action="/notice/noticeinsert" method="post">
-        <table style="margin: 20px auto; width:100%">
-            <tbody>
-            <tr>
-                <td colspan="2">
-                    <hr>
-                </td>
-            </tr>
-            <tr>
-                <td style="font-size : 20px"><span>제목</span></td>
-                <td><input type="hidden" class="form-control" placeholder="작성자아이디" name="m_id"><input
-                        type="text" class="form-control" placeholder="글 제목" name="n_title"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <hr>
-                </td>
-            </tr>
-            <tr>
-                <td style="font-size : 20px"><span>내용</span></td>
-                <td><input type="text" class="form-control" placeholder="내용 서머노트 사용 예정" name="n_content"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <hr>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-secondary" style="float: right"
-                onclick="location.href='/notice/noticehome'">취소
-        </button>
-        <button type="submit" class="btn btn-danger" style="float: right" value="noticeinsert">등록</button>
-    </form>
-</div><!-- footer -->
+
+<div id="wrap" style="width:1000px; margin: 40px auto;">
+    <div style="width:100%;">
+        <div class="title" align="left" style="margin-top: 2%;">
+            <span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
+            공지게시판 &nbsp;|&nbsp; <small>게시글 작성 페이지</small></span>
+        </div>
+        <div style="padding-top: 50px;">
+            <span style="font-size: 30px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">■구장 신청</span><br><br>
+            <form action="/notice/noticeinsert" method="post">
+                <table class="table table-bordered" >
+                    <colgroup>
+                        <col style="width: 100px">
+                        <col style="width: 800px">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th class="tg-llyw">제목</th>
+                        <td class="tg-0pky"><input class="form-control"placeholder="작성자아이디" name="m_id"
+                                                   required="required" style="width: 100%; " type="text" autofocus>
+                            <input type="hidden" class="form-control" placeholder="작성자아이디" name="m_id" th:value="${n_id}"></td>
+                    </tr>
+                    <tr>
+                        <th class="tg-llyw">내용</th>
+                        <td class="tg-0pky"><input class="form-control" placeholder="내용 서머노트 사용 예정" name="n_content" required="required" style="width: 100%; " type="text"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div style="justify-content: space-between; display:flex; width: 0px; margin-left:89%;">
+                    <button  type="submit" value="noticeinsert" class="btn btn-dark" style=" margin-bottom: 20px;" > 등록</button>&nbsp;
+                    <button type="submit" class="btn btn-dark" style="margin-bottom: 20px;" onclick="location.href='/notice/noticehome'">취소</button>
+                </div>
+            </form>
+        </div>
+
+
+        <hr>
+   <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </html>

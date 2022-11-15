@@ -14,8 +14,11 @@
             </tr>
             <tr>
                 <td style="font-size : 20px"><span>제목</span></td>
-                <td><input type="hidden" class="form-control" placeholder="작성자아이디" name="m_id"><input
-                        type="text" class="form-control" placeholder="글 제목" name="n_title" th:value="${notice.n_title}"></td>
+                <td>
+                    <input type="hidden" name="n_no" th:value="${notice.n_no}">
+                    <input type="hidden" class="form-control" placeholder="작성자아이디" name="m_id">
+                    <input type="text" class="form-control" placeholder="글 제목" name="n_title" th:value="${notice.n_title}">
+                </td>
             </tr>
             <tr>
                 <td colspan="2">
