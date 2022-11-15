@@ -26,4 +26,6 @@ public interface PaymentService {
     void Insert(PayDto paydto);
 
     List<PlaceDto> searchPlace(String keyword);
+
+    PlaceDto selectI_no();
 }

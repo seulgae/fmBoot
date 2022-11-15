@@ -60,4 +60,9 @@ public class PaymentServiceImpl implements  PaymentService{
     public List<PlaceDto> searchPlace(String keyword) {
         return paymentMapper.searchPlace(keyword);
     }
+
+    @Override
+    public PlaceDto selectI_no() {
+        return paymentMapper.selectI_no();
+    }
 }

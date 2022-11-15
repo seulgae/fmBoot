@@ -19,6 +19,9 @@ public interface PaymentMapper {
     @Select("select * from place")
     List<PlaceDto> selectAll();
 
+    @Select("select i_no from place where p_no = #{p_no}")
+    PlaceDto selectI_no();
+
     @Select("select * from place where p_no=#{p_no}")
     PlaceDto selectPlace(String p_no);
 
