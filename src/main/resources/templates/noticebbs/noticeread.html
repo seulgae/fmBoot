@@ -2,8 +2,14 @@
 <html lang="en" xmlns:th="www.thymeleaf.org"><!-- config -->
 <th:block th:replace="fragments/config :: configFragment"></th:block><!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
-<div class="px-4 py-5 my-5 text-center" style="margin: 50px auto ; width : 1500px"><h1 style="font-size : 55px">공지
-    게시글</h1> <br/>
+
+<div id="wrap" style="width:1000px; margin: 40px auto;">
+    <div style="width:100%;">
+        <div class="title" align="left" style="margin-top: 2%;">
+            <span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
+            공지게시글 &nbsp;|&nbsp; <small>공지사항 상세페이지</small></span>
+        </div>
+
     <hr>
     <table style="width : 100%">
         <tbody>
@@ -43,14 +49,24 @@
                 <hr>
             </td>
         </tr>
+        <tr>
+            <td colspan="2" style="text-align:right;">
+                <button type="button" class="btn btn-danger" style="float: right" onclick="location.href='/notice/noticehome'">목록
+                </button>
+                <button type="button" class="btn btn-danger" style="float: right"
+                        th:onclick="|location.href='@{/notice/noticedelete/{no}(no=${notices.n_no})}'|">삭제
+                </button>
+            </td>
+        </tr>
+
         </tbody>
+
     </table>
     <hr>
-    <button type="button" class="btn btn-danger" style="float: right" onclick="location.href='/notice/noticehome'">목록
-    </button>
-    <button type="button" class="btn btn-danger" style="float: right"
-            th:onclick="|location.href='@{/notice/noticedelete/{no}(no=${notices.n_no})}'|">삭제
-    </button>
+
+    </div>
+</div>
+
 </div><!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </html>
