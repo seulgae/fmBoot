@@ -16,7 +16,7 @@
     <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
     <div style="padding-top: 50px;">
         <span style="font-size: 30px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">■구장 신청</span><br><br>
-        <form action="/mypage/mypage_update.do" method="post" id="frmUpdate">
+        <form action="/mypage/mypage_update.do" method="post" id="frmUpdate" enctype="multipart/form-data">
             <table class="table table-bordered" >
                 <colgroup>
                     <col style="width: 100px">
@@ -48,23 +48,37 @@
                     <td>
                         <div>
                             <span>주차장</span>&nbsp;
-                            <input name="p_op1" id="p_op1" style=" display: inline-block;" type="checkbox" value="1">
+                            <input name="p_op1" id="p_op1" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op1 == '1'}" value="1">
                             <span  style="padding-left:10px">냉난방</span>&nbsp;
-                            <input name="p_op2" id="p_op2" style=" display: inline-block;" type="checkbox" value="1">
+                            <input name="p_op2" id="p_op2" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op2 == '1'}" value="1">
                             <span  style="padding-left:10px">공대여</span>&nbsp;
-                            <input name="p_op3" id="p_op3" style=" display: inline-block;" type="checkbox" value="1">
+                            <input name="p_op3" id="p_op3" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op3 == '1'}" value="1">
                             <span  style="padding-left:10px">팀조끼</span>&nbsp;
-                            <input name="p_op4" id="p_op4" style=" display: inline-block;" type="checkbox" value="1">
+                            <input name="p_op4" id="p_op4" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op4 == '1'}" value="1">
                             <span  style="padding-left:10px">풋살화</span>&nbsp;
-                            <input name="p_op5" id="p_op5" style=" display: inline-block;" type="checkbox" value="1">
+                            <input name="p_op5" id="p_op5" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op5 == '1'}" value="1">
                             <span  style="padding-left:10px">샤워실</span>&nbsp;
-                            <input name="p_op6" id="p_op6" style=" display: inline-block;" type="checkbox" value="1">
+                            <input name="p_op6" id="p_op6" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op6 == '1'}" value="1">
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <th class="tg-llyw">상세 내용</th>
                     <td class="tg-0pky"><textarea name="p_explain" id="summernote" required="required">[[${dto.p_explain}]]</textarea></td>
+                </tr>
+                <tr>
+                    <th>기존 구장사진</th>
+                    <td>
+                        <th:block th:each="img : ${images}">
+                            <img th:src="${img}" width="100px" height="80px;" style="display:inline-block;">
+                        </th:block>
+                    </td>
+                </tr>
+                <tr>
+                    <th>구장 사진(변경)</th>
+                    <td>
+                        <input type="file" name="uploadfile" id="uploadfile" multiple="multiple">
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -95,6 +109,9 @@
                 }else{
                     return false;
                 }
+            })
+            $("#uploadfile").click(function(){
+                alert("사진 추가 후 수정 시 기존 이미지들이 삭제된 후 저장됩니다.");
             })
 		});
 </script>
