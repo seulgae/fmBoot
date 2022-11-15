@@ -30,7 +30,7 @@
     <th:block th:each="list ,s : ${lists}">
         <div style="border:1px solid #c8c8c8; margin: 20px auto; justify-content: space-between; display:flex; width:1000px">
             <div>
-                <img th:src="|/images/${list[0].i_no}|" style="width:302px; height:181px;"/> <br>
+                <img th:src="${list.mainImg}" style="width:302px; height:181px;"/> <br>
                 <div style="padding: 5px 10px; text-align: center; background-color: black;"><span style="font-size: 15px; color: white;">[[${list.p_pname}]]</span>
                 </div>
             </div>
@@ -78,7 +78,11 @@
             </div>
         </div>
     </th:block>
-    <div style="text-align: center";>페이징</div>
+    <form action="/payment/placelist">
+        <input type="hidden" name="pageAdd" th:value="5">
+        <button class="btn btn-dark" style="width:98.7%; height:100%;">더보기</button>
+    </form>
+</form>
     <!-- 페이징 요소 작업 예정-->
 </div>
 </div>

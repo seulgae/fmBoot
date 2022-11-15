@@ -31,6 +31,5 @@ public class PlaceDto {
     private String p_op5;
     private String p_op6;
     private String p_date;
-
-
+    private String mainImg;
 }

@@ -8,11 +8,11 @@ import com.ucamp.fm.mapper.PaymentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class PaymentServiceImpl implements  PaymentService{
+public class PaymentServiceImpl implements  PaymentService {
     @Autowired
     PaymentMapper paymentMapper;
 
@@ -38,7 +38,7 @@ public class PaymentServiceImpl implements  PaymentService{
 
     @Override
     public void insertReservation(ReservationDto reservationDto) {
-         paymentMapper.insertReservation(reservationDto);
+        paymentMapper.insertReservation(reservationDto);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class PaymentServiceImpl implements  PaymentService{
 
     @Override
     public List<String> reserveCheck(String r_date, String p_no) {
-        return paymentMapper.reserveCheck(r_date,p_no);
+        return paymentMapper.reserveCheck(r_date, p_no);
     }
 
     @Override
@@ -57,12 +57,8 @@ public class PaymentServiceImpl implements  PaymentService{
     }
 
     @Override
-    public List<PlaceDto> searchPlace(String keyword) {
-        return paymentMapper.searchPlace(keyword);
+    public List<PlaceDto> selectPageing(HashMap<String, Object> map) {
+        return paymentMapper.selectPageing(map);
     }
 
-    @Override
-    public PlaceDto selectI_no() {
-        return paymentMapper.selectI_no();
-    }
 }

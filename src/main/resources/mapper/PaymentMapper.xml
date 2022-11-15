@@ -13,4 +13,14 @@
         sysdate
         )
     </insert>
+
+    <select id="selectPageing" parameterType="map"
+            resultType="com.ucamp.fm.dto.PlaceDto">
+        select * from
+        (select * from place where p_pname like '%'||#{keyword}||'%' order by p_no desc)
+        where
+        <![CDATA[
+        rowNum <= #{pageNum}
+        ]]>
+    </select>
 </mapper>
