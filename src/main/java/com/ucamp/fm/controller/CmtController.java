@@ -99,14 +99,15 @@ public class CmtController {
     // 커뮤니티 글 삭제
     @GetMapping("/cmddelete/{c_no}")
     public String cmt_delete(HttpSession session, HttpServletRequest req,
-
                               Model model, @PathVariable String c_no) {
 
         // 세션에 있는 아이디값 커뮤니티 게시판 작성자에 저장.
         String m_id = (String) session.getAttribute("m_id");
+
         model.addAttribute("m_id", m_id);
 
         String referer = req.getHeader("Referer");
+        System.out.println(referer);
 
         if (!(m_id == null)) {
             model.addAttribute("c_no", c_no);
