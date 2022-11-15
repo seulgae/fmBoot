@@ -31,7 +31,9 @@ public class NoticeController {
 
 
     @GetMapping("/noticeread/{n_no}")
-    public String noticeRead(Model model, @PathVariable("n_no") int n_no) {
+    public String noticeRead(Model model, @PathVariable("n_no") int n_no, HttpSession session) {
+        String m_id = (String) session.getAttribute("m_id");
+        model.addAttribute("m_id",m_id);
         model.addAttribute("notices", noticeService.noticeselect(n_no));
         noticeService.countup(n_no);
         return "noticebbs/noticeread";
