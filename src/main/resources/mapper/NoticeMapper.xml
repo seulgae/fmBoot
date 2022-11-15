@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucamp.fm.mapper.NoticeMapper">
+
+
+    <insert id="noticeinsert" parameterType="map">
+        insert into notice(
+        n_no,
+        n_title,
+        n_id,
+        n_content,
+        n_date,
+        n_count
+        )values(
+        n_no_seq.NEXTVAL,
+        #{n_title},
+        #{n_id},
+        #{n_content},
+        sysdate,
+        '0'
+        )
+    </insert>
+
+
+</mapper>
