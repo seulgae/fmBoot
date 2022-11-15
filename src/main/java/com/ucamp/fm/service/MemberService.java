@@ -1,8 +1,10 @@
 package com.ucamp.fm.service;
 
 
+import com.ucamp.fm.dto.JoinDto;
 import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.PlaceDto;
+import com.ucamp.fm.dto.ReservationDto;
 
 import java.util.List;
 
@@ -29,4 +31,9 @@ public interface MemberService {
 	PlaceDto getDto(String p_no);
 
 	public void mypage_update_do(PlaceDto placeDto);
+
+	List<JoinDto> getList1(String m_id);
+
+
+//	PlaceDto getP_name();
 }

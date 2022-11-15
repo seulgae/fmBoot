@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucamp.fm.mapper.PlaceMapper">
+    <insert id="insertImage" parameterType="com.ucamp.fm.dto.ImageDto">
+        insert into image values (
+            seq_image.NEXTVAL,#{i_sort},#{i_board},#{i_fname},#{i_fsize}
+        )
+    </insert>
+    <select id="getSeq" resultType="String">
+        SELECT seq_image.CURRVAL AS i_no FROM DUAL
+    </select>
+</mapper>

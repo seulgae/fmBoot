@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-
-<!-- config -->
-<th:block th:replace="fragments/config :: configFragment"></th:block>
-<!-- header -->
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
 
 
-<body>
-<div class="px-4 py-5 my-5 text-center" style="margin: 20px auto ; width : 1000px text-">
+<div>
     <form action="/mypage/addphoto.do" method="post" enctype="multipart/form-data">
-        <table style="margin-left:500px;">
+        <table>
             <tr>
                 <td width="130px">
                     <span style="font-size:15px; font-color:#808080;">대표 이미지</span><br>
@@ -27,7 +19,4 @@
         </table>
     </form>
 </div>
-</body>
-<!-- footer -->
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
-</html>
+

@@ -1,7 +1,9 @@
 package com.ucamp.fm.mapper;
 
+import com.ucamp.fm.dto.JoinDto;
 import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.PlaceDto;
+import com.ucamp.fm.dto.ReservationDto;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -37,4 +39,10 @@ public interface MemberMapper {
 	PlaceDto getDto(String p_no);
 
 	void mypage_update_do(PlaceDto placeDto);
+
+	@Select("select r_no,r_m_id,r_p_no,r_time,r_date,r_wdate,p_pname from reservation re join place p on re.r_p_no = p.p_no where r_m_id=#{m_id}")
+	List<JoinDto> getList1(String m_id);
+
+//	@Select("select p_pname from place where p_no=#{p_no}")
+//    PlaceDto getP_neme();
 }

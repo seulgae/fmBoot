@@ -9,6 +9,7 @@ import com.ucamp.fm.dto.PayDto;
 import com.ucamp.fm.dto.PlaceDto;
 import com.ucamp.fm.dto.ReservationDto;
 import com.ucamp.fm.service.PaymentService;
+import com.ucamp.fm.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,10 @@ public class PayController {
 
 	@Autowired
 	PaymentService paymentService;
+
+	@Autowired
+	PlaceService placeService;
+
 	private IamportClient api;
 
 	public PayController() {
@@ -36,8 +41,7 @@ public class PayController {
 
 
 	@RequestMapping ("/pay_reservation")
-	public String pay_reservation(Model model, HttpServletRequest request,String time,String dateSet, String p_no) {
-
+	public String pay_reservation(Model model, HttpServletRequest request,String time,String dateSet, @RequestParam String p_no) {
 		String m_id = (String) request.getSession().getAttribute("m_id");
 		if(m_id=="" || m_id.equals("")){
 			return"redirect:/login/login";
@@ -67,17 +71,33 @@ public class PayController {
 	}
 
 	@GetMapping("/placelist")
-	public String placelist(Model model) {
-		model.addAttribute("lists", paymentService.selectAll());
-		model.addAttribute("size", paymentService.selectAll().size());
+	public String placelist(@RequestParam(defaultValue = "") String keyword, Model model) {
+		if (keyword.equals("")) {
+			model.addAttribute("lists", paymentService.selectAll());
+			model.addAttribute("size", paymentService.selectAll().size());
+		} else {
+			keyword = "%" + keyword + "%";
+			model.addAttribute("lists", paymentService.searchPlace(keyword));
+		}
 		return "placebbs/placelist";
 	}
 
 	@RequestMapping("/placeread")
 	public String placeRead(HttpServletRequest request,Model model,String p_no) {
 		LocalDate today = LocalDate.now();
-		System.out.println(p_no);
 		PlaceDto place = paymentService.selectPlace(p_no);
+		String[] img = place.getI_no().split(" ");
+		ArrayList<String> arrImg = new ArrayList<>();
+		String firstImg = "";
+		for(String s : img){
+			String fName = placeService.getFname(s);
+			arrImg.add("../uploadImg/place/"+fName);
+			if(firstImg==""){
+				firstImg = "../uploadImg/place/"+fName;
+			}
+		}
+		model.addAttribute("firstImg",firstImg);
+		model.addAttribute("arrImg",arrImg);
 		model.addAttribute("place",place);
 		model.addAttribute("today",today);
 		return "placebbs/placeread";
@@ -86,7 +106,7 @@ public class PayController {
 	@RequestMapping("/kakaoPay")
 	public String insertReservation(ReservationDto rDto){
 		paymentService.insertReservation(rDto);
-		return "/login/mypage";
+		return "redirect:/mypage/mypage";
 	}
 
 	@RequestMapping("/rserveCheck")

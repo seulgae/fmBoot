@@ -24,4 +24,6 @@ public interface PaymentService {
     List<String> reserveCheck(String r_date,String p_no);
 
     void Insert(PayDto paydto);
+
+    List<PlaceDto> searchPlace(String keyword);
 }

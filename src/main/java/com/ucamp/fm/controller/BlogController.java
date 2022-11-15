@@ -39,6 +39,9 @@ public class BlogController {
         // session 값 null 경우 타임리프 에러로 동작하지 않아,
         // 기존에 코드 그대로 세션 아이디 valid에 담아 처리.
         String valid = (String) session.getAttribute("m_id");
+        if(valid==null){
+            valid = "";
+        }
         model.addAttribute("m_id", valid);
 
         BlogDto blogDto = blogService.blogone(tb_no);
@@ -88,9 +91,9 @@ public class BlogController {
 //            System.out.println("추가 문장 실행");
             pageNum += Integer.valueOf(pageAdd); // 페이지 증가
             keywordStack = keyword; // 검색 값 받아오기.
-//            System.out.println(pageNum);
+            System.out.println(pageNum);
             addcount += 2;
-            System.out.println("addcount : " + addcount);
+//            System.out.println("addcount : " + addcount);
             return "redirect:/blog/bloglist";
         }
     }
@@ -183,11 +186,6 @@ public class BlogController {
 
         String PATH = req.getSession().getServletContext().getRealPath("/") + "uploadImg\\blog\\";
 
-//        System.out.println(PATH); //경로 주소 찍어보기.
-        // 프로젝트 내 webapp 폴더를 찾아줌, webapp 폴더 없을 경우 appdate안의 톰캣 캐시 임시저장 폴더에 저장시킴.
-        // transferTo : 파일 데이터를 지정한 file로 저장
-        // getOriginalFilename : 클라이언트의 원본 파일명 반환
-
         if (!tb_thum.getOriginalFilename().isEmpty()) {
             tb_thum.transferTo(new File(PATH + tb_thum.getOriginalFilename()));
         }
@@ -204,45 +202,12 @@ public class BlogController {
 
         // 세션에 있는 아이디값 커뮤니티 게시판 작성자에 저장.
         String tb_id = (String) session.getAttribute("m_id");
-        // 1. 세션 tb_id가 없다면
         if (!(tb_id == null)) {
             model.addAttribute("tb_id", tb_id);
             blogService.blogdelete(tb_no);
             return "redirect:/blog/bloglist";
         } else {
-            // 2. 로그인 폼으로 이동.
             return "redirect:/login/login";
         }
     }
-
-    // 커뮤니티 댓글 게시판
-    @GetMapping("/blogcomment")
-    public String bolg_comment(Model model, CmentDto cmentDto) {
-//        여기부터 다시 시작
-        model.addAttribute("comments", blogService.cmtlist(cmentDto));
-        return "blogbbs/blogcomment";
-    }
-
-    @PostMapping("/blogcommentac")
-    public String blog_comment_ac(HttpSession session, Model model,
-                                  @RequestParam(value = "c_content", required = false) String c_content) {
-        String c_c_id = (String) session.getAttribute("m_id");
-
-        // 1. 세션 tb_id가 없다면
-        if (!(c_c_id == null)) {
-            model.addAttribute("c_c_id", c_c_id);
-        } else {
-            // 2. 로그인 폼으로 이동.
-            return "redirect:/login/login";
-        }
-        if (c_content == null) {
-            c_content = "";
-        }
-        System.out.println(c_c_id);
-        System.out.println(c_content);
-        blogService.commentinsert(c_c_id, c_content);
-
-        return "redirect:/blog/blogcomment";
-    }
-
 }

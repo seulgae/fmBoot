@@ -45,64 +45,22 @@
         <span class="sr-only">Next</span>
         </a>
      </div>
-     <div class="booking_ocline">
-        <div class="container">
-           <div class="row">
-              <div class="col-md-5">
-                 <div class="book_room">
-                    <h1>예약 가능한 구장</h1>
-                    <form class="book_now">
-                       <div class="row">
-                          <div class="col-md-12">
-                             <span>예약 일자</span>
-                             <img class="date_cua" src="images/date.png">
-                             <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
-                          </div>
-                          <div class="col-md-12">
-                             <span>예약 일자</span>
-                             <img class="date_cua" src="images/date.png">
-                             <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
-                          </div>
-                          <div class="col-md-12">
-                             <button class="book_btn">구장 예약</button>
-                          </div>
-                       </div>
-                    </form>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-     <div class="booking_ocline2">
-        <br>
-        <span class="sideList_title">예약 가능한 구장 리스트</span>
-        <form class="serach">
-            <input type="text" placeholder="검색해주세요." name="serach">
-            <input type="submit" name="serach" value="검색">
-        </form>
-        <table id="sideList">
-            <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>날짜</th>
-                    <th>작성자</th>
-                    <th>조회수</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>하지석리 축구구장</td>
-                    <td>2022-11-18</td>
-                    <td>길태형</td>
-                    <td>12</td>
-                <tr>
-            </tbody>
-        </table>
-     </div>
   </section>
   <!-- end banner -->
+
+<script>
+$(function(){
+  $.ajax({
+          type: 'get'
+        , url: 'http://localhost:8085/payment/placelist'
+        , dataType : 'html'
+        , success: function(data) {
+            $("#placelist").html(data);
+          }
+  });
+})
+
+</script>
 
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>

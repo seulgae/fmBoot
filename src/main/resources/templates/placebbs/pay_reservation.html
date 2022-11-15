@@ -32,15 +32,17 @@ function pay(){
 						p_no: "[[${p_info.p_no}]]",
 						pay_price: "[[${p_info.p_price}]]",
 						m_id: "[[${member.m_id}]]"
-					},
-					success : function(data){
-					    alert("결제 성공");
+					}
+                }).done(function (data) {
+					if (rsp.success) {
+						alert("결제 성공");
                         $("#frmPay").submit();
+					} else {
+						alert("결제 실패");
 					}
 				});
 			});
 		}
-
 
 </script>
 </head>
@@ -138,5 +140,20 @@ function pay(){
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 
 </body>
-
+<script>
+    $(function(){
+	$(".box button").attr("disabled", true);
+    $("#chk1,#chk2").on('click',function(){
+        var chk = $('input:checkbox[id="chk1"]').is(":checked");
+        var chk2 = $('input:checkbox[id="chk2"]').is(":checked");
+        if(chk==true && chk2==true){
+            $(".box button").removeAttr('disabled');
+            $(".box").removeClass("on");
+        }else{
+            $(".box button").attr("disabled", true);
+            $(".box").addClass("on");
+        }
+    })
+    })
+</script>
 </html>
