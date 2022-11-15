@@ -114,11 +114,17 @@ public class MypageController {
     public String mypage_update(Model model, HttpServletRequest request,@PathVariable String p_no) {
         String m_id = (String) request.getSession().getAttribute("m_id");
         if ( m_id == null){
-
             return "redirect:/login/login";
-
         }else{
-            model.addAttribute("dto",memberService.getDto(p_no));
+            PlaceDto pDto = memberService.getDto(p_no);
+            ArrayList<String> images = new ArrayList<>();
+            String[] imgArr = pDto.getI_no().split(" ");
+            for(String p : imgArr){
+                String fName = placeService.getFname(p);
+                images.add("../../uploadImg/place/"+fName);
+            }
+            model.addAttribute("images",images);
+            model.addAttribute("dto",pDto);
             model.addAttribute("key",'1');
             return "member/mypage_update";
         }
@@ -126,10 +132,26 @@ public class MypageController {
 
     //구장 신청 제출
     @RequestMapping("/mypage_update.do")
-    public String mypage_update_do(Model model, HttpServletRequest request, PlaceDto placeDto) {
+    public String mypage_update_do(@RequestParam("uploadfile") MultipartFile[] uploadfile, HttpServletRequest request, PlaceDto placeDto) throws IOException {
         String m_id = (String) request.getSession().getAttribute("m_id");
 
+        String PATH = request.getSession().getServletContext().getRealPath("/") + "uploadImg/place/";
 
+        String str = "";
+        for(MultipartFile file : uploadfile){
+            LocalDateTime now = LocalDateTime.now();
+            String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss"));
+
+            String oriName = formatedNow + "-" + file.getOriginalFilename();
+            if (!file.getOriginalFilename().isEmpty()) {
+                file.transferTo(new File(PATH + oriName));
+            }
+            placeService.insertImage(new ImageDto("place","place",oriName,String.valueOf(file.getSize())));
+            String seq = placeService.getSeq();
+            str += seq + " ";
+        }
+
+        placeDto.setI_no(str);
         if(placeDto.getP_op1() == null){
             placeDto.setP_op1("0");
         }
