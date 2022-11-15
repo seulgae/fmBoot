@@ -6,7 +6,11 @@ import java.util.List;
 
 public interface CmtService {
 
+    List<CmentDto> cmtlistdec(CmentDto cmentDto);
+
     List<CmentDto> cmtlist(String c_tbset);
+
+    void cmtdec(int c_no);
 
     void cmtinsert(String c_no, String c_c_id, String c_content);
 

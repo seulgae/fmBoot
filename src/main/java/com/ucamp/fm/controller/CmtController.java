@@ -17,6 +17,8 @@ public class CmtController {
     @Autowired
     CmtService cmtService;
 
+    // 댓글 신고 카운트 증가.
+
     // 댓글 리스트
     @GetMapping("/blogcmt")
     public String cmtlist(HttpSession session, HttpServletRequest req, Model model){
@@ -36,6 +38,30 @@ public class CmtController {
         model.addAttribute("cments", cmtService.cmtlist(c_tbset));
 
         return "cmtbbs/blogcmt";
+    }
+    
+    // 신고 버튼 동작
+    @RequestMapping("/dec/{c_no}")
+    public String dec(@PathVariable int c_no,
+                      Model model,
+                      CmentDto cmentDto){
+        cmtService.cmtdec(c_no);
+
+        return "redirect:/cmt/cmtlistdec";
+    }
+    
+
+    @GetMapping("/cmtlistdec")
+    public String cmtlist_dec(HttpSession session, Model model, CmentDto cmentDto){
+        String m_id = (String) session.getAttribute("m_id");
+
+        // 안주면 th:if 사용불가..
+        if(m_id==null){
+            m_id = "";
+        }
+        model.addAttribute("m_id", m_id);
+        model.addAttribute("cments", cmtService.cmtlistdec(cmentDto));
+        return "cmtbbs/blogcmtdec";
     }
 
     // 댓글 폼 페이지 불러오기
