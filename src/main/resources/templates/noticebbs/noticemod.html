@@ -3,8 +3,8 @@
 <th:block th:replace="fragments/config :: configFragment"></th:block><!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 <div class="px-4 py-5 my-5 text-center" style="margin: 50px auto ; width : 1000px"><h1 style="font-size : 55px">게시글
-    작성</h1> <br/>
-    <form action="/notice/noticeinsert" method="post">
+    수정</h1> <br/>
+    <form action="/notice/noticemodac" method="post">
         <table style="margin: 20px auto; width:100%">
             <tbody>
             <tr>
@@ -15,7 +15,7 @@
             <tr>
                 <td style="font-size : 20px"><span>제목</span></td>
                 <td><input type="hidden" class="form-control" placeholder="작성자아이디" name="m_id"><input
-                        type="text" class="form-control" placeholder="글 제목" name="n_title"></td>
+                        type="text" class="form-control" placeholder="글 제목" name="n_title" th:value="${notice.n_title}"></td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td style="font-size : 20px"><span>내용</span></td>
-                <td><input type="text" class="form-control" placeholder="내용 서머노트 사용 예정" name="n_content"></td>
+                <td><input type="text" class="form-control" placeholder="내용 서머노트 사용 예정" name="n_content" th:value="${notice.n_content}"></td>
             </tr>
             <tr>
                 <td colspan="2">
