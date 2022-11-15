@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<link rel="stylesheet" href="/css/login.css">
+
+<div id="wrap">
+	<div id="signin">
+		<form action="/login/pwChangeDo" id="frmChange" name="frmChange" method="post">
+			<input type="hidden" name="m_id" th:value="${m_id}">
+			<table>
+				<tbody>
+				<tr>
+					<td colspan="2">
+						<a href="/">
+							<span class="loginfont">비밀번호 변경</span>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="password" class="loginInput" name="m_pw" id="m_pw"
+										   autofocus size="30" placeholder="변경할 비밀번호를 입력하세요" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="password" class="loginInput" id="m_pw1" size="30" placeholder="비밀번호 확인" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="button" id="btnChange" class="btn btn-danger" value="변경하기">
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+<!-- div#wrap -->
+
+<!-- login -->
+<script src="/js/login.js"></script>
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+<!--<c:import url="include/footer.jsp" charEncoding="UTF-8" />-->

@@ -40,4 +40,10 @@ public interface MemberService {
 	List<JoinDto> getList2(String m_id);
 
 	String getPw(String m_id);
+
+	String findGetId(String cValue,String fValue);
+
+	int getCount(String pw_id,String pw_email);
+
+	void changePw(String m_id,String m_pw);
 }
