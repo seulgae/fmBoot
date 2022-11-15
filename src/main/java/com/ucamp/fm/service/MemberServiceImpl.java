@@ -69,10 +69,6 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getList1(m_id);
 	}
 
-	@Override
-	public void addThum(PlaceDto placeDto) {
-		memberMapper.addThum(placeDto);
-	}
 
 	@Override
 	public MemberDto Information_update(String m_id) {

@@ -3,6 +3,9 @@ package com.ucamp.fm.controller;
 import com.ucamp.fm.dto.*;
 import com.ucamp.fm.service.MemberService;
 import com.ucamp.fm.service.PlaceService;
+import groovy.util.logging.Log4j2;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +22,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
@@ -29,7 +31,6 @@ public class MypageController {
 
     @Autowired
     PlaceService placeService;
-
 
     @RequestMapping("/mypage")
     public String mypage (HttpServletRequest request, Model model) {
@@ -66,11 +67,9 @@ public class MypageController {
     //구장 신청 제출
     @RequestMapping("/mypage_request.do")
     public String mypage_request_do(@RequestParam("uploadfile") MultipartFile[] uploadfile,
-                                    @RequestParam("p_thum") MultipartFile p_thum,
                                     HttpServletRequest request, PlaceDto placeDto) throws IllegalStateException, IOException {
         String m_id = (String) request.getSession().getAttribute("m_id");
         String PATH = request.getSession().getServletContext().getRealPath("/") + "uploadImg/place/";
-        String PATH1 = request.getSession().getServletContext().getRealPath("/") + "uploadImg/profileImg/";
 
         String str = "";
         for(MultipartFile file : uploadfile){
@@ -108,10 +107,6 @@ public class MypageController {
         System.out.println(str);
         System.out.println(placeDto.getI_no());
 
-        if (!p_thum.getOriginalFilename().isEmpty()) {
-            p_thum.transferTo(new File(PATH1 + p_thum.getOriginalFilename()));
-        }
-        memberService.addThum(new PlaceDto(p_thum.getOriginalFilename()));
         memberService.mypage_request(placeDto);
 
         return "redirect:/mypage/mypage";
@@ -245,11 +240,14 @@ public class MypageController {
         }
     }
 
+
+    // 메롱
     @RequestMapping("/Information_update.do")
     public String Information_update_do(Model model, HttpServletRequest request, MemberDto memberDto) {
         String m_id = (String) request.getSession().getAttribute("m_id");
 
 
+        System.out.println(memberDto);
         memberService.Information_update_do(memberDto);
 
         return "redirect:/mypage/mypage";

@@ -5,7 +5,7 @@ import com.ucamp.fm.dto.PayDto;
 import com.ucamp.fm.dto.PlaceDto;
 import com.ucamp.fm.dto.ReservationDto;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public interface PaymentService {
@@ -25,5 +25,6 @@ public interface PaymentService {
 
     void Insert(PayDto paydto);
 
-    List<PlaceDto> searchPlace(String keyword);
+    List<PlaceDto> selectPageing(HashMap<String, Object> map);
+    
 }

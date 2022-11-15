@@ -11,19 +11,26 @@ import com.ucamp.fm.dto.ReservationDto;
 import com.ucamp.fm.service.PaymentService;
 import com.ucamp.fm.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
 import java.io.IOException;
-import java.util.List;
+
 
 @Controller
 @RequestMapping("/payment")
 public class PayController {
+
+	static int pageNum = 10; // 더보기 페이지 변수
+	static int addcount = 0; // 값을 증가시켜 추가 여부를 확인할 조건 값
+	static int maincount = 0; // 값을 비교할 저장소.
+
+	static String keywordStack = ""; // 키워드 값을 저장할 공간
 
 	@Autowired
 	PaymentService paymentService;
@@ -71,19 +78,57 @@ public class PayController {
 	}
 
 	@GetMapping("/placelist")
-	public String placelist(@RequestParam(defaultValue = "") String keyword,
+	public String placelist(@RequestParam(value = "keyword", required = false) String keyword,
 							@RequestParam(value = "pageAdd", required = false) String pageAdd,
 							Model model) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 
+		map.put("keyword", keywordStack); // 초기값 대입("")
+		map.put("pageNum", pageNum); // 초기값 대입()
 
-		if (keyword.equals("")) {
-			model.addAttribute("lists", paymentService.selectAll());
-			model.addAttribute("size", paymentService.selectAll().size());
-		} else {
-			keyword = "%" + keyword + "%";
-			model.addAttribute("lists", paymentService.searchPlace(keyword));
+//		List<PlaceDto> list = paymentService.selectPageing();
+
+		String i_no="";
+
+		model.addAttribute("size", paymentService.selectAll().size());
+
+		if (pageAdd == null || keyword == null){
+			// 추가 기능이 실행되지 않았다면 main 카운트도 증가시키지 않음.
+			if (addcount > 0) {
+				maincount++;
+			}
+			System.out.println("maincount :" + maincount);
+
+			// 새로고침 더보기 문장이 실행되지 않았을때 실행되는 로직
+			if (addcount < maincount) {
+				pageNum = 10;
+				keywordStack = ""; // 전체 검색
+				maincount = 0; // 메인 카운트 초기화
+				addcount = 0; // 추가 카운트 초기화
+			}
+			List<PlaceDto> list = paymentService.selectPageing(map);
+
+			for(PlaceDto p : list){
+				String s = p.getI_no().split(" ")[0];
+				p.setMainImg("../uploadImg/place/" + placeService.getFname(s));
+			}
+
+			model.addAttribute("lists", list);
+
+			return "placebbs/placelist";
+		}else {
+
+			// 값이 있다면 페이지값 + 5증가
+            System.out.println("추가 문장 실행");
+			pageNum += Integer.valueOf(pageAdd); // 페이지 증가
+			keywordStack = keyword; // 검색 값 받아오기.
+//            System.out.println(pageNum);
+//			System.out.println(keywordStack);
+			addcount += 2;
+            System.out.println("addcount : " + addcount);
+			return "redirect:/payment/placelist";
 		}
-		return "placebbs/placelist";
+
 	}
 
 	@RequestMapping("/placeread")

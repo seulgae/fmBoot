@@ -91,7 +91,7 @@ public class BlogController {
 //            System.out.println("추가 문장 실행");
             pageNum += Integer.valueOf(pageAdd); // 페이지 증가
             keywordStack = keyword; // 검색 값 받아오기.
-            System.out.println(pageNum);
+//            System.out.println(pageNum);
             addcount += 2;
 //            System.out.println("addcount : " + addcount);
             return "redirect:/blog/bloglist";

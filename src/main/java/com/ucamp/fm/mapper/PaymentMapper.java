@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Mapper
@@ -37,4 +38,7 @@ public interface PaymentMapper {
 
     @Select("select * from place where p_pname like #{keyword}")
     List<PlaceDto> searchPlace(String keyword);
+
+    List<PlaceDto> selectPageing(HashMap<String, Object> map);
+
 }
