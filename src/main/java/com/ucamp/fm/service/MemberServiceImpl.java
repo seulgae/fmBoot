@@ -90,6 +90,20 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getPw(m_id);
 	}
 
+	@Override
+	public String findGetId(String cValue, String fValue) {
+		return memberMapper.findGetId(cValue,fValue);
+	}
+
+	@Override
+	public int getCount(String pw_id, String pw_email) {
+		return memberMapper.getCount(pw_id,pw_email);
+	}
+
+	@Override
+	public void changePw(String m_id, String m_pw) {
+		memberMapper.changePw(m_id,m_pw);
+	}
 
 
 }

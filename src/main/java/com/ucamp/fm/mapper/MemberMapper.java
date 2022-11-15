@@ -54,4 +54,13 @@ public interface MemberMapper {
 
 	@Select("select m_pw from member where m_id = #{m_id}")
 	String getPw(String m_id);
+
+	@Select("select m_id from member where ${cValue} = #{fValue}")
+	String findGetId(String cValue,String fValue);
+
+	@Select("select count(*) from member where m_id=#{pw_id} and m_email=#{pw_email}")
+	int getCount(String pw_id,String pw_email);
+
+	@Update("update member set m_pw=#{m_pw} where m_id= #{m_id}")
+	void changePw(String m_id, String m_pw);
 }
