@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
 
 <!-- 부트스트랩 관련 -->
 <link  href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="/css/blogcomment.css">
+<link rel="stylesheet" href="/css/blogcmtdec.css">
 
 <div id="commentwrap">
     <!-- 댓글 입력 출력 테이블-->
@@ -13,7 +17,7 @@
         <thead>
             <tr>
                 <th colspan="2">
-                    <span style="font-size:20px">댓글 작성</span>
+                    <span style="font-size:20px">신고받은 댓글</span>
                 </th>
             </tr>
         </thead>
@@ -42,11 +46,7 @@
                                 <a th:href="|/cmt/dec/${cment.c_no}|">| 신고</a>
                             </td>
                             <td style="text-align:right;" width="300px">
-                                <button class="btn btn-danger" th:if="${cment.c_c_id.equals(m_id)}">
-                                    <a th:href="|/cmt/cmddelete/${cment.c_no}|"
-                                       style="color:#fff;">삭제</a>
-                                </button>
-                                <button class="btn btn-danger" th:if="${session.mid == 'admin'}">
+                                <button class="btn btn-danger" th:if="${m_id == 'admin'}">
                                     <a th:href="|/cmt/cmddelete/${cment.c_no}|"
                                        style="color:#fff;">삭제</a>
                                 </button>
@@ -60,4 +60,7 @@
     </table>
 </div>
 <!-- div#wrap -->
+
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </html>

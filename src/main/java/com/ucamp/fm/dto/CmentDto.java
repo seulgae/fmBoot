@@ -18,9 +18,17 @@ public class CmentDto {
     private String c_tbset;
     private String c_content;
     private String c_date;
+    private int c_dec;
+
     public CmentDto(String c_tbset,String c_c_id,String c_content) {
         this.c_tbset = c_tbset;
         this.c_c_id = c_c_id;
         this.c_content = c_content;
     }
+
+    public CmentDto(String c_no, int c_dec) {
+        this.c_no = c_no;
+        this.c_dec = c_dec;
+    }
+
 }
