@@ -26,8 +26,8 @@ public interface MemberMapper {
 	@Select("select m_level,m_email,m_name,m_thum from member where m_id=#{m_id}")
 	MemberDto getMember(String m_id);
 
-	@Select("select * from place")
-	List<PlaceDto> getList();
+	@Select("select * from place where p_manager=#{m_id}")
+	List<PlaceDto> getList(String m_id);
 
 	@Update("update member set m_thum=#{m_thum} where m_id=#{m_id}")
 	void addPhoto(MemberDto memberDto);
@@ -42,6 +42,16 @@ public interface MemberMapper {
 
 	@Select("select r_no,r_m_id,r_p_no,r_time,r_date,r_wdate,p_pname from reservation re join place p on re.r_p_no = p.p_no where r_m_id=#{m_id}")
 	List<JoinDto> getList1(String m_id);
+
+	void addThum(PlaceDto placeDto);
+
+	@Select("select * from member where m_id=#{m_id}")
+	MemberDto getInformation_update(String m_id);
+
+	void Information_update_do(MemberDto memberDto);
+
+	@Select("select r_no,r_m_id,r_p_no,r_time,r_date,r_wdate,p_pname,m_phone from reservation re join place p on re.r_p_no = p.p_no join member m on re.r_m_id = m.m_id where p_manager=#{m_id}")
+	List<JoinDto> getList2(String m_id);
 
 //	@Select("select p_pname from place where p_no=#{p_no}")
 //    PlaceDto getP_neme();

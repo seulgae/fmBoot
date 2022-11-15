@@ -41,10 +41,9 @@ public class MypageController {
             if (member.getM_level().equals("1")){
                 //예약 테이블 생성 후 작업
                 List<JoinDto> reser = memberService.getList1(m_id);
-
                 model.addAttribute("list1", reser);
             }else{
-                model.addAttribute("list", memberService.getList());
+                model.addAttribute("list", memberService.getList(m_id));
             }
                 model.addAttribute("member",member);
 
@@ -66,9 +65,12 @@ public class MypageController {
 
     //구장 신청 제출
     @RequestMapping("/mypage_request.do")
-    public String mypage_request_do(@RequestParam("uploadfile") MultipartFile[] uploadfile, HttpServletRequest request, PlaceDto placeDto) throws IOException {
+    public String mypage_request_do(@RequestParam("uploadfile") MultipartFile[] uploadfile,
+                                    @RequestParam("p_thum") MultipartFile p_thum,
+                                    HttpServletRequest request, PlaceDto placeDto) throws IllegalStateException, IOException {
         String m_id = (String) request.getSession().getAttribute("m_id");
         String PATH = request.getSession().getServletContext().getRealPath("/") + "uploadImg/place/";
+        String PATH1 = request.getSession().getServletContext().getRealPath("/") + "uploadImg/profileImg/";
 
         String str = "";
         for(MultipartFile file : uploadfile){
@@ -105,6 +107,11 @@ public class MypageController {
         placeDto.setI_no(str);
         System.out.println(str);
         System.out.println(placeDto.getI_no());
+
+        if (!p_thum.getOriginalFilename().isEmpty()) {
+            p_thum.transferTo(new File(PATH1 + p_thum.getOriginalFilename()));
+        }
+        memberService.addThum(new PlaceDto(p_thum.getOriginalFilename()));
         memberService.mypage_request(placeDto);
 
         return "redirect:/mypage/mypage";
@@ -223,6 +230,40 @@ public class MypageController {
 
         return "<script>window.opener.location.reload(); window.close();</script>";
 
+    }
+
+    @RequestMapping("Information_update/{m_id}")
+    public String Information_update(Model model, HttpServletRequest request,@PathVariable String m_id) {
+        m_id = (String) request.getSession().getAttribute("m_id");
+        if ( m_id == null){
+
+            return "redirect:/login/login";
+
+        }else{
+            model.addAttribute("dto",memberService.Information_update(m_id));
+            return "member/Information_update";
+        }
+    }
+
+    @RequestMapping("/Information_update.do")
+    public String Information_update_do(Model model, HttpServletRequest request, MemberDto memberDto) {
+        String m_id = (String) request.getSession().getAttribute("m_id");
+
+
+        memberService.Information_update_do(memberDto);
+
+        return "redirect:/mypage/mypage";
+    }
+
+    @RequestMapping("/reservation_list")
+    public String reservation_list (HttpServletRequest request, Model model) {
+        String m_id = (String) request.getSession().getAttribute("m_id");
+
+                List<JoinDto> reser = memberService.getList2(m_id);
+
+                model.addAttribute("list1", reser);
+
+            return "member/reservation_list";
     }
 }
 

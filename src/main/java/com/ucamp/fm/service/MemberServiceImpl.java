@@ -3,7 +3,6 @@ package com.ucamp.fm.service;
 import com.ucamp.fm.dto.JoinDto;
 import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.PlaceDto;
-import com.ucamp.fm.dto.ReservationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ucamp.fm.mapper.MemberMapper;
@@ -40,8 +39,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<PlaceDto> getList() {
-		return memberMapper.getList();
+	public List<PlaceDto> getList(String m_id) {
+		return memberMapper.getList(m_id);
 	}
 
 	@Override
@@ -67,6 +66,26 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<JoinDto> getList1(String m_id) {
 		return memberMapper.getList1(m_id);
+	}
+
+	@Override
+	public void addThum(PlaceDto placeDto) {
+		memberMapper.addThum(placeDto);
+	}
+
+	@Override
+	public MemberDto Information_update(String m_id) {
+		return memberMapper.getInformation_update(m_id);
+	}
+
+	@Override
+	public void Information_update_do(MemberDto memberDto) {
+		memberMapper.Information_update_do(memberDto);
+	}
+
+	@Override
+	public List<JoinDto> getList2(String m_id) {
+		return memberMapper.getList2(m_id);
 	}
 
 //	@Override

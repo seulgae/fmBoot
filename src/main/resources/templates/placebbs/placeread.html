@@ -71,24 +71,54 @@
           <tbody>
           <tr>
             <td>
+              <th:block th:if="${place.p_op1.equals('1')}">
               <img src="/images/placeimg/parking_on.png" name="parking" width="140px" height="140px"/>
+              </th:block>
+              <th:block th:if="${place.p_op1.equals('0')}">
+                <img src="/images/placeimg/parking_on.png" name="parking" width="140px" height="140px" style="opacity : 0.2;"/>
+              </th:block>
             </td>
             <td>
-              <img src="/images/placeimg/parking_on.png" width="140px" height="140px"/>
+              <th:block th:if="${place.p_op2.equals('1')}">
+              <img src="/images/placeimg/airconditioning_on.png" width="140px" height="140px"/>
+              </th:block>
+              <th:block th:if="${place.p_op2.equals('0')}">
+                <img src="/images/placeimg/airconditioning_on.png" width="140px" height="140px" style="opacity : 0.2;"/>
+              </th:block>
             </td>
             <td>
-              <img src="/images/placeimg/parking_on.png" width="140px" height="140px"/>
+              <th:block th:if="${place.p_op3.equals('1')}">
+              <img src="/images/placeimg/ball_on.png" width="140px" height="140px"/>
+              </th:block>
+              <th:block th:if="${place.p_op3.equals('0')}">
+                <img src="/images/placeimg/ball_on.png" width="140px" height="140px" style="opacity : 0.2;"/>
+              </th:block>
             </td>
           </tr>
           <tr>
             <td>
-              <img src="/images/placeimg/parking_on.png" width="140px" height="140px"/>
+              <th:block th:if="${place.p_op4.equals('1')}">
+              <img src="/images/placeimg/vest_on.png" width="140px" height="140px"/>
+              </th:block>
+              <th:block th:if="${place.p_op4.equals('0')}">
+                <img src="/images/placeimg/vest_on.png" width="140px" height="140px" style="opacity : 0.2;"/>
+              </th:block>
             </td>
             <td>
-              <img src="/images/placeimg/parking_on.png" width="140px" height="140px"/>
+              <th:block th:if="${place.p_op5.equals('1')}">
+              <img src="/images/placeimg/shoes_on.png" width="140px" height="140px"/>
+              </th:block>
+              <th:block th:if="${place.p_op5.equals('0')}">
+                <img src="/images/placeimg/shoes_on.png" width="140px" height="140px" style="opacity : 0.2;"/>
+              </th:block>
             </td>
             <td>
-              <img src="/images/placeimg/parking_on.png" width="140px" height="140px"/>
+              <th:block th:if="${place.p_op6.equals('1')}">
+              <img src="/images/placeimg/shower_on.png" width="140px" height="140px"/>
+              </th:block>
+              <th:block th:if="${place.p_op6.equals('0')}">
+                <img src="/images/placeimg/shower_on.png" width="140px" height="140px" style="opacity : 0.2;"/>
+              </th:block>
             </td>
           </tr>
           </tbody>
@@ -265,11 +295,11 @@
 </pre>
                 <hr>
                 <h3>날씨에 의한 환불 및 변경</h3>
-                <pre>■ 아래의 환불 및 변경 조건에 해당될 경우 이용 시작 '1시간 전'까지 아이엠그라운드 카카오톡 채널로 문의 주시면 고객센터 운영 시간에 확인 후 처리해 드리겠습니다.
+                <pre>■ 아래의 환불 및 변경 조건에 해당될 경우 이용 시작 '1시간 전'까지 FM그라운드 카카오톡 채널로 문의 주시면 고객센터 운영 시간에 확인 후 처리해 드리겠습니다.
 
 ■ 다음과 같은 경우에는 환불 및 변경 모두 불가능합니다.
 ㅇ 이용 시작까지 1시간 이내로 남았을 경우
-ㅇ 구장 혹은 아이엠그라운드 카카오톡 채널에 문의 없이 구장 이용을 하지 않는 경우 ( No-Show )
+ㅇ 구장 혹은 FM그라운드 카카오톡 채널에 문의 없이 구장 이용을 하지 않는 경우 ( No-Show )
 
 ■ 구장 이용 도중 비가 오기 시작할 경우 환불 및 변경 가능 여부는 구장 관리자가 결정합니다.
 <hr><b>[ 환 불 ]</b>
