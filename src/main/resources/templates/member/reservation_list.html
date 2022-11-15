@@ -1,0 +1,28 @@
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<div>
+    <h1 style="margin-left:55px;">예약 현황</h1>
+    <table id="userList" style="width: 800px; margin: 20px auto; height: 30px; border-collapse: separate; border-spacing: 0 10px;">
+      <thead>
+      <tr>
+        <th style="text-align: center; border-bottom: 1px solid #000;">번호</th>
+        <th style="text-align: center; border-bottom: 1px solid #000;">예약자 번호</th>
+        <th style="text-align: center; border-bottom: 1px solid #000;">구장명</th>
+        <th style="text-align: center; border-bottom: 1px solid #000;">예약 시간</th>
+        <th style="text-align: center; border-bottom: 1px solid #000;">예약 날짜</th>
+        <th style="text-align: center; border-bottom: 1px solid #000;">결제 날짜</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="list1 : ${list1}">
+        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_no}]]</td>
+        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.m_phone}]]</td>
+        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.p_pname}]]</td>
+        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_time}]]</td>
+        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_date}]]</td>
+        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_wdate}]]</td>
+      </tr>
+      </tbody>
+    </table>
+</div>
+

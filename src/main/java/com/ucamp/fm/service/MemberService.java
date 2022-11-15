@@ -4,7 +4,6 @@ package com.ucamp.fm.service;
 import com.ucamp.fm.dto.JoinDto;
 import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.PlaceDto;
-import com.ucamp.fm.dto.ReservationDto;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public interface MemberService {
 
 	public void mypage_request(PlaceDto placeDto);
 
-	List<PlaceDto> getList();
+	List<PlaceDto> getList(String m_id);
 
     void addPhoto(MemberDto memberDto);
 
@@ -33,6 +32,14 @@ public interface MemberService {
 	public void mypage_update_do(PlaceDto placeDto);
 
 	List<JoinDto> getList1(String m_id);
+
+    void addThum(PlaceDto placeDto);
+
+	MemberDto Information_update(String m_id);
+
+	public void Information_update_do(MemberDto memberDto);
+
+	List<JoinDto> getList2(String m_id);
 
 
 //	PlaceDto getP_name();

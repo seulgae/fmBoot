@@ -71,7 +71,11 @@ public class PayController {
 	}
 
 	@GetMapping("/placelist")
-	public String placelist(@RequestParam(defaultValue = "") String keyword, Model model) {
+	public String placelist(@RequestParam(defaultValue = "") String keyword,
+							@RequestParam(value = "pageAdd", required = false) String pageAdd,
+							Model model) {
+
+
 		if (keyword.equals("")) {
 			model.addAttribute("lists", paymentService.selectAll());
 			model.addAttribute("size", paymentService.selectAll().size());

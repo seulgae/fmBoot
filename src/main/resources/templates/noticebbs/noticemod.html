@@ -3,6 +3,10 @@
 <th:block th:replace="fragments/config :: configFragment"></th:block><!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
+<!-- 서머노트 관련 -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
 <div id="wrap" style="width:1000px; margin: 40px auto;">
     <div style="width:100%;">
         <div class="title" align="left" style="margin-top: 2%;">
@@ -11,23 +15,26 @@
         </div>
         <div style="padding-top: 50px;">
             <form action="/notice/noticemodac" method="post">
-                <table class="table table-bordered" >
+                <table class="table table-bordered">
                     <colgroup>
                         <col style="width: 100px">
                         <col style="width: 800px">
                     </colgroup>
                     <tbody>
                     <tr>
-                        <th class="tg-llyw" style = "text-align: center;">제목</th>
+                        <th class="tg-llyw" style="text-align: center;">제목</th>
                         <td class="tg-0pky"><input type="hidden" name="n_no" th:value="${notice.n_no}">
-                                            <input type="hidden" class="form-control" placeholder="작성자아이디" name="m_id">
-                                            <input class="form-control"placeholder="글 제목" name="n_title" th:value="${notice.n_title}"
-                                                   style="width: 100%; " type="text" autofocus>
+                            <input type="hidden" class="form-control" placeholder="작성자아이디" name="m_id">
+                            <input class="form-control" placeholder="글 제목" name="n_title" th:value="${notice.n_title}"
+                                   style="width: 100%; " type="text" autofocus>
                         </td>
                     </tr>
                     <tr>
-                        <th class="tg-llyw" style = "text-align: center;">내용</th>
-                        <td class="tg-0pky"><input class="form-control" placeholder="내용 서머노트 사용 예정" name="n_content" th:value="${notice.n_content}" style="width: 100%; " type="text"></td>
+                        <th class="tg-llyw" style="text-align: center;">내용</th>
+                        <td class="tg-0pky">
+                            <textarea id="summernote" required="required" name="n_content"
+                                      th:value="${notice.n_content}"></textarea>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -35,7 +42,8 @@
                     <button type="button" class="btn btn-dark" style="float: right"
                             onclick="location.href='/notice/noticehome'">취소
                     </button>&nbsp;
-                    <button type="submit" class="btn btn-primary" style="float: right" value="noticeinsert">등록</button>
+                    <button type="submit" class="btn btn-primary"
+                            style="float: right" value="noticeinsert">등록</button>
                 </div>
             </form>
         </div>
@@ -43,19 +51,27 @@
 </div>
 
 
-
-
-
-
-            <tr>
-                <td colspan="2">
-                    <hr>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-    </form>
+<tr>
+    <td colspan="2">
+        <hr>
+    </td>
+</tr>
+</tbody>
+</table>
+</form>
 </div><!-- footer -->
+<script>
+	$(document).ready(function() {
+
+        $('#summernote').summernote({
+             height: 200,
+             minHeight: null,
+             maxHeight: null,
+             lang: "ko-KR",
+             placeholder: '내용을 입력해주세요.'
+        });
+    });
+</script>
+
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </html>

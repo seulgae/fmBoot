@@ -2,43 +2,41 @@
 <html lang="en" xmlns:th="www.thymeleaf.org"><!-- config -->
 <th:block th:replace="fragments/config :: configFragment"></th:block><!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
+
 <div id="wrap" style="width:1000px; margin: 40px auto;">
     <div style="width:100%;">
         <div class="title" align="left" style="margin-top: 2%;">
             <span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
             공지게시글 &nbsp;|&nbsp; <small>공지사항 상세페이지</small></span>
         </div>
-        <div style="padding-top: 50px;">
-                <table class="table table-bordered" >
-                    <colgroup>
-                        <col style="width: 100px">
-                        <col style="width: 800px">
-                    </colgroup>
-                    <tbody>
-                    <tr>
-                        <th class="tg-llyw" style = "width:20%; text-align: center;">제목</th>
-                        <td class="tg-0pky" th:text="${notices.n_title}" style="width: 100%;" autofocus/>
-                    </tr>
-
-                    <tr>
-                        <th class="tg-llyw" style = "text-align: center;">내용</th>
-                        <td class="tg-0pky" align="left" style="width: 100%;" th:text="${notices.n_content}" autofocus/>
-                    </tr>
-                    </tbody>
-                </table>
-                <div style="justify-content: space-between; display:flex; width: 0px; margin-left:83%;">
-                        <button type="button" class="btn btn-success" style="float: right"
-                                th:onclick="|location.href='@{/notice/noticemod/{no}(no=${notices.n_no})}'|" th:if="${m_id == 'admin'}">수정</button>&nbsp;
-                        <button type="button" class="btn btn-danger" style="float: right"
-                                th:onclick="|location.href='@{/notice/noticedelete/{no}(no=${notices.n_no})}'|" th:if="${m_id == 'admin'}">삭제</button>&nbsp;
-                        <button type="button" class="btn btn-primary" style="float: right" onclick="location.href='/notice/noticehome'">목록</button>
-                </div>
-        </div>
+        <br>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td style = "text-align: center;" width="100px">제목</td>
+                    <td>[[ ${notices.n_title} ]]</td>
+                </tr>
+                <tr>
+                    <td class="tg-0pky" colspan="2" height="300px">
+                        [[ ${notices.n_content} ]]
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: right;">
+                        <button type="button" class="btn btn-success"
+                                th:onclick="|location.href='@{/notice/noticemod/{no}(no=${notices.n_no})}'|"
+                                th:if="${m_id == 'admin'}">수정&nbsp</button>
+                        <button type="button" class="btn btn-danger"
+                                th:onclick="|location.href='@{/notice/noticedelete/{no}(no=${notices.n_no})}'|"
+                                th:if="${m_id == 'admin'}">삭제&nbsp</button>
+                        <button type="button" class="btn btn-primary"
+                                onclick="location.href='/notice/noticehome'">목록</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
-
-
-</div><!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </html>

@@ -12,6 +12,9 @@
         $("#add").click(function(){
            window.open('/mypage/addphoto', 'pop01', 'top=10, left=10, width=500, height=200, status=no, menubar=no, toolbar=no, resizable=no');
         })
+        $("#reservation_list").click(function(){
+           window.open('/mypage/reservation_list', 'pop01', 'top=10, left=10, width=1000, height=500, status=no, menubar=no, toolbar=no, resizable=no');
+        })
     })
 </script>
     <div id="wrap">
@@ -43,9 +46,9 @@
                     <td>
                         <th:block th:if="${member.m_level.equals('2')}">
                         <button onclick="location.href='/mypage/mypage_request'">구장 추가</button>
+                        <button id="reservation_list">예약 현황</button>
                         </th:block>
-                        <button>예약 현황</button>
-                        <button type="button" onclick="location.href='/login/memberMod'">내 정보 수정</button>
+                        <a th:href="|/mypage/Information_update/${session.m_id}|"><button type="button">내 정보 수정</button></a>
                     </td>
                 </tr>
             </tbody>
@@ -72,7 +75,7 @@
                 </tbody>
             </table>
         </th:block>
-        <th:block th:if="${member.m_level.equals('2')}">
+        <th:block th:if="${member.m_level.equals('2') or member.m_level.equals('0')}">
             <table id="managerList">
                 <thead>
                     <tr>

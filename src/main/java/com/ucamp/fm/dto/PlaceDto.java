@@ -31,4 +31,9 @@ public class PlaceDto {
     private String p_op5;
     private String p_op6;
     private String p_date;
+    private String p_thum;
+
+    public PlaceDto(String p_thum) {
+        this.p_thum = p_thum;
+    }
 }

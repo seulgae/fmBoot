@@ -23,7 +23,7 @@
         display: flex;
         width:50%;
     }
-    #content {
+    #contentarea {
         padding-left: 10px;
         font-size: 15px;
         background-color: #BDBDBD;
@@ -33,9 +33,6 @@
         height: 100px;
         margin-top: 10px;
         font-family: 'Noto Sans KR', sans-serif;
-    }
-    td {
-        background-color: #BDBDBD;
     }
     th, li {
         color: #BDBDBD;
@@ -60,10 +57,6 @@
                     <div style="width: 50%; margin-top: 20px;">
                         <div style="margin-bottom: 10%;">
                             <h2 style="color: white; margin-right: 15px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;" th:text="${team.t_name}"></h2>
-                            <button style="opacity : 0.7;" class="btn" id="updatebtn">팀 수정</button>
-                            <button style="opacity : 0.7;" class="btn" id="addbtn">팀원 추가</button>
-                            <input type="hidden" id="loginCheck" th:value="${session.m_id}">
-                            <input type="hidden" id="teamCheck" th:value="${team.t_id}">
                         </div>
                         <h7 style="font-size:8px; margin-right: 10%; color: #BDBDBD">팀 등록일 : [[ ${team.t_date} ]]</h7>
                         <ul style="font-size:9px; margin-top: 15px; margin-left: 15%" align="left">
@@ -75,10 +68,10 @@
                         </ul>
                     </div>
                 </div>
-                <div style="width: 50%; margin-top: 10%; margin-bottom: 2%;">
+                <div style="width: 50%; margin-top: 5%; margin-bottom: 2%;">
                     <h6 style="color: #BDBDBD; margin-right: 40%; font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">팀 소개</h6>
                     <div>
-                        <textarea id="content" name="content" readonly style="resize: none;" th:text="${team.t_introduce}"/>
+                        <textarea id="contentarea" name="contentarea" readonly style="resize: none;" th:text="${team.t_introduce}"/>
                     </div>
                 </div>
             </div>
@@ -99,45 +92,90 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
+                    <tr style="background-color: #BDBDBD;">
+                        <td th:text="${all}"></td>
+                        <td th:text="${win}"></td>
+                        <td th:text="${draw}"></td>
+                        <td th:text="${lose}"></td>
+                        <td th:text="|${rate}%|"></td>
+                        <td th:text="${gf}"></td>
+                        <td th:text="${ga}"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <div align="left" th:if="${session.m_id}">
+            <button class="btn btn-dark" id="addbtn">팀원 추가</button>
+            <button class="btn btn-dark" align="bottom" id="maddbtn">전적 입력</button>
+            <input type="hidden" id="teamCheck" th:value="${team.t_id}">
+            <button class="btn btn-dark" id="updatebtn">팀 수정</button>
+            <button class="btn btn-dark" id="deletebtn">팀 삭제</button>
+            <input type="hidden" id="loginCheck" th:value="${session.m_id}">
+        </div>
     </div>
-
-
-<div id="blogajaxlist">
-
 </div>
-</div>
-<script>
+<div id="blogcmt2"></div>
+<div id="blogcmt"></div>
+<div id="blogajaxlist"></div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+        let t_no = /*[[ ${team.t_no} ]]*/;
+    /*]]*/
+
 $(function(){
     $.ajax({
           type: 'get'
-        , url: 'http://localhost:8085/blog/bloglistajax'
-        , dataType : 'html'
-        , success: function(data) {
-            $("#blogajaxlist").html(data);
+            , url: '/blog/bloglistajax'
+            , success: function(data) {
+                $("#blogajaxlist").html(data);
+          }
+    });
+    $.ajax({
+          type: 'get'
+            , url: '/cmt/blogcmt'
+            , datatype : 'html'
+            , success: function(data) {
+                $("#blogcmt2").html(data);
+    }
+    });
+    $.ajax({
+          type: 'get'
+            , url: '/cmt/blogcmtform'
+            , data: {
+                "c_tbset" : t_no
+                , "c_tbno" : "team"
+            }
+            , success: function(data) {
+                $("#blogcmt").html(data);
           }
     });
     $("#updatebtn").click(function() {
         if($("#loginCheck").val() != ""){
-            window.open('/teammanage/teamupdate', 'pop01', 'top=10, left=10, width=800, height=800, status=no, menubar=no, toolbar=no, resizable=no');
+            window.open('/teammanage/teamupdate?t_no='+t_no, 'pop01', 'top=10, left=10, width=800, height=800, status=no, menubar=no, toolbar=no, resizable=no');
         } else {
             alert('로그인을 해주세요');
             location.href="/login/login";
         }
     })
-
+    $("#maddbtn").click(function(){
+        if($("#loginCheck").val() != ""){
+            window.open('/teammanage/addmatch?t_no='+t_no, 'pop01', 'top=10, left=10, width=600, height=600, status=no, menubar=no, toolbar=no, resizable=no');
+        } else {
+            alert('로그인을 해주세요');
+            location.href="/login/login";
+        }
+    })
+    $("#deletebtn").click(function(){
+        if($("#loginCheck").val() != ""){
+            var con = confirm("삭제하시겠습니까?");
+            if(con){ location.href="/teammanage/teamdelete?t_no="+t_no; }
+            else { return false; }
+        } else {
+            alert('로그인을 해주세요');
+            location.href="/login/login";
+        }
+    })
 })
 </script>
 <br><br><br>

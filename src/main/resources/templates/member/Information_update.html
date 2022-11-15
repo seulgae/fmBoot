@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<!-- header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<!-- member css -->
+<link rel="stylesheet" href="/css/member.css">
+
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+
+<!-- member css -->
+<link rel="stylesheet" href="/css/member.css">
+<!-- 회원가입시작 -->
+<div id="signup">
+  <form action="/mypage/Information_update.do" method="post" name="joinFrm" id="joinFrm">
+    <input type="hidden" value="0" id="idCheckFlag">
+    <input type="hidden" value="0" id="pwCheckFlag">
+    <input type="hidden" value="0" id="mFlag">
+    <table>
+      <tbody>
+      <tr>
+        <td>
+          <span class="loginlogo" style="font-size: 40px; font-weight: bold; margin: 25px 10px 0px 0px; color: red;">FM</span>
+          <span style="font-size: 20px; font-weight: bold;">정보 수정</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="req">패스워드</td>
+      </tr>
+      <tr>
+        <td><input type="password" class="umem" name="m_pw" id="m_pw" size="40" th:value="${dto.m_pw}"
+                   placeholder="비밀번호를 입력해주세요."></td>
+      </tr>
+      <tr>
+        <td>
+          <input type="password" class="umem" id="m_pw_re" size="40" th:value="${dto.m_pw}"
+                 placeholder="비밀번호를 한번 더 입력해주세요.">
+          <div id="pwCheck"></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="req">이름</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" class="umem" name="m_name" id="m_name" size="40" th:value="${dto.m_name}"
+                 placeholder="이름을 입력해주세요.">
+        </td>
+      </tr>
+      <tr>
+        <td class="req">전화번호</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" class="umem" name="m_phone" id="m_phone" size="40" th:value="${dto.m_phone}"
+                 placeholder="전화번호를 입력해주세요." maxlength="13">
+        </td>
+      </tr>
+      <tr>
+        <td class="req">이메일</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" class="umem" name="m_email" id="m_email" size="40" th:value="${dto.m_email}"
+                 placeholder="이메일 주소를 입력해주세요.">
+        </td>
+      </tr>
+      <th:block th:if="${dto.m_level.equals('1')}">
+      <tr class="userchk">
+        <td >구단 이름</td>
+      </tr>
+      <tr class="userchk">
+        <td>
+          <input type="text" class="umem" name="m_cname" id="m_cname" size="40" th:value="${dto.m_cname}"
+                 placeholder="구단이 있다면 등록하세요.(필수 x)">
+        </td>
+      </tr>
+      </th:block>
+      <tr>
+        <td class="req">주소 입력</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="m_zip" id="m_zip" size="25" class="umem" readonly th:value="${dto.m_zip}">
+          <button type="button" id="zipBtn">우편번호찾기</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" class="umem" id="m_addr1" name="m_addr1" size="40" readonly th:value="${dto.m_addr1}">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" class="umem" id="m_addr2" name="m_addr2" size="40" th:value="${dto.m_addr2}">
+        </td>
+      </tr>
+      <th:block th:if="${dto.m_level.equals('2')}">
+      <tr class="manager">
+        <td class="req">구장 이름</td>
+      </tr>
+      <tr class="manager">
+        <td>
+          <input type="text" class="umem" name="m_pname" id="m_pname" size="40" th:value="${dto.m_pname}"
+                 placeholder="구장 이름을 입력해주세요.">
+        </td>
+      </tr>
+      <tr class="manager">
+        <td class="req">은행명</td>
+      </tr>
+      <tr class="manager">
+        <td>
+          <input type="text" class="umem" name="m_bank" id="m_bank" size="40" th:value="${dto.m_bank}"
+                 placeholder="은행명을 입력해주세요.">
+        </td>
+      </tr>
+      <tr class="manager">
+        <td class="req">구장 계좌</td>
+      </tr>
+      <tr class="manager">
+        <td>
+          <input type="text" class="umem" name="m_account" id="m_account" size="40" th:value="${dto.m_account}"
+                 placeholder="계좌 번호를 입력해주세요.(숫자만)">
+        </td>
+      </tr>
+      </th:block>
+      <tr>
+        <td colspan="2">
+          <button type="button" id="joinBtn">수정하기</button>
+          <input type="hidden" name="m_id" th:value="${session.m_id }">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+
+<!-- 회원가입 끝 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- join -->
+<script src="/js/information_update.js"></script>
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>

@@ -1,6 +1,8 @@
 package com.ucamp.fm.controller;
 
+import com.ucamp.fm.dto.GmatchDto;
 import com.ucamp.fm.dto.TeamDto;
+import com.ucamp.fm.service.GmatchServiceImpl;
 import com.ucamp.fm.service.TeamServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,9 @@ import java.util.List;
 public class TeamController {
     @Autowired
     TeamServiceImpl teamService;
+
+    @Autowired
+    GmatchServiceImpl gmatchService;
 
     @GetMapping("/teammanage")
     public String teamForm(@RequestParam(defaultValue = "") String keyword, Model model) {
@@ -45,24 +50,76 @@ public class TeamController {
         return "<script>window.opener.location.reload(); window.close();</script>";
     }
 
-    @RequestMapping("/teamupdate/{t_no}")
-    @ResponseBody
-    public String teamupdate(HttpServletRequest request
-                            , String t_no
-                            , Model model) {
+    @RequestMapping("/teamupdate")
+    public String teamupdate(TeamDto dto, Model model) {
+        model.addAttribute("team", teamService.selectTeam(dto.getT_no()));
 
-        System.out.println(t_no);
-        String t_id = (String) request.getSession().getAttribute("m_id");
+        return "/team/teamupdate";
+    }
+
+    @RequestMapping("/teamdetail")
+    public String teamdetail(String t_no, Model model) {
+
+        int all = Integer.parseInt(gmatchService.selectAll(t_no) == null ? "0" : gmatchService.selectAll(t_no));
+        int win = Integer.parseInt(gmatchService.selectWin(t_no) == null ? "0" : gmatchService.selectWin(t_no));
+        int draw = Integer.parseInt(gmatchService.selectDraw(t_no) == null ? "0" : gmatchService.selectDraw(t_no));
+        int lose = Integer.parseInt(gmatchService.selectLose(t_no) == null ? "0" : gmatchService.selectLose(t_no));
+        int gf = Integer.parseInt(gmatchService.selectGf(t_no) == null ? "0" : gmatchService.selectGf(t_no));
+        int ga = Integer.parseInt(gmatchService.selectGa(t_no) == null ? "0" : gmatchService.selectGa(t_no));
+
+        double rate1 = (((double)win / all) * 100);
+        int rate;
+        if(Double.isNaN(rate1)) {
+            rate = 0;
+        } else {
+            rate = (int)rate1;
+        }
+
         model.addAttribute("team", teamService.selectTeam(t_no));
+        model.addAttribute("all", all);
+        model.addAttribute("win", win);
+        model.addAttribute("draw", draw);
+        model.addAttribute("lose", lose);
+        model.addAttribute("rate", rate);
+        model.addAttribute("gf", gf);
+        model.addAttribute("ga", ga);
+
+        return "/team/teamdetail";
+    }
+
+    @RequestMapping("/teamupdateset")
+    @ResponseBody
+    public String teamupdateset(TeamDto tDto, HttpServletRequest request) {
+        String t_id = (String) request.getSession().getAttribute("m_id");
+        teamService.teamUpdate(tDto);
 
         return "<script>window.opener.location.reload(); window.close();</script>";
     }
 
-    @RequestMapping("/teamdetail")
-    public String teamdetail(@RequestParam String t_no, Model model) {
-        model.addAttribute("team", teamService.selectTeam(t_no));
-//        System.out.println(t_no);
-        return "/team/teamdetail";
+    @RequestMapping("/teamdelete")
+    public String teamdelete(String t_no) {
+        teamService.deleteTeam(t_no);
+
+        return "redirect:/teammanage/teammanage";
+    }
+
+    @RequestMapping("/addmatch")
+    public String addmatch(String t_no, Model model) {
+        model.addAttribute("t_no", t_no);
+
+        return "/team/gmatch";
+    }
+
+    @RequestMapping("/findteam")
+    @ResponseBody
+    public String findteam(String teamName) {
+        List<TeamDto> tDto = teamService.findTeam("%" + teamName + "%");
+        String str = "";
+        for(TeamDto t : tDto) {
+            str += "<li value='"+t.getT_no()+"' onclick='find(\""+t.getT_name()+"\",\""+t.getT_no()+"\")'> "+t.getT_name() + "</li>";
+        }
+
+        return str;
     }
 
     @RequestMapping("/addmember")
@@ -76,5 +133,11 @@ public class TeamController {
         return "/team/findmember";
     }
 
+    @RequestMapping("/gmatchinsert")
+    @ResponseBody
+    public String gmatchinsert(GmatchDto gDto) {
+        gmatchService.gmatchInsert(gDto);
 
+        return "<script>window.opener.location.reload(); window.close();</script>";
+    }
 }
