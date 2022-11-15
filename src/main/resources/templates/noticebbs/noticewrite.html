@@ -10,7 +10,6 @@
             공지게시판 &nbsp;|&nbsp; <small>게시글 작성 페이지</small></span>
         </div>
         <div style="padding-top: 50px;">
-            <span style="font-size: 30px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">■구장 신청</span><br><br>
             <form action="/notice/noticeinsert" method="post">
                 <table class="table table-bordered" >
                     <colgroup>
@@ -19,23 +18,26 @@
                     </colgroup>
                     <tbody>
                     <tr>
-                        <th class="tg-llyw">제목</th>
-                        <td class="tg-0pky"><input class="form-control"placeholder="작성자아이디" name="m_id"
+                        <th class="tg-llyw" style = "text-align: center;">제목</th>
+                        <td class="tg-0pky"><input class="form-control"placeholder="제목을 입력하세요" name="n_title"
                                                    required="required" style="width: 100%; " type="text" autofocus>
                             <input type="hidden" class="form-control" placeholder="작성자아이디" name="m_id" th:value="${n_id}"></td>
                     </tr>
                     <tr>
-                        <th class="tg-llyw">내용</th>
+                        <th class="tg-llyw" style = "text-align: center;">내용</th>
                         <td class="tg-0pky"><input class="form-control" placeholder="내용 서머노트 사용 예정" name="n_content" required="required" style="width: 100%; " type="text"></td>
                     </tr>
                     </tbody>
                 </table>
                 <div style="justify-content: space-between; display:flex; width: 0px; margin-left:89%;">
-                    <button  type="submit" value="noticeinsert" class="btn btn-dark" style=" margin-bottom: 20px;" > 등록</button>&nbsp;
+                    <button  type="submit" value="noticeinsert" class="btn btn-primary" style=" margin-bottom: 20px;" > 등록</button>&nbsp;
                     <button type="submit" class="btn btn-dark" style="margin-bottom: 20px;" onclick="location.href='/notice/noticehome'">취소</button>
                 </div>
             </form>
         </div>
+    </div>
+</div>
+
 
 
         <hr>
