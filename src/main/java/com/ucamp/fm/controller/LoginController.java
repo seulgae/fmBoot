@@ -4,6 +4,7 @@ import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.PlaceDto;
 import com.ucamp.fm.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ public class LoginController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("/")
     public String home() {
@@ -44,6 +48,7 @@ public class LoginController {
 
     @RequestMapping("/joinInsert")
     public String joinInsert (MemberDto member){
+        member.setM_pw(passwordEncoder.encode(member.getM_pw()));
         memberService.join(member);
         return "redirect:/";
     }
@@ -51,7 +56,11 @@ public class LoginController {
     @RequestMapping("/loginCheck")
     @ResponseBody
     public String loginCheck (String m_id, String m_pw, Model model, HttpServletRequest request){
-        return Integer.toString(memberService.loginCheck(m_id, m_pw));
+        if(!passwordEncoder.matches(m_pw,memberService.getPw(m_id))){
+            return "0";
+        }else{
+            return "1";
+        }
     }
 
     @RequestMapping("/loginOk")

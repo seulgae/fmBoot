@@ -53,6 +53,6 @@ public interface MemberMapper {
 	@Select("select r_no,r_m_id,r_p_no,r_time,r_date,r_wdate,p_pname,m_phone from reservation re join place p on re.r_p_no = p.p_no join member m on re.r_m_id = m.m_id where p_manager=#{m_id}")
 	List<JoinDto> getList2(String m_id);
 
-//	@Select("select p_pname from place where p_no=#{p_no}")
-//    PlaceDto getP_neme();
+	@Select("select m_pw from member where m_id = #{m_id}")
+	String getPw(String m_id);
 }

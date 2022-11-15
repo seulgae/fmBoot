@@ -6,6 +6,7 @@ import com.ucamp.fm.dto.PlaceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ucamp.fm.mapper.MemberMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -88,10 +89,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getList2(m_id);
 	}
 
-//	@Override
-//	public PlaceDto getP_name() {
-//		return memberMapper.getP_neme();
-//	}
+	@Override
+	public String getPw(String m_id) {
+		return memberMapper.getPw(m_id);
+	}
+
 
 
 }
