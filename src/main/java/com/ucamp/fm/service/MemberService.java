@@ -39,6 +39,5 @@ public interface MemberService {
 
 	List<JoinDto> getList2(String m_id);
 
-
-//	PlaceDto getP_name();
+	String getPw(String m_id);
 }

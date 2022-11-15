@@ -13,42 +13,39 @@ $(function(){
         $("#frmReservation").submit();
       }
     })
-    setDate();//날짜 변경 시
-    timeSet();
+    setDate();
     $("#div_explain").html($("#hidden_explain").val());
  })
 function setDate(){
-$("#time option[value='12:00~14:00']").prop('disabled',false);
-        $("#td_1").css("background-color","gray");
-        $("#td_2").css("background-color","gray");
-        $("#td_3").css("background-color","gray");
-        $.ajax({
-            type : "POST",
-            url : "/payment/rserveCheck",
-            data : {
-                "r_date" : $("#dateSet").val(),
-                "p_no" : $("#p_no").val()
-            },
-            success : function(data){
-                for(var i = 0; i < data.length; i++){
-                    if(data[i] == '12:00~14:00'){
-                        $("#td_1").css("background-color","red");
-                    }
-                    if(data[i] == '14:00~16:00'){
-                        $("#td_2").css("background-color","red");
-                    }
-                    if(data[i] == '16:00~18:00'){
-                        $("#td_2").css("background-color","red");
-                    }
-                    if(data[i] == '18:00~20:00'){
-                        $("#td_2").css("background-color","red");
-                    }
-                    if(data[i] == '20:00~22:00'){
-                        $("#td_2").css("background-color","red");
-                    }
+    $("#time").val("");
+    timeSet();
+    $.ajax({
+        type : "POST",
+        url : "/payment/rserveCheck",
+        data : {
+            "r_date" : $("#dateSet").val(),
+            "p_no" : $("#p_no").val()
+        },
+        success : function(data){
+            for(var i = 0; i < data.length; i++){
+                if(data[i] == '12:00~14:00'){
+                    $("#td_1").css("background-color","red");
+                }
+                if(data[i] == '14:00~16:00'){
+                    $("#td_2").css("background-color","red");
+                }
+                if(data[i] == '16:00~18:00'){
+                    $("#td_2").css("background-color","red");
+                }
+                if(data[i] == '18:00~20:00'){
+                    $("#td_2").css("background-color","red");
+                }
+                if(data[i] == '20:00~22:00'){
+                    $("#td_2").css("background-color","red");
                 }
             }
-        })
+        }
+    })
 }
 function selected(value){
     if($("#td_"+value).css("background-color")=="red"){
@@ -87,6 +84,11 @@ function otherBackSet(value){
 }
 
 function timeSet(){
+    $("#td_1").css("background-color","gray");
+    $("#td_2").css("background-color","gray");
+    $("#td_3").css("background-color","gray");
+    $("#td_4").css("background-color","gray");
+    $("#td_5").css("background-color","gray");
     let today = new Date();
     let year = today.getFullYear(); // 년도
     let month = today.getMonth() + 1;  // 월
@@ -96,7 +98,6 @@ function timeSet(){
 
     let time = hours + ':' + minutes;
     today = year+"-"+month+"-"+date;
-
     if($("#dateSet").val() <= today){
         if(time > "14:00"){
             $("#td_1").css("background-color","red");
