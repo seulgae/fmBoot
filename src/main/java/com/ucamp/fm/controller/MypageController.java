@@ -66,11 +66,9 @@ public class MypageController {
     //구장 신청 제출
     @RequestMapping("/mypage_request.do")
     public String mypage_request_do(@RequestParam("uploadfile") MultipartFile[] uploadfile,
-                                    @RequestParam("p_thum") MultipartFile p_thum,
                                     HttpServletRequest request, PlaceDto placeDto) throws IllegalStateException, IOException {
         String m_id = (String) request.getSession().getAttribute("m_id");
         String PATH = request.getSession().getServletContext().getRealPath("/") + "uploadImg/place/";
-        String PATH1 = request.getSession().getServletContext().getRealPath("/") + "uploadImg/profileImg/";
 
         String str = "";
         for(MultipartFile file : uploadfile){
@@ -108,10 +106,6 @@ public class MypageController {
         System.out.println(str);
         System.out.println(placeDto.getI_no());
 
-        if (!p_thum.getOriginalFilename().isEmpty()) {
-            p_thum.transferTo(new File(PATH1 + p_thum.getOriginalFilename()));
-        }
-        memberService.addThum(new PlaceDto(p_thum.getOriginalFilename()));
         memberService.mypage_request(placeDto);
 
         return "redirect:/mypage/mypage";

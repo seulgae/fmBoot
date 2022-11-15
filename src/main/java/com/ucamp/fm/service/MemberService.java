@@ -33,8 +33,6 @@ public interface MemberService {
 
 	List<JoinDto> getList1(String m_id);
 
-    void addThum(PlaceDto placeDto);
-
 	MemberDto Information_update(String m_id);
 
 	public void Information_update_do(MemberDto memberDto);

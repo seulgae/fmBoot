@@ -43,7 +43,6 @@ public interface MemberMapper {
 	@Select("select r_no,r_m_id,r_p_no,r_time,r_date,r_wdate,p_pname from reservation re join place p on re.r_p_no = p.p_no where r_m_id=#{m_id}")
 	List<JoinDto> getList1(String m_id);
 
-	void addThum(PlaceDto placeDto);
 
 	@Select("select * from member where m_id=#{m_id}")
 	MemberDto getInformation_update(String m_id);
