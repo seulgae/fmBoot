@@ -32,6 +32,11 @@ public class NoticeServiceImpl implements NoticeService{
     public NoticeDto noticeselect(int n_no) { return noticeMapper.noticeselect(n_no); }
 
     @Override
+    public void noticeupdate(HashMap<String, Object> map) {
+        noticeMapper.noticeupdate(map);
+    }
+
+    @Override
     public void noticeinsert(HashMap<String, Object> map) {
         noticeMapper.noticeinsert(map);
     }
