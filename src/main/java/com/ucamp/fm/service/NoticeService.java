@@ -14,6 +14,8 @@ public interface NoticeService {
     NoticeDto noticeselect (int n_no);
 
 
+    void noticeupdate(HashMap<String, Object> map);
+
     void noticeinsert(HashMap<String, Object> map);
 
     void noticedelete(int n_no);
