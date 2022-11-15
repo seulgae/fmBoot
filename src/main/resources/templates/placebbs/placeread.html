@@ -101,50 +101,47 @@
   <form action="/payment/pay_reservation" id="frmReservation" method="post">
     <input type="hidden" id="loginCheck" th:value="${session.m_id}">
     <input type="hidden" id="p_no" name="p_no" th:value="${place.p_no}">
+    <input type="hidden" id="time" name="time">
     <table id="payment">
       <tbody>
       <tr>
-        <td colspan="3">
+        <td colspan="5">
           <!-- 만약에 예약 가능한 value 값이 1이라면 예약하지 못하도록 조건문 주기. -->
           <label for="dateSet">예약 가능 날짜 : </label>
-          <input type="date" id="dateSet" name="dateSet" th:min="${today}"/>
+          <input type="date" id="dateSet" name="dateSet" onchange="setDate()" th:min="${today}" th:value="${today}"/>
         </td>
       </tr>
       <tr>
-        <td colspan="3">
-          <span>예약시간을 선택해주세요 : </span>
-          <select name="time" id="time">
-            <option value="" selected>--시간을 선택해주세요.--</option>
-            <option value="12:00~14:00">12시 ~ 14시(2시간)</option>
-            <option value="14:00~16:00">14시 ~ 16시(2시간)</option>
-            <option value="16:00~18:00">16시 ~ 18시(2시간)</option>
-          </select>
-        <td>
-      </tr>
-      <tr>
-        <td colspan="3" align="center">
-          <div style="background-color:gray; width:100px; height:20px; display:inline-block; text-align:center">예약가능</div>
-          <div style="background-color:red; width:100px; height:20px; display:inline-block;text-align:center; margin-bottom:5px;">예약불가</div>
+        <td colspan="5" align="center">
+          <div style="background-color:gray; width:100px; height:20px; display:inline-block; text-align:center">예약 가능</div>
+          <div style="background-color:red; width:100px; height:20px; display:inline-block;text-align:center; margin-bottom:5px;">예약 불가</div>
+          <div style="background-color:yellow; width:100px; height:20px; display:inline-block;text-align:center; margin-bottom:5px;">현재 선택</div>
         </td>
       </tr>
       <tr align="center">
-        <td  id="td_1" style="background-color:gray;">
-          12:00 ~ 14: 00
+        <td  id="td_1" style="background-color:gray; border-right:1px solid black;" onclick="selected('1')" >
+          12 : 00 ~ 14 : 00
         </td>
-        <td  id="td_2"  style="background-color:gray;">
-          14:00 ~ 16: 00
+        <td  id="td_2"  style="background-color:gray; border-right:1px solid black;" onclick="selected('2')">
+          14 : 00 ~ 16 : 00
         </td>
-        <td  id="td_3"  style="background-color:gray;">
-          16:00 ~ 18: 00
+        <td  id="td_3"  style="background-color:gray; border-right:1px solid black;" onclick="selected('3')">
+          16 : 00 ~ 18 : 00
+        </td>
+        <td  id="td_4"  style="background-color:gray; border-right:1px solid black;" onclick="selected('4')">
+          18 : 00 ~ 20 : 00
+        </td>
+        <td  id="td_5"  style="background-color:gray;" onclick="selected('5')">
+          20 : 00 ~ 22 : 00
         </td>
       </tr>
       <tr>
-        <td colspan="3">
+        <td colspan="5">
           <h2  style="display:inline-block">총 결제 금액 : </h2><h2 style="display:inline-block" th:text="|${#numbers.formatInteger(place.p_price,3,'COMMA')}원|"></h2>
         </td>
       </tr>
       <tr>
-        <td colspan="3">
+        <td colspan="5">
           <!-- 만약에 예약 가능한 시간이 아니라면 버튼 비활성화하기. -->
           <input type="button" value="예약 신청하기" id="btnReservation" class="paymentBtn">
           <br>

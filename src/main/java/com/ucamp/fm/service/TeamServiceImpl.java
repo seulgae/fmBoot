@@ -35,8 +35,8 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void teamUpdate(String t_no, String t_name, String t_age, String t_skill, String t_kind, String t_id) {
-        teamMapper.teamUpdate(t_no, t_name, t_age, t_skill, t_kind, t_id);
+    public void teamUpdate(TeamDto tDto) {
+        teamMapper.teamUpdate(tDto);
     }
 
     @Override
@@ -49,4 +49,13 @@ public class TeamServiceImpl implements TeamService {
         return teamMapper.findMember(m_id);
     }
 
+    @Override
+    public List<TeamDto> findTeam(String teamName) {
+        return teamMapper.findTeam(teamName);
+    }
+
+    @Override
+    public void deleteTeam(String t_no) {
+        teamMapper.deleteTeam(t_no);
+    }
 }

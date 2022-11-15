@@ -8,7 +8,7 @@
             resultType="com.ucamp.fm.dto.CmentDto">
         select * from cment
         where c_tbno = 'teamblog'
-        and   c_tbset = ${c_no}
+        and   c_tbset = #{c_no}
         order by c_no desc
     </select>
 
@@ -20,7 +20,8 @@
         c_tbno,
         c_tbset,
         c_content,
-        c_date
+        c_date,
+        c_dec
         )values(
         cmt_seq.NEXTVAL,
         #{c_c_id},
@@ -28,7 +29,38 @@
         'teamblog',
         #{c_no},
         #{c_content},
-        sysdate
+        sysdate,
+        '0'
+        )
+    </insert>
+
+    <!--<select id="tlist" parameterType="String"
+            resultType="com.ucamp.fm.dto.CmentDto">
+        select * from cment
+        where c_tbno = 'team'
+        and   c_tbset = #{c_tbset}
+        order by c_no desc
+    </select>-->
+
+    <insert id="cmtinsert2" parameterType="com.ucamp.fm.dto.CmentDto">
+        insert into cment(
+        c_no,
+        c_c_id,
+        c_m_thum,
+        c_tbno,
+        c_tbset,
+        c_content,
+        c_date,
+        c_dec
+        )values(
+        cmt_seq.NEXTVAL,
+        #{c_c_id},
+        (select m_thum from member where m_id = #{c_c_id}),
+        #{c_tbno},
+        #{c_tbset},
+        #{c_content},
+        sysdate,
+        '0'
         )
     </insert>
 

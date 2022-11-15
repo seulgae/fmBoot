@@ -85,6 +85,7 @@
         p_place=#{p_place},
         p_explain=#{p_explain},
         p_price=#{p_price},
+        i_no=#{i_no},
         p_max=#{p_max},
         p_area=#{p_area},
         p_op1=#{p_op1},

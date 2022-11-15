@@ -14,11 +14,13 @@ public interface TeamService {
 
     public List<TeamDto> searchTeam(String keyword);
 
-    public void teamUpdate(String t_no, String t_name, String t_age, String t_skill, String t_kind, String t_id);
+    public void teamUpdate(TeamDto tDto);
 
     public TeamDto selectTeam(String t_no);
 
     public List<MemberDto> findMember(String m_id);
 
+    public List<TeamDto> findTeam(String teamName);
 
+    public void deleteTeam(String t_no);
 }

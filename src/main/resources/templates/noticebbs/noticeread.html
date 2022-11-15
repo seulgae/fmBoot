@@ -2,55 +2,41 @@
 <html lang="en" xmlns:th="www.thymeleaf.org"><!-- config -->
 <th:block th:replace="fragments/config :: configFragment"></th:block><!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
-<div class="px-4 py-5 my-5 text-center" style="margin: 50px auto ; width : 1500px"><h1 style="font-size : 55px">공지
-    게시글</h1> <br/>
-    <hr>
-    <table style="width : 100%">
-        <tbody>
-        <tr>
-            <td style="font-size : 20px ">제목</td>
-            <td align="left" th:text="${notices.n_title}"/>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <hr>
-            </td>
-        </tr>
-        <tr>
-            <td style="font-size : 20px">작성자</td>
-            <td align="left" th:text="${notices.n_id}"/>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <hr>
-            </td>
-        </tr>
-        <tr>
-            <td style="font-size : 20px">작성일</td>
-            <td align="left" th:text="${notices.n_date}"/>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <hr>
-            </td>
-        </tr>
-        <tr>
-            <td style="font-size : 20px">내용</td>
-            <td align="left" th:text="${notices.n_content}"/>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <hr>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <hr>
-    <button type="button" class="btn btn-danger" style="float: right" onclick="location.href='/notice/noticehome'">목록
-    </button>
-    <button type="button" class="btn btn-danger" style="float: right"
-            th:onclick="|location.href='@{/notice/noticedelete/{no}(no=${notices.n_no})}'|">삭제
-    </button>
-</div><!-- footer -->
+
+<div id="wrap" style="width:1000px; margin: 40px auto;">
+    <div style="width:100%;">
+        <div class="title" align="left" style="margin-top: 2%;">
+            <span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
+            공지게시글 &nbsp;|&nbsp; <small>공지사항 상세페이지</small></span>
+        </div>
+        <br>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td style = "text-align: center;" width="100px">제목</td>
+                    <td>[[ ${notices.n_title} ]]</td>
+                </tr>
+                <tr>
+                    <td class="tg-0pky" colspan="2" height="300px">
+                        [[ ${notices.n_content} ]]
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: right;">
+                        <button type="button" class="btn btn-success"
+                                th:onclick="|location.href='@{/notice/noticemod/{no}(no=${notices.n_no})}'|"
+                                th:if="${m_id == 'admin'}">수정&nbsp</button>
+                        <button type="button" class="btn btn-danger"
+                                th:onclick="|location.href='@{/notice/noticedelete/{no}(no=${notices.n_no})}'|"
+                                th:if="${m_id == 'admin'}">삭제&nbsp</button>
+                        <button type="button" class="btn btn-primary"
+                                onclick="location.href='/notice/noticehome'">목록</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </html>

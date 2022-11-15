@@ -1,0 +1,26 @@
+div#wrap{
+    width: 1000px; 
+    height: 800px;
+    margin: 20px auto;
+}
+
+table#admtb{
+    width:100%; 
+    height: 100%;
+}
+
+* td{
+    height: 30px;
+    text-align: center;
+    font-size: 50px;
+}
+
+* a{
+    color: #000
+
+}
+
+* a:hover{
+    color: red;
+    border-bottom: 2px solid red;
+}
