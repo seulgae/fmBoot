@@ -2,10 +2,7 @@ package com.ucamp.fm.mapper;
 
 import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.TeamDto;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -24,8 +21,8 @@ public interface TeamMapper {
     @Select("select * from team where t_name like #{keyword}")
     public List<TeamDto> searchTeam(String keyword);
 
-    @Update("update team set t_name = #{t_name}, t_age = #{t_age}, t_skill = #{t_skill}, t_kind = #{t_kind} where t_id = #{t_id}")
-    public void teamUpdate(String t_no, String t_name, String t_age, String t_skill, String t_kind, String t_id);
+    @Update("update team set t_name = #{t_name}, t_region = #{t_region}, t_age = #{t_age}, t_skill = #{t_skill}, t_uniform = #{t_uniform}, t_kind = #{t_kind}, t_introduce = #{t_introduce} where t_no = #{t_no}")
+    public void teamUpdate(TeamDto tDto);
 
     @Select("select * from team where t_no = #{t_no}")
     public TeamDto selectTeam(String t_no);
@@ -33,4 +30,9 @@ public interface TeamMapper {
     @Select("select * from member where m_id like #{m_id} and m_level = '1'")
     public List<MemberDto> findMember(String m_id);
 
+    @Select("select * from team where t_name like #{teamName}")
+    public List<TeamDto> findTeam(String teamName);
+
+    @Delete("delete from team where t_no = #{t_no}")
+    public void deleteTeam(String t_no);
 }

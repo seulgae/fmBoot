@@ -21,6 +21,8 @@ public interface CmtMapper {
 
     void cmtinsert(String c_no, String c_c_id, String c_content);
 
+    void cmtinsert2(String c_tbset, String c_c_id, String c_content, String c_tbno);
+
     @Select("select * from cment where c_c_id=#{c_c_id}")
     CmentDto cmtone();
 

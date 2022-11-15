@@ -34,6 +34,11 @@ public class CmtServiceImpl implements CmtService{
     }
 
     @Override
+    public void cmtinsert2(String c_tbset, String c_c_id, String c_content, String c_tbno) {
+        cmtMapper.cmtinsert2(c_tbset, c_c_id, c_content, c_tbno);
+    }
+
+    @Override
     public void cmtdelete(String c_no) {
         cmtMapper.cmtdelete(c_no);
     }
