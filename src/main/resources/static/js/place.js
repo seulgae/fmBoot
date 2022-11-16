@@ -35,13 +35,13 @@ function setDate(){
                     $("#td_2").css("background-color","red");
                 }
                 if(data[i] == '16:00~18:00'){
-                    $("#td_2").css("background-color","red");
+                    $("#td_3").css("background-color","red");
                 }
                 if(data[i] == '18:00~20:00'){
-                    $("#td_2").css("background-color","red");
+                    $("#td_4").css("background-color","red");
                 }
                 if(data[i] == '20:00~22:00'){
-                    $("#td_2").css("background-color","red");
+                    $("#td_5").css("background-color","red");
                 }
             }
         }
