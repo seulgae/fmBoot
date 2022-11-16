@@ -23,4 +23,6 @@ public interface TeamService {
     public List<TeamDto> findTeam(String teamName);
 
     public void deleteTeam(String t_no);
+
+    public void addTeamPhoto(TeamDto tDto);
 }
