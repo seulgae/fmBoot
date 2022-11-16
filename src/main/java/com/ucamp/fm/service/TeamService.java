@@ -25,4 +25,8 @@ public interface TeamService {
     public void deleteTeam(String t_no);
 
     public void addTeamPhoto(TeamDto tDto);
+
+    void insertMember(String str_member,String t_no);
+
+    String getMember(String t_no);
 }

@@ -9,20 +9,28 @@
 <!-- team -->
 <th:block th:replace="fragments/config :: configFragment"></th:block>
 <script src="/js/team.js"></script>
-<div>
+<div style="text-align:center;">
     <input type="text" id="findMember" placeholder="멤버아이디">
-    <input type="button" class="btn btn-dark" id="btnFind" value="검색">
+    <input type="button" class="btn btn-primary" id="btnFind" value="검색">
 </div>
     <div id="memberList"></div>
-    <div id="addMemberList">
-        <table class="table">
+    <div id="addMemberList" style="display:none;">
+        <table class="table table-bordered">
             <thead>
-            <th colspan="2">팀원 아이디</th>
+            <th colspan="2" style="text-align:center;">팀원 아이디</th>
             </thead>
             <tbody id="table_add">
-
             </tbody>
+            <tr>
+                <td colspan="2" style="text-align:center;">
+                    <input type="button" class="btn btn-success" value="등록" size="30" onclick="insertTeam()">
+                </td>
+            </tr>
         </table>
     </div>
+    <form action="/teammanage/insertMember" method="post" id="frmAddMember">
+        <input type="hidden" name="str_member" id="str_member">
+        <input type="hidden" name="t_no" id="t_no" th:value="${t_no}">
+    </form>
 </body>
 </html>
