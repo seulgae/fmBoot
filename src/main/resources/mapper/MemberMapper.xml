@@ -100,16 +100,16 @@
 
     <update id="Information_update_do" parameterType="com.ucamp.fm.dto.MemberDto">
         update member SET
-        m_pw=#{m_pw},
-        m_name=#{m_name},
-        m_phone=#{m_phone},
-        m_email=#{m_email},
-        m_zip=#{m_zip},
-        m_addr1=#{m_addr1},
-        m_addr2=#{m_addr2},
-        m_pname=#{m_pname},
-        m_bank=#{m_bank},
-        m_account=#{m_account}
+        m_pw=#{m_pw, jdbcType=VARCHAR},
+        m_name=#{m_name, jdbcType=VARCHAR},
+        m_phone=#{m_phone, jdbcType=VARCHAR},
+        m_email=#{m_email, jdbcType=VARCHAR},
+        m_zip=#{m_zip, jdbcType=VARCHAR},
+        m_addr1=#{m_addr1, jdbcType=VARCHAR},
+        m_addr2=#{m_addr2, jdbcType=VARCHAR},
+        m_pname=#{m_pname, jdbcType=VARCHAR},
+        m_bank=#{m_bank, jdbcType=VARCHAR},
+        m_account=#{m_account, jdbcType=VARCHAR}
         where m_id=#{m_id}
     </update>
 
