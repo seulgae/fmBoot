@@ -27,13 +27,13 @@
     </thead>
     <tbody>
     <tr>
-      <td colspan="7" align="center" height="150">
-        <img th:src="${firstImg}" id="mainImg" width="300" height="150"/>
+      <td colspan="7" align="center" style="width:100%; height:300px;">
+        <img th:src="${firstImg}" id="mainImg" style="width:100%; height:100%;" />
       </td>
     </tr>
     <tr>
       <td th:each="img : ${arrImg}">
-        <a th:href="|javascript:mainImg('${img}')|"><img th:src="${img}" width="140px" height="140px"/></a>
+        <a th:href="|javascript:mainImg('${img}')|"><img th:src="${img}" style="width:400px; height:100px;"/></a>
       </td>
     </tr>
     </tbody>
