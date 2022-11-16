@@ -29,6 +29,5 @@ public interface BlogMapper {
             "tb_title = #{tb_title}, " +
             "tb_content=#{tb_content}, " +
             "tb_thum=#{tb_thum} WHERE tb_no = #{tb_no}")
-
     void blogupdate(BlogDto blogDto);
 }
