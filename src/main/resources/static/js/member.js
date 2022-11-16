@@ -193,11 +193,11 @@ $(function(){
             }
 
             if($("#mFlag").val()=="1"){
-                if($("#m_pname").val() == ""){
-                    alert("구장명을 입력해주세요.");
-                    $("#m_pname").focus();
-                    return false;
-                }
+//                if($("#m_pname").val() == ""){
+//                    alert("구장명을 입력해주세요.");
+//                    $("#m_pname").focus();
+//                    return false;
+//                }
                 if($("#m_bank").val() == ""){
                     alert("은행명을 입력해주세요.");
                     $("#m_bank").focus();
