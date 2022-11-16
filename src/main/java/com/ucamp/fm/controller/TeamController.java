@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -78,7 +79,13 @@ public class TeamController {
         } else {
             rate = (int)rate1;
         }
+        ArrayList<String> memberList = new ArrayList<>();
+        String[] mem =  teamService.getMember(t_no).split(" ");
+        for(int i = 0; i < mem.length; i++){
+            memberList.add(mem[i]);
+        }
 
+        model.addAttribute("memberList",memberList);
         model.addAttribute("team", teamService.selectTeam(t_no));
         model.addAttribute("all", all);
         model.addAttribute("win", win);
@@ -122,12 +129,12 @@ public class TeamController {
         for(TeamDto t : tDto) {
             str += "<li value='"+t.getT_no()+"' onclick='find(\""+t.getT_name()+"\",\""+t.getT_no()+"\")'> "+t.getT_name() + "</li>";
         }
-
         return str;
     }
 
     @RequestMapping("/addmember")
-    public  String addMember(){
+    public  String addMember(String t_no,Model model){
+        model.addAttribute("t_no",t_no);
         return "/team/addmember";
     }
 
@@ -171,5 +178,12 @@ public class TeamController {
         teamService.addTeamPhoto(new TeamDto(t_no, t_thum.getOriginalFilename()));
 
         return "<script>window.opener.location.reload(); window.close();</script>";
+    }
+
+    @RequestMapping("/insertMember")
+    @ResponseBody
+    public String insertMember(String str_member,String t_no){
+        teamService.insertMember(str_member,t_no);
+        return "<script>alert('등록이 완료되었습니다.');window.opener.location.reload(); window.close();</script>";
     }
 }
