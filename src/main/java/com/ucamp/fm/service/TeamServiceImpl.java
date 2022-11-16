@@ -63,4 +63,16 @@ public class TeamServiceImpl implements TeamService {
     public void addTeamPhoto(TeamDto tDto) {
         teamMapper.addTeamPhoto(tDto);
     }
+
+    @Override
+    public void insertMember(String str_member, String t_no) {
+        teamMapper.insertMember(str_member,t_no);
+    }
+
+    @Override
+    public String getMember(String t_no) {
+        return teamMapper.getMember(t_no);
+    }
+
+
 }

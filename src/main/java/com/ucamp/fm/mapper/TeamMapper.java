@@ -38,4 +38,10 @@ public interface TeamMapper {
 
     @Update("update team set t_thum = #{t_thum} where t_no = #{t_no}")
     public void addTeamPhoto(TeamDto tDto);
+
+    @Update("update team set m_id=#{str_member} where t_no=#{t_no}")
+    public void insertMember(String str_member,String t_no);
+
+    @Select("select m_id from team where t_no=#{t_no}")
+    public String getMember(String t_no);
 }
