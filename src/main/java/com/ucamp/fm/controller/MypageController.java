@@ -204,6 +204,7 @@ public class MypageController {
             return "member/addphoto";
         }
     }
+
     //사진 추가
     @RequestMapping("/addphoto.do")
     @ResponseBody
@@ -245,7 +246,7 @@ public class MypageController {
         String m_id = (String) request.getSession().getAttribute("m_id");
 
 
-        System.out.println(memberDto);
+//        System.out.println(memberDto);
         memberService.Information_update_do(memberDto);
 
         return "redirect:/mypage/mypage";

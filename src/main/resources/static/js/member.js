@@ -21,12 +21,12 @@ $(function(){
 			let uIdReg = /[^a-z|A-Z|0-9|_]/;
 
 			if (uIdLen < 5) {
-				$("#idCheck").html("ID는 영어, 숫자, 특수기호(_), 5글자 이상 20글자 이하");
+				$("#idCheck").html("영어, 숫자, 특수기호(_)만 사용가능, 5글자 이상 20글자 이하");
 				$("#m_id").focus();
 				$("#idCheck").css("color","red");
 				return false;
 			} else if(uIdReg.test(m_id)) {
-				$("#idCheck").html("ID는 영어, 숫자, 특수기호(_), 5글자 이상 20글자 이하");
+				$("#idCheck").html("영어, 숫자, 특수기호(_)만 사용가능, 5글자 이상 20글자 이하");
 				$("#m_id").focus();
 				$("#idCheck").css("color","red");
 				return false;
@@ -98,9 +98,9 @@ $(function(){
         	else if (this.value == '2') {
         		$(".userchk").css('display', 'none');
         		$(".manager").css('display', 'inline-block');
-                $("#m_zip").attr("placeholder","구장 우편번호를 입력해주세요.");
-                $("#m_addr1").attr("placeholder","구장 주소를 입력해주세요.");
-                $("#m_addr2").attr("placeholder","구장 상세주소를 입력해주세요.");
+                $("#m_zip").attr("placeholder","우편번호를 입력해주세요.");
+                $("#m_addr1").attr("placeholder","주소를 입력해주세요.");
+                $("#m_addr2").attr("placeholder","상세주소를 입력해주세요.");
                 $("#mFlag").val("1");
         	}
         });
@@ -193,11 +193,11 @@ $(function(){
             }
 
             if($("#mFlag").val()=="1"){
-                if($("#m_pname").val() == ""){
-                    alert("구장명을 입력해주세요.");
-                    $("#m_pname").focus();
-                    return false;
-                }
+//                if($("#m_pname").val() == ""){
+//                    alert("구장명을 입력해주세요.");
+//                    $("#m_pname").focus();
+//                    return false;
+//                }
                 if($("#m_bank").val() == ""){
                     alert("은행명을 입력해주세요.");
                     $("#m_bank").focus();
