@@ -52,10 +52,10 @@
                         <!-- 자기 글이라면 버튼 나타나도록 조건줌 -->
                         <button type="button" class="btn btn-secondary" style="float: right; margin: 0px 0px 0px 5px;" onClick="history.go(-1)">취소</button>
                         <button type="button" class="btn btn-danger" style="float: right; margin: 0px 0px 0px 5px;" th:if="${blog.tb_id.equals(m_id)}">
-                            <a th:href="|/blog/blogdelete/${blog.tb_no}|" style="color:#fff;">삭제</a>
+                            <a th:tb_no="${blog.tb_no}" th:onclick="del(this.getAttribute('tb_no'))" style="color:#fff;">삭제</a>
                         </button>
                         <button type="button" class="btn btn-danger" style="float: right; margin: 0px 0px 0px 5px;" th:if="${m_id.equals('admin')}">
-                            <a th:href="|/blog/blogdelete/${blog.tb_no}|" style="color:#fff;">삭제</a>
+                            <a th:tb_no="${blog.tb_no}" th:onclick="del(this.getAttribute('tb_no'))" style="color:#fff;">삭제</a>
                         </button>
                         <button type="button" class="btn btn-success" style="float: right;" th:if="${blog.tb_id.equals(m_id)}">
                             <a th:href="|/blog/blogmod/${blog.tb_no}|" style="color:#fff;">수정</a>
@@ -93,6 +93,13 @@ $(function(){
           }
   });
 })
+function del(tb_no){
+    if(confirm("삭제 하시겠습니까?")){
+        location.href='/blog/blogdelete/'+tb_no;
+    }else{
+        return false;
+    }
+}
 </script>
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>

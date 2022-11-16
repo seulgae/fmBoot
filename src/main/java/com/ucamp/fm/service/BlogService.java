@@ -20,4 +20,6 @@ public interface BlogService {
 
     void blogupdate(BlogDto blogDto);
 
+    String getFile(String tb_no);
+
 }

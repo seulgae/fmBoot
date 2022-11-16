@@ -46,5 +46,10 @@ public class BlogServiceImpl implements BlogService{
         blogMapper.blogupdate(blogDto);
     }
 
+    @Override
+    public String getFile(String tb_no) {
+        return blogMapper.getFile(tb_no);
+    }
+
 
 }

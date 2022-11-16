@@ -126,6 +126,9 @@
             <button class="btn btn-dark" id="deletebtn">팀 삭제</button>
             <input type="hidden" id="loginCheck" th:value="${session.m_id}">
         </div>
+        <div align="left" th:if="${session.m_id}=='admin'" >
+            <button class="btn btn-dark" id="deletebtn">팀 삭제</button>
+        </div>
     </div>
 </div>
 <div id="blogcmt2"></div>
