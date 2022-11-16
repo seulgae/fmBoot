@@ -126,7 +126,7 @@ public class BlogController {
                              @RequestParam("tb_content") String tb_content) throws
             IllegalStateException, IOException {
 
-        String PATH = req.getSession().getServletContext().getRealPath("/") + "uploadImg\\blog\\";
+        String PATH = req.getSession().getServletContext().getRealPath("/") + "uploadImg/blog/";
 
         // 프로젝트 내 webapp 폴더를 찾아줌, webapp 폴더 없을 경우 appdate안의 톰캣 캐시 임시저장 폴더에 저장시킴.
         // transferTo : 파일 데이터를 지정한 file로 저장
@@ -177,13 +177,15 @@ public class BlogController {
                            @RequestParam("tb_content") String tb_content) throws
             IllegalStateException, IOException {
 
-        String PATH = req.getSession().getServletContext().getRealPath("/") + "uploadImg\\blog\\";
+        String PATH = req.getSession().getServletContext().getRealPath("/") + "uploadImg/blog/";
 
         if (!tb_thum.getOriginalFilename().isEmpty()) {
             tb_thum.transferTo(new File(PATH + tb_thum.getOriginalFilename()));
+            blogService.blogupdate(new BlogDto(tb_no, tb_id, tb_title, tb_content, tb_thum.getOriginalFilename()));
+        }else{
+            blogService.blogupdate(new BlogDto(tb_no, tb_id, tb_title, tb_content, blogService.getFile(tb_no)));
         }
 
-        blogService.blogupdate(new BlogDto(tb_no, tb_id, tb_title, tb_content, tb_thum.getOriginalFilename()));
 
         return "redirect:/blog/bloglist";
     }
