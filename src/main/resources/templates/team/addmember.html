@@ -9,20 +9,13 @@
 <!-- team -->
 <th:block th:replace="fragments/config :: configFragment"></th:block>
 <script src="/js/team.js"></script>
-
+<div>
     <input type="text" id="findMember" placeholder="멤버아이디">
-    <input type="button" id="btnFind" value="검색">
+    <input type="button" class="btn btn-dark" id="btnFind" value="검색">
+</div>
     <div id="memberList"></div>
     <div id="addMemberList">
-        <table border="1">
-            <thead>
-            <th>팀원 아이디</th>
-            <th>삭제</th>
-            </thead>
-            <tbody id="table_add">
 
-            </tbody>
-        </table>
     </div>
 </body>
 </html>

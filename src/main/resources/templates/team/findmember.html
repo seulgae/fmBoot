@@ -1,15 +1,15 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 
 <script src="/js/team.js"></script>
-<table>
-    <thead border="1">
+<table class="table table-bordered">
+    <thead>
         <th>아이디</th>
         <th>선택</th>
     </thead>
     <tbody>
-        <tr  th:each="member : ${findMem}">
+        <tr th:each="member : ${findMem}">
             <td th:text="${member.m_id}"></td>
-            <td><input type="button" id="btnMem" value="추가" th:m_id="${member.m_id}" th:onclick="add(this.getAttribute('m_id'))"></td>
+            <td><input type="button" class="btn btn-dark" id="btnMem" value="추가" th:m_id="${member.m_id}" th:onclick="add(this.getAttribute('m_id'))"></td>
         </tr>
     </tbody>
 </table>

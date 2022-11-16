@@ -35,4 +35,7 @@ public interface TeamMapper {
 
     @Delete("delete from team where t_no = #{t_no}")
     public void deleteTeam(String t_no);
+
+    @Update("update team set t_thum = #{t_thum} where t_no = #{t_no}")
+    public void addTeamPhoto(TeamDto tDto);
 }

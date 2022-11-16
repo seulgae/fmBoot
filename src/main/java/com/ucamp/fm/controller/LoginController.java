@@ -1,13 +1,10 @@
 package com.ucamp.fm.controller;
 
 import com.ucamp.fm.dto.MemberDto;
-import com.ucamp.fm.dto.PlaceDto;
 import com.ucamp.fm.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

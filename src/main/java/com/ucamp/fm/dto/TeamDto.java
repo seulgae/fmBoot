@@ -21,4 +21,10 @@ public class TeamDto {
     private String t_kind;
     private String t_introduce;
     private String m_id;
+    private String t_thum;
+
+    public TeamDto(String t_no, String t_thum) {
+        this.t_no = t_no;
+        this.t_thum = t_thum;
+    }
 }

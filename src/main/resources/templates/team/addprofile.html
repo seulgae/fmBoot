@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<div>
+  <form action="/teammanage/addprofile" method="post" enctype="multipart/form-data">
+    <table class="table">
+      <tr>
+        <td><span class="loginlogo" style="font-size: 40px; font-weight: bold; margin: 25px 10px 0px 0px; color: red;">FM</span></td>
+        <td class="align-middle"><span style="font-size: 20px; font-weight: bold; text-align: center;">프로필 선택</span></td>
+      </tr>
+      <tr><td colspan="2"><hr></td></tr>
+      <tr>
+        <td><span style="font-size:15px; font-color:#808080;">대표 이미지</span>
+            <span style="font-size:15px; color:red;">(180 * 180)</span></td>
+      </tr>
+      <tr><td colspan="2"><hr></td></tr>
+      <tr>
+        <td><input type="file" name="t_thum" multiple="multiple"></td>
+        <td><input type="submit" value="제출"/></td>
+        <input type="hidden" name="t_no" th:value="${team.t_no}">
+      </tr>
+    </table>
+  </form>
+</div>
+</html>

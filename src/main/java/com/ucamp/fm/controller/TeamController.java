@@ -1,6 +1,7 @@
 package com.ucamp.fm.controller;
 
 import com.ucamp.fm.dto.GmatchDto;
+import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.TeamDto;
 import com.ucamp.fm.service.GmatchServiceImpl;
 import com.ucamp.fm.service.TeamServiceImpl;
@@ -8,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -130,6 +134,7 @@ public class TeamController {
     @RequestMapping("/findMember")
     public String findMember(String m_id, Model model){
         model.addAttribute("findMem",teamService.findMember("%"+m_id+"%"));
+
         return "/team/findmember";
     }
 
@@ -137,6 +142,33 @@ public class TeamController {
     @ResponseBody
     public String gmatchinsert(GmatchDto gDto) {
         gmatchService.gmatchInsert(gDto);
+
+        return "<script>window.opener.location.reload(); window.close();</script>";
+    }
+
+    @RequestMapping("/teamprofile")
+    public String teamprofile(Model model, String t_no) {
+        model.addAttribute("team", teamService.selectTeam(t_no));
+
+        return "team/addprofile";
+    }
+
+    @RequestMapping("/addprofile")
+    @ResponseBody
+    public String addprofile(HttpServletRequest request, @RequestParam("t_thum") MultipartFile t_thum, String t_no) throws IllegalStateException, IOException {
+        String t_id = (String) request.getSession().getAttribute("m_id");
+
+        String PATH = request.getSession().getServletContext().getRealPath("/") + "uploadImg/teamProfileImg/";
+
+        // 프로젝트 내 webapp 폴더를 찾아줌, webapp 폴더 없을 경우 appdate안의 톰캣 캐시 임시저장 폴더에 저장시킴
+        // transferTo : 파일 데이터를 지정한 file로 저장
+        // getOriginalFilename : 클라이언트의 원본 파일명 반환
+
+        if (!t_thum.getOriginalFilename().isEmpty()) {
+            t_thum.transferTo(new File(PATH + t_thum.getOriginalFilename()));
+        }
+
+        teamService.addTeamPhoto(new TeamDto(t_no, t_thum.getOriginalFilename()));
 
         return "<script>window.opener.location.reload(); window.close();</script>";
     }

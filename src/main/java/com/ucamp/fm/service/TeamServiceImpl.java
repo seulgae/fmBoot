@@ -58,4 +58,9 @@ public class TeamServiceImpl implements TeamService {
     public void deleteTeam(String t_no) {
         teamMapper.deleteTeam(t_no);
     }
+
+    @Override
+    public void addTeamPhoto(TeamDto tDto) {
+        teamMapper.addTeamPhoto(tDto);
+    }
 }

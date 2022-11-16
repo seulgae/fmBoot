@@ -12,17 +12,17 @@
 <link rel="stylesheet" type="text/css" href="/css/placelist.css">
 <body>
 <div style="width: 100%; height: 100%; margin: 20px auto;">
+    <form action="/payment/placelist">
     <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
     <div style="padding-top: 20px; margin:20px auto; width:1000px;">
       <span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
             예약 가능 구장 &nbsp;|&nbsp; <small>FM그라운드 제휴 구장</small></span><br>
         <hr style="width: 1000px;">
         <div action="" style=" justify-content: space-between; display:flex;">
-            <div id="current_date" style="font-weight: bold; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; margin-right: 626px;"></div>
-            <form action="/payment/placelist">
+            <div id="current_date" style="font-weight: bold; font-size: 20px;
+            font-family: 'Noto Sans KR', sans-serif; margin-right: 626px;"></div>
                 <input type="text" name="keyword" placeholder="구장명 검색" style="width: 150px; height: 32px;">
                 <input class="btn btn-dark" type="submit" value="검색">
-            </form>
         </div>
     </div>
 
@@ -74,19 +74,35 @@
                         location.href="/payment/placeread?p_no="+p_no;
                     }
                 </script>
-                <div><button class="btn btn-dark" id="btnReservation" style="width:98.7%; height:100%;" th:p_no="${list.p_no}" th:onclick="read(this.getAttribute('p_no'))">예약</button></div>
+                <div>
+                    <!-- submit 기능을 막기 위한 type = "button"-->
+                    <button type="button" class="btn btn-dark" id="btnReservation"
+                            style="width:98.7%; height:100%;" th:p_no="${list.p_no}"
+                             th:onclick="read(this.getAttribute('p_no'))">예약</button>
+                </div>
             </div>
         </div>
     </th:block>
-    <form action="/payment/placelist">
+
+    <div style="width:1000px; height:35px; margin:20px auto;">
+        <!-- 더보기 페이징 -->
         <input type="hidden" name="pageAdd" th:value="5">
-        <button class="btn btn-dark" style="width:98.7%; height:100%;">더보기</button>
+        <input type="submit" class="btn btn-dark" style="width:100%; height:100%;" value="더보기"/>
+    </div>
     </form>
-</form>
-    <!-- 페이징 요소 작업 예정-->
-</div>
+    </div>
 </div>
 <!-- div#wrap -->
+<script>
+    function info_chk() {
+        return true;
+    }
+    function info_chk2(frm) {
+        frm.action='http://www.test.co.kr/test2/event_ok.php';
+        frm.submit();
+        return true;
+    }
+</script>
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
