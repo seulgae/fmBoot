@@ -204,6 +204,7 @@ public class MypageController {
             return "member/addphoto";
         }
     }
+
     //사진 추가
     @RequestMapping("/addphoto.do")
     @ResponseBody

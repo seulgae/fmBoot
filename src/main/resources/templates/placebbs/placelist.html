@@ -30,7 +30,7 @@
     <th:block th:each="list ,s : ${lists}">
         <div style="border:1px solid #c8c8c8; margin: 20px auto; justify-content: space-between; display:flex; width:1000px">
             <div>
-                <img th:src="${list.mainImg}" style="width:302px; height:181px;"/> <br>
+                <img th:src="${list.mainImg}" style="width:302px; height:181px;" onerror="this.parentNode.style.display='none'"/> <br>
                 <div style="padding: 5px 10px; text-align: center; background-color: black;"><span style="font-size: 15px; color: white;">[[${list.p_pname}]]</span>
                 </div>
             </div>

@@ -30,13 +30,16 @@
             <tr th:each="blog : ${blogs}" id="bolglist">
                 <td class="text-center" width="250px">
                     <a th:href="|/blog/blogread/${blog.tb_no}|">
-                    <img th:src="|/uploadImg/blog/${blog.tb_thum}|" width="200px" height="150px">
+                    <img th:src="|/uploadImg/blog/${blog.tb_thum}|"
+                         onerror="this.parentNode.style.display='none'" width="200px" height="150px">
                     </a>
                 </td>
                 <td class="text-left">
                     <a th:href="|/blog/blogread/${blog.tb_no}|">
                         <span class="title" th:text="${blog.tb_title}" style="font-weight:bold; font-size:20px"></span>
-                        <span class="content" th:utext="${blog.tb_content}"></span>
+                        <div id="imgdisplay" onerror="this.parentNode.style.display='none'" style="height:150px; overflow:hidden;">
+                            <span class="content" th:utext="${blog.tb_content}"></span>
+                        </div>
                     </a>
                 </td>
             </tr>
