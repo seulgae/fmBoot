@@ -20,9 +20,6 @@ public class NoticeController {
 
     @GetMapping("/noticehome")
     public String noticeList(Model model, HttpSession session) {
-//        if(m_id == null){
-//            m_id =
-//        }
         String m_id = (String) session.getAttribute("m_id");
         model.addAttribute("m_id",m_id);
         model.addAttribute("notices", noticeService.noticelist());
