@@ -7,6 +7,7 @@ import groovy.util.logging.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,9 @@ public class MypageController {
 
     @Autowired
     PlaceService placeService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @RequestMapping("/mypage")
     public String mypage (HttpServletRequest request, Model model) {
@@ -104,8 +108,6 @@ public class MypageController {
         }
 
         placeDto.setI_no(str);
-        System.out.println(str);
-        System.out.println(placeDto.getI_no());
 
         memberService.mypage_request(placeDto);
 
@@ -141,6 +143,9 @@ public class MypageController {
 
         String str = "";
         for(MultipartFile file : uploadfile){
+            if(file.isEmpty()){
+                break;
+            }
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss"));
 
@@ -152,7 +157,9 @@ public class MypageController {
             String seq = placeService.getSeq();
             str += seq + " ";
         }
-
+        if(str==""){
+            str = placeService.getI_no(placeDto.getP_no());
+        }
         placeDto.setI_no(str);
         if(placeDto.getP_op1() == null){
             placeDto.setP_op1("0");
@@ -244,9 +251,8 @@ public class MypageController {
     @RequestMapping("/Information_update.do")
     public String Information_update_do(HttpServletRequest request, MemberDto memberDto) {
         String m_id = (String) request.getSession().getAttribute("m_id");
+        memberDto.setM_pw(passwordEncoder.encode(memberDto.getM_pw()));
 
-
-//        System.out.println(memberDto);
         memberService.Information_update_do(memberDto);
 
         return "redirect:/mypage/mypage";

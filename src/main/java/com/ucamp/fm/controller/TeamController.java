@@ -81,7 +81,6 @@ public class TeamController {
         }
         ArrayList<String> memberList = new ArrayList<>();
         String m = teamService.getMember(t_no);
-        //System.out.println(m);
         if(m != null) {
             String[] mem =  m.split(" ");
             for(int i = 0; i < mem.length; i++){

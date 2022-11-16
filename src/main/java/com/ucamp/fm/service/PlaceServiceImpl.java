@@ -26,5 +26,10 @@ public class PlaceServiceImpl implements PlaceService{
         return pMapper.getFname(i_no);
     }
 
+    @Override
+    public String getI_no(String p_no) {
+        return pMapper.getI_no(p_no);
+    }
+
 
 }

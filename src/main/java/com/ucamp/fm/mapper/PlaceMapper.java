@@ -13,4 +13,7 @@ public interface PlaceMapper {
     @Select("select i_fname from image where i_no = #{i_no}")
     public String getFname(String i_no);
 
+    @Select("select i_no from place where p_no = #{p_no}")
+    String getI_no(String p_no);
+
 }
