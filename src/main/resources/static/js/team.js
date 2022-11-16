@@ -28,10 +28,10 @@ function add(m_id){
     var str = "";
     arr.push(m_id);
     str += "<tr id='tr_"+m_id+"'>";
-    str += "<td >";
+    str += "<td style='text-align: center'>";
     str += m_id;
     str += "</td>";
-    str += "<td>";
+    str += "<td style='text-align: center'>";
     str += "<input type='button' value='삭제' class='btn btn-danger' onclick=\"deleteMem(\'"+m_id+"\')\">";
     str += "</td>";
     str += "</tr>";
