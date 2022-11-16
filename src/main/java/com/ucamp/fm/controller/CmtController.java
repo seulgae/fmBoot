@@ -56,15 +56,38 @@ public class CmtController {
 
         return "cmtbbs/blogcmt";
     }
-    
-    // 신고 버튼 동작
+
+    @GetMapping("/blogtcmt")
+    public String blogtcmt(HttpSession session, HttpServletRequest req, String c_tbset, Model model){
+        String m_id = (String) session.getAttribute("m_id");
+
+        // 안주면 th:if 사용불가..
+        if(m_id==null){
+            m_id = "";
+        }
+
+        model.addAttribute("m_id", m_id);
+
+        model.addAttribute("cments", cmtService.tlist(c_tbset));
+
+        return "cmtbbs/blogtcmt";
+    }
+
+    // 신고 버튼 동작, 댓글 신고 카운트 증가.
     @RequestMapping("/dec/{c_no}")
     public String dec(@PathVariable int c_no,
-                      Model model,
-                      CmentDto cmentDto){
-        cmtService.cmtdec(c_no);
+                      HttpServletRequest req,
+                      HttpSession session){
+        String m_id = (String) session.getAttribute("m_id");
+        String referer = req.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
 
-        return "redirect:/cmt/cmtlistdec";
+        if (!(m_id == null)) {
+            cmtService.cmtdec(c_no);
+            return "redirect:" + referer;
+        }else {
+            // 로그인 폼으로 이동.
+            return "redirect:/login/login";
+        }
     }
     
 
@@ -96,7 +119,6 @@ public class CmtController {
                            @RequestParam(value = "c_content") String c_content, String c_tbno, String c_tbset) {
         String m_id = (String) session.getAttribute("m_id");
         String referer = req.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
-
 
         if(c_content == null){
             c_content = "";

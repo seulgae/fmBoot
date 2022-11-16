@@ -9,6 +9,11 @@ import javax.annotation.security.DenyAll;
 
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
 public class TeamDto {
+    public TeamDto(String t_no, String t_thum) {
+        this.t_no = t_no;
+        this.t_thum = t_thum;
+    }
+
     private String t_no;
     private String t_date;
     private String t_id;
@@ -21,4 +26,5 @@ public class TeamDto {
     private String t_kind;
     private String t_introduce;
     private String m_id;
+    private String t_thum;
 }

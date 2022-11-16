@@ -34,13 +34,13 @@
         )
     </insert>
 
-    <!--<select id="tlist" parameterType="String"
+    <select id="tlist" parameterType="String"
             resultType="com.ucamp.fm.dto.CmentDto">
         select * from cment
         where c_tbno = 'team'
         and   c_tbset = #{c_tbset}
         order by c_no desc
-    </select>-->
+    </select>
 
     <insert id="cmtinsert2" parameterType="com.ucamp.fm.dto.CmentDto">
         insert into cment(

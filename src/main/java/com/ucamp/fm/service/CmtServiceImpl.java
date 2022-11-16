@@ -24,6 +24,9 @@ public class CmtServiceImpl implements CmtService{
     }
 
     @Override
+    public List<CmentDto> tlist(String c_tbset) { return cmtMapper.tlist(c_tbset); }
+
+    @Override
     public void cmtdec(int c_no) {
         cmtMapper.cmtdec(c_no);
     }

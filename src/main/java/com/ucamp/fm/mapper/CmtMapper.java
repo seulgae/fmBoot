@@ -13,6 +13,8 @@ public interface CmtMapper {
     // 팀 블로그 댓글만 조회함.
     List<CmentDto> cmtlist(String c_no);
 
+    List<CmentDto> tlist(String c_tbset);
+
     @Select("select * from cment where c_dec > 0")
     List<CmentDto> cmtlistdec(CmentDto cmentDto);
 
