@@ -9,4 +9,6 @@ public interface PlaceService {
 
     public String getFname(String i_no);
 
+    String getI_no(String p_no);
+
 }

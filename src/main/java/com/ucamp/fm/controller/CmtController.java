@@ -132,7 +132,6 @@ public class CmtController {
         model.addAttribute("m_id", m_id);
 
         String referer = req.getHeader("Referer");
-        System.out.println(referer);
 
         if (!(m_id == null)) {
             model.addAttribute("c_no", c_no);

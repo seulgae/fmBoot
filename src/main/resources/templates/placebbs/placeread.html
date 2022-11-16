@@ -38,7 +38,7 @@
     </tr>
     </tbody>
   </table>
-<script>
+  <script>
   function mainImg(img){
     $("#mainImg").attr("src",img);
   }
@@ -72,7 +72,7 @@
           <tr>
             <td>
               <th:block th:if="${place.p_op1.equals('1')}">
-              <img src="/images/placeimg/parking_on.png" name="parking" width="140px" height="140px"/>
+                <img src="/images/placeimg/parking_on.png" name="parking" width="140px" height="140px"/>
               </th:block>
               <th:block th:if="${place.p_op1.equals('0')}">
                 <img src="/images/placeimg/parking_on.png" name="parking" width="140px" height="140px" style="opacity : 0.2;"/>
@@ -80,7 +80,7 @@
             </td>
             <td>
               <th:block th:if="${place.p_op2.equals('1')}">
-              <img src="/images/placeimg/airconditioning_on.png" width="140px" height="140px"/>
+                <img src="/images/placeimg/airconditioning_on.png" width="140px" height="140px"/>
               </th:block>
               <th:block th:if="${place.p_op2.equals('0')}">
                 <img src="/images/placeimg/airconditioning_on.png" width="140px" height="140px" style="opacity : 0.2;"/>
@@ -88,7 +88,7 @@
             </td>
             <td>
               <th:block th:if="${place.p_op3.equals('1')}">
-              <img src="/images/placeimg/ball_on.png" width="140px" height="140px"/>
+                <img src="/images/placeimg/ball_on.png" width="140px" height="140px"/>
               </th:block>
               <th:block th:if="${place.p_op3.equals('0')}">
                 <img src="/images/placeimg/ball_on.png" width="140px" height="140px" style="opacity : 0.2;"/>
@@ -98,7 +98,7 @@
           <tr>
             <td>
               <th:block th:if="${place.p_op4.equals('1')}">
-              <img src="/images/placeimg/vest_on.png" width="140px" height="140px"/>
+                <img src="/images/placeimg/vest_on.png" width="140px" height="140px"/>
               </th:block>
               <th:block th:if="${place.p_op4.equals('0')}">
                 <img src="/images/placeimg/vest_on.png" width="140px" height="140px" style="opacity : 0.2;"/>
@@ -106,7 +106,7 @@
             </td>
             <td>
               <th:block th:if="${place.p_op5.equals('1')}">
-              <img src="/images/placeimg/shoes_on.png" width="140px" height="140px"/>
+                <img src="/images/placeimg/shoes_on.png" width="140px" height="140px"/>
               </th:block>
               <th:block th:if="${place.p_op5.equals('0')}">
                 <img src="/images/placeimg/shoes_on.png" width="140px" height="140px" style="opacity : 0.2;"/>
@@ -114,7 +114,7 @@
             </td>
             <td>
               <th:block th:if="${place.p_op6.equals('1')}">
-              <img src="/images/placeimg/shower_on.png" width="140px" height="140px"/>
+                <img src="/images/placeimg/shower_on.png" width="140px" height="140px"/>
               </th:block>
               <th:block th:if="${place.p_op6.equals('0')}">
                 <img src="/images/placeimg/shower_on.png" width="140px" height="140px" style="opacity : 0.2;"/>
@@ -184,25 +184,25 @@
   <div id="placeContent">
     <table>
       <tbody>
-        <tr>
-          <td>
-            <hr style="width:1000px;">
-            <h3>이용안내</h3>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div id="div_explain"></div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <hr style="width:1000px;">
-            <h3>이용규칙</h3>
-          </td>
-        </tr>
-        <tr>
-          <td>
+      <tr>
+        <td>
+          <hr style="width:100%;">
+          <h3>이용안내</h3>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="div_explain"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <hr style="width:100%;">
+          <h3>이용규칙</h3>
+        </td>
+      </tr>
+      <tr>
+        <td>
             <pre>
 ■ 풋살장 예약시간 준수
 
@@ -220,64 +220,64 @@
 
 ■ 위 내용을 지키지 않아 발생하는 문제는 예약자 본인에기 있습니다.
             </pre>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <hr style="width:1000px;">
-            <h3>환불 규정</h3>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div id="infoBodyRight3" class="col-xs-12 ">
-              <div id="payRuleContainer">
-                <hr>
-                <h4 style="margin: 30px 0;display: block;">
-                  ※ 규정 외 요청은 적용이 불가합니다. 예약 전 반드시 확인해 주시기 바랍니다.
-                </h4>
-                <hr>
-                <pre>■ 환불은 예약 날짜를 기준으로만 적용합니다. (예약 시간으로는 적용되지 않습니다)	<style type="text/css">
-	.tg  {border-collapse:collapse;border-spacing:0;margin: -10px 0;}
-	.tg td{border-color:black;border-style:solid;border-width:1px;font-size:14px;
-		overflow:hidden;padding:10px 5px;word-break:normal;}
-	.tg th{border-color:black;border-style:solid;border-width:1px;font-size:14px;
-		font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-	.tg .tg-cey4{border-color:inherit;font-size:15px;text-align:left;vertical-align:top;border: none;}
-	.tg .tg-60uc{border-color:inherit;font-size:15px;text-align:left;vertical-align:top;border: none;}
-	.tg .tg-gmla{border-color:inherit;font-size:15px;text-align:center;vertical-align:top}
-	.tg .tg-nej2{background-color:#d6d6d6;border-color:inherit;font-size:15px;font-weight:bold;text-align:center;vertical-align:top}
-	</style>
-	<table class="tg" style="undefined;table-layout: fixed; width: 600px">
-	<colgroup>
-	<col style="width: 100px">
-	<col style="width: 100px">
-	<col style="width: 100px">
-	<col style="width: 100px">
-	<col style="width: 100px">
-	</colgroup>
-	<thead>
-		<tr>
-			<th class="tg-60uc" colspan="5"> 예를들어, <span style="font-weight:bold">5월 7일</span> 예약일 경우 다음과 같습니다</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td class="tg-nej2">이용 당일</td>
-			<td class="tg-nej2">이용 1일 전</td>
-			<td class="tg-nej2">이용 2일 전</td>
-			<td class="tg-nej2">이용 5일 전</td>
-			<td class="tg-nej2">이용 10일 전</td>
-		</tr>
-		<tr>
-			<td class="tg-gmla">5월 7일</td>
-			<td class="tg-gmla">5월 6일</td>
-			<td class="tg-gmla">5월 5일</td>
-			<td class="tg-gmla">5월 2일</td>
-			<td class="tg-gmla">4월 27일</td>
-		</tr>
-	</tbody>
-	</table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <hr style="width:100%;">
+          <h3>환불 규정</h3>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="infoBodyRight3" class="col-xs-12 ">
+            <div id="payRuleContainer">
+              <hr style="width:100%;">
+              <h4 style="margin: 30px 0;display: block;">
+                ※ 규정 외 요청은 적용이 불가합니다. 예약 전 반드시 확인해 주시기 바랍니다.
+              </h4>
+              <hr style="width:100%;">
+              <pre>■ 환불은 예약 날짜를 기준으로만 적용합니다. (예약 시간으로는 적용되지 않습니다)   <style type="text/css">
+   .tg  {border-collapse:collapse;border-spacing:0;margin: -10px 0;}
+   .tg td{border-color:black;border-style:solid;border-width:1px;font-size:14px;
+      overflow:hidden;padding:10px 5px;word-break:normal;}
+   .tg th{border-color:black;border-style:solid;border-width:1px;font-size:14px;
+      font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+   .tg .tg-cey4{border-color:inherit;font-size:15px;text-align:left;vertical-align:top;border: none;}
+   .tg .tg-60uc{border-color:inherit;font-size:15px;text-align:left;vertical-align:top;border: none;}
+   .tg .tg-gmla{border-color:inherit;font-size:15px;text-align:center;vertical-align:top}
+   .tg .tg-nej2{background-color:#d6d6d6;border-color:inherit;font-size:15px;font-weight:bold;text-align:center;vertical-align:top}
+   </style>
+   <table class="tg" style="undefined;table-layout: fixed; width: 600px">
+   <colgroup>
+   <col style="width: 100px">
+   <col style="width: 100px">
+   <col style="width: 100px">
+   <col style="width: 100px">
+   <col style="width: 100px">
+   </colgroup>
+   <thead>
+      <tr>
+         <th class="tg-60uc" colspan="5"> 예를들어, <span style="font-weight:bold">5월 7일</span> 예약일 경우 다음과 같습니다</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td class="tg-nej2">이용 당일</td>
+         <td class="tg-nej2">이용 1일 전</td>
+         <td class="tg-nej2">이용 2일 전</td>
+         <td class="tg-nej2">이용 5일 전</td>
+         <td class="tg-nej2">이용 10일 전</td>
+      </tr>
+      <tr>
+         <td class="tg-gmla">5월 7일</td>
+         <td class="tg-gmla">5월 6일</td>
+         <td class="tg-gmla">5월 5일</td>
+         <td class="tg-gmla">5월 2일</td>
+         <td class="tg-gmla">4월 27일</td>
+      </tr>
+   </tbody>
+   </table>
 - 이용 5일 전까지 : 100% 환불
 - 4일 전 ~ 3일 전: 50% 환불
 - 2일 전 ~ 대관 당일 : 환불 불가
@@ -287,15 +287,15 @@
   ㅇ 구장, 날짜, 시간 등을 실수로 잘못 선택했을 경우
   ㅇ 단순 변심으로 인해 환불이나 변경을 요청하는 경우
 </pre>
-                <hr>
-                <h3>변경 규정</h3>
-                <pre>■ 변경은 상단 환불 규정 기준 100% 환불인 경우에만 가능하며, 변경 가능한 횟수는 1회입니다.
+              <hr style="width:100%;">
+              <h3>변경 규정</h3>
+              <pre>■ 변경은 상단 환불 규정 기준 100% 환불인 경우에만 가능하며, 변경 가능한 횟수는 1회입니다.
 
 ■ 1회 변경된 예약은 환불 및 재변경이 불가능합니다.
 </pre>
-                <hr>
-                <h3>날씨에 의한 환불 및 변경</h3>
-                <pre>■ 아래의 환불 및 변경 조건에 해당될 경우 이용 시작 '1시간 전'까지 FM그라운드 카카오톡 채널로 문의 주시면 고객센터 운영 시간에 확인 후 처리해 드리겠습니다.
+              <hr>
+              <h3>날씨에 의한 환불 및 변경</h3>
+              <pre>■ 아래의 환불 및 변경 조건에 해당될 경우 이용 시작 '1시간 전'까지 FM그라운드 카카오톡 채널로 문의 주시면 고객센터 운영 시간에 확인 후 처리해 드리겠습니다.
 
 ■ 다음과 같은 경우에는 환불 및 변경 모두 불가능합니다.
 ㅇ 이용 시작까지 1시간 이내로 남았을 경우
@@ -308,7 +308,7 @@
 
 ■ 다음과 같을 때는 환불이 가능합니다.
   ㅇ 예약 당일, 기상청에서 천재지변에 해당하는 특보를 예약한 지역에 발표한 경우에 적용
-	(특보가 해제된 후에는 적용이 불가능합니다.)
+   (특보가 해제된 후에는 적용이 불가능합니다.)
   ㅇ 천재지변 : 호우경보, 대설경보, 태풍주의보, 태풍경보만 적용
   ㅇ 구장 환불규정에 천재지변의 기준이 없을 경우 호우경보, 대설경보, 태풍주의보, 태풍경보만 천재지변으로 적용
 <hr><b>[ 변 경 ]</b>
@@ -322,11 +322,11 @@
           2) 동네찾기 - 예약한 구장 주소 설정
           3) 2번 설정 후 예약 일시의 1시간 강수량 확인
   ㅇ <b><a style="color: #38c" href="http://www.iamground.kr/img/asset/rain_rule.jpg" target="_blank">변경 가능 기준 확인 방법 (클릭)</a></b>
-					</pre>
-              </div>
+               </pre>
             </div>
-          </td>
-        </tr>
+          </div>
+        </td>
+      </tr>
 
       </tbody>
     </table>
