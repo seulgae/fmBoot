@@ -96,6 +96,10 @@ function timeSet(){
     let hours = today.getHours(); // 시
     let minutes = today.getMinutes();  // 분
 
+    if(hours < 10){
+        hours = "0" + hours
+    }
+
     let time = hours + ':' + minutes;
     today = year+"-"+month+"-"+date;
     if($("#dateSet").val() <= today){
