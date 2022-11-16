@@ -6,6 +6,7 @@ import com.ucamp.fm.mapper.TeamMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -76,5 +77,14 @@ public class TeamServiceImpl implements TeamService {
         return teamMapper.getMember(t_no);
     }
 
+    @Override
+    public ArrayList<String> getTno() { return teamMapper.getTno(); }
+
+    @Override
+    public int userCheck(String m_id, String t_no) {
+        System.out.println(t_no);
+        System.out.println(m_id);
+        return teamMapper.userCheck(m_id, t_no);
+    }
 
 }

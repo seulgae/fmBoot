@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +30,42 @@ public class TeamController {
     @GetMapping("/teammanage")
     public String teamForm(@RequestParam(defaultValue = "") String keyword, Model model) {
         if (keyword.equals("")) {
-            model.addAttribute("teamlist", teamService.getTeamList());
+            List<TeamDto> teamList = teamService.getTeamList();
+            model.addAttribute("teamlist", teamList);
+            model.addAttribute("tno_list", teamService.getTno());
         } else {
             keyword = "%" + keyword + "%";
             model.addAttribute("teamlist", teamService.searchTeam(keyword));
         }
 
+        /*for(TeamDto team : tnolist) {
+            String t_no = team.getT_no();
+
+            int all = Integer.parseInt(gmatchService.selectAll(t_no) == null ? "0" : gmatchService.selectAll(t_no));
+            int win = Integer.parseInt(gmatchService.selectWin(t_no) == null ? "0" : gmatchService.selectWin(t_no));
+            int draw = Integer.parseInt(gmatchService.selectDraw(t_no) == null ? "0" : gmatchService.selectDraw(t_no));
+            int lose = Integer.parseInt(gmatchService.selectLose(t_no) == null ? "0" : gmatchService.selectLose(t_no));
+
+            model.addAttribute("all", all);
+            model.addAttribute("win", win);
+            model.addAttribute("draw", draw);
+            model.addAttribute("lose", lose);
+        }*/
+
+
         return "/team/teammanage";
+    }
+
+    @RequestMapping("/countmatch")
+    @ResponseBody
+    public String[] countmatch(String t_no) {
+        String all = gmatchService.selectAll(t_no) == null ? "0" : gmatchService.selectAll(t_no);
+        String win = gmatchService.selectWin(t_no) == null ? "0" : gmatchService.selectWin(t_no);
+        String draw = gmatchService.selectDraw(t_no) == null ? "0" : gmatchService.selectDraw(t_no);
+        String lose = gmatchService.selectLose(t_no) == null ? "0" : gmatchService.selectLose(t_no);
+        String[] s = { t_no, all, win, draw, lose };
+
+        return s;
     }
 
     @GetMapping("/teamcreate")
@@ -63,7 +93,7 @@ public class TeamController {
     }
 
     @RequestMapping("/teamdetail")
-    public String teamdetail(String t_no, Model model) {
+    public String teamdetail(HttpServletRequest request, String t_no, Model model) {
 
         int all = Integer.parseInt(gmatchService.selectAll(t_no) == null ? "0" : gmatchService.selectAll(t_no));
         int win = Integer.parseInt(gmatchService.selectWin(t_no) == null ? "0" : gmatchService.selectWin(t_no));
@@ -79,6 +109,7 @@ public class TeamController {
         } else {
             rate = (int)rate1;
         }
+
         ArrayList<String> memberList = new ArrayList<>();
         String m = teamService.getMember(t_no);
         if(m != null) {
@@ -88,6 +119,13 @@ public class TeamController {
             }
         }
 
+        String m_id = (String)request.getSession().getAttribute("m_id");
+        int userCheck = 0;
+        if(m_id != null) {
+            userCheck = teamService.userCheck(m_id, t_no);
+        }
+
+        model.addAttribute("userCheck", userCheck);
         model.addAttribute("memberList",memberList);
         model.addAttribute("team", teamService.selectTeam(t_no));
         model.addAttribute("all", all);

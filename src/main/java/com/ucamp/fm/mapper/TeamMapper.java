@@ -4,6 +4,7 @@ import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.TeamDto;
 import org.apache.ibatis.annotations.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
@@ -48,4 +49,11 @@ public interface TeamMapper {
 
     @Select("select m_id from team where t_no=#{t_no}")
     public String getMember(String t_no);
+
+    @Select("select t_no from team order by t_no desc")
+    ArrayList<String> getTno();
+
+    @Select("select count(*) from team where t_id = #{m_id} and t_no = #{t_no}")
+    int userCheck(String m_id, String t_no);
+
 }
