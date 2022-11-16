@@ -84,20 +84,21 @@
                     <input type="radio" class="umem" name="m_level" value="2" size="25">매니저
                 </td>
             </tr>
-            <tr class="userchk">
-                <td >구단 이름</td>
-            </tr>
-            <tr class="userchk">
-                <td>
-                    <input type="text" class="umem" name="m_cname" id="m_cname" size="40"
-                           placeholder="구단이 있다면 등록하세요.(필수 x)">
-                </td>
-            </tr>
+<!--            <tr class="userchk">-->
+<!--                <td >구단 이름</td>-->
+<!--            </tr>-->
+<!--            <tr class="userchk">-->
+<!--                <td>-->
+<!--                    <input type="hidden" class="umem" name="m_cname" id="m_cname" size="40"-->
+<!--                           placeholder="구단이 있다면 등록하세요.(필수 x)">-->
+<!--                </td>-->
+<!--            </tr>-->
             <tr>
                 <td class="req">주소 입력</td>
             </tr>
             <tr>
                 <td>
+                    <input type="hidden" class="umem" name="m_cname" id="m_cname" size="40">
                     <input type="text" name="m_zip" id="m_zip" size="25" class="umem" readonly>
                     <button type="button" id="zipBtn">우편번호찾기</button>
                 </td>
@@ -116,9 +117,12 @@
                 <td class="req">구장 이름</td>
             </tr>
             <tr class="manager">
+<!--                <td>-->
+<!--                    <input type="text" class="umem" name="m_pname" id="m_pname" size="40"-->
+<!--                           placeholder="구장 이름을 입력해주세요.">-->
+<!--                </td>-->
                 <td>
-                    <input type="text" class="umem" name="m_pname" id="m_pname" size="40"
-                           placeholder="구장 이름을 입력해주세요.">
+                    <input type="hidden" class="umem" name="m_pname" id="m_pname" size="40">
                 </td>
             </tr>
             <tr class="manager">
