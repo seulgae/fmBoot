@@ -74,14 +74,14 @@
                     <h6 style="color: #BDBDBD; font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">팀 소개</h6>
                         <textarea id="contentarea" name="contentarea" readonly style="resize: none;" th:text="${team.t_introduce}"/>
                     </div>
-                    <div style="width: 50%;">
-                        <table class="table">
+                    <div style="width: 33%; overflow: auto; height: 120%;">
+                        <table class="table-responsive" align="middle">
                             <thead>
-                            <th style="text-align:center;">팀원 아이디</th>
+                            <th>팀원 아이디</th>
                             </thead>
-                            <tbody th:each="member : ${memberList}">
-                                <tr style="border-bottom-style:none;">
-                                    <td th:text="${member}" style="color:white;"></td>
+                            <tbody style="text-align: center;">
+                                <tr style="border-bottom-style: none;" th:each="member : ${memberList}">
+                                    <td th:text="${member}" style="color: white;"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -196,7 +196,7 @@ $(function(){
         window.open('/teammanage/teamprofile?t_no='+t_no , 'pop01', 'top=10, left=10, width=400, height=200, status=no, menubar=no, toolbar=no, resizable=no');
     })
     $("#addbtn").click(function(){
-        window.open('/teammanage/addmember?t_no='+t_no , 'pop01', 'top=10, left=10, width=400, height=300, status=no, menubar=no, toolbar=no, resizable=no');
+        window.open('/teammanage/addmember?t_no='+t_no , 'pop01', 'top=10, left=10, width=500, height=500, status=no, menubar=no, toolbar=no, resizable=no');
     })
 })
 </script>

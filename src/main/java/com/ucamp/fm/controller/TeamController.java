@@ -80,9 +80,13 @@ public class TeamController {
             rate = (int)rate1;
         }
         ArrayList<String> memberList = new ArrayList<>();
-        String[] mem =  teamService.getMember(t_no).split(" ");
-        for(int i = 0; i < mem.length; i++){
-            memberList.add(mem[i]);
+        String m = teamService.getMember(t_no);
+        //System.out.println(m);
+        if(m != null) {
+            String[] mem =  m.split(" ");
+            for(int i = 0; i < mem.length; i++){
+                memberList.add(mem[i]);
+            }
         }
 
         model.addAttribute("memberList",memberList);

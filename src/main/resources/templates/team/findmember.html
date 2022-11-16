@@ -1,7 +1,9 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 
 <script src="/js/team.js"></script>
-<table class="table table-bordered" style="text-align:center;">
+<!-- config -->
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<table class="table table-bordered" style="text-align:center; background-color: #BDBDBD;">
     <thead >
         <th style="text-align:center;">아이디</th>
         <th style="text-align:center;">선택</th>
@@ -9,7 +11,7 @@
     <tbody>
         <tr th:each="member : ${findMem}">
             <td th:text="${member.m_id}"></td>
-            <td><input type="button" class="btn btn-info" id="btnMem" value="추가" th:m_id="${member.m_id}" th:onclick="add(this.getAttribute('m_id'))"></td>
+            <td><input type="button" class="btn btn-primary" id="btnMem" value="추가" th:m_id="${member.m_id}" th:onclick="add(this.getAttribute('m_id'))"></td>
         </tr>
     </tbody>
 </table>
