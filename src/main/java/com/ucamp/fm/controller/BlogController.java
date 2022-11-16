@@ -60,20 +60,17 @@ public class BlogController {
         map.put("keyword", keywordStack); // 초기값 대입("")
         map.put("pageNum", pageNum); // 초기값 대입()
 
-//        System.out.println(map);
 
         // 만약 pageAdd 가 null 값이면 or 다시 list를 출력한다면.
         // GetMapping 2번 실행되는 이유를 모르겠음..
         // 해당 오류에 대한 알고리즘을 설계하여 더보기 버그 해결.
 
         if (pageAdd == null || keyword == null) {
-//            System.out.println("null 문장 실행");
 
             // 추가 기능이 실행되지 않았다면 main 카운트도 증가시키지 않음.
             if (addcount > 0) {
                 maincount++;
             }
-//            System.out.println("maincount :" + maincount);
 
             // addcount가 증가되지 않았다면.. 문장을 실행하지 않았다면 새로고침 했으니 다시 10개의 페이지로 이동.
             // 새로고침하면 초기값으로 셋팅 될 수 있도록 설계
@@ -88,12 +85,9 @@ public class BlogController {
             return "blogbbs/bloglist";
         } else {
             // 값이 있다면 페이지값 + 5증가
-//            System.out.println("추가 문장 실행");
             pageNum += Integer.valueOf(pageAdd); // 페이지 증가
             keywordStack = keyword; // 검색 값 받아오기.
-//            System.out.println(pageNum);
             addcount += 2;
-//            System.out.println("addcount : " + addcount);
             return "redirect:/blog/bloglist";
         }
     }
@@ -134,7 +128,6 @@ public class BlogController {
 
         String PATH = req.getSession().getServletContext().getRealPath("/") + "uploadImg\\blog\\";
 
-//        System.out.println(PATH); //경로 주소 찍어보기.
         // 프로젝트 내 webapp 폴더를 찾아줌, webapp 폴더 없을 경우 appdate안의 톰캣 캐시 임시저장 폴더에 저장시킴.
         // transferTo : 파일 데이터를 지정한 file로 저장
         // getOriginalFilename : 클라이언트의 원본 파일명 반환

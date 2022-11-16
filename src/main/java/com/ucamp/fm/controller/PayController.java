@@ -97,7 +97,6 @@ public class PayController {
 			if (addcount > 0) {
 				maincount++;
 			}
-//			System.out.println("maincount :" + maincount);
 
 			// 새로고침 더보기 문장이 실행되지 않았을때 실행되는 로직
 			if (addcount < maincount) {
@@ -119,13 +118,9 @@ public class PayController {
 		}else {
 
 			// 값이 있다면 페이지값 + 5증가
-//            System.out.println("추가 문장 실행");
 			pageNum += Integer.valueOf(pageAdd); // 페이지 증가
 			keywordStack = keyword; // 검색 값 받아오기.
-//            System.out.println(pageNum);
-//			System.out.println(keywordStack);
 			addcount += 2;
-//            System.out.println("addcount : " + addcount);
 			return "redirect:/payment/placelist";
 		}
 
