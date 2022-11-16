@@ -3,6 +3,11 @@
 <th:block th:replace="fragments/config :: configFragment"></th:block><!-- header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
+<style>
+    * a{
+        color: #000;
+    }
+</style>
 <div id="wrap" style="width:1000px; margin: 40px auto;">
     <div style="width:100%;">
     <div class="title" align="left" style="margin-top: 2%;">
@@ -10,43 +15,45 @@
             공지사항 &nbsp;|&nbsp; <small>풋살 매니저의 새로운 소식입니다.</small></span>
     </div>
     <br>
-        <table style="width : 100%" class="table table-hover table-striped">
-            <thead style="background-color: #646464; color: white;">
-                <tr>
-                    <th class="text-center">번호</th>
-                    <th class="text-center">제목</th>
-                    <th class="text-center">작성자</th>
-                    <th class="text-center">날짜</th>
-                    <th class="text-center">조회수</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="notice : ${notices}" style="text-align:center;">
-                    <td>
-                        <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_no}]]</a>
-                    </td>
-                    <td>
-                        <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_title}]]</a>
-                    </td>
-                    <td>
-                        <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_id}]]</a>
-                    </td>
-                    <td>
-                        <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_date}]]</a>
-                    </td>
-                    <td>
-                        <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_count}]]</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="5" style="text-align:right;">
-                        <button type="button" class="btn btn-primary"
-                                onclick="location.href='/notice/noticewrite'" th:if="${m_id == 'admin'}">등록
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <table class="table table-hover table-striped">
+        <thead style="background-color: #646464; color: white;">
+            <tr>
+                <th class="text-center">번호</th>
+                <th class="text-center">제목</th>
+                <th class="text-center">작성자</th>
+                <th class="text-center">날짜</th>
+                <th class="text-center">조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="notice : ${notices}" style="text-align:center; cursor:hand;">
+                <a th:href="|noticeread/${notice.n_no}|">
+                <td>
+                    <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_no}]]</a>
+                </td>
+                <td>
+                    <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_title}]]</a>
+                </td>
+                <td>
+                    <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_id}]]</a>
+                </td>
+                <td>
+                    <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_date}]]</a>
+                </td>
+                <td>
+                    <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_count}]]</a>
+                </td>
+                </a>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:right;">
+                    <button type="button" class="btn btn-primary"
+                            onclick="location.href='/notice/noticewrite'" th:if="${m_id == 'admin'}">등록
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     </div><!--    th:if="${m_level=='2'}"--><!-- footer -->
 </div>
 <!--div#wrap-->

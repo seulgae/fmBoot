@@ -240,10 +240,8 @@ public class MypageController {
         }
     }
 
-
-    // 메롱
     @RequestMapping("/Information_update.do")
-    public String Information_update_do(Model model, HttpServletRequest request, MemberDto memberDto) {
+    public String Information_update_do(HttpServletRequest request, MemberDto memberDto) {
         String m_id = (String) request.getSession().getAttribute("m_id");
 
 
