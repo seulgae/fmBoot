@@ -74,6 +74,7 @@ public class LoginController {
     @RequestMapping("/loginOk")
     public String loginOk (String m_id, HttpServletRequest request){
         request.getSession().setAttribute("m_id", m_id);
+
         return "redirect:/";
     }
 
