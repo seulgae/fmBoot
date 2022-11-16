@@ -35,13 +35,13 @@ function setDate(){
                     $("#td_2").css("background-color","red");
                 }
                 if(data[i] == '16:00~18:00'){
-                    $("#td_2").css("background-color","red");
+                    $("#td_3").css("background-color","red");
                 }
                 if(data[i] == '18:00~20:00'){
-                    $("#td_2").css("background-color","red");
+                    $("#td_4").css("background-color","red");
                 }
                 if(data[i] == '20:00~22:00'){
-                    $("#td_2").css("background-color","red");
+                    $("#td_5").css("background-color","red");
                 }
             }
         }
@@ -95,6 +95,10 @@ function timeSet(){
     let date = today.getDate();  // 날짜
     let hours = today.getHours(); // 시
     let minutes = today.getMinutes();  // 분
+
+    if(hours < 10){
+        hours = "0" + hours
+    }
 
     let time = hours + ':' + minutes;
     today = year+"-"+month+"-"+date;
