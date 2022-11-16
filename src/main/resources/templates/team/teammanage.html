@@ -61,10 +61,10 @@
 					<tr>
 						<!--<td>1</td>-->
 						<td><a style="color: red;" th:href="|/teammanage/teamdetail?t_no=${team.t_no}|"> [[ ${team.t_name} ]] </a></td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
+						<td> <div th:id="|all_${team.t_no}|"></div> </td>
+						<td> <div th:id="|win_${team.t_no}|"></div> </td>
+						<td> <div th:id="|draw_${team.t_no}|"></div> </td>
+						<td> <div th:id="|lose_${team.t_no}|"></div> </td>
 						<td th:text="${team.t_region}"></td>
 						<td th:text="${team.t_age}"></td>
 						<td th:text="${team.t_skill}"></td>
@@ -78,7 +78,12 @@
 	</div>
 </div>
 
-<script>
+<script th:inline="javascript">
+	/*<![CDATA[*/
+		var arr = new Array();
+        arr = /*[[ ${tno_list} ]]*/;
+    /*]]*/
+
 	$(function() {
 		$("#cbtn").click(function() {
 			if($("#loginCheck").val() != ""){
@@ -88,6 +93,22 @@
 				location.href="/login/login";
 			}
 		})
+		for(var i=0; i<arr.length; i++){
+			var s = arr[i];
+			$.ajax({
+				type: 'get',
+				url: '/teammanage/countmatch',
+				data: {
+					't_no': arr[i]
+				},
+				success: function(data){
+					$("#all_"+data[0]).html(data[1]);
+					$("#win_"+data[0]).html(data[2]);
+					$("#draw_"+data[0]).html(data[3]);
+					$("#lose_"+data[0]).html(data[4]);
+				}
+			})
+		}
 	})
 </script>
 

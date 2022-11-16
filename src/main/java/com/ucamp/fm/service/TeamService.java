@@ -3,6 +3,7 @@ package com.ucamp.fm.service;
 import com.ucamp.fm.dto.MemberDto;
 import com.ucamp.fm.dto.TeamDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface TeamService {
@@ -29,4 +30,9 @@ public interface TeamService {
     void insertMember(String str_member,String t_no);
 
     String getMember(String t_no);
+
+    ArrayList<String> getTno();
+
+    int userCheck(String m_id, String t_no);
+
 }

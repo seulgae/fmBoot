@@ -118,7 +118,7 @@
                 </table>
             </div>
         </div>
-        <div align="left" th:if="${session.m_id}">
+        <div align="left" th:if="${session.m_id} and ${userCheck} == 1" >
             <button class="btn btn-dark" id="addbtn">팀원 추가</button>
             <button class="btn btn-dark" align="bottom" id="maddbtn">전적 입력</button>
             <input type="hidden" id="teamCheck" th:value="${team.t_id}">
