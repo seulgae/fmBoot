@@ -29,7 +29,7 @@
             <tr th:each="notice : ${notices}" style="text-align:center; cursor:hand;">
                 <a th:href="|noticeread/${notice.n_no}|">
                 <td>
-                    <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_no}]]</a>
+                    <a th:href="|noticeread/${notice.n_no}|">[[${notice.rownum}]]</a>
                 </td>
                 <td>
                     <a th:href="|noticeread/${notice.n_no}|">[[${notice.n_title}]]</a>

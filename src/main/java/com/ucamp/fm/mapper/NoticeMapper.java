@@ -14,7 +14,7 @@ import java.util.List;
 @Mapper
 public interface NoticeMapper {
 
-    @Select("SELECT * FROM notice Order By n_no Desc")
+    @Select("SELECT rownum, n.* FROM notice n Order By n_no Desc")
     List<NoticeDto> noticelist();
     @Select("select * from notice where n_no = #{n_no}")
     NoticeDto noticeselect(int n_no);

@@ -31,5 +31,6 @@ public class MemberDto {
     private String m_account;
     private String m_bank;
     private String m_thum;
+    private int rownum;
 }
 

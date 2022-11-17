@@ -67,7 +67,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="list1 : ${list1}">
-                    <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_no}]]</td>
+                    <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.rownum}]]</td>
                     <td style="text-align: center; border: 1px solid #f8f8f8;"><a th:href="|/payment/placeread?p_no=${list1.r_p_no}|">[[${list1.p_pname}]]</a></td>
                     <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_time}]]</td>
                     <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_date}]]</td>
@@ -88,7 +88,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="list : ${list}">
-                        <td>[[${list.p_no}]]</td>
+                        <td>[[${list.rownum}]]</td>
                         <td><a th:href="|/payment/placeread?p_no=${list.p_no}|">[[${list.p_pname}]]</a></td>
                         <td>[[${list.p_date}]]</td>
                         <td>

@@ -19,7 +19,7 @@ public class NoticeDto {
 
     private String n_date; // 작성일자
     private int n_count; // 조회수
-
+    private int rownum;
     public NoticeDto(String n_id, String n_title,String n_content){
         this.n_id = n_id;
         this.n_title = n_title;

@@ -18,4 +18,5 @@ public class JoinDto {
     private String r_wdate;
     private String p_pname;
     private String m_phone;
+    private int rownum;
 }

@@ -53,7 +53,7 @@
                 <div class="row2">
                     <div style="width: 50%; margin-left: 20px;">
                         <img class="profile" th:src="|/uploadImg/teamProfileImg/${team.t_thum}|">
-                        <div><button style="opacity: 0.5;" class="btn" id="profilebtn" th:if="${session.m_id}">선택</button></div>
+                        <div th:if="${session.m_id} and ${userCheck} == 1"><button style="opacity: 0.5;" class="btn" id="profilebtn" th:if="${session.m_id}">선택</button></div>
                     </div>
                     <div style="width: 50%; margin-top: 20px;">
                         <div style="margin-bottom: 10%;">
