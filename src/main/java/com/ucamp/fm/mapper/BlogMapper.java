@@ -30,4 +30,7 @@ public interface BlogMapper {
             "tb_content=#{tb_content}, " +
             "tb_thum=#{tb_thum} WHERE tb_no = #{tb_no}")
     void blogupdate(BlogDto blogDto);
+
+    @Select("select tb_thum from teamblog where tb_no= #{tb_no}")
+    String getFile(String tb_no);
 }
