@@ -28,7 +28,7 @@
             <tr th:each="blog : ${blogs}" style="text-align: center; margin:auto;">
                 <td class="align-middle">
                     <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
-                        [[ ${blog.tb_no} ]]
+                        [[ ${blog.rownum} ]]
                     </a>
                 </td>
                 <td class="align-middle">

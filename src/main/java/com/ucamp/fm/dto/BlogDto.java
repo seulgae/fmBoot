@@ -19,7 +19,7 @@ public class BlogDto {
     private String tb_date; // 작성일자
     private String tb_thum; // 섬네일 이름
     private String tb_state; // 게시물 상태
-    
+    private int rownum;
     // 검색과 페이징 기능을 넘겨받기 위한 변수 선언
 
 
