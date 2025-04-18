@@ -10,6 +10,9 @@ Java / JDK 11 </br>
 thymeleaf </br>
 HTML / CSS / jquery
 
+## 프로젝트 설명
+https://github.com/seulgae/fmBoot/blob/main/PPT.pdf
+
 # 풋살 매니저 홈페이지 리뉴얼
 ## 기간
 2025.04.18 ~ 
