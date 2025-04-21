@@ -16,7 +16,7 @@ https://github.com/seulgae/fmBoot/blob/main/PPT.pdf
 ## 프로젝트 영상
 https://youtu.be/Cb8BTgsmOXY
 
-# 풋살 매니저 홈페이지 리뉴얼
+# 풋살 매니저 홈페이지 리뉴얼(React 프로젝트)
 ## 기간
 2025.04.18 ~ 
 
@@ -27,7 +27,6 @@ MyBatis </br>
 Java / JDK 11 </br>
 React 18.2.0 </br>
 Node.js 22.14.0
-
 
 ## 환경구축
 ### 1. Oracle 21XE 설치 </br>
@@ -44,4 +43,7 @@ https://code.visualstudio.com/
 
 ### 5. DBeaver 설치(선택.) </br>
 https://dbeaver.io/download/
+
+## 프로젝트 링크
+https://github.com/seulgae/fmReactVersion.git
 
