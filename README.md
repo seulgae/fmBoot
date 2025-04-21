@@ -21,10 +21,10 @@ https://youtu.be/Cb8BTgsmOXY
 2025.04.18 ~ 
 
 ## 개발환경
-Spring boot 2.7.5 </br>
+Spring boot 3.4.4 </br>
 Oracle DB / ojdbc11 </br>
 MyBatis </br>
-Java / JDK 11 </br>
+Java / JDK 17 </br>
 React 18.2.0 </br>
 Node.js 22.14.0
 
