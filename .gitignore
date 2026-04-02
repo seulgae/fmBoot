@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+fmBoot-src.tar.gz
+fmBoot-src-upload.tar.gz

@@ -1,18 +1,141 @@
-# FM Manager 플랫폼(UCAMP 36기 종합 프로젝트)
-## 기간
-2022.10.23 ~ 2022.11.18 
+# FM Manager
 
-## 개발환경 
-Spring boot 2.7.5 </br>
-Oracle DB / ojdbc8 </br>
-MyBatis </br>
-Java / JDK 11 </br>
-thymeleaf </br>
-HTML / CSS / jquery
+A Spring Boot web application for futsal team management, match records, place reservation, payment, notice, and blog features.
 
-## 프로젝트 설명
-https://github.com/seulgae/fmBoot/blob/main/PPT.pdf
+## Overview
 
-## 프로젝트 영상
-https://youtu.be/Cb8BTgsmOXY
+- Project type: Spring Boot server-side rendered web app
+- Rendering: Thymeleaf
+- Persistence: MyBatis + Oracle
+- Security: Spring Security
+- Runtime: Spring Boot embedded Tomcat
+- Public URL: `http://192.168.219.105/`
 
+## Tech Stack
+
+- Java 11 source level
+- Spring Boot 2.7.5
+- Thymeleaf
+- MyBatis Spring Boot Starter 2.2.2
+- Oracle JDBC (`ojdbc11`)
+- Spring Security
+- Spring Mail
+- Iamport REST client
+
+## Features
+
+- Team management
+- Match record management
+- Place list and reservation
+- Payment flow
+- Notice board
+- Blog/community board
+- Member login and mypage
+
+## Local Development
+
+### Requirements
+
+- JDK 11 or newer
+- Oracle DB with `XEPDB1`
+- Maven Wrapper
+
+### Default application properties
+
+Current defaults in [application.properties](/C:/Dev/WorkSpace/fmBoot/src/main/resources/application.properties):
+
+- App port: `8085`
+- JDBC URL: `jdbc:oracle:thin:@localhost:1521/XEPDB1`
+- DB username: `fm`
+- Thymeleaf cache: disabled
+- Multipart upload limit: `500MB`
+
+### Run locally
+
+```bash
+./mvnw spring-boot:run
+```
+
+Or:
+
+```bash
+./mvnw -DskipTests package
+java -jar target/fm-0.0.1-SNAPSHOT.jar
+```
+
+## Current Server Runtime
+
+### Topology
+
+- Reverse proxy: `nginx`
+- Application container: `fm-app`
+- Database container: `oracle-xe`
+- Container runtime: `podman`
+- App internal port: `8085`
+- Public HTTP port: `80`
+- Oracle port: `1521`
+
+### Endpoints
+
+- App: `http://192.168.219.105/`
+- Oracle: `jdbc:oracle:thin:@192.168.219.105:1521/XEPDB1`
+
+### Server paths
+
+- Build workspace: `/home/seulgae/fmBoot-build`
+- Deploy JAR: `/home/seulgae/fmBoot-deploy/fm-0.0.1-SNAPSHOT.jar`
+- Runtime config: `/home/seulgae/fmBoot-runtime/application.properties`
+
+## Operations
+
+### Check containers
+
+```bash
+sudo podman ps
+```
+
+### Check logs
+
+```bash
+sudo podman logs oracle-xe | tail -n 50
+sudo podman logs fm-app | tail -n 50
+```
+
+### Check nginx
+
+```bash
+sudo systemctl status nginx
+curl -I http://127.0.0.1/
+```
+
+## CI/CD
+
+GitHub Actions workflows:
+
+- [ci.yml](/C:/Dev/WorkSpace/fmBoot/.github/workflows/ci.yml)
+- [deploy.yml](/C:/Dev/WorkSpace/fmBoot/.github/workflows/deploy.yml)
+
+### Required GitHub Actions secrets
+
+- `SERVER_HOST`
+- `SERVER_USER`
+- `SERVER_SUDO_PASSWORD`
+- `SERVER_SSH_KEY`
+
+### Deploy flow
+
+1. GitHub Actions builds `target/fm-0.0.1-SNAPSHOT.jar`
+2. The workflow uploads the JAR to `/home/seulgae/fmBoot-deploy`
+3. The workflow recreates the `fm-app` container with the new JAR
+4. `nginx` proxies `80 -> 8085`
+
+## Notes
+
+- The application uses Spring Boot embedded Tomcat. There is no separate external Tomcat installation.
+- CI/CD currently builds with `-DskipTests`.
+- Review unrelated working tree changes before committing.
+
+## References
+
+- Presentation: [PPT.pdf](/C:/Dev/WorkSpace/fmBoot/PPT.pdf)
+- Video: `https://youtu.be/Cb8BTgsmOXY`
