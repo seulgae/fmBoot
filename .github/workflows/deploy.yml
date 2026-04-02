@@ -6,8 +6,12 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: fmboot-deploy
+  cancel-in-progress: true
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,36 +31,37 @@ jobs:
       - name: Build package
         run: ./mvnw -B -DskipTests package
 
-      - name: Upload JAR to server
-        uses: appleboy/scp-action@v0.1.7
+      - name: Upload deploy artifact
+        uses: actions/upload-artifact@v4
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          source: target/fm-0.0.1-SNAPSHOT.jar
-          target: /home/seulgae/fmBoot-deploy
-          strip_components: 1
+          name: fmboot-jar
+          path: target/fm-0.0.1-SNAPSHOT.jar
+          if-no-files-found: error
 
-      - name: Restart app container
-        uses: appleboy/ssh-action@v1.2.0
+  deploy:
+    needs: build
+    runs-on:
+      - self-hosted
+      - linux
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download deploy artifact
+        uses: actions/download-artifact@v4
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          script: |
-            set -e
-            printf '%s\n' '${{ secrets.SERVER_SUDO_PASSWORD }}' | sudo -S mkdir -p /home/seulgae/fmBoot-deploy
-            printf '%s\n' '${{ secrets.SERVER_SUDO_PASSWORD }}' | sudo -S chown seulgae:seulgae /home/seulgae/fmBoot-deploy/fm-0.0.1-SNAPSHOT.jar
-            printf '%s\n' '${{ secrets.SERVER_SUDO_PASSWORD }}' | sudo -S podman pull docker.io/library/eclipse-temurin:17-jre
-            printf '%s\n' '${{ secrets.SERVER_SUDO_PASSWORD }}' | sudo -S podman rm -f fm-app || true
-            printf '%s\n' '${{ secrets.SERVER_SUDO_PASSWORD }}' | sudo -S podman run -d \
-              --name fm-app \
-              --restart=always \
-              -p 8085:8085 \
-              -v /home/seulgae/fmBoot-deploy/fm-0.0.1-SNAPSHOT.jar:/app/app.jar:ro,Z \
-              -v /home/seulgae/fmBoot-runtime/application.properties:/app/config/application.properties:ro,Z \
-              docker.io/library/eclipse-temurin:17-jre \
-              java -jar /app/app.jar --spring.config.location=file:/app/config/application.properties
-            sleep 15
-            printf '%s\n' '${{ secrets.SERVER_SUDO_PASSWORD }}' | sudo -S podman ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
-            curl -I -s http://127.0.0.1:8085/ | head -n 10
+          name: fmboot-jar
+          path: .artifacts
+
+      - name: Deploy on self-hosted runner
+        shell: bash
+        env:
+          ARTIFACT_PATH: ${{ github.workspace }}/.artifacts/fm-0.0.1-SNAPSHOT.jar
+          SUDO_PASSWORD: ${{ secrets.SUDO_PASSWORD }}
+          DEPLOY_ROOT: /home/seulgae/fmBoot-deploy
+          APP_CONFIG_PATH: /home/seulgae/fmBoot-runtime/application.properties
+          APP_CONTAINER_NAME: fm-app
+          CONTAINER_IMAGE: docker.io/library/eclipse-temurin:17-jre
+          APP_PORT: "8085"
+        run: bash scripts/deploy-self-hosted.sh

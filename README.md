@@ -115,19 +115,31 @@ GitHub Actions workflows:
 - [ci.yml](/C:/Dev/WorkSpace/fmBoot/.github/workflows/ci.yml)
 - [deploy.yml](/C:/Dev/WorkSpace/fmBoot/.github/workflows/deploy.yml)
 
+### Deployment model
+
+- `CI` runs on GitHub-hosted runner
+- `Deploy` runs on a Linux `self-hosted` runner installed on the deployment target
+
+This is the recommended model for:
+
+- local Hyper-V VM deployment
+- future AWS EC2 deployment
+
 ### Required GitHub Actions secrets
 
-- `SERVER_HOST`
-- `SERVER_USER`
-- `SERVER_SUDO_PASSWORD`
-- `SERVER_SSH_KEY`
+- `SUDO_PASSWORD`
 
 ### Deploy flow
 
 1. GitHub Actions builds `target/fm-0.0.1-SNAPSHOT.jar`
-2. The workflow uploads the JAR to `/home/seulgae/fmBoot-deploy`
-3. The workflow recreates the `fm-app` container with the new JAR
-4. `nginx` proxies `80 -> 8085`
+2. The workflow stores the JAR as an artifact
+3. The self-hosted runner downloads the artifact locally
+4. The runner recreates the `fm-app` container with the new JAR
+5. `nginx` proxies `80 -> 8085`
+
+### Future AWS migration
+
+The same deployment flow can be reused on AWS by installing the self-hosted runner on an EC2 instance and keeping the same container/runtime layout.
 
 ## Notes
 

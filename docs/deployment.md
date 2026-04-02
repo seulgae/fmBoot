@@ -10,19 +10,51 @@
 
 ## Server paths
 
-- Build/runtime JAR: `/home/seulgae/fmBoot-deploy/fm-0.0.1-SNAPSHOT.jar`
+- Deploy JAR: `/home/seulgae/fmBoot-deploy/fm-0.0.1-SNAPSHOT.jar`
 - App config: `/home/seulgae/fmBoot-runtime/application.properties`
 
-## GitHub Actions secrets
+## CI/CD strategy
 
-Set these repository secrets before enabling CD:
+The repository uses a split pipeline:
 
-- `SERVER_HOST`
-- `SERVER_USER`
-- `SERVER_SSH_KEY`
-- `SERVER_SUDO_PASSWORD`
+1. `build` job on `ubuntu-latest`
+2. `deploy` job on a `self-hosted` Linux runner installed on the deployment target
+
+This is the preferred layout for:
+
+- Hyper-V local VM deployment
+- future AWS EC2 deployment
+
+The deploy workflow does not require inbound SSH from GitHub-hosted runners. The target runner pulls work from GitHub and deploys locally.
+
+## Required GitHub Actions secrets
+
+- `SUDO_PASSWORD`
+
+## Self-hosted runner requirements
+
+- OS: Linux
+- Access to `podman`
+- Access to `nginx`
+- Permission to use `sudo`
+- Runner labels including `self-hosted` and `linux`
+
+## AWS migration path
+
+When moving to AWS later:
+
+1. provision an EC2 instance
+2. install `podman`, `nginx`, and the GitHub self-hosted runner
+3. copy the same runtime config structure
+4. reuse the same deploy workflow
+
+Only these values typically need to change:
+
+- `DEPLOY_ROOT`
+- `APP_CONFIG_PATH`
+- public DNS / reverse proxy settings
 
 ## Notes
 
-- The current workflow builds with `-DskipTests` because the project test setup depends on external runtime services.
-- The application runs on Spring Boot's embedded Tomcat behind `nginx`. There is no separate external Tomcat installation.
+- The current workflow builds with `-DskipTests`.
+- The application runs on Spring Boot's embedded Tomcat behind `nginx`.
