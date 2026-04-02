@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ucamp.fm.mapper.PaymentMapper">
-    <insert id="insertReservation" parameterType="com.ucamp.fm.dto.ReservationDto">
+<mapper namespace="com.ucamp.fm.pay.mapper.PaymentMapper">
+    <insert id="insertReservation" parameterType="com.ucamp.fm.pay.dto.ReservationDto">
         insert into reservation values(
         reservation_seq.NEXTVAL,
         #{r_m_id},
@@ -15,7 +15,7 @@
     </insert>
 
     <select id="selectPageing" parameterType="map"
-            resultType="com.ucamp.fm.dto.PlaceDto">
+            resultType="com.ucamp.fm.mypage.dto.PlaceDto">
         select * from
         (select * from place where p_pname like '%'||#{keyword}||'%' order by p_no desc)
         where

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ucamp.fm.mapper.PaymentMapper">
+<mapper namespace="com.ucamp.fm.pay.mapper.PaymentMapper">
 
-    <insert id="InsertPay" parameterType="com.ucamp.fm.dto.PayDto">
+    <insert id="InsertPay" parameterType="com.ucamp.fm.pay.dto.PayDto">
         insert into payment (
         pay_code,
         p_no,

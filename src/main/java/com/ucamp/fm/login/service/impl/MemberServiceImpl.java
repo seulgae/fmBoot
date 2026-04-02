@@ -1,0 +1,110 @@
+package com.ucamp.fm.login.service.impl;
+
+import com.ucamp.fm.mypage.dto.JoinDto;
+import com.ucamp.fm.login.dto.MemberDto;
+import com.ucamp.fm.mypage.dto.PlaceDto;
+import com.ucamp.fm.login.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ucamp.fm.login.mapper.MemberMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class MemberServiceImpl implements MemberService{
+
+	@Autowired
+	MemberMapper memberMapper;
+
+	public int idCheck(String m_id) {
+		return memberMapper.idCheck(m_id);
+	}
+
+	public void join(MemberDto member){
+		memberMapper.join(member);
+	}
+
+	public int loginCheck(String m_id, String m_pw){
+		return memberMapper.loginCheck(m_id,m_pw);
+	}
+
+	@Override
+	public MemberDto getMember(String m_id) {
+		return memberMapper.getMember(m_id);
+	}
+
+	@Override
+	public void mypage_request(PlaceDto placeDto) {
+		memberMapper.mypage_request(placeDto);
+	}
+
+	@Override
+	public List<PlaceDto> getList(String m_id) {
+		return memberMapper.getList(m_id);
+	}
+
+	@Override
+	public void addPhoto(MemberDto memberDto) {
+		memberMapper.addPhoto(memberDto);
+	}
+
+	@Override
+	public void place_delete(String p_no) {
+		memberMapper.place_delete(p_no);
+	}
+
+	@Override
+	public PlaceDto getDto(String p_no) {
+		return memberMapper.getDto(p_no);
+	}
+
+	@Override
+	public void mypage_update_do(PlaceDto placeDto) {
+		memberMapper.mypage_update_do(placeDto);
+	}
+
+	@Override
+	public List<JoinDto> getList1(String m_id) {
+		return memberMapper.getList1(m_id);
+	}
+
+
+	@Override
+	public MemberDto Information_update(String m_id) {
+		return memberMapper.getInformation_update(m_id);
+	}
+
+	@Override
+	public void Information_update_do(MemberDto memberDto) {
+		memberMapper.Information_update_do(memberDto);
+	}
+
+	@Override
+	public List<JoinDto> getList2(String m_id) {
+		return memberMapper.getList2(m_id);
+	}
+
+	@Override
+	public String getPw(String m_id) {
+		return memberMapper.getPw(m_id);
+	}
+
+	@Override
+	public String findGetId(String cValue, String fValue) {
+		return memberMapper.findGetId(cValue,fValue);
+	}
+
+	@Override
+	public int getCount(String pw_id, String pw_email) {
+		return memberMapper.getCount(pw_id,pw_email);
+	}
+
+	@Override
+	public void changePw(String m_id, String m_pw) {
+		memberMapper.changePw(m_id,m_pw);
+	}
+
+
+}

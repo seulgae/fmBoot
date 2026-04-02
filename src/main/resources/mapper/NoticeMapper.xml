@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ucamp.fm.mapper.NoticeMapper">
+<mapper namespace="com.ucamp.fm.notice.mapper.NoticeMapper">
 
 
     <insert id="noticeinsert" parameterType="map">

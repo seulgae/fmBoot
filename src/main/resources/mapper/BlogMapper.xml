@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ucamp.fm.mapper.BlogMapper">
+<mapper namespace="com.ucamp.fm.blog.mapper.BlogMapper">
 
     <select id="bloglist" parameterType="hashmap"
-            resultType="com.ucamp.fm.dto.BlogDto">
+            resultType="com.ucamp.fm.blog.dto.BlogDto">
         select * from
         (select * from teamblog where tb_title like '%'||#{keyword}||'%' order by tb_no desc)
         where
@@ -14,8 +14,8 @@
         ]]>
     </select>
 
-    <select id="bloglistajax" parameterType="com.ucamp.fm.dto.BlogDto"
-            resultType="com.ucamp.fm.dto.BlogDto">
+    <select id="bloglistajax" parameterType="com.ucamp.fm.blog.dto.BlogDto"
+            resultType="com.ucamp.fm.blog.dto.BlogDto">
         select rownum, tb.* from
         ( select * from teamblog order by tb_no desc) tb
         where
@@ -24,7 +24,7 @@
         ]]>
     </select>
 
-    <insert id="bloginsert" parameterType="com.ucamp.fm.dto.BlogDto">
+    <insert id="bloginsert" parameterType="com.ucamp.fm.blog.dto.BlogDto">
         insert into teamblog(
             tb_no,
             tb_tbno,

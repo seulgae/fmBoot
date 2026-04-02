@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ucamp.fm.mapper.CmtMapper">
+<mapper namespace="com.ucamp.fm.cmt.mapper.CmtMapper">
 
     <select id="cmtlist" parameterType="String"
-            resultType="com.ucamp.fm.dto.CmentDto">
+            resultType="com.ucamp.fm.cmt.dto.CmentDto">
         select * from cment
         where c_tbno = 'teamblog'
         and   c_tbset = #{c_no}
         order by c_no desc
     </select>
 
-    <insert id="cmtinsert" parameterType="com.ucamp.fm.dto.CmentDto">
+    <insert id="cmtinsert" parameterType="com.ucamp.fm.cmt.dto.CmentDto">
         insert into cment(
         c_no,
         c_c_id,
@@ -35,14 +35,14 @@
     </insert>
 
     <select id="tlist" parameterType="String"
-            resultType="com.ucamp.fm.dto.CmentDto">
+            resultType="com.ucamp.fm.cmt.dto.CmentDto">
         select * from cment
         where c_tbno = 'team'
         and   c_tbset = #{c_tbset}
         order by c_no desc
     </select>
 
-    <insert id="cmtinsert2" parameterType="com.ucamp.fm.dto.CmentDto">
+    <insert id="cmtinsert2" parameterType="com.ucamp.fm.cmt.dto.CmentDto">
         insert into cment(
         c_no,
         c_c_id,
