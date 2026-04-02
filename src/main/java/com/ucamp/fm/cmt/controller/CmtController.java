@@ -35,7 +35,7 @@ public class CmtController {
 
         model.addAttribute("cments", cmtService.cmtlist(c_tbset));
 
-        return "cmtbbs/blogcmt";
+        return "cmt/blogcmt";
     }
 
     @GetMapping("/blogtcmt")
@@ -51,7 +51,7 @@ public class CmtController {
 
         model.addAttribute("cments", cmtService.tlist(c_tbset));
 
-        return "cmtbbs/blogtcmt";
+        return "cmt/blogtcmt";
     }
 
     // ? ê³  ë²„íŠ¼ ?™ì‘, ?“ê? ? ê³  ì¹´ìš´??ì¦ê?.
@@ -82,7 +82,7 @@ public class CmtController {
         }
         model.addAttribute("m_id", m_id);
         model.addAttribute("cments", cmtService.cmtlistdec(cmentDto));
-        return "cmtbbs/blogcmtdec";
+        return "cmt/blogcmtdec";
     }
 
     // ?“ê? ???˜ì´ì§€ ë¶ˆëŸ¬?¤ê¸°
@@ -91,7 +91,7 @@ public class CmtController {
         model.addAttribute("c_tbno", c_tbno);
         model.addAttribute("c_tbset", c_tbset);
 
-        return "cmtbbs/blogcmtform";
+        return "cmt/blogcmtform";
     }
 
     // ?“ê? ?°ê¸°

@@ -55,7 +55,7 @@ public class MypageController {
             }
                 model.addAttribute("member",member);
 
-            return "member/mypage";
+            return "mypage/mypage";
         }
     }
     //구장 ?�청 ?�출
@@ -67,7 +67,7 @@ public class MypageController {
             return "redirect:/login/login";
 
         }else{
-            return "member/mypage_request";
+            return "mypage/mypage_request";
         }
     }
 
@@ -133,7 +133,7 @@ public class MypageController {
             model.addAttribute("images",images);
             model.addAttribute("dto",pDto);
             model.addAttribute("key",'1');
-            return "member/mypage_update";
+            return "mypage/mypage_update";
         }
     }
 
@@ -211,7 +211,7 @@ public class MypageController {
 
         }else{
             model.addAttribute("m_id", m_id);
-            return "member/addphoto";
+            return "mypage/addphoto";
         }
     }
 
@@ -247,7 +247,7 @@ public class MypageController {
 
         }else{
             model.addAttribute("dto",memberService.Information_update(m_id));
-            return "member/Information_update";
+            return "mypage/Information_update";
         }
     }
 
@@ -269,7 +269,7 @@ public class MypageController {
 
                 model.addAttribute("list1", reser);
 
-            return "member/reservation_list";
+            return "mypage/reservation_list";
     }
 }
 

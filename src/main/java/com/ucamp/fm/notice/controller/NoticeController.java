@@ -23,7 +23,7 @@ public class NoticeController {
         String m_id = (String) session.getAttribute("m_id");
         model.addAttribute("m_id",m_id);
         model.addAttribute("notices", noticeService.noticelist());
-        return "noticebbs/noticehome";
+        return "notice/noticehome";
     }
 
 
@@ -33,7 +33,7 @@ public class NoticeController {
         model.addAttribute("m_id",m_id);
         model.addAttribute("notices", noticeService.noticeselect(n_no));
         noticeService.countup(n_no);
-        return "noticebbs/noticeread";
+        return "notice/noticeread";
     }
 
     @RequestMapping("/noticedelete/{n_no}")
@@ -48,7 +48,7 @@ public class NoticeController {
         if(n_id == null){
             return "redirect:/login/login";
         }
-        return "noticebbs/noticewrite";
+        return "notice/noticewrite";
     }
     // ê¸€?°ê¸° ?…ë ¥
     @PostMapping("/noticeinsert")
@@ -76,7 +76,7 @@ public class NoticeController {
 
         model.addAttribute("notice",noticeService.noticeselect(n_no));
 
-        return "noticebbs/noticemod";
+        return "notice/noticemod";
     }
 
     @PostMapping("/noticemodac")

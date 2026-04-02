@@ -61,7 +61,7 @@ public class PayController {
 		model.addAttribute("dateSet", dateSet);
 		model.addAttribute("p_info", paymentService.selectPlace(p_no));
 
-		return "placebbs/pay_reservation";
+		return "pay/pay_reservation";
 	}
 
 	//결제 진행
@@ -114,7 +114,7 @@ public class PayController {
 
 			model.addAttribute("lists", list);
 
-			return "placebbs/placelist";
+			return "pay/placelist";
 		}else {
 
 			// 값이 ?�다�??�이지�?+ 5증�?
@@ -144,7 +144,7 @@ public class PayController {
 		model.addAttribute("arrImg",arrImg);
 		model.addAttribute("place",place);
 		model.addAttribute("today",today);
-		return "placebbs/placeread";
+		return "pay/placeread";
 	}
 
 	@RequestMapping("/kakaoPay")

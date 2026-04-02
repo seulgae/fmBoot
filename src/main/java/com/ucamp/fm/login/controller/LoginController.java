@@ -39,12 +39,12 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
-        return "member/login";
+        return "login/login";
     }
 
     @RequestMapping("/join")
     public String join () {
-        return "member/join";
+        return "login/join";
     }
 
     @RequestMapping("/idCheck")
@@ -86,7 +86,7 @@ public class LoginController {
 
     @RequestMapping("/findId")
     public String findId (){
-        return "/member/findId";
+        return "/login/findId";
     }
     @RequestMapping("/wannaGetId/{checkedValue}/{findValue}")
     @ResponseBody
@@ -120,7 +120,7 @@ public class LoginController {
     @RequestMapping("/pwChange")
     public String pwChange(String m_id,Model model){
         model.addAttribute("m_id",m_id);
-        return "/member/pwChange";
+        return "/login/pwChange";
     }
 
     @RequestMapping("/pwChangeDo")

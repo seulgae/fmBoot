@@ -47,7 +47,7 @@ public class BlogController {
         BlogDto blogDto = blogService.blogone(tb_no);
         model.addAttribute("blog", blogDto);
 
-        return "blogbbs/blogread";
+        return "blog/blogread";
     }
 
     // ì»¤ë??ˆí‹° ê¸€ëª©ë¡ ë¦¬ìŠ¤???˜ì´ì§€(?”ë³´ê¸?ë²„íŠ¼ ê¸°ëŠ¥?¼ë¡œ êµ¬í˜„)
@@ -82,7 +82,7 @@ public class BlogController {
             }
             model.addAttribute("blogs", blogService.bloglist(map));
             // ?ˆë¡œê³ ì¹¨?˜ë©´ ?¤ì‹œ ì´ˆê¸°ê°’ìœ¼ë¡??‹íŒ…?˜ë„ë¡?ì´ˆê¸°??
-            return "blogbbs/bloglist";
+            return "blog/bloglist";
         } else {
             // ê°’ì´ ?ˆë‹¤ë©??˜ì´ì§€ê°?+ 5ì¦ê?
             pageNum += Integer.valueOf(pageAdd); // ?˜ì´ì§€ ì¦ê?
@@ -97,7 +97,7 @@ public class BlogController {
     public String blog_list_ajax(Model model, BlogDto blogDto) {
         // 10ê°œë§Œ ì¶œë ¥, ì¶œë ¥ ê°?ˆ˜ ë°”ê? ??ì¿¼ë¦¬ë¬??˜ì • ??ê²?
         model.addAttribute("blogs", blogService.bloglistajax(blogDto));
-        return "blogbbs/bloglistajax";
+        return "blog/bloglistajax";
     }
 
     // ì»¤ë??ˆí‹° ê¸€?°ê¸° ?˜ì´ì§€ ?´ë™
@@ -114,7 +114,7 @@ public class BlogController {
             return "redirect:/login/login";
         }
 
-        return "blogbbs/blogwrite";
+        return "blog/blogwrite";
     }
 
     // ì»¤ë??ˆí‹° ê¸€?°ê¸° ???„ì†¡
@@ -164,7 +164,7 @@ public class BlogController {
         model.addAttribute("blog", blogDto);
 
 
-        return "blogbbs/blogmod";
+        return "blog/blogmod";
     }
 
     // ì»¤ë??ˆí‹° ê¸€ ?˜ì • ?¼ì „??
