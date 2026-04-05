@@ -1,60 +1,28 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-<header th:fragment="headerFragment">
-  <!-- header inner -->
-  <div class="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-          <div class="full">
-            <div class="center-desk">
-              <div class="logo">
-                <a href="/"><img src="/images/logo.png" alt="#" style="width: 200px; height: 80px;" /></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-          <nav class="navigation navbar navbar-expand-md navbar-dark ">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarsExample04">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/teammanage/teammanage">팀 커뮤니티</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/payment/placelist">구장 예약</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/notice/noticehome">공지사항</a>
-                </li>
-                <li class="nav-item" th:unless="${session.m_id}">
-                  <a class="nav-link" href="/login/join">회원가입</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/login/login" th:unless="${session.m_id}">로그인</a>
-                </li>
-                <li class="nav-item" th:if="${session.m_id}">
-                  <a class="nav-link" href="/mypage/mypage">마이페이지</a>
-                </li>
-                <li class="nav-item" th:if="${session.m_id == 'admin'}">
-                  <a class="nav-link" href="/admin/admin">admin</a>
-                </li>
-                <li class="nav-item" th:if="${session.m_id}">
-                  <a class="nav-link" href="/login/logout">로그아웃</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="headerFragment" class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="/">
+      <span class="brand__mark">FM</span>
+      <span class="brand__text">
+        <strong>FM Manager</strong>
+        <span>풋살 팀과 구장을 위한 운영 플랫폼</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <a href="/">홈</a>
+      <a href="/teammanage/teammanage">팀</a>
+      <a href="/payment/placelist">구장 예약</a>
+      <a href="/blog/bloglist">블로그</a>
+      <a href="/notice/noticehome">공지사항</a>
+      <a href="/login/join" th:unless="${session.m_id}">회원가입</a>
+      <a href="/login/login" th:unless="${session.m_id}">로그인</a>
+      <a href="/mypage/mypage" th:if="${session.m_id}">마이페이지</a>
+      <a href="/admin/admin" th:if="${session.m_id == 'admin'}">관리</a>
+      <a href="/login/logout" th:if="${session.m_id}">로그아웃</a>
+    </nav>
   </div>
 </header>
-<!-- end header inner -->
 </html>
+
+

@@ -1,209 +1,61 @@
-<!DOCTYPE html>
-
-<style>
-    .profile {
-        width: 180px;
-        height: 180px;
-        border-radius: 70%;
-        margin-top: 20px;
-    }
-    .container1 {
-        width: 100%;
-        text-align: center;
-    }
-    .row_status {
-        background-color: #333333;
-    }
-    .row1 {
-        justify-content: space-between;
-        display: flex;
-    }
-    .row2 {
-        justify-content: space-between;
-        display: flex;
-        width:50%;
-    }
-    #contentarea {
-        padding-left: 10px;
-        font-size: 15px;
-        background-color: #BDBDBD;
-        text-align: center;
-        border-radius: 20px;
-        width: 250px;
-        height: 100px;
-        margin-top: 10px;
-        font-family: 'Noto Sans KR', sans-serif;
-    }
-    th, li {
-        color: #BDBDBD;
-    }
-</style>
-
-<html lang="en" xmlns:th="www.thymeleaf.org">
-
-<!-- config -->
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="fragments/config :: configFragment"></th:block>
-<!-- header -->
+<body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
-<script src="/js/team.js"></script>
-<div style="width: 1000px; margin: 20px auto;">
-    <div class="container1">
-        <div class="row_status">
-            <div class="row1">
-                <div class="row2">
-                    <div style="width: 50%; margin-left: 20px;">
-                        <img class="profile" th:src="|/uploadImg/teamProfileImg/${team.t_thum}|">
-                        <div th:if="${session.m_id} and ${userCheck} == 1"><button style="opacity: 0.5;" class="btn" id="profilebtn" th:if="${session.m_id}">선택</button></div>
-                    </div>
-                    <div style="width: 50%; margin-top: 20px;">
-                        <div style="margin-bottom: 10%;">
-                            <h2 style="color: white; margin-right: 15px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;" th:text="${team.t_name}"></h2>
-                        </div>
-                        <h7 style="font-size:8px; margin-right: 10%; color: #BDBDBD">팀 등록일 : [[ ${team.t_date} ]]</h7>
-                        <ul style="font-size:11px; margin-top: 10px; margin-left: 15%" align="left">
-                            <li>－연고 : [[ ${team.t_region} ]]</li>
-                            <li>－연령대 : [[ ${team.t_age} ]]</li>
-                            <li>－실력 : [[ ${team.t_skill} ]]</li>
-                            <li>－유니폼 : [[ ${team.t_uniform} ]]</li>
-                            <li>－유형 : [[ ${team.t_kind} ]]</li>
-                        </ul>
-                    </div>
-                </div>
-                <div style="width: 50%; justify-content: space-between; display: flex; margin-top: 5%; margin-bottom: 2%;">
-                    <div style="width: 50%;">
-                    <h6 style="color: #BDBDBD; font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">팀 소개</h6>
-                        <textarea id="contentarea" name="contentarea" readonly style="resize: none;" th:text="${team.t_introduce}"/>
-                    </div>
-                    <div style="width: 33%; overflow: auto; height: 120%;">
-                        <table class="table-responsive" align="middle">
-                            <thead>
-                            <th>팀원 아이디</th>
-                            </thead>
-                            <tbody style="text-align: center;">
-                                <tr style="border-bottom-style: none;" th:each="member : ${memberList}">
-                                    <td th:text="${member}" style="color: white;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th class="align-middle" rowspan="2" style="text-align: center;">총</th>
-                        <th class="align-middle" rowspan="2" style="text-align: center;">승</th>
-                        <th class="align-middle" rowspan="2" style="text-align: center;">무</th>
-                        <th class="align-middle" rowspan="2" style="text-align: center;">패</th>
-                        <th class="align-middle" rowspan="2" style="text-align: center;">승률</th>
-                        <th class="align-middle" colspan="2" style="text-align: center;">경기당</th>
-                    </tr>
-                    <tr>
-                        <th class="align-middle" style="text-align: center;">득점</th>
-                        <th class="align-middle" style="text-align: center;">실점</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr style="background-color: #BDBDBD;">
-                        <td th:text="${all}"></td>
-                        <td th:text="${win}"></td>
-                        <td th:text="${draw}"></td>
-                        <td th:text="${lose}"></td>
-                        <td th:text="|${rate}%|"></td>
-                        <td th:text="${gf}"></td>
-                        <td th:text="${ga}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div align="left" th:if="${session.m_id} and ${userCheck} == 1" >
-            <button class="btn btn-dark" id="addbtn">팀원 추가</button>
-            <button class="btn btn-dark" align="bottom" id="maddbtn">전적 입력</button>
-            <input type="hidden" id="teamCheck" th:value="${team.t_id}">
-            <button class="btn btn-dark" id="updatebtn">팀 수정</button>
-            <button class="btn btn-dark" id="deletebtn">팀 삭제</button>
-            <input type="hidden" id="loginCheck" th:value="${session.m_id}">
-        </div>
-        <div align="left" th:if="${session.m_id}=='admin'" >
-            <button class="btn btn-dark" id="deletebtn">팀 삭제</button>
-        </div>
+<main class="page-shell">
+  <section class="page-head">
+    <div>
+      <p class="page-head__subtitle">Team Detail</p>
+      <h1 class="page-head__title" th:text="${team.t_name}"></h1>
     </div>
-</div>
-<div id="blogcmt2"></div>
-<div id="blogcmt"></div>
-<div id="blogajaxlist"></div>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-        let t_no = /*[[ ${team.t_no} ]]*/;
-    /*]]*/
-
-$(function(){
-    $.ajax({
-          type: 'get'
-            , url: '/blog/bloglistajax'
-            , success: function(data) {
-                $("#blogajaxlist").html(data);
-          }
-    });
-    $.ajax({
-          type: 'get'
-            , url: '/cmt/blogtcmt'
-            , datatype : 'html'
-            , data: {
-                "c_tbset" : t_no
-            }
-            , success: function(data) {
-                $("#blogcmt2").html(data);
-    }
-    });
-    $.ajax({
-          type: 'get'
-            , url: '/cmt/blogcmtform'
-            , data: {
-                "c_tbset" : t_no
-                , "c_tbno" : "team"
-            }
-            , success: function(data) {
-                $("#blogcmt").html(data);
-          }
-    });
-    $("#updatebtn").click(function() {
-        if($("#loginCheck").val() != ""){
-            window.open('/teammanage/teamupdate?t_no='+t_no, 'pop01', 'top=10, left=10, width=800, height=800, status=no, menubar=no, toolbar=no, resizable=no');
-        } else {
-            alert('로그인을 해주세요');
-            location.href="/login/login";
-        }
-    })
-    $("#maddbtn").click(function(){
-        if($("#loginCheck").val() != ""){
-            window.open('/teammanage/addmatch?t_no='+t_no, 'pop01', 'top=10, left=10, width=600, height=600, status=no, menubar=no, toolbar=no, resizable=no');
-        } else {
-            alert('로그인을 해주세요');
-            location.href="/login/login";
-        }
-    })
-    $("#deletebtn").click(function(){
-        if($("#loginCheck").val() != ""){
-            var con = confirm("삭제하시겠습니까?");
-            if(con){ location.href="/teammanage/teamdelete?t_no="+t_no; }
-            else { return false; }
-        } else {
-            alert('로그인을 해주세요');
-            location.href="/login/login";
-        }
-    })
-    $("#profilebtn").click(function(){
-        window.open('/teammanage/teamprofile?t_no='+t_no , 'pop01', 'top=10, left=10, width=400, height=200, status=no, menubar=no, toolbar=no, resizable=no');
-    })
-    $("#addbtn").click(function(){
-        window.open('/teammanage/addmember?t_no='+t_no , 'pop01', 'top=10, left=10, width=500, height=500, status=no, menubar=no, toolbar=no, resizable=no');
-    })
-})
-</script>
-<br><br><br>
-<!-- footer -->
+    <div class="action-row">
+      <input type="hidden" id="teamNo" th:value="${team.t_no}">
+      <input type="hidden" id="loginCheck" th:value="${session.m_id}">
+      <button class="btn btn--secondary" type="button" id="teamProfileBtn" th:if="${session.m_id != null and userCheck == 1}">프로필 선택</button>
+      <button class="btn btn--secondary" type="button" id="teamMemberBtn" th:if="${session.m_id != null and userCheck == 1}">팀원 추가</button>
+      <button class="btn btn--secondary" type="button" id="teamMatchBtn" th:if="${session.m_id != null and userCheck == 1}">전적 입력</button>
+      <button class="btn btn--primary" type="button" id="teamUpdateBtn" th:if="${session.m_id != null and userCheck == 1}">팀 수정</button>
+      <button class="btn btn--ghost" type="button" id="teamDeleteBtn" th:if="${session.m_id != null and (userCheck == 1 or session.m_id == 'admin')}">팀 삭제</button>
+    </div>
+  </section>
+  <section class="grid grid--sidebar">
+    <article class="panel">
+      <div class="profile-box">
+        <div class="profile-box__avatar">
+          <img th:src="|/uploadImg/teamProfileImg/${team.t_thum}|" alt="team image">
+        </div>
+        <div>
+          <div class="chip-list">
+            <span class="chip" th:text="${team.t_region}"></span>
+            <span class="chip" th:text="${team.t_age}"></span>
+            <span class="chip" th:text="${team.t_skill}"></span>
+            <span class="chip" th:text="${team.t_uniform}"></span>
+            <span class="chip" th:text="${team.t_kind}"></span>
+          </div>
+          <p class="muted" th:text="|등록일 ${team.t_date}|"></p>
+          <div class="notice-box" th:text="${team.t_introduce}"></div>
+        </div>
+      </div>
+    </article>
+    <article class="panel">
+      <h2 class="section-title">팀원</h2>
+      <ul class="list-plain">
+        <li th:each="member : ${memberList}" th:text="${member}"></li>
+      </ul>
+    </article>
+  </section>
+  <section class="grid grid--cards u-mt-24">
+    <article class="stat-card"><div class="stat-card__label">경기 수</div><div class="stat-card__value" th:text="${all}"></div></article>
+    <article class="stat-card"><div class="stat-card__label">승 / 무 / 패</div><div class="stat-card__value" th:text="|${win}-${draw}-${lose}|"></div></article>
+    <article class="stat-card"><div class="stat-card__label">승률</div><div class="stat-card__value" th:text="|${rate}%|"></div></article>
+    <article class="stat-card"><div class="stat-card__label">득점 / 실점</div><div class="stat-card__value" th:text="|${gf}-${ga}|"></div></article>
+  </section>
+</main>
+<script src="/js/pages/team-detail.js" defer></script>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</body>
 </html>
+
+
+

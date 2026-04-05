@@ -26,11 +26,11 @@ import java.io.IOException;
 @RequestMapping("/payment")
 public class PayController {
 
-	static int pageNum = 10; // ?�보�??�이지 변??
-	static int addcount = 0; // 값을 증�??�켜 추�? ?��?�??�인??조건 �?
-	static int maincount = 0; // 값을 비교???�?�소.
+	static int pageNum = 10; // ?�보�??�이지 변??
+	static int addcount = 0; // 값을 증�??�켜 추�? ?��?�??�인??조건 �?
+	static int maincount = 0; // 값을 비교???�?�소.
 
-	static String keywordStack = ""; // ?�워??값을 ?�?�할 공간
+	static String keywordStack = ""; // ?�워??값을 ?�?�할 공간
 
 	@Autowired
 	PaymentService paymentService;
@@ -83,8 +83,8 @@ public class PayController {
 							Model model) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
-		map.put("keyword", keywordStack); // 초기�??�??"")
-		map.put("pageNum", pageNum); // 초기�??�??)
+		map.put("keyword", keywordStack); // 초기�??�??"")
+		map.put("pageNum", pageNum); // 초기�??�??)
 
 //		List<PlaceDto> list = paymentService.selectPageing();
 
@@ -93,17 +93,17 @@ public class PayController {
 		model.addAttribute("size", paymentService.selectAll().size());
 
 		if (pageAdd == null || keyword == null){
-			// 추�? 기능???�행?��? ?�았?�면 main 카운?�도 증�??�키지 ?�음.
+			// 추�? 기능???�행?��? ?�았?�면 main 카운?�도 증�??�키지 ?�음.
 			if (addcount > 0) {
 				maincount++;
 			}
 
-			// ?�로고침 ?�보�?문장???�행?��? ?�았?�때 ?�행?�는 로직
+			// ?�로고침 ?�보�?문장???�행?��? ?�았?�때 ?�행?�는 로직
 			if (addcount < maincount) {
 				pageNum = 10;
-				keywordStack = ""; // ?�체 검??
+				keywordStack = ""; // ?�체 검??
 				maincount = 0; // 메인 카운??초기??
-				addcount = 0; // 추�? 카운??초기??
+				addcount = 0; // 추�? 카운??초기??
 			}
 			List<PlaceDto> list = paymentService.selectPageing(map);
 
@@ -117,9 +117,9 @@ public class PayController {
 			return "pay/placelist";
 		}else {
 
-			// 값이 ?�다�??�이지�?+ 5증�?
-			pageNum += Integer.valueOf(pageAdd); // ?�이지 증�?
-			keywordStack = keyword; // 검??�?받아?�기.
+			// 값이 ?�다�??�이지�?+ 5증�?
+			pageNum += Integer.valueOf(pageAdd); // ?�이지 증�?
+			keywordStack = keyword; // 검??�?받아?�기.
 			addcount += 2;
 			return "redirect:/payment/placelist";
 		}

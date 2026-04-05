@@ -1,139 +1,74 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-
-<!-- config -->
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="fragments/config :: configFragment"></th:block>
-<!-- header -->
+<body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
-<link  href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<div style="width: 70%; margin: 20px auto;">
-    <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
-    <div style="padding-top: 50px;">
-        <span style="font-size: 30px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">■구장 수정</span><br><br>
-        <form action="/mypage/mypage_update.do" method="post" id="frmUpdate" enctype="multipart/form-data">
-            <table class="table table-bordered" >
-                <colgroup>
-                    <col style="width: 100px">
-                    <col style="width: 800px">
-                </colgroup>
-                <tbody>
-                <tr>
-                    <th class="tg-llyw">구장 이름</th>
-                    <td class="tg-0pky"><input class="form-control" name="p_pname" required="required" th:value="${dto.p_pname}" style="width: 100%; " type="text" autofocus></td>
-                </tr>
-                <tr>
-                    <th class="tg-llyw">구장 주소</th>
-                    <td class="tg-0pky">
-                        <input type="hidden" id="m_zip" class="form-control">
-                        <input id="addr" class="form-control" name="p_place" required="required" th:value="${dto.p_place}" style="width: 100%; " type="text">
-                    </td>
-                </tr>
-                <tr>
-                    <th class="tg-llyw">구장 가격</th>
-                    <td class="tg-0pky"><input class="form-control" name="p_price" required="required" th:value="${dto.p_price}" style="width: 100%; " type="number"></td>
-                </tr>
-                <tr>
-                    <th class="tg-llyw">최대 인원</th>
-                    <td class="tg-0pky"><input class="form-control" name="p_max" required="required" th:value="${dto.p_max}" style="width: 100%; " type="number"></td>
-                </tr>
-                <tr>
-                    <th class="tg-llyw">지역</th>
-                    <td class="tg-0pky"><input class="form-control" name="p_area" required="required" th:value="${dto.p_area}" style="width: 100%; " type="text"></td>
-                </tr>
-                <tr>
-                    <th class="tg-llyw">옵션</th>
-                    <td>
-                        <div>
-                            <span>주차장</span>&nbsp;
-                            <input name="p_op1" id="p_op1" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op1 == '1'}" value="1">
-                            <span  style="padding-left:10px">냉난방</span>&nbsp;
-                            <input name="p_op2" id="p_op2" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op2 == '1'}" value="1">
-                            <span  style="padding-left:10px">공대여</span>&nbsp;
-                            <input name="p_op3" id="p_op3" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op3 == '1'}" value="1">
-                            <span  style="padding-left:10px">팀조끼</span>&nbsp;
-                            <input name="p_op4" id="p_op4" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op4 == '1'}" value="1">
-                            <span  style="padding-left:10px">풋살화</span>&nbsp;
-                            <input name="p_op5" id="p_op5" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op5 == '1'}" value="1">
-                            <span  style="padding-left:10px">샤워실</span>&nbsp;
-                            <input name="p_op6" id="p_op6" style=" display: inline-block;" type="checkbox" th:checked="${dto.p_op6 == '1'}" value="1">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="tg-llyw">상세 내용</th>
-                    <td class="tg-0pky"><textarea name="p_explain" id="summernote" required="required">[[${dto.p_explain}]]</textarea></td>
-                </tr>
-                <tr>
-                    <th>기존 구장사진</th>
-                    <td>
-                        <th:block th:each="img : ${images}">
-                            <img th:src="${img}" width="100px" height="80px;" style="display:inline-block;">
-                        </th:block>
-                    </td>
-                </tr>
-                <tr>
-                    <th>구장 사진(변경)</th>
-                    <td>
-                        <input type="file" name="uploadfile" id="uploadfile" multiple="multiple">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <div style="justify-content: space-between; display:flex; width: 0px; margin-left:89%;">
-                <input type="hidden" name="p_no" th:value="${dto.p_no }">
-                <button id="btnSubmit" type="button" class="btn btn-dark" style=" margin-bottom: 20px;">수정</button>&nbsp;
-                <button type="submit" class="btn btn-dark" style="margin-bottom: 20px;">취소</button>
-            </div>
-        </form>
+<main class="page-shell">
+  <div class="panel">
+    <div class="page-head">
+      <div>
+        <p class="page-head__subtitle">Venue Management</p>
+        <h1 class="page-head__title">Update Venue</h1>
+      </div>
     </div>
-    <!-- footer import  -->
-</div>
-<!-- div#wrap -->
-
-<!-- footer -->
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
-<script>
-$(document).ready(function() {
-    $("#addr").click(function(){
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("m_zip").value = data.zonecode;
-                document.getElementById("addr").value = roadAddr;
-                document.getElementById("addr").focus(); // 상세주소로 포커스
-            }
-        }).open();
-    });
-
-    $('#summernote').summernote({
-         height: 200,
-         minHeight: null,
-         maxHeight: null,
-         lang: "ko-KR"
-    });
-    $("#btnSubmit").click(function(){
-        if(confirm("수정하시겠습니까?")){
-            $("#frmUpdate").submit();
-        }else{
-            return false;
-        }
-    })
-    $("#uploadfile").click(function(){
-        alert("사진 추가 후 수정 시 기존 이미지들이 삭제된 후 저장됩니다.");
-    })
-});
-</script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <form action="/mypage/mypage_update.do" method="post" enctype="multipart/form-data" class="form-grid">
+      <input type="hidden" name="p_no" th:value="${dto.p_no}">
+      <div class="field">
+        <label for="p_pname">구장명</label>
+        <input class="input" type="text" id="p_pname" name="p_pname" th:value="${dto.p_pname}" required>
+      </div>
+      <div class="field field--full">
+        <label for="addr">주소</label>
+        <input class="input" type="text" id="addr" name="p_place" th:value="${dto.p_place}" required>
+      </div>
+      <div class="field">
+        <label for="p_price">가격</label>
+        <input class="input" type="number" id="p_price" name="p_price" th:value="${dto.p_price}" required>
+      </div>
+      <div class="field">
+        <label for="p_max">최대 인원</label>
+        <input class="input" type="number" id="p_max" name="p_max" th:value="${dto.p_max}" required>
+      </div>
+      <div class="field">
+        <label for="p_area">지역</label>
+        <input class="input" type="text" id="p_area" name="p_area" th:value="${dto.p_area}" required>
+      </div>
+      <div class="field field--full">
+        <span class="check-group__label">옵션</span>
+        <div class="check-inline">
+          <label class="check"><input type="checkbox" name="p_op1" value="1" th:checked="${dto.p_op1 == '1'}"> 주차</label>
+          <label class="check"><input type="checkbox" name="p_op2" value="1" th:checked="${dto.p_op2 == '1'}"> 냉난방</label>
+          <label class="check"><input type="checkbox" name="p_op3" value="1" th:checked="${dto.p_op3 == '1'}"> 공 대여</label>
+          <label class="check"><input type="checkbox" name="p_op4" value="1" th:checked="${dto.p_op4 == '1'}"> 조끼 대여</label>
+          <label class="check"><input type="checkbox" name="p_op5" value="1" th:checked="${dto.p_op5 == '1'}"> 실내화</label>
+          <label class="check"><input type="checkbox" name="p_op6" value="1" th:checked="${dto.p_op6 == '1'}"> 샤워실</label>
+        </div>
+      </div>
+      <div class="field field--full">
+        <label for="p_explain">상세 설명</label>
+        <textarea class="textarea" id="p_explain" name="p_explain" th:text="${dto.p_explain}" required></textarea>
+      </div>
+      <div class="field field--full">
+        <label>현재 이미지</label>
+        <div class="thumb-grid">
+          <img th:each="image : ${images}" th:src="${image}" alt="venue image">
+        </div>
+      </div>
+      <div class="field field--full">
+        <label for="uploadfile">새 이미지 업로드</label>
+        <input class="input" type="file" id="uploadfile" name="uploadfile" multiple>
+      </div>
+      <div class="field field--full action-row">
+        <button class="btn btn--primary" type="submit">저장</button>
+        <button class="btn btn--secondary" type="button" data-go-back>취소</button>
+      </div>
+    </form>
+  </div>
+</main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="/js/pages/place-form.js" defer></script>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</body>
 </html>
+
+

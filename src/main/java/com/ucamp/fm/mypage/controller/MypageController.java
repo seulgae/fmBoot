@@ -47,7 +47,7 @@ public class MypageController {
         }else{
             MemberDto member =  memberService.getMember(m_id);
             if (member.getM_level().equals("1")){
-                //?�약 ?�이�??�성 ???�업
+                //?�약 ?�이�??�성 ???�업
                 List<JoinDto> reser = memberService.getList1(m_id);
                 model.addAttribute("list1", reser);
             }else{
@@ -58,7 +58,7 @@ public class MypageController {
             return "mypage/mypage";
         }
     }
-    //구장 ?�청 ?�출
+    //구장 ?�청 ?�출
     @RequestMapping("/mypage_request")
     public String mypage_request(Model model, HttpServletRequest request) {
         String m_id = (String) request.getSession().getAttribute("m_id");
@@ -71,7 +71,7 @@ public class MypageController {
         }
     }
 
-    //구장 ?�청 ?�출
+    //구장 ?�청 ?�출
     @RequestMapping("/mypage_request.do")
     public String mypage_request_do(@RequestParam("uploadfile") MultipartFile[] uploadfile,
                                     HttpServletRequest request, PlaceDto placeDto) throws IllegalStateException, IOException {
@@ -137,7 +137,7 @@ public class MypageController {
         }
     }
 
-    //구장 ?�청 ?�출
+    //구장 ?�청 ?�출
     @RequestMapping("/mypage_update.do")
     public String mypage_update_do(@RequestParam("uploadfile") MultipartFile[] uploadfile, HttpServletRequest request, PlaceDto placeDto) throws IOException {
         String m_id = (String) request.getSession().getAttribute("m_id");
@@ -187,7 +187,7 @@ public class MypageController {
 
         return "redirect:/mypage/mypage";
     }
-    // 구장 ??��
+    // 구장 ??��
     @RequestMapping("/place_delete/{p_no}")
     public String place_delete(HttpServletRequest request, @PathVariable String p_no) {
         String m_id = (String) request.getSession().getAttribute("m_id");
@@ -201,7 +201,7 @@ public class MypageController {
         }
     }
 
-    //?�진 추�?
+    //?�진 추�?
     @RequestMapping("/addphoto")
     public String addphoto(Model model, HttpServletRequest request) {
         String m_id = (String) request.getSession().getAttribute("m_id");
@@ -215,7 +215,7 @@ public class MypageController {
         }
     }
 
-    //?�진 추�?
+    //?�진 추�?
     @RequestMapping("/addphoto.do")
     @ResponseBody
     public String addphoto_do(HttpServletRequest request,
@@ -224,9 +224,9 @@ public class MypageController {
 
         String PATH = request.getSession().getServletContext().getRealPath("/") + "uploadImg/profileImg/";
 
-        // ?�로?�트 ??webapp ?�더�?찾아�? webapp ?�더 ?�을 경우 appdate?�의 ?�캣 캐시 ?�시?�???�더???�?�시??
-        // transferTo : ?�일 ?�이?��? 지?�한 file�??�??
-        // getOriginalFilename : ?�라?�언?�의 ?�본 ?�일�?반환
+        // ?�로?�트 ??webapp ?�더�?찾아�? webapp ?�더 ?�을 경우 appdate?�의 ?�캣 캐시 ?�시?�???�더???�?�시??
+        // transferTo : ?�일 ?�이?��? 지?�한 file�??�??
+        // getOriginalFilename : ?�라?�언?�의 ?�본 ?�일�?반환
 
         if (!m_thum.getOriginalFilename().isEmpty()) {
             m_thum.transferTo(new File(PATH + m_thum.getOriginalFilename()));

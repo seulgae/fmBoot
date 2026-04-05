@@ -1,63 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-
-
-<!-- 부트스트랩 관련 -->
-<link  href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-
-<link rel="stylesheet" href="/css/blogcomment.css">
-
-<div id="commentwrap">
-    <!-- 댓글 입력 출력 테이블-->
-    <table id="bloglist">
-        <thead>
-            <tr>
-                <th colspan="2">
-                    <span style="font-size:20px">댓글 작성</span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-        <hr width="970px">
-        <tr th:each="cment : ${cments}">
-            <td width="60px" class="writerimg" style="text-align:left;">
-                <img th:src="|/uploadImg/profileImg/${cment.c_m_thum}|" onerror="this.parentNode.style.display='none'" width="50px" height="50px">
-            </td>
-            <td>
-                <table width="95%">
-                    <tbody>
-                        <tr>
-                            <td class="writer" colspan="2">
-                                <span>[[ ${cment.c_c_id} ]]</span>
-                            <td>
-                        <tr>
-                        <tr>
-                            <td class="content" colspan="2">
-                                <span style="font-size:15px;">[[ ${cment.c_content} ]]</span>
-                            <td>
-                        <tr>
-                        <tr>
-                            <td class="date" style="text-align:left;">
-                                <span>[[ ${cment.c_date} ]]</span>
-                                <a th:href="|/cmt/dec/${cment.c_no}|">| 신고</a>
-                            </td>
-                            <td style="text-align:right;" width="300px">
-                                <button class="btn btn-danger" th:if="${cment.c_c_id.equals(m_id)}">
-                                    <a th:href="|/cmt/cmddelete/${cment.c_no}|"
-                                       style="color:#fff;">삭제</a>
-                                </button>
-                                <button class="btn btn-danger" th:if="${session.mid == 'admin'}">
-                                    <a th:href="|/cmt/cmddelete/${cment.c_no}|"
-                                       style="color:#fff;">삭제</a>
-                                </button>
-                            </td>
-                        <tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<div class="panel">
+  <h2 class="section-title">팀 댓글</h2>
+  <div class="comment-list u-mt-18">
+    <div class="comment-item" th:each="cment : ${cments}">
+      <div class="comment-item__head">
+        <div>
+          <strong th:text="${cment.c_c_id}"></strong>
+          <span class="muted" th:text="${cment.c_date}"></span>
+        </div>
+        <div class="inline-actions">
+          <a class="btn btn--ghost" th:href="|/cmt/dec/${cment.c_no}|">신고</a>
+          <button class="btn btn--secondary" type="button" th:if="${cment.c_c_id.equals(m_id) or session.m_id == 'admin'}" th:attr="data-comment-delete=|/cmt/cmddelete/${cment.c_no}|">삭제</button>
+        </div>
+      </div>
+      <p th:text="${cment.c_content}"></p>
+    </div>
+    <div class="empty-state" th:if="${#lists.isEmpty(cments)}">등록된 댓글이 없습니다.</div>
+  </div>
 </div>
-<!-- div#wrap -->
 </html>
+
+

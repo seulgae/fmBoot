@@ -1,28 +1,40 @@
-<html lang="en" xmlns:th="www.thymeleaf.org">
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<body>
+  <main class="popup-shell">
+    <div class="popup-card">
+      <div class="page-head">
+        <div>
+          <p class="page-head__subtitle">Reservation History</p>
+          <h1 class="page-head__title">Reservations</h1>
+        </div>
+      </div>
+      <div class="table-shell">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>구장</th>
+              <th>시간</th>
+              <th>예약일</th>
+              <th>결제일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="item : ${list1}">
+              <td th:text="${item.rownum}"></td>
+              <td><a th:href="|/payment/placeread?p_no=${item.r_p_no}|" th:text="${item.p_pname}"></a></td>
+              <td th:text="${item.r_time}"></td>
+              <td th:text="${item.r_date}"></td>
+              <td th:text="${item.r_wdate}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
 
-<div>
-    <h1 style="margin-left:55px;">예약 현황</h1>
-    <table id="userList" style="width: 800px; margin: 20px auto; height: 30px; border-collapse: separate; border-spacing: 0 10px;">
-      <thead>
-      <tr>
-        <th style="text-align: center; border-bottom: 1px solid #000;">번호</th>
-        <th style="text-align: center; border-bottom: 1px solid #000;">예약자 번호</th>
-        <th style="text-align: center; border-bottom: 1px solid #000;">구장명</th>
-        <th style="text-align: center; border-bottom: 1px solid #000;">예약 시간</th>
-        <th style="text-align: center; border-bottom: 1px solid #000;">예약 날짜</th>
-        <th style="text-align: center; border-bottom: 1px solid #000;">결제 날짜</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="list1 : ${list1}">
-        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_no}]]</td>
-        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.m_phone}]]</td>
-        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.p_pname}]]</td>
-        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_time}]]</td>
-        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_date}]]</td>
-        <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_wdate}]]</td>
-      </tr>
-      </tbody>
-    </table>
-</div>
 

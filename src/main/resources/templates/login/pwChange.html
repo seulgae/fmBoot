@@ -1,52 +1,36 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-
-<!-- config -->
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="fragments/config :: configFragment"></th:block>
-<!-- header -->
+<body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
-
-<link rel="stylesheet" href="/css/login.css">
-
-<div id="wrap">
-	<div id="signin">
-		<form action="/login/pwChangeDo" id="frmChange" name="frmChange" method="post">
-			<input type="hidden" name="m_id" th:value="${m_id}">
-			<table>
-				<tbody>
-				<tr>
-					<td colspan="2">
-						<a href="/">
-							<span class="loginfont">비밀번호 변경</span>
-						</a>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="password" class="loginInput" name="m_pw" id="m_pw"
-										   autofocus size="30" placeholder="변경할 비밀번호를 입력하세요" />
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="password" class="loginInput" id="m_pw1" size="30" placeholder="비밀번호 확인" />
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="button" id="btnChange" class="btn btn-danger" value="변경하기">
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</form>
-	</div>
-</div>
-<!-- div#wrap -->
-
-<!-- login -->
-<script src="/js/login.js"></script>
-<!-- footer -->
+<main class="page-shell">
+  <div class="popup-card popup-card--narrow u-center-block">
+    <div class="page-head">
+      <div>
+        <p class="page-head__subtitle">Password Reset</p>
+        <h1 class="page-head__title">Change Password</h1>
+      </div>
+    </div>
+    <form id="frmChange" action="/login/pwChangeDo" method="post" class="form-grid form-grid--single">
+      <input type="hidden" name="m_id" th:value="${m_id}">
+      <div class="field">
+        <label for="m_pw">새 비밀번호</label>
+        <input class="input" type="password" id="m_pw" name="m_pw">
+      </div>
+      <div class="field">
+        <label for="m_pw1">새 비밀번호 확인</label>
+        <input class="input" type="password" id="m_pw1">
+      </div>
+      <div class="action-row">
+        <button class="btn btn--primary" type="button" id="btnChange">변경하기</button>
+      </div>
+    </form>
+  </div>
+</main>
+<script src="/js/pages/login.js" defer></script>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</body>
+</html>
 
-<!--<c:import url="include/footer.jsp" charEncoding="UTF-8" />-->
+
+

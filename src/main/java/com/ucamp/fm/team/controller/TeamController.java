@@ -208,9 +208,9 @@ public class TeamController {
 
         String PATH = request.getSession().getServletContext().getRealPath("/") + "uploadImg/teamProfileImg/";
 
-        // ?�로?�트 ??webapp ?�더�?찾아�? webapp ?�더 ?�을 경우 appdate?�의 ?�캣 캐시 ?�시?�???�더???�?�시??
-        // transferTo : ?�일 ?�이?��? 지?�한 file�??�??
-        // getOriginalFilename : ?�라?�언?�의 ?�본 ?�일�?반환
+        // ?�로?�트 ??webapp ?�더�?찾아�? webapp ?�더 ?�을 경우 appdate?�의 ?�캣 캐시 ?�시?�???�더???�?�시??
+        // transferTo : ?�일 ?�이?��? 지?�한 file�??�??
+        // getOriginalFilename : ?�라?�언?�의 ?�본 ?�일�?반환
 
         if (!t_thum.getOriginalFilename().isEmpty()) {
             t_thum.transferTo(new File(PATH + t_thum.getOriginalFilename()));
@@ -225,6 +225,6 @@ public class TeamController {
     @ResponseBody
     public String insertMember(String str_member,String t_no){
         teamService.insertMember(str_member,t_no);
-        return "<script>alert('?�록???�료?�었?�니??');window.opener.location.reload(); window.close();</script>";
+        return "<script>alert('?�록???�료?�었?�니??');window.opener.location.reload(); window.close();</script>";
     }
 }

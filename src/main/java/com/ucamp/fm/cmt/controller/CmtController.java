@@ -17,18 +17,18 @@ public class CmtController {
     @Autowired
     CmtService cmtService;
 
-    // ?“ê? ë¦¬ìŠ¤??
+    // ?ï¿½ï¿½? ë¦¬ìŠ¤??
     @GetMapping("/blogcmt")
     public String cmtlist(HttpSession session, HttpServletRequest req, Model model){
         String m_id = (String) session.getAttribute("m_id");
 
-        // ?ˆì£¼ë©?th:if ?¬ìš©ë¶ˆê?..
+        // ?ï¿½ì£¼ï¿½?th:if ?ï¿½ìš©ë¶ˆï¿½?..
         if(m_id==null){
             m_id = "";
         }
 
-        String referer = req.getHeader("Referer"); // ?¤ë”?ì„œ ?´ì „ ?˜ì´ì§€ë¥??½ëŠ”??
-        //http://localhost:8085/blog/blogread/ ?œê±°?´ë²„ë¦?
+        String referer = req.getHeader("Referer"); // ?ï¿½ë”?ï¿½ì„œ ?ï¿½ì „ ?ï¿½ì´ì§€ï¿½??ï¿½ëŠ”??
+        //http://localhost:8085/blog/blogread/ ?ï¿½ê±°?ï¿½ë²„ï¿½?
         String c_tbset = referer.substring(36);
 
         model.addAttribute("m_id", m_id);
@@ -42,7 +42,7 @@ public class CmtController {
     public String blogtcmt(HttpSession session, HttpServletRequest req, String c_tbset, Model model){
         String m_id = (String) session.getAttribute("m_id");
 
-        // ?ˆì£¼ë©?th:if ?¬ìš©ë¶ˆê?..
+        // ?ï¿½ì£¼ï¿½?th:if ?ï¿½ìš©ë¶ˆï¿½?..
         if(m_id==null){
             m_id = "";
         }
@@ -54,19 +54,19 @@ public class CmtController {
         return "cmt/blogtcmt";
     }
 
-    // ? ê³  ë²„íŠ¼ ?™ì‘, ?“ê? ? ê³  ì¹´ìš´??ì¦ê?.
+    // ?ï¿½ê³  ë²„íŠ¼ ?ï¿½ì‘, ?ï¿½ï¿½? ?ï¿½ê³  ì¹´ìš´??ì¦ï¿½?.
     @RequestMapping("/dec/{c_no}")
     public String dec(@PathVariable int c_no,
                       HttpServletRequest req,
                       HttpSession session){
         String m_id = (String) session.getAttribute("m_id");
-        String referer = req.getHeader("Referer"); // ?¤ë”?ì„œ ?´ì „ ?˜ì´ì§€ë¥??½ëŠ”??
+        String referer = req.getHeader("Referer"); // ?ï¿½ë”?ï¿½ì„œ ?ï¿½ì „ ?ï¿½ì´ì§€ï¿½??ï¿½ëŠ”??
 
         if (!(m_id == null)) {
             cmtService.cmtdec(c_no);
             return "redirect:" + referer;
         }else {
-            // ë¡œê·¸???¼ìœ¼ë¡??´ë™.
+            // ë¡œê·¸???ï¿½ìœ¼ï¿½??ï¿½ë™.
             return "redirect:/login/login";
         }
     }
@@ -76,7 +76,7 @@ public class CmtController {
     public String cmtlist_dec(HttpSession session, Model model, CmentDto cmentDto){
         String m_id = (String) session.getAttribute("m_id");
 
-        // ?ˆì£¼ë©?th:if ?¬ìš©ë¶ˆê?..
+        // ?ï¿½ì£¼ï¿½?th:if ?ï¿½ìš©ë¶ˆï¿½?..
         if(m_id==null){
             m_id = "";
         }
@@ -85,7 +85,7 @@ public class CmtController {
         return "cmt/blogcmtdec";
     }
 
-    // ?“ê? ???˜ì´ì§€ ë¶ˆëŸ¬?¤ê¸°
+    // ?ï¿½ï¿½? ???ï¿½ì´ì§€ ë¶ˆëŸ¬?ï¿½ê¸°
     @GetMapping("/blogcmtform")
     public String cmtform(String c_tbset, String c_tbno, Model model){
         model.addAttribute("c_tbno", c_tbno);
@@ -94,20 +94,20 @@ public class CmtController {
         return "cmt/blogcmtform";
     }
 
-    // ?“ê? ?°ê¸°
+    // ?ï¿½ï¿½? ?ï¿½ê¸°
     @RequestMapping("/blogcmtwrite")
     public String cmtwrite(HttpSession session, HttpServletRequest req,
                            @RequestParam(value = "c_content") String c_content, String c_tbno, String c_tbset) {
         String m_id = (String) session.getAttribute("m_id");
-        String referer = req.getHeader("Referer"); // ?¤ë”?ì„œ ?´ì „ ?˜ì´ì§€ë¥??½ëŠ”??
+        String referer = req.getHeader("Referer"); // ?ï¿½ë”?ï¿½ì„œ ?ï¿½ì „ ?ï¿½ì´ì§€ï¿½??ï¿½ëŠ”??
 
         if(c_content == null){
             c_content = "";
         }
-        // ë¡œê·¸??ì¡°ê±´ë¬?
+        // ë¡œê·¸??ì¡°ê±´ï¿½?
         if (!(m_id == null)) {
             if(c_tbno==""){
-                //http://localhost:8085/blog/blogread/ ?œê±°?´ë²„ë¦?
+                //http://localhost:8085/blog/blogread/ ?ï¿½ê±°?ï¿½ë²„ï¿½?
                 String c_no = referer.substring(36);
                 cmtService.cmtinsert(c_no, m_id, c_content);
             }else {
@@ -115,18 +115,18 @@ public class CmtController {
             }
             return "redirect:" + referer;
         } else {
-            // 2. ë¡œê·¸???¼ìœ¼ë¡??´ë™.
+            // 2. ë¡œê·¸???ï¿½ìœ¼ï¿½??ï¿½ë™.
             return "redirect:/login/login";
         }
     }
     
-    // ?“ê? ?? œ
-    // ì»¤ë??ˆí‹° ê¸€ ?? œ
+    // ?ï¿½ï¿½? ??ï¿½ï¿½
+    // ì»¤ï¿½??ï¿½í‹° ê¸€ ??ï¿½ï¿½
     @GetMapping("/cmddelete/{c_no}")
     public String cmt_delete(HttpSession session, HttpServletRequest req,
                               Model model, @PathVariable String c_no) {
 
-        // ?¸ì…˜???ˆëŠ” ?„ì´?”ê°’ ì»¤ë??ˆí‹° ê²Œì‹œ???‘ì„±?ì— ?€??
+        // ?ï¿½ì…˜???ï¿½ëŠ” ?ï¿½ì´?ï¿½ê°’ ì»¤ï¿½??ï¿½í‹° ê²Œì‹œ???ï¿½ì„±?ï¿½ì— ?ï¿½??
         String m_id = (String) session.getAttribute("m_id");
 
         model.addAttribute("m_id", m_id);

@@ -93,9 +93,9 @@ public class LoginController {
     public String wannaGetId(@PathVariable String checkedValue,@PathVariable String findValue){
         String m_id = memberService.findGetId(checkedValue,findValue);
         if(m_id==null){
-            return "<script>alert('존재?�는 ?�이?��? ?�습?�다.');location.href='/login/findId';</script>";
+            return "<script>alert('존재?�는 ?�이?��? ?�습?�다.');location.href='/login/findId';</script>";
         }else{
-            return "<script>alert('"+m_id+" ?�니??');window.close();</script>";
+            return "<script>alert('"+m_id+" ?�니??');window.close();</script>";
         }
     }
 
@@ -104,16 +104,16 @@ public class LoginController {
     public String wannaGetPw(@PathVariable String pw_id,@PathVariable String pw_email) throws MessagingException, IOException {
         int count = memberService.getCount(pw_id,pw_email);
         if(count==0){
-            return "<script>alert('존재?�는 ?�보가 ?�습?�다.');location.href='/login/findId';</script>";
+            return "<script>alert('존재?�는 ?�보가 ?�습?�다.');location.href='/login/findId';</script>";
         }else{
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setTo(pw_email);
-            helper.setSubject("?�살 매니?� ?�페?��? 비�?번호 변�?");
-            helper.setText("<html><a href='http://localhost:8085/login/pwChange?m_id="+pw_id+"'>비�?번호 변경하�?/a></html>",true);
+            helper.setSubject("?�살 매니?� ?�페?��? 비�?번호 변�?");
+            helper.setText("<html><a href='http://localhost:8085/login/pwChange?m_id="+pw_id+"'>비�?번호 변경하�?/a></html>",true);
             javaMailSender.send(message);
 
-            return "<script>alert('메일???�인?�주?�요.'); window.close();</script>";
+            return "<script>alert('메일???�인?�주?�요.'); window.close();</script>";
         }
     }
 
@@ -127,7 +127,7 @@ public class LoginController {
     @ResponseBody
     public String pwChangeDo(String m_id,String m_pw){
         memberService.changePw(m_id,passwordEncoder.encode(m_pw));
-        return "<script>alert('비�?번호가 변경되?�습?�다. ?�시 로그???�주?�요.');location.href='/'</script>";
+        return "<script>alert('비�?번호가 변경되?�습?�다. ?�시 로그???�주?�요.');location.href='/'</script>";
     }
 
 }

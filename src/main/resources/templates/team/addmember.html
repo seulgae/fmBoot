@@ -1,36 +1,35 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>멤버 추가</title>
-</head>
-<body>
-
-<!-- team -->
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="fragments/config :: configFragment"></th:block>
-<script src="/js/team.js"></script>
-<div style="text-align:center;">
-    <input type="text" id="findMember" placeholder="멤버아이디">
-    <input type="button" class="btn btn-primary" id="btnFind" value="검색">
-</div>
-    <div id="memberList"></div>
-    <div id="addMemberList" style="display:none;">
-        <table class="table table-dark table-striped">
-            <thead>
-            <th colspan="2" style="text-align:center;">팀원 아이디</th>
-            </thead>
-            <tbody id="table_add">
-            </tbody>
-            <tr>
-                <td colspan="2" style="text-align:center;">
-                    <input type="button" class="btn btn-success" value="등록" size="30" onclick="insertTeam()">
-                </td>
-            </tr>
-        </table>
+<body>
+  <main class="popup-shell">
+    <div class="popup-card">
+      <h1 class="page-head__title">팀원 추가</h1>
+      <div class="form-grid form-grid--single">
+        <div class="field">
+          <label for="findMember">아이디 검색</label>
+          <div class="action-row">
+            <input class="input" type="text" id="findMember" placeholder="아이디 입력">
+            <button class="btn btn--secondary" type="button" id="btnFind">검색</button>
+          </div>
+        </div>
+      </div>
+      <div id="memberList" class="u-mt-18"></div>
+      <form id="frmAddMember" action="/teammanage/insertMember" method="post" class="u-mt-18">
+        <input type="hidden" id="str_member" name="str_member">
+        <input type="hidden" name="t_no" th:value="${t_no}">
+        <div class="table-shell">
+          <table class="data-table">
+            <thead><tr><th>선택한 팀원</th><th>관리</th></tr></thead>
+            <tbody id="selectedMembers"></tbody>
+          </table>
+        </div>
+        <div class="action-row u-mt-18"><button class="btn btn--primary" type="button" id="submitMembers">등록</button></div>
+      </form>
     </div>
-    <form action="/teammanage/insertMember" method="post" id="frmAddMember">
-        <input type="hidden" name="str_member" id="str_member">
-        <input type="hidden" name="t_no" id="t_no" th:value="${t_no}">
-    </form>
+  </main>
+  <script src="/js/pages/team-member.js" defer></script>
 </body>
 </html>
+
+

@@ -1,23 +1,20 @@
 package com.ucamp.fm.login.dto;
 
+import com.ucamp.fm.common.dto.BaseVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class MemberDto {
+public class MemberDto extends BaseVO {
 
     private String m_id;
-
-    public MemberDto(String m_id,String m_thum) {
-        this.m_id = m_id;
-        this.m_thum = m_thum;
-    }
-
     private String m_pw;
     private String m_name;
     private String m_phone;
@@ -31,6 +28,9 @@ public class MemberDto {
     private String m_account;
     private String m_bank;
     private String m_thum;
-    private int rownum;
-}
 
+    public MemberDto(String m_id, String m_thum) {
+        this.m_id = m_id;
+        this.m_thum = m_thum;
+    }
+}

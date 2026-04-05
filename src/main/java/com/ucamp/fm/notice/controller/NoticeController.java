@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class NoticeController {
 
     @Autowired
-    NoticeService noticeService;//리스?�로 ?�동, 목록 출력
+    NoticeService noticeService;//리스?�로 ?�동, 목록 출력
 
     @GetMapping("/noticehome")
     public String noticeList(Model model, HttpSession session) {
@@ -41,7 +41,7 @@ public class NoticeController {
         noticeService.noticedelete(n_no);
         return "redirect:/notice/noticehome";
     }
-    // 글?�기 ??
+    // 글?�기 ??
     @GetMapping("/noticewrite")
     public String noticeWrite(HttpSession session) {
         String n_id = (String) session.getAttribute("m_id");
@@ -50,7 +50,7 @@ public class NoticeController {
         }
         return "notice/noticewrite";
     }
-    // 글?�기 ?�력
+    // 글?�기 ?�력
     @PostMapping("/noticeinsert")
     public String noticeInsert(@RequestParam("n_title") String n_title, HttpSession session,
                                @RequestParam("n_content") String n_content) {
@@ -65,7 +65,7 @@ public class NoticeController {
         return "redirect:/notice/noticehome";
     }
     
-    // 글?�정 ??
+    // 글?�정 ??
     @GetMapping("/noticemod/{n_no}")
     public String noticemod(@PathVariable("n_no") int n_no,
                             HttpSession session, Model model) {

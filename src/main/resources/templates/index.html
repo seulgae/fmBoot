@@ -1,98 +1,55 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-
-<!-- config -->
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="fragments/config :: configFragment"></th:block>
-<!-- header -->
+<body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
+<main class="page-shell">
+  <section class="hero">
+    <div>
+      <div class="hero__eyebrow">Redefined Futsal Platform</div>
+      <h1 class="hero__title">PLAY. MANAGE. BOOK.</h1>
+      <p class="hero__subtitle">팀 운영, 구장 예약, 커뮤니티를 하나의 흐름으로 다시 정리한 FM Manager.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/teammanage/teammanage">팀 둘러보기</a>
+        <a class="btn btn--secondary" href="/payment/placelist">구장 예약하기</a>
+      </div>
+    </div>
+    <div class="hero-banner">
+      <div class="hero-banner__card">
+        <strong>Team Workspace</strong>
+        <span>전적, 멤버, 소개를 하나의 화면에서 관리합니다.</span>
+      </div>
+      <div class="hero-banner__card">
+        <strong>Booking Flow</strong>
+        <span>구장 탐색부터 시간 선택, 결제까지 단순한 흐름으로 정리했습니다.</span>
+      </div>
+      <div class="hero-banner__card">
+        <strong>Community Feed</strong>
+        <span>공지와 블로그를 같은 디자인 언어로 통합했습니다.</span>
+      </div>
+    </div>
+  </section>
 
-<body class="main-layout">
-<!-- loader  -->
-<!--<div class="loader_bg">-->
-<!--   <div class="loader">-->
-<!--      <img src="images/loading.gif" alt="#" />-->
-<!--   </div>-->
-<!--</div>-->
-<!-- end loader -->
-<!-- header -->
-  <!-- banner -->
-<!--  <section class="banner_main" style="margin: 20px auto">-->
-  <div id="slide" >
-     <div class="swiper-container">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-           <!-- Slides -->
-           <div class="swiper-slide">
-              <img src="images/banner1.jpg" style="width:100%; height:50%;" >
-           </div>
-           <!-- Slides -->
-           <div class="swiper-slide">
-              <img src="images/banner2.jpg" style="width:100%; height:50%;">
-           </div>
-           <!-- Slides -->
-           <div class="swiper-slide">
-              <img src="images/banner3.jpg" style="width:100%; height:50%;">
-           </div>
-        </div>
-
-        <!-- If we need pagination 페이지 네이션을 제공-->
-        <!-- <div class="swiper-pagination"></div> -->
-
-        <!-- If we need navigation buttons 버튼기능 -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-        <!-- If we need scrollbar 스크롤 기능-->
-        <div class="swiper-scrollbar"></div>
-     </div>
-     <!-- 슬라이드쇼 방향키 시작 -->
-  </div>
-<!--  </section>-->
-<!--  &lt;!&ndash; end banner &ndash;&gt;-->
-
-<script>
-    const swiper = new Swiper('.swiper-container', {
-        //기본 셋팅
-        //방향 셋팅 vertical 수직, horizontal 수평 설정이 없으면 수평
-        direction: 'horizontal',
-        //한번에 보여지는 페이지 숫자
-        slidesPerView: 1,
-        //페이지와 페이지 사이의 간격
-        spaceBetween: 30,
-        //드레그 기능 true 사용가능 false 사용불가
-        debugger: true,
-        //마우스 휠기능 true 사용가능 false 사용불가
-        mousewheel: false,
-        //반복 기능 true 사용가능 false 사용불가
-        loop: true,
-        //선택된 슬라이드를 중심으로 true 사용가능 false 사용불가 djqt
-        centeredSlides: true,
-        // 페이지 전환효과 slidesPerView효과와 같이 사용 불가
-        // effect: 'fade',
-        //자동 스크를링
-        autoplay: {
-            //시간 1000 이 1초
-            delay: 4000,
-            disableOnInteraction: false,
-        },
-        //페이징
-        pagination: {
-            //페이지 기능
-            el: '.swiper-pagination',
-            //클릭 가능여부
-            clickable: true,
-        },
-        //방향표
-        navigation: {
-            //다음페이지 설정
-            nextEl: '.swiper-button-next',
-            //이전페이지 설정
-            prevEl: '.swiper-button-prev',
-        },
-    });
-</script>
-<!-- footer -->
+  <section class="grid grid--cards u-mt-24">
+    <article class="stat-card">
+      <div class="stat-card__label">빠른 이동</div>
+      <div class="stat-card__value">TEAM</div>
+      <p class="muted">팀 생성과 전적 관리</p>
+    </article>
+    <article class="stat-card">
+      <div class="stat-card__label">빠른 이동</div>
+      <div class="stat-card__value">BOOK</div>
+      <p class="muted">예약 가능 구장 탐색</p>
+    </article>
+    <article class="stat-card">
+      <div class="stat-card__label">빠른 이동</div>
+      <div class="stat-card__value">BOARD</div>
+      <p class="muted">공지와 커뮤니티 게시글</p>
+    </article>
+  </section>
+</main>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-
 </body>
 </html>
+
+

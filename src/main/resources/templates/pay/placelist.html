@@ -1,109 +1,49 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-
-<!-- config -->
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="fragments/config :: configFragment"></th:block>
-<!-- header -->
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-
-<!-- placelist.js -->
-<script src="/js/placelist.js"></script>
-
-<link rel="stylesheet" type="text/css" href="/css/placelist.css">
 <body>
-<div style="width: 100%; height: 100%; margin: 20px auto;">
-    <form action="/payment/placelist">
-    <!-- border: 1px solid #000; 처음 규격 맞출 때 사용-->
-    <div style="padding-top: 20px; margin:20px auto; width:1000px;">
-      <span style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">
-            예약 가능 구장 &nbsp;|&nbsp; <small>FM그라운드 제휴 구장</small></span><br>
-        <hr style="width: 1000px;">
-        <div action="" style=" justify-content: space-between; display:flex;">
-            <div id="current_date" style="font-weight: bold; font-size: 20px;
-            font-family: 'Noto Sans KR', sans-serif; margin-right: 640px;"></div>
-                <input type="text" name="keyword" placeholder="구장명 검색" style="width: 150px; height: 32px;">
-                <input class="btn btn-dark" type="submit" value="검색">
-        </div>
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+<main class="page-shell">
+  <section class="page-head">
+    <div>
+      <p class="page-head__subtitle">Venue Booking</p>
+      <h1 class="page-head__title">Place List</h1>
     </div>
-
-    <input type="hidden" th:value="${size}" id="list_size">
-    <th:block th:each="list ,s : ${lists}">
-        <div style="border:1px solid #c8c8c8; margin: 20px auto; justify-content: space-between; display:flex; width:1000px">
-            <div>
-                <img th:src="${list.mainImg}" style="width:302px; height:181px;" onerror="this.parentNode.style.display='none'"/> <br>
-                <div style="padding: 5px 10px; text-align: center; background-color: black;"><span style="font-size: 15px; color: white;">[[${list.p_pname}]]</span>
-                </div>
-            </div>
-            <div>
-                <div style="font-weight: bold; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; margin-right: 585px;"> [구장 안내]</div>
-                <div style="font-size: 14px; font-family: 'Noto Sans KR', sans-serif;  margin-left: 380px;"> [[${list.p_place}]] </div>
-                <div style="margin-left: 120px; margin-top:43px; display: inline-block;"></div>
-
-                <div style="margin-top:10px;"></div>
-                <div style="margin-left: 100px; display: inline-block;"></div>
-                <div class="box" style="background-color:#646464"><h6>6vs6</h6></div>
-                <div class="box" th:id="|${list.p_no}divOp1|"><h6>주차</h6></div>
-                <div class="box" th:id="|${list.p_no}divOp2|"><h6>냉난방</h6></div>
-                <div class="box" th:id="|${list.p_no}divOp3|"><h6>공대여</h6></div>
-                <div class="box" th:id="|${list.p_no}divOp4|"><h6>팀조끼</h6></div>
-                <div class="box" th:id="|${list.p_no}divOp5|"><h6>풋살화</h6></div>
-                <div class="box" th:id="|${list.p_no}divOp6|"><h6>샤워실</h6></div>
-                <input type="hidden" th:value="${list.p_op1}" th:id="|${list.p_no}op1|">
-                <input type="hidden" th:value="${list.p_op2}" th:id="|${list.p_no}op2|">
-                <input type="hidden" th:value="${list.p_op3}" th:id="|${list.p_no}op3|">
-                <input type="hidden" th:value="${list.p_op4}" th:id="|${list.p_no}op4|">
-                <input type="hidden" th:value="${list.p_op5}" th:id="|${list.p_no}op5|">
-                <input type="hidden" th:value="${list.p_op6}" th:id="|${list.p_no}op6|">
-                <input type="hidden" th:value="${list.p_no}" th:id="|${s.index}p_no|" name="p_no">
-                <div style="margin-top:25px;"></div>
-                <script>
-                    $(function(){
-                        let list_size = $("#list_size").val();
-                        for(var j = 0; j < list_size; j++){
-                            let p_no = $("#"+j+"p_no").val();
-                            for(var i = 1; i <= 6; i++){
-                                if($("#"+p_no+"op"+i).val()=="1"){
-                                    $("#"+p_no+"divOp"+i).css("background-color","#646464");
-                                }else{
-                                    $("#"+p_no+"divOp"+i).css("background-color","#FFFFFF");
-                                }
-                            }
-                        }
-                    })
-                    function read(p_no){
-                        location.href="/payment/placeread?p_no="+p_no;
-                    }
-                </script>
-                <div>
-                    <!-- submit 기능을 막기 위한 type = "button"-->
-                    <button type="button" class="btn btn-dark" id="btnReservation"
-                            style="width:98.7%; height:100%;" th:p_no="${list.p_no}"
-                             th:onclick="read(this.getAttribute('p_no'))">예약</button>
-                </div>
-            </div>
-        </div>
-    </th:block>
-
-    <div style="width:1000px; height:35px; margin:20px auto;">
-        <!-- 더보기 페이징 -->
-        <input type="hidden" name="pageAdd" th:value="5">
-        <input type="submit" class="btn btn-dark" style="width:100%; height:100%;" value="더보기"/>
-    </div>
+    <form action="/payment/placelist" class="action-row">
+      <input class="input u-min-240" type="text" name="keyword" placeholder="구장명 검색">
+      <button class="btn btn--secondary" type="submit">검색</button>
     </form>
+  </section>
+  <form action="/payment/placelist">
+    <section class="grid grid--cards">
+      <article class="item-card" th:each="item : ${lists}">
+        <a class="item-card__media" th:href="|/payment/placeread?p_no=${item.p_no}|">
+          <img th:src="${item.mainImg}" alt="place image">
+        </a>
+        <div class="item-card__body">
+          <h2 class="item-card__title" th:text="${item.p_pname}"></h2>
+          <p class="item-card__content" th:text="${item.p_place}"></p>
+          <div class="chip-list u-mt-16 u-mb-18">
+            <span class="chip">6vs6</span>
+            <span class="chip" th:classappend="${item.p_op1 == '1'} ? ' is-on'" >주차</span>
+            <span class="chip" th:classappend="${item.p_op2 == '1'} ? ' is-on'" >냉난방</span>
+            <span class="chip" th:classappend="${item.p_op3 == '1'} ? ' is-on'" >공 대여</span>
+            <span class="chip" th:classappend="${item.p_op4 == '1'} ? ' is-on'" >조끼 대여</span>
+            <span class="chip" th:classappend="${item.p_op5 == '1'} ? ' is-on'" >실내화</span>
+            <span class="chip" th:classappend="${item.p_op6 == '1'} ? ' is-on'" >샤워실</span>
+          </div>
+          <a class="btn btn--primary btn--block" th:href="|/payment/placeread?p_no=${item.p_no}|">예약 보기</a>
+        </div>
+      </article>
+    </section>
+    <div class="u-mt-24 u-text-center">
+      <input type="hidden" name="pageAdd" value="5">
+      <button class="btn btn--secondary" type="submit">더 보기</button>
     </div>
-</div>
-<!-- div#wrap -->
-<script>
-    function info_chk() {
-        return true;
-    }
-    function info_chk2(frm) {
-        frm.action='http://www.test.co.kr/test2/event_ok.php';
-        frm.submit();
-        return true;
-    }
-</script>
-<!-- footer -->
+  </form>
+</main>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 </html>
+
+

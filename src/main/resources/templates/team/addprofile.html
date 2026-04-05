@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-<div>
-  <form action="/teammanage/addprofile" method="post" enctype="multipart/form-data">
-    <table class="table">
-      <tr>
-        <td><span class="loginlogo" style="font-size: 40px; font-weight: bold; margin: 25px 10px 0px 0px; color: red;">FM</span></td>
-        <td class="align-middle"><span style="font-size: 20px; font-weight: bold; text-align: center;">프로필 선택</span></td>
-      </tr>
-      <tr><td colspan="2"><hr></td></tr>
-      <tr>
-        <td><span style="font-size:15px; font-color:#808080;">대표 이미지</span>
-            <span style="font-size:15px; color:red;">(180 * 180)</span></td>
-      </tr>
-      <tr><td colspan="2"><hr></td></tr>
-      <tr>
-        <td><input type="file" name="t_thum" multiple="multiple"></td>
-        <td><input type="submit" value="제출"/></td>
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<body>
+  <main class="popup-shell">
+    <div class="popup-card popup-card--narrow">
+      <h1 class="page-head__title">팀 프로필 업로드</h1>
+      <form action="/teammanage/addprofile" method="post" enctype="multipart/form-data" class="form-grid form-grid--single">
         <input type="hidden" name="t_no" th:value="${team.t_no}">
-      </tr>
-    </table>
-  </form>
-</div>
+        <div class="field"><label for="t_thum">이미지 파일</label><input class="input" type="file" id="t_thum" name="t_thum"></div>
+        <button class="btn btn--primary" type="submit">업로드</button>
+      </form>
+    </div>
+  </main>
+</body>
 </html>
+
+

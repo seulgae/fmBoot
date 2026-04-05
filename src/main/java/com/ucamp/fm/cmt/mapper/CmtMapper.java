@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface CmtMapper {
 
-    // ?€ ë¸”ë¡œê·??“ê?ë§?ì¡°íšŒ??
+    // ?ï¿½ ë¸”ë¡œï¿½??ï¿½ï¿½?ï¿½?ì¡°íšŒ??
     List<CmentDto> cmtlist(String c_no);
 
     List<CmentDto> tlist(String c_tbset);

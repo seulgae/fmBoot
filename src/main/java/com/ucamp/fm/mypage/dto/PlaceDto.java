@@ -1,15 +1,18 @@
 package com.ucamp.fm.mypage.dto;
 
+import com.ucamp.fm.common.dto.BaseVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PlaceDto {
+public class PlaceDto extends BaseVO {
     private String p_no;
     private String p_code;
     private String p_manager;
@@ -32,5 +35,4 @@ public class PlaceDto {
     private String p_op6;
     private String p_date;
     private String mainImg;
-    private int rownum;
 }

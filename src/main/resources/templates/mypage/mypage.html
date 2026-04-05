@@ -1,114 +1,88 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-
-<!-- config -->
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="fragments/config :: configFragment"></th:block>
-<!-- header -->
+<body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
-
-	<link rel="stylesheet" href="/css/mypage.css">
-<script>
-    $(function(){
-        $("#add").click(function(){
-           window.open('/mypage/addphoto', 'pop01', 'top=10, left=10, width=500, height=200, status=no, menubar=no, toolbar=no, resizable=no');
-        })
-        $("#reservation_list").click(function(){
-           window.open('/mypage/reservation_list', 'pop01', 'top=10, left=10, width=1000, height=500, status=no, menubar=no, toolbar=no, resizable=no');
-        })
-    })
-</script>
-    <div id="wrap">
-        <table id="mypageTable" border="1">
-            <tbody>
-                <tr>
-                    <td height="50" colspan="6" style="font-weight:bold ;">
-                        &nbsp;&nbsp;&nbsp;프로필&nbsp;&nbsp;
-                        <img style="margin-bottom: 6px; width: 35px; height: 35px; cursor:pointer;" id="add"
-                             src="/images/add.png"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="userImg" width="150">
-                        <img th:src="|/uploadImg/profileImg/${member.m_thum}|">
-                    </td>
-                    <td class="user">
-                        <span style="font-weight: normal;">&nbsp;&nbsp;&nbsp;[[${member.m_email}]]</span><br>
-                        <span>&nbsp;&nbsp;&nbsp;[[${member.m_name}]]</span><br>
-                    </td>
-                </tr>
-                <tr>
-                </tr>
-            </tbody>
-        </table>
-
-        <table id="buttonTable">
-            <tbody>
-                <tr>
-                    <td>
-                        <th:block th:if="${member.m_level.equals('2')}">
-                        <button onclick="location.href='/mypage/mypage_request'">구장 추가</button>
-                        <button id="reservation_list">예약 현황</button>
-                        </th:block>
-                        <a th:href="|/mypage/Information_update/${session.m_id}|"><button type="button">내 정보 수정</button></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <th:block th:if="${member.m_level.equals('1')}">
-            <table id="userList" style="width: 1000px; margin: 20px auto; height: 30px; border-collapse: separate; border-spacing: 0 10px;">
-                <thead>
-                <tr>
-                    <th style="text-align: center; border-bottom: 1px solid #000;">번호</th>
-                    <th style="text-align: center; border-bottom: 1px solid #000;">구장명</th>
-                    <th style="text-align: center; border-bottom: 1px solid #000;">예약 시간</th>
-                    <th style="text-align: center; border-bottom: 1px solid #000;">예약 날짜</th>
-                    <th style="text-align: center; border-bottom: 1px solid #000;">결제 날짜</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="list1 : ${list1}">
-                    <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.rownum}]]</td>
-                    <td style="text-align: center; border: 1px solid #f8f8f8;"><a th:href="|/payment/placeread?p_no=${list1.r_p_no}|">[[${list1.p_pname}]]</a></td>
-                    <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_time}]]</td>
-                    <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_date}]]</td>
-                    <td style="text-align: center; border: 1px solid #f8f8f8;">[[${list1.r_wdate}]]</td>
-                </tr>
-                </tbody>
-            </table>
-        </th:block>
-        <th:block th:if="${member.m_level.equals('2') or member.m_level.equals('0')}">
-            <table id="managerList">
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>날짜</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="list : ${list}">
-                        <td>[[${list.rownum}]]</td>
-                        <td><a th:href="|/payment/placeread?p_no=${list.p_no}|">[[${list.p_pname}]]</a></td>
-                        <td>[[${list.p_date}]]</td>
-                        <td>
-                            <a th:href="|/mypage/mypage_update/${list.p_no}|"><img style="width: 15px; height: 15px; cursor:pointer;" id="update" alt="" src="/images/update.png"></a>
-                            <a th:href="|/mypage/place_delete/${list.p_no}|" id="aDelete"><img style="width: 15px; height: 15px; cursor:pointer;" id="delete" alt="" src="/images/delete.png"></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </th:block>
+<main class="page-shell">
+  <section class="page-head">
+    <div>
+      <p class="page-head__subtitle">My Dashboard</p>
+      <h1 class="page-head__title">Mypage</h1>
     </div>
-    <!-- div#wrap -->
-<script>
-$("#delete").click(function(){
-      if(confirm("삭제하시겠습니까?")){
+    <div class="action-row">
+      <button class="btn btn--secondary" type="button" id="profileOpen">프로필 사진</button>
+      <button class="btn btn--secondary" type="button" id="reservationOpen" th:if="${member.m_level.equals('2')}">예약 현황</button>
+      <a class="btn btn--primary" th:href="|/mypage/Information_update/${session.m_id}|">정보 수정</a>
+      <a class="btn btn--primary" href="/mypage/mypage_request" th:if="${member.m_level.equals('2')}">구장 등록</a>
+    </div>
+  </section>
 
-      }else{
-            return false;
-      }
-})
-</script>
-<!-- footer -->
+  <section class="panel u-mt-24">
+    <div class="profile-box">
+      <div class="profile-box__avatar">
+        <img th:src="|/uploadImg/profileImg/${member.m_thum}|" alt="profile">
+      </div>
+      <div>
+        <h2 class="section-title" th:text="${member.m_name}"></h2>
+        <div class="chip-list u-mt-12">
+          <span class="chip" th:text="${member.m_email}"></span>
+          <span class="chip" th:text="${member.m_phone}"></span>
+          <span class="chip" th:text="${member.m_level.equals('2') ? '구장 관리자' : '일반 사용자'}"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="table-shell" th:if="${member.m_level.equals('1')}">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>구장명</th>
+          <th>예약 시간</th>
+          <th>예약 날짜</th>
+          <th>결제 날짜</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="item : ${list1}">
+          <td th:text="${item.rownum}"></td>
+          <td><a th:href="|/payment/placeread?p_no=${item.r_p_no}|" th:text="${item.p_pname}"></a></td>
+          <td th:text="${item.r_time}"></td>
+          <td th:text="${item.r_date}"></td>
+          <td th:text="${item.r_wdate}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="table-shell" th:if="${member.m_level.equals('2') or member.m_level.equals('0')}">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>구장명</th>
+          <th>등록일</th>
+          <th>관리</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="item : ${list}">
+          <td th:text="${item.rownum}"></td>
+          <td><a th:href="|/payment/placeread?p_no=${item.p_no}|" th:text="${item.p_pname}"></a></td>
+          <td th:text="${item.p_date}"></td>
+          <td class="inline-actions">
+            <a class="btn btn--secondary" th:href="|/mypage/mypage_update/${item.p_no}|">수정</a>
+            <a class="btn btn--ghost" href="#" th:attr="data-confirm-url=|/mypage/place_delete/${item.p_no}|" data-confirm-message="구장을 삭제하시겠습니까?">삭제</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+<script src="/js/pages/mypage.js" defer></script>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</body>
+</html>
+
+

@@ -1,61 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-
-<!-- config -->
-<th:block th:replace="fragments/config :: configFragment"></th:block>
-
-<link rel="stylesheet" href="/css/bloglistajax.css">
-
-<!-- 호출할 html call.html -->
-<div class="ajax_content">
-    <div id="wrap">
-        <table id="bloglist" class="table table-hover">
-            <thead>
-                <tr>
-                    <th colspan="5" style="text-align: right;">
-                        <a th:href="|/blog/bloglist|">더보기+</a>
-                    </th>
-                </tr>
-                <tr>
-                    <th style="text-align: center; width:50px">번호</th>
-                    <th style="text-align: center; width:65px">이미지</th>
-                    <th style="text-align: center; width:300px">글제목</th>
-                    <th style="text-align: center; width:100px">작성자</th>
-                    <th style="text-align: center; width:100px">작성일자</th>
-                <tr>
-            </thead>
-            <tbody>
-            <tr th:each="blog : ${blogs}" style="text-align: center; margin:auto;">
-                <td class="align-middle">
-                    <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
-                        [[ ${blog.rownum} ]]
-                    </a>
-                </td>
-                <td class="align-middle">
-                    <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
-                    <img th:src="|/uploadImg/blog/${blog.tb_thum}|" width="50px" height="50px">
-                    </a>
-                </td>
-                <td class="align-middle">
-                    <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
-                    [[ ${blog.tb_title} ]]
-                    </a>
-                </td>
-                <td class="align-middle">
-                    <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
-                    [[ ${blog.tb_id} ]]
-                    </a>
-                </td>
-                <td class="align-middle">
-                    <a th:href="|/blog/blogread/${blog.tb_no}|" style="color:#000000;">
-                    [[ ${blog.tb_date} ]]
-                    </a>
-                </td>
-                </a>
-            </tr>
-            </tbody>
-        </table>
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<div class="grid grid--cards">
+  <article class="item-card" th:each="blog : ${blogs}">
+    <a class="item-card__media" th:href="|/blog/blogread/${blog.tb_no}|">
+      <img th:src="|/uploadImg/blog/${blog.tb_thum}|" alt="blog image">
+    </a>
+    <div class="item-card__body">
+      <h2 class="item-card__title"><a th:href="|/blog/blogread/${blog.tb_no}|" th:text="${blog.tb_title}"></a></h2>
+      <div class="item-card__content" th:utext="${blog.tb_content}"></div>
     </div>
-    <!-- div#wrap -->
+  </article>
 </div>
 </html>
+
+

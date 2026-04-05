@@ -1,22 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/config :: configFragment"></th:block>
+<body>
+  <main class="popup-shell">
+    <div class="popup-card popup-card--narrow">
+      <h1 class="page-head__title">프로필 사진 업로드</h1>
+      <form action="/mypage/addphoto.do" method="post" enctype="multipart/form-data" class="form-grid form-grid--single">
+        <div class="field">
+          <label for="m_thum">이미지 파일</label>
+          <input class="input" type="file" id="m_thum" name="m_thum">
+        </div>
+        <button class="btn btn--primary" type="submit">업로드</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>
 
-
-<div>
-    <form action="/mypage/addphoto.do" method="post" enctype="multipart/form-data">
-        <table>
-            <tr>
-                <td width="130px">
-                    <span style="font-size:15px; font-color:#808080;">대표 이미지</span><br>
-                    <span style="font-size:15px; color:red;">(300 * 300)</span>
-                </td>
-                <td class="tg-0pky">
-                    <input type="file" name="m_thum" multiple="multiple">
-                </td>
-            </tr>
-            <tr><td colspan="2"><hr></td></tr>
-            <tr>
-                <td colspan="2" style="text-align:right;">
-                    <input type="submit" class="btn btn-danger" style="width:100px;" value="제출"/>
-        </table>
-    </form>
-</div>
 

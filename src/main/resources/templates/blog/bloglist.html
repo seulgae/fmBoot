@@ -1,64 +1,40 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-
-<!-- config -->
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="fragments/config :: configFragment"></th:block>
-<!-- header -->
+<body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
-
-<link rel="stylesheet" href="/css/bloglist.css">
-<div id="wrap">
-<form action="/blog/bloglist" method="post">
-    <table id="bloglist" class="table table-hover">
-        <thead>
-            <tr>
-                <th>
-                    <span style="font-size: 18px; font-family:
-                    'Noto Sans KR', sans-serif; font-weight: bold;">
-                    커뮤니티 게시판 |&nbsp;전체보기
-                    </span><br>
-                </th>
-                <th class="text-right">
-                    <input type="text" name="keyword" placeholder="게시판 검색" style="width: 200px; height: 35px;">
-                    <input type="submit" class="btn btn-dark" value="검색">
-                    <a th:href="|/blog/blogwrite|" class="btn btn-primary">글쓰기</a>
-                </th>
-            </tr>
-        </thead>
-        <!--th:onclick="|location.href='@{/blog/blogread/${blog.tb_id}}'|"-->
-        <tbody>
-            <tr th:each="blog : ${blogs}" id="bolglist">
-                <td class="text-center" width="250px">
-                    <a th:href="|/blog/blogread/${blog.tb_no}|">
-                    <img th:src="|/uploadImg/blog/${blog.tb_thum}|"
-                         onerror="this.parentNode.style.display='none'" width="200px" height="150px">
-                    </a>
-                </td>
-                <td class="text-left">
-                    <a th:href="|/blog/blogread/${blog.tb_no}|">
-                        <span class="title" th:text="${blog.tb_title}" style="font-weight:bold; font-size:20px"></span>
-                        <div id="imgdisplay" onerror="this.parentNode.style.display='none'" style="height:150px; overflow:hidden;">
-                            <span class="content" th:utext="${blog.tb_content}"></span>
-                        </div>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="2" class="text-center">
-                    <input type="hidden" name="pageAdd" th:value="5">
-                    <button class="btn btn-outline-primary btn-block" width="100%">더 보기</button>
-                <td>
-            </tr>
-        </tfoot>
-    </table>
-</form>
-    <br>
-    <!-- bloglist -->
-</div>
-<!-- div#wrap -->
-<!-- footer -->
+<main class="page-shell">
+  <section class="page-head">
+    <div>
+      <p class="page-head__subtitle">Community Feed</p>
+      <h1 class="page-head__title">Blog</h1>
+    </div>
+    <form action="/blog/bloglist" method="post" class="action-row">
+      <input class="input u-min-240" type="text" name="keyword" placeholder="게시글 검색">
+      <button class="btn btn--secondary" type="submit">검색</button>
+      <a class="btn btn--primary" href="/blog/blogwrite">글쓰기</a>
+    </form>
+  </section>
+  <form action="/blog/bloglist" method="post">
+    <section class="grid grid--cards">
+      <article class="item-card" th:each="blog : ${blogs}">
+        <a class="item-card__media" th:href="|/blog/blogread/${blog.tb_no}|">
+          <img th:src="|/uploadImg/blog/${blog.tb_thum}|" alt="blog image">
+        </a>
+        <div class="item-card__body">
+          <h2 class="item-card__title"><a th:href="|/blog/blogread/${blog.tb_no}|" th:text="${blog.tb_title}"></a></h2>
+          <div class="item-card__content" th:utext="${blog.tb_content}"></div>
+        </div>
+      </article>
+    </section>
+    <div class="u-mt-24 u-text-center">
+      <input type="hidden" name="pageAdd" value="5">
+      <button class="btn btn--secondary" type="submit">더 보기</button>
+    </div>
+  </form>
+</main>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-<!-- div#wrap -->
+</body>
 </html>
+
+
