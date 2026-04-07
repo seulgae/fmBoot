@@ -567,7 +567,19 @@ textarea {
 }
 
 .join-form {
-    gap: 22px 18px;
+    display: grid;
+    gap: 22px;
+}
+
+.join-form__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    align-items: start;
+}
+
+.join-form__row--single {
+    grid-template-columns: 1fr;
 }
 
 .join-form__address .action-row {
@@ -587,13 +599,13 @@ textarea {
 
 .join-form__actions {
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
     gap: 12px;
-    align-items: center;
+    align-items: stretch;
 }
 
 .join-form__actions .btn {
-    flex: 1 1 0;
+    width: 100%;
 }
 
 .field {
@@ -893,13 +905,12 @@ textarea {
         padding: 24px;
     }
 
-    .join-form__address .action-row,
-    .join-form__actions {
-        flex-wrap: wrap;
+    .join-form__row {
+        grid-template-columns: 1fr;
     }
 
-    .join-form__actions .btn {
-        flex-basis: 100%;
+    .join-form__address .action-row {
+        flex-wrap: wrap;
     }
 
     .profile-box {
