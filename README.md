@@ -43,6 +43,7 @@
 - Oracle JDBC (운영 전환용, 현재 pom.xml 에는 주석 처리됨)
 - Iamport REST Client
 - Pretendard Variable 폰트 (CDN)
+- Bootstrap Icons 1.11.3 (CDN) — 네비게이션/버튼/카드 아이콘
 
 ## 현재 기본 실행 기준
 
@@ -186,12 +187,37 @@ macOS / Linux:
 
 ## UI / UX 구성
 
-- **폰트**: Pretendard Variable (CDN) → Noto Sans KR → 시스템 폰트 폴백. 한글 가독성을 우선해 제목 weight/line-height/letter-spacing 을 조정.
+### 디자인 시스템
+- **폰트**: Pretendard Variable (CDN) → Noto Sans KR → 시스템 폰트. 한글 가독성 우선.
+- **아이콘**: Bootstrap Icons (CDN) — 네비, 버튼, 카드, 푸터 등 전역 일관.
+- **디자인 토큰**: `app.css` 최상단 `:root` 에 색/간격/반경/그림자/폰트 일괄 정의. 섹션을 12 블록으로 나눠 한국어 주석 포함.
+- **컴포넌트**: `.btn` (primary/secondary/ghost/block, lg/sm), `.input/.select/.textarea`, `.panel/.stat-card/.item-card/.home-panel`, `.chip`, `.notice-box`, `.table-shell + .data-table`, `.slot-grid` 등.
 - **레이아웃 일원화**: 모든 페이지가 `default_layout` / `popup_layout` 에서 head/header/footer/script 슬롯을 주입받아 중복 제거.
-- **반응형**: 브레이크포인트 `lg 1080 / md 820 / sm 640 / xs 480`, 820px 이하에서 헤더 햄버거 드로어, 테이블 가로 스크롤, 버튼 세로 스택 등 모바일 최적화.
+
+### 반응형 & 테마
+- **브레이크포인트**: `lg 1080 / md 820 / sm 640 / xs 480`. 820px 이하에서 헤더 햄버거 드로어, 테이블 가로 스크롤, 버튼 세로 스택 등 모바일 최적화.
 - **다크 모드**: OS 설정(`prefers-color-scheme`) 을 따라 자동 전환. 브랜드 컬러는 유지하고 배경/표면/텍스트 토큰만 반전.
-- **PWA**: Chrome/Edge 등에서 "앱 설치" 가능, 홈 화면에 추가 시 스탠드얼론 실행. 오프라인 시 `offline.html` 표시.
-- **언어**: UI 라벨은 한국어를 기본으로 하며, 식별용 브랜드 마크(`FM`)와 숫자 표기는 그대로 유지.
+
+### 앱 경험 (PWA)
+- Chrome/Edge 등에서 "앱 설치" 가능, 홈 화면에 추가 시 스탠드얼론 실행.
+- 오프라인 시 `offline.html` 표시, 정적 자원은 cache-first.
+
+### 공통 스크립트 (`/js/common.js`)
+선언형 `data-*` 바인딩으로 페이지 코드를 얇게 유지합니다.
+
+| 속성 | 설명 |
+|---|---|
+| `data-nav-toggle` | 헤더 햄버거 토글 |
+| `data-popup-url` | 클릭 시 정형 팝업 창 열기 |
+| `data-confirm-url` + `data-confirm-message` | 확인창 후 이동 |
+| `data-go-back` | 클릭 시 history.back |
+| `data-file-preview="#imgId"` | 파일 선택 시 이미지 미리보기 |
+| `data-phone-input` | 전화번호 자동 하이픈 포맷 |
+
+추가로 `FM.toast(message, variant)` 로 간단한 스낵바 알림을 띄울 수 있습니다(`info` / `success` / `warning` / `error`).
+
+### 언어 정책
+- UI 라벨은 한국어 기본. 식별용 영문 마크(`FM`, `Reservation Platform` 태그), 숫자 표기는 예외.
 
 ## DB 관련 메모
 

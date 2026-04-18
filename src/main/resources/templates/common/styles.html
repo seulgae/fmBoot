@@ -1,7 +1,9 @@
 <!--
-  공통 스타일 로드:
-  - Pretendard Variable: 한글 가독성을 우선으로 한 본문/제목 공용 폰트
-  - Noto Sans KR: Pretendard 로드 실패 시의 2차 폴백
+  공통 스타일 로드 순서:
+  1. Pretendard Variable  : 한글/본문 기본 가변 폰트 (CDN)
+  2. Noto Sans KR         : Pretendard 실패 시 폴백
+  3. Bootstrap Icons      : 네비/버튼/카드 등 전역 아이콘 세트
+  4. app.css              : 자체 디자인 시스템 (브랜드 토큰/컴포넌트/반응형/다크 모드)
 -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,4 +12,6 @@
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap">
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="/css/app.css">

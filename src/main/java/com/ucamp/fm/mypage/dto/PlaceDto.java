@@ -35,4 +35,5 @@ public class PlaceDto extends BaseVO {
     private String p_op6;
     private String p_date;
     private String mainImg;
+    private int reservedCount;
 }

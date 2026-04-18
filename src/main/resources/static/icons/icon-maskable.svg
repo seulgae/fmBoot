@@ -1,15 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="FM Manager">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#b3242d"/>
-      <stop offset="100%" stop-color="#540b11"/>
+      <stop offset="0%" stop-color="#c32a33"/>
+      <stop offset="100%" stop-color="#4a0a0f"/>
     </linearGradient>
+    <radialGradient id="hl" cx="0.25" cy="0.2" r="0.7">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.38"/>
+      <stop offset="65%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  <!-- 전체 영역 브랜드 컬러로 채워 Android maskable 마스킹에서 여백 없도록 함 -->
+  <!-- Android maskable 안전영역 (내부 80% 원) 밖까지 배경 채움 -->
   <rect width="512" height="512" fill="url(#bg)"/>
-  <!-- 안전영역(안쪽 80%) 내부에 로고 배치 -->
-  <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle"
-        font-family="Arial Black, Impact, 'Oswald', sans-serif"
-        font-weight="900" font-size="180" letter-spacing="4"
+  <rect width="512" height="512" fill="url(#hl)"/>
+  <!-- 로고는 안쪽 안전영역에만 배치 (중심 기준 40% 반경 안) -->
+  <text x="50%" y="58%" text-anchor="middle" dominant-baseline="middle"
+        font-family="'Pretendard Variable','Pretendard','Noto Sans KR',sans-serif"
+        font-weight="900" font-size="180" letter-spacing="-5"
         fill="#fff6f2">FM</text>
+  <path d="M 160 380 Q 256 416 352 380"
+        stroke="#ffd7ca" stroke-opacity="0.55"
+        stroke-width="8" fill="none" stroke-linecap="round"/>
 </svg>

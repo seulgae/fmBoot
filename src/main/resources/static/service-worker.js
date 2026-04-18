@@ -4,7 +4,7 @@
   - HTML 문서: network-first (실패 시 캐시 → 오프라인 페이지)
   - 비-GET / 로그인·결제 엔드포인트: 캐시 안 함 (항상 네트워크)
 */
-const VERSION = "fm-v1";
+const VERSION = "fm-v3-2026-04-19";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 

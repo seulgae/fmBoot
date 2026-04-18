@@ -1,38 +1,100 @@
 <!DOCTYPE html>
+<!--
+  커뮤니티(블로그) 목록 화면
+  - 상단: 타이틀 + 글쓰기 CTA
+  - 검색 패널: 키워드(아이콘 프리픽스) + 검색 버튼
+  - 목록: item-card 그리드 (페이지당 12건)
+  - 하단: 페이지 번호 기반 페이징 네비게이션
+-->
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 <body>
 <main class="page-shell" layout:fragment="content">
+
   <section class="page-head">
     <div>
       <p class="page-head__subtitle">커뮤니티</p>
       <h1 class="page-head__title">블로그</h1>
     </div>
-    <form action="/blog/bloglist" method="post" class="action-row">
-      <input class="input u-min-240" type="text" name="keyword" placeholder="게시글 검색">
-      <button class="btn btn--secondary" type="submit">검색</button>
-      <a class="btn btn--primary" href="/blog/blogwrite">글쓰기</a>
+    <div class="action-row">
+      <a class="btn btn--primary" href="/blog/blogwrite"><i class="bi bi-pencil-square"></i> 글쓰기</a>
+    </div>
+  </section>
+
+  <section class="list-search-panel">
+    <form id="blogSearchForm" action="/blog/bloglist" method="get" class="list-search-form">
+      <div class="field">
+        <label for="blogKeyword">키워드</label>
+        <div class="input-wrap">
+          <i class="bi bi-search input-wrap__icon" aria-hidden="true"></i>
+          <input class="input" type="text" id="blogKeyword" name="keyword"
+                 th:value="${keyword}" placeholder="제목 · 내용으로 검색">
+        </div>
+      </div>
+      <div class="list-search-form__actions">
+        <button class="btn btn--primary" type="submit"><i class="bi bi-search"></i> 검색</button>
+        <a class="btn btn--secondary" href="/blog/bloglist"><i class="bi bi-arrow-counterclockwise"></i> 초기화</a>
+      </div>
     </form>
   </section>
-  <form action="/blog/bloglist" method="post">
-    <section class="grid grid--cards">
-      <article class="item-card" th:each="blog : ${blogs}">
-        <a class="item-card__media" th:href="|/blog/blogread/${blog.tb_no}|">
-          <img th:src="|/uploadImg/blog/${blog.tb_thum}|" alt="blog image">
-        </a>
-        <div class="item-card__body">
-          <h2 class="item-card__title"><a th:href="|/blog/blogread/${blog.tb_no}|" th:text="${blog.tb_title}"></a></h2>
-          <div class="item-card__content" th:utext="${blog.tb_content}"></div>
-        </div>
-      </article>
-    </section>
-    <div class="u-mt-24 u-text-center">
-      <input type="hidden" name="pageAdd" value="5">
-      <button class="btn btn--secondary" type="submit">더 보기</button>
-    </div>
-  </form>
+
+  <section class="grid grid--cards" th:if="${!#lists.isEmpty(blogs)}">
+    <article class="item-card" th:each="blog : ${blogs}">
+      <a class="item-card__media" th:href="|/blog/blogread/${blog.tb_no}|">
+        <img th:src="|/uploadImg/blog/${blog.tb_thum}|" alt="blog image">
+      </a>
+      <div class="item-card__body">
+        <h2 class="item-card__title">
+          <a th:href="|/blog/blogread/${blog.tb_no}|" th:text="${blog.tb_title}"></a>
+        </h2>
+        <div class="item-card__content" th:utext="${blog.tb_content}"></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="panel empty-state" th:if="${#lists.isEmpty(blogs)}">
+    표시할 게시글이 없습니다.
+  </section>
+
+  <!--
+    페이지 네비게이션: 총 페이지 > 1 일 때만 노출.
+    keyword 파라미터를 모든 링크에 유지해 검색 상태를 보존한다.
+  -->
+  <nav class="pagination" th:if="${totalPages > 1}" aria-label="페이지 이동">
+    <a class="pagination__link pagination__link--edge"
+       th:classappend="${!hasPrev} ? ' is-disabled'"
+       th:href="@{/blog/bloglist(page=1, keyword=${keyword})}"
+       aria-label="첫 페이지">
+      <i class="bi bi-chevron-double-left"></i>
+    </a>
+    <a class="pagination__link"
+       th:classappend="${!hasPrev} ? ' is-disabled'"
+       th:href="@{/blog/bloglist(page=${currentPage - 1}, keyword=${keyword})}"
+       aria-label="이전 페이지">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+
+    <a th:each="p : ${#numbers.sequence(startPage, endPage)}"
+       class="pagination__link pagination__link--num"
+       th:classappend="${p == currentPage} ? ' is-active'"
+       th:href="@{/blog/bloglist(page=${p}, keyword=${keyword})}"
+       th:text="${p}"></a>
+
+    <a class="pagination__link"
+       th:classappend="${!hasNext} ? ' is-disabled'"
+       th:href="@{/blog/bloglist(page=${currentPage + 1}, keyword=${keyword})}"
+       aria-label="다음 페이지">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    <a class="pagination__link pagination__link--edge"
+       th:classappend="${!hasNext} ? ' is-disabled'"
+       th:href="@{/blog/bloglist(page=${totalPages}, keyword=${keyword})}"
+       aria-label="마지막 페이지">
+      <i class="bi bi-chevron-double-right"></i>
+    </a>
+  </nav>
 </main>
 </body>
 </html>

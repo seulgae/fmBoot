@@ -2,29 +2,27 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <header th:fragment="headerFragment" class="site-header">
   <div class="site-header__inner">
-    <a class="brand" href="/">
-      <span class="brand__mark">FM</span>
-      <span class="brand__text">
-        <span class="brand__eyebrow">도시형 풋살 시스템</span>
-        <strong>FM 매니저</strong>
-        <span>풋살 팀과 구장을 위한 운영 플랫폼</span>
-      </span>
+    <a class="brand" href="/" aria-label="FM 매니저 홈">
+      <strong class="brand__wordmark">
+        <span class="brand__wordmark-accent">FM</span>
+        <span class="brand__wordmark-name">매니저</span>
+      </strong>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav"
             aria-label="메뉴 열기" data-nav-toggle>
       <span class="nav-toggle__bars" aria-hidden="true"></span>
     </button>
     <nav id="siteNav" class="site-nav" aria-label="주요 메뉴">
-      <a href="/">홈</a>
-      <a href="/teammanage/teammanage">팀</a>
-      <a href="/payment/placelist">구장 예약</a>
-      <a href="/blog/bloglist">커뮤니티</a>
-      <a href="/notice/noticehome">공지사항</a>
-      <a href="/login/join" th:unless="${session.m_id}">회원가입</a>
-      <a href="/login/login" th:unless="${session.m_id}">로그인</a>
-      <a href="/mypage/mypage" th:if="${session.m_id}">마이페이지</a>
-      <a href="/admin/admin" th:if="${session.m_id == 'admin'}">관리자</a>
-      <a href="/login/logout" th:if="${session.m_id}">로그아웃</a>
+      <a href="/"><i class="bi bi-house-door"></i><span>홈</span></a>
+      <a href="/teammanage/teammanage"><i class="bi bi-people"></i><span>팀</span></a>
+      <a href="/payment/placelist"><i class="bi bi-calendar-check"></i><span>구장 예약</span></a>
+      <a href="/blog/bloglist"><i class="bi bi-chat-square-text"></i><span>커뮤니티</span></a>
+      <a href="/notice/noticehome"><i class="bi bi-megaphone"></i><span>공지사항</span></a>
+      <a href="/login/join" th:unless="${session.m_id}"><i class="bi bi-person-plus"></i><span>회원가입</span></a>
+      <a href="/login/login" th:unless="${session.m_id}"><i class="bi bi-box-arrow-in-right"></i><span>로그인</span></a>
+      <a href="/mypage/mypage" th:if="${session.m_id}"><i class="bi bi-person-circle"></i><span>마이페이지</span></a>
+      <a href="/admin/admin" th:if="${session.m_id == 'admin'}"><i class="bi bi-shield-lock"></i><span>관리자</span></a>
+      <a href="/login/logout" th:if="${session.m_id}"><i class="bi bi-box-arrow-right"></i><span>로그아웃</span></a>
     </nav>
   </div>
 </header>

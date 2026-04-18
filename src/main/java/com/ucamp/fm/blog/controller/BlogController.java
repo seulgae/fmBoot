@@ -24,11 +24,9 @@ public class BlogController {
     @Autowired
     BlogService blogService;
 
-    // 더보기 방식 목록 조회에 사용하는 상태값이다.
-    static int pageNum = 10;
-    static int addcount = 0;
-    static int maincount = 0;
-    static String keywordStack = "";
+    // 페이지당 표시할 게시글 수와 페이지 네비게이션 블록 크기.
+    private static final int PAGE_SIZE = 12;
+    private static final int PAGE_BLOCK = 5;
 
     /**
      * 게시글 상세 화면을 조회한다.
@@ -46,37 +44,42 @@ public class BlogController {
     }
 
     /**
-     * 더보기 기반 게시글 목록을 조회한다.
+     * 페이지 번호 기반 게시글 목록을 조회한다.
      */
     @RequestMapping("/bloglist")
     public String blog_list(Model model,
                             @RequestParam(value = "keyword", required = false) String keyword,
-                            @RequestParam(value = "pageAdd", required = false) String pageAdd) {
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("keyword", keywordStack);
-        map.put("pageNum", pageNum);
-
-        if (pageAdd == null || keyword == null) {
-            if (addcount > 0) {
-                maincount++;
-            }
-
-            // 새로고침 시 더보기 상태를 초기화한다.
-            if (addcount < maincount) {
-                pageNum = 10;
-                keywordStack = "";
-                maincount = 0;
-                addcount = 0;
-            }
-
-            model.addAttribute("blogs", blogService.bloglist(map));
-            return "blog/bloglist";
-        } else {
-            pageNum += Integer.valueOf(pageAdd);
-            keywordStack = keyword;
-            addcount += 2;
-            return "redirect:/blog/bloglist";
+                            @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+        String safeKeyword = (keyword == null) ? "" : keyword.trim();
+        if (page < 1) {
+            page = 1;
         }
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("keyword", safeKeyword);
+
+        int totalCount = blogService.countBlogs(map);
+        int totalPages = (totalCount == 0) ? 1 : (int) Math.ceil((double) totalCount / PAGE_SIZE);
+        if (page > totalPages) {
+            page = totalPages;
+        }
+
+        map.put("offset", (page - 1) * PAGE_SIZE);
+        map.put("pageSize", PAGE_SIZE);
+
+        int startPage = ((page - 1) / PAGE_BLOCK) * PAGE_BLOCK + 1;
+        int endPage = Math.min(startPage + PAGE_BLOCK - 1, totalPages);
+
+        model.addAttribute("blogs", blogService.bloglist(map));
+        model.addAttribute("keyword", safeKeyword);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("hasPrev", page > 1);
+        model.addAttribute("hasNext", page < totalPages);
+        return "blog/bloglist";
     }
 
     /**

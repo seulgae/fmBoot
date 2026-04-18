@@ -10,6 +10,8 @@ public interface BlogService {
 
     List<BlogDto> bloglist(HashMap<String, Object> map);
 
+    int countBlogs(HashMap<String, Object> map);
+
     List<BlogDto> bloglistajax(BlogDto blogDto);
 
     BlogDto blogone(String td_no);

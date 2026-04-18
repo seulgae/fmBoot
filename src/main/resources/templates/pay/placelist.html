@@ -1,47 +1,154 @@
 <!DOCTYPE html>
+<!--
+  구장 목록 화면
+  - 검색 패널: 키워드(아이콘 프리픽스) + 지역/예약 상태 + 검색·초기화
+  - 목록: place-row (이미지 + 본문)
+  - 하단 센티넬 기반 무한 스크롤 (FM.infiniteList 사용)
+-->
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 <body>
 <main class="page-shell" layout:fragment="content">
+
   <section class="page-head">
     <div>
       <p class="page-head__subtitle">구장 예약</p>
       <h1 class="page-head__title">구장 목록</h1>
     </div>
-    <form action="/payment/placelist" class="action-row">
-      <input class="input u-min-240" type="text" name="keyword" placeholder="구장명 검색">
-      <button class="btn btn--secondary" type="submit">검색</button>
+  </section>
+
+  <section class="place-search-panel">
+    <form id="placeSearchForm" action="/payment/placelist" method="get" class="place-search-form">
+      <div class="field">
+        <label for="keyword">키워드</label>
+        <div class="input-wrap">
+          <i class="bi bi-search input-wrap__icon" aria-hidden="true"></i>
+          <input class="input" type="text" id="keyword" name="keyword" th:value="${keyword}"
+                 placeholder="구장명 · 주소 · 설명으로 검색">
+        </div>
+      </div>
+      <div class="field">
+        <label for="region">지역</label>
+        <select class="select" id="region" name="region">
+          <option value="">전체</option>
+          <option value="서울" th:selected="${region == '서울'}">서울</option>
+          <option value="경기" th:selected="${region == '경기'}">경기</option>
+          <option value="인천" th:selected="${region == '인천'}">인천</option>
+          <option value="부산" th:selected="${region == '부산'}">부산</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="book">예약 상태</label>
+        <select class="select" id="book" name="book">
+          <option value="">전체</option>
+          <option value="가능" th:selected="${book == '가능'}">예약 가능</option>
+          <option value="불가" th:selected="${book == '불가'}">예약 불가</option>
+        </select>
+      </div>
+      <div class="place-search-form__actions">
+        <input type="hidden" name="pageSize" th:value="${pageSize}">
+        <button class="btn btn--primary" type="submit"><i class="bi bi-search"></i> 검색</button>
+        <a class="btn btn--secondary" href="/payment/placelist"><i class="bi bi-arrow-counterclockwise"></i> 초기화</a>
+      </div>
     </form>
   </section>
-  <form action="/payment/placelist">
-    <section class="grid grid--cards">
-      <article class="item-card" th:each="item : ${lists}">
-        <a class="item-card__media" th:href="|/payment/placeread?p_no=${item.p_no}|">
-          <img th:src="${item.mainImg}" alt="place image">
-        </a>
-        <div class="item-card__body">
-          <h2 class="item-card__title" th:text="${item.p_pname}"></h2>
-          <p class="item-card__content" th:text="${item.p_place}"></p>
-          <div class="chip-list u-mt-16 u-mb-18">
-            <span class="chip">6vs6</span>
-            <span class="chip" th:classappend="${item.p_op1 == '1'} ? ' is-on'" >주차</span>
-            <span class="chip" th:classappend="${item.p_op2 == '1'} ? ' is-on'" >냉난방</span>
-            <span class="chip" th:classappend="${item.p_op3 == '1'} ? ' is-on'" >공 대여</span>
-            <span class="chip" th:classappend="${item.p_op4 == '1'} ? ' is-on'" >조끼 대여</span>
-            <span class="chip" th:classappend="${item.p_op5 == '1'} ? ' is-on'" >실내화</span>
-            <span class="chip" th:classappend="${item.p_op6 == '1'} ? ' is-on'" >샤워실</span>
+
+  <section class="place-list" th:if="${!#lists.isEmpty(lists)}">
+    <article class="place-row" th:each="item : ${lists}">
+      <a class="place-row__media" th:href="|/payment/placeread?p_no=${item.p_no}|">
+        <img th:src="${item.mainImg}" alt="place image">
+      </a>
+      <div class="place-row__body">
+        <div class="place-row__top">
+          <div class="place-row__headline">
+            <p class="place-row__region" th:text="${item.p_place}"></p>
+            <h2 class="place-row__title">
+              <a th:href="|/payment/placeread?p_no=${item.p_no}|" th:text="${item.p_pname}"></a>
+            </h2>
           </div>
-          <a class="btn btn--primary btn--block" th:href="|/payment/placeread?p_no=${item.p_no}|">예약 보기</a>
+          <span class="chip" th:classappend="${item.p_book == '가능'} ? ' is-on' : ''"
+                th:text="${item.p_book == '가능'} ? '예약 가능' : '예약 불가'"></span>
         </div>
-      </article>
-    </section>
-    <div class="u-mt-24 u-text-center">
-      <input type="hidden" name="pageAdd" value="5">
-      <button class="btn btn--secondary" type="submit">더 보기</button>
-    </div>
-  </form>
+
+        <p class="place-row__desc" th:text="${item.p_explain}"></p>
+
+        <div class="place-row__meta">
+          <span>예약 건수 <strong th:text="|${item.reservedCount}건|"></strong></span>
+          <span>최대 인원 <strong th:text="|${item.p_max}명|"></strong></span>
+          <span>구장 크기 <strong th:text="${item.p_area}"></strong></span>
+          <span>이용 요금 <strong th:text="|${#numbers.formatInteger(item.p_price, 3, 'COMMA')}원|"></strong></span>
+        </div>
+
+        <div class="place-row__facility">
+          <span class="chip" th:classappend="${item.p_op1 == '1'} ? ' is-on'">주차</span>
+          <span class="chip" th:classappend="${item.p_op2 == '1'} ? ' is-on'">샤워실</span>
+          <span class="chip" th:classappend="${item.p_op3 == '1'} ? ' is-on'">공 대여</span>
+          <span class="chip" th:classappend="${item.p_op4 == '1'} ? ' is-on'">조명</span>
+          <span class="chip" th:classappend="${item.p_op5 == '1'} ? ' is-on'">실내</span>
+          <span class="chip" th:classappend="${item.p_op6 == '1'} ? ' is-on'">라커룸</span>
+        </div>
+
+        <div class="place-row__actions">
+          <a class="btn btn--secondary" th:href="|https://map.naver.com/v5/search/${item.p_place}|" target="_blank" rel="noopener"><i class="bi bi-geo-alt"></i> 지도 보기</a>
+          <a class="btn btn--primary" th:href="|/payment/placeread?p_no=${item.p_no}|"><i class="bi bi-box-arrow-up-right"></i> 상세 보기</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="panel empty-state" th:if="${#lists.isEmpty(lists)}">
+    조건에 맞는 구장이 없습니다. 검색 조건을 다시 선택해 주세요.
+  </section>
+
+  <!--
+    무한 스크롤 센티넬: 더 불러올 여지가 있을 때만 렌더.
+    data-* 속성으로 현재 필터/크기를 담아 스크립트가 다음 요청 URL을 구성한다.
+  -->
+  <div th:if="${hasMore and !#lists.isEmpty(lists)}"
+       id="placeSentinel"
+       class="infinite-sentinel"
+       th:attr="data-page-size=${pageSize},data-keyword=${keyword},data-region=${region},data-book=${book}">
+    더 불러오는 중...
+  </div>
 </main>
+
+<th:block layout:fragment="script">
+<script>
+  /*
+    구장 목록 무한 스크롤:
+    - FM.infiniteList 로 센티넬을 관찰
+    - 매 요청마다 pageSize 를 10씩 증가시켜 /payment/placelist 를 GET
+    - 응답 HTML 을 파싱해 새로 추가된 place-row 만 이어 붙임
+  */
+  (function () {
+    var sentinel = document.getElementById("placeSentinel");
+    if (!sentinel || !window.FM || !FM.infiniteList) return;
+
+    var baseSize = parseInt(sentinel.dataset.pageSize || "10", 10);
+    var keyword  = sentinel.dataset.keyword || "";
+    var region   = sentinel.dataset.region  || "";
+    var book     = sentinel.dataset.book    || "";
+
+    FM.infiniteList({
+      listSelector: ".place-list",
+      itemSelector: ".place-row",
+      sentinelSelector: "#placeSentinel",
+      fetchNext: function (currentCount) {
+        var nextSize = Math.max(currentCount, baseSize) + 10;
+        var params = new URLSearchParams();
+        if (keyword) params.set("keyword", keyword);
+        if (region)  params.set("region", region);
+        if (book)    params.set("book", book);
+        params.set("pageSize", String(nextSize));
+        return fetch("/payment/placelist?" + params.toString(), {
+          headers: { "X-Requested-With": "XMLHttpRequest" }
+        });
+      }
+    });
+  })();
+</script>
+</th:block>
 </body>
 </html>

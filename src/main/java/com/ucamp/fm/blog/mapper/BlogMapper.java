@@ -15,6 +15,8 @@ public interface BlogMapper {
 
     List<BlogDto> bloglist(HashMap<String, Object> map);
 
+    int countBlogs(HashMap<String, Object> map);
+
     List<BlogDto> bloglistajax(BlogDto blogDto);
 
     @Select("select * from teamblog where tb_no = #{tb_no}")

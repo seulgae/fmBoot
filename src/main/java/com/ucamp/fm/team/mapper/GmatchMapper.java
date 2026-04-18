@@ -25,9 +25,9 @@ public interface GmatchMapper {
     @Select("select count(*) from gmatch where g_no = #{g_no} and g_game = 3")
     public String selectLose(String g_no);
 
-    @Select("select sum(gmatch.g_gf) from gmatch where g_no = #{g_no}")
+    @Select("select coalesce(sum(cast(g_gf as int)), 0) from gmatch where g_no = #{g_no}")
     public String selectGf(String g_no);
 
-    @Select("select sum(gmatch.g_ga) from gmatch where g_no = #{g_no}")
+    @Select("select coalesce(sum(cast(g_ga as int)), 0) from gmatch where g_no = #{g_no}")
     public String selectGa(String g_no);
 }

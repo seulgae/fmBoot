@@ -1,20 +1,25 @@
 <!DOCTYPE html>
+<!--
+  공통 푸터 프래그먼트
+  - 브랜드 + 주요 링크 + 저작권을 얇게 표시
+  - site-footer__links 안의 a 태그에 Bootstrap Icons 붙여 일관성 유지
+-->
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <footer th:fragment="footerFragment" class="site-footer">
-    <div class="site-footer__inner">
-        <div class="site-footer__top">
-            <div>
-                <div class="site-footer__brand">FM 매니저</div>
-                <p>붉은 톤의 도시적 무드로 팀 운영, 예약, 커뮤니티를 하나의 흐름으로 묶은 풋살 플랫폼</p>
-            </div>
-            <div class="site-footer__links">
-                <a href="/teammanage/teammanage">팀 탐색</a>
-                <a href="/payment/placelist">구장 예약</a>
-                <a href="/blog/bloglist">커뮤니티</a>
-                <a href="https://github.com/seulgae/fmProj" target="_blank" rel="noopener">저장소</a>
-            </div>
-        </div>
-        <div class="site-footer__copy">FM 매니저 · 풋살 운영 플랫폼</div>
+  <div class="site-footer__inner">
+    <div class="site-footer__top">
+      <div>
+        <div class="site-footer__brand">FM 매니저</div>
+        <p>풋살 팀 운영과 구장 예약을 한 흐름으로 이어주는 플랫폼</p>
+      </div>
+      <div class="site-footer__links">
+        <a href="/teammanage/teammanage"><i class="bi bi-people"></i>팀</a>
+        <a href="/payment/placelist"><i class="bi bi-calendar-check"></i>구장 예약</a>
+        <a href="/blog/bloglist"><i class="bi bi-chat-square-text"></i>커뮤니티</a>
+        <a href="https://github.com/seulgae/fmProj" target="_blank" rel="noopener"><i class="bi bi-github"></i>저장소</a>
+      </div>
     </div>
+    <div class="site-footer__copy">© FM 매니저 · 풋살 운영 플랫폼</div>
+  </div>
 </footer>
 </html>

@@ -6,12 +6,15 @@
 
     <select id="bloglist" parameterType="hashmap"
             resultType="com.ucamp.fm.blog.dto.BlogDto">
-        select * from
-        (select * from teamblog where tb_title like '%'||#{keyword}||'%' order by tb_no desc)
-        where
-        <![CDATA[
-        rownum <= #{pageNum}
-        ]]>
+        select * from teamblog
+        where tb_title like '%'||#{keyword}||'%'
+        order by tb_no desc
+        offset #{offset} rows fetch next #{pageSize} rows only
+    </select>
+
+    <select id="countBlogs" parameterType="hashmap" resultType="int">
+        select count(*) from teamblog
+        where tb_title like '%'||#{keyword}||'%'
     </select>
 
     <select id="bloglistajax" parameterType="com.ucamp.fm.blog.dto.BlogDto"

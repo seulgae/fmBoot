@@ -23,6 +23,11 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
+    public int countBlogs(HashMap<String, Object> map) {
+        return blogMapper.countBlogs(map);
+    }
+
+    @Override
     public List<BlogDto> bloglistajax(BlogDto blogDto) {
         return blogMapper.bloglistajax(blogDto);
     }

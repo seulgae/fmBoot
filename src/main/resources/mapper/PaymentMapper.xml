@@ -16,11 +16,37 @@
 
     <select id="selectPageing" parameterType="map"
             resultType="com.ucamp.fm.mypage.dto.PlaceDto">
-        select * from
-        (select * from place where p_pname like '%'||#{keyword}||'%' order by p_no desc)
-        where
-        <![CDATA[
-        rowNum <= #{pageNum}
-        ]]>
+        select * from (
+            select
+                row_number() over (order by place_list.p_no desc) as rn,
+                place_list.*
+            from (
+                select
+                    p.*,
+                    coalesce(r.reserved_count, 0) as reservedCount
+                from place p
+                left join (
+                    select r_p_no, count(*) as reserved_count
+                    from reservation
+                    group by r_p_no
+                ) r on p.p_no = r.r_p_no
+                <where>
+                    <if test="keyword != null and keyword != ''">
+                        (
+                            p.p_pname like '%'||#{keyword}||'%'
+                            or p.p_place like '%'||#{keyword}||'%'
+                            or p.p_explain like '%'||#{keyword}||'%'
+                        )
+                    </if>
+                    <if test="region != null and region != ''">
+                        and p.p_place like '%'||#{region}||'%'
+                    </if>
+                    <if test="book != null and book != ''">
+                        and p.p_book = #{book}
+                    </if>
+                </where>
+            ) place_list
+        )
+        where rn <![CDATA[ <= ]]> #{pageNum}
     </select>
 </mapper>

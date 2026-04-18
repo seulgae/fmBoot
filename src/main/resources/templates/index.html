@@ -1,164 +1,63 @@
 <!DOCTYPE html>
+<!--
+  메인 랜딩 페이지
+  - 히어로(브랜드 스테이트먼트 + 주요 CTA)
+  - home-quick(아이콘 바로가기 카드 4개)
+-->
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 <body>
 <main class="page-shell" layout:fragment="content">
+
   <section class="hero">
     <div class="hero__content">
-      <div class="hero__eyebrow">새롭게 정비한 풋살 플랫폼</div>
-      <h1 class="hero__title">정석대로 뛰고, 깔끔하게 이긴다</h1>
-      <p class="hero__subtitle">흩어져 있던 팀 운영과 예약 흐름을 한 화면에서 볼 수 있도록, 붉은 톤 중심의 풋살 운영 플랫폼으로 다시 구성했습니다.</p>
-      <div class="hero__highlights">
-        <span class="hero-chip">팀 관리</span>
-        <span class="hero-chip">구장 예약</span>
-        <span class="hero-chip">커뮤니티</span>
-      </div>
+      <span class="hero__eyebrow"><i class="bi bi-stars"></i> 풋살 운영 플랫폼</span>
+      <h1 class="hero__title">정석대로 뛰고,<br>깔끔하게 이긴다</h1>
+      <p class="hero__subtitle">팀 운영·구장 예약·커뮤니티를 한 화면에서. 복잡한 스케줄과 정보를 단순하게 정리했습니다.</p>
       <div class="hero__actions">
-        <a class="btn btn--primary" href="/teammanage/teammanage">팀 둘러보기</a>
-        <a class="btn btn--secondary" href="/payment/placelist">구장 예약하기</a>
-        <a class="btn btn--ghost" href="/blog/bloglist">커뮤니티 보기</a>
-      </div>
-    </div>
-    <div class="hero-banner">
-      <div class="hero-banner__card">
-        <div class="hero-banner__kicker">01</div>
-        <strong>팀 워크스페이스</strong>
-        <span>전적, 멤버, 소개, 매치 기록을 하나의 흐름으로 연결합니다.</span>
-      </div>
-      <div class="hero-banner__card">
-        <div class="hero-banner__kicker">02</div>
-        <strong>예약 흐름</strong>
-        <span>구장 탐색부터 시간 선택, 결제까지 단계가 자연스럽게 이어집니다.</span>
-      </div>
-      <div class="hero-banner__card">
-        <div class="hero-banner__kicker">03</div>
-        <strong>커뮤니티 피드</strong>
-        <span>공지, 블로그, 댓글 화면을 같은 톤으로 통일했습니다.</span>
+        <a class="btn btn--primary btn--lg" href="/payment/placelist">
+          <i class="bi bi-calendar-check"></i> 구장 예약 시작
+        </a>
+        <a class="btn btn--secondary btn--lg" href="/teammanage/teammanage">
+          <i class="bi bi-people"></i> 팀 둘러보기
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="grid grid--cards u-mt-24">
-    <article class="stat-card">
-      <div class="stat-card__label">바로가기</div>
-      <div class="stat-card__value">팀</div>
-      <p class="muted">팀 생성, 멤버 편성, 전적 관리</p>
-      <a class="stat-card__link" href="/teammanage/teammanage">팀 관리 열기</a>
-    </article>
-    <article class="stat-card">
-      <div class="stat-card__label">바로가기</div>
-      <div class="stat-card__value">예약</div>
-      <p class="muted">예약 가능 시간, 이미지, 가격 확인</p>
-      <a class="stat-card__link" href="/payment/placelist">예약 흐름 보기</a>
-    </article>
-    <article class="stat-card">
-      <div class="stat-card__label">바로가기</div>
-      <div class="stat-card__value">게시판</div>
-      <p class="muted">공지와 커뮤니티 게시글 확인</p>
-      <a class="stat-card__link" href="/notice/noticehome">게시판 이동</a>
-    </article>
+  <section class="home-quick">
+    <a href="/teammanage/teammanage">
+      <span class="home-quick__icon"><i class="bi bi-people"></i></span>
+      <span>
+        <span class="home-quick__label">팀 관리</span>
+        <span class="home-quick__desc">생성·멤버·전적을 한 곳에서</span>
+      </span>
+    </a>
+    <a href="/payment/placelist">
+      <span class="home-quick__icon"><i class="bi bi-calendar-check"></i></span>
+      <span>
+        <span class="home-quick__label">구장 예약</span>
+        <span class="home-quick__desc">탐색·시간 선택·결제까지</span>
+      </span>
+    </a>
+    <a href="/blog/bloglist">
+      <span class="home-quick__icon"><i class="bi bi-chat-square-text"></i></span>
+      <span>
+        <span class="home-quick__label">커뮤니티</span>
+        <span class="home-quick__desc">블로그와 댓글로 소통</span>
+      </span>
+    </a>
+    <a href="/notice/noticehome">
+      <span class="home-quick__icon"><i class="bi bi-megaphone"></i></span>
+      <span>
+        <span class="home-quick__label">공지사항</span>
+        <span class="home-quick__desc">운영 소식과 업데이트</span>
+      </span>
+    </a>
   </section>
 
-  <section class="home-stack">
-    <div class="home-grid">
-      <article class="home-panel">
-        <div class="home-panel__eyebrow">플랫폼 구조</div>
-        <h2 class="section-title">한 번에 읽히는 운영 흐름</h2>
-        <p class="home-panel__lead">기능이 많아도 산만하지 않도록, 홈 화면에서 팀·예약·게시판의 핵심 목적을 먼저 보여주도록 구조를 재정리했습니다.</p>
-        <div class="home-feature-grid u-mt-24">
-          <div class="home-feature">
-            <h3 class="home-feature__title">01</h3>
-            <p>팀 운영 화면은 매치와 멤버 관리 중심으로 바로 진입합니다.</p>
-          </div>
-          <div class="home-feature">
-            <h3 class="home-feature__title">02</h3>
-            <p>구장 예약은 탐색·상세·결제 흐름이 끊기지 않도록 정리했습니다.</p>
-          </div>
-          <div class="home-feature">
-            <h3 class="home-feature__title">03</h3>
-            <p>공지와 블로그는 톤을 통일해 정보 밀도가 과하지 않도록 맞췄습니다.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="home-panel home-panel--dark">
-        <div class="home-panel__eyebrow">디자인 방향</div>
-        <div class="showcase">
-          <h2 class="showcase__title">붉은 톤, 적은 소음</h2>
-          <p class="showcase__text">붉은색 계열을 중심으로 무게감은 유지하되, 과한 채도 대신 크림과 샌드 베이스를 섞어 오래 봐도 피로하지 않게 구성했습니다.</p>
-          <div class="showcase__metric">
-            <div>
-              <strong>깊이</strong>
-              <span>깊은 붉은 그라데이션</span>
-            </div>
-            <div>
-              <strong>선명함</strong>
-              <span>큰 타이포와 명확한 섹션</span>
-            </div>
-            <div>
-              <strong>따뜻함</strong>
-              <span>차갑지 않은 표면 톤</span>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <div class="home-grid home-grid--equal">
-      <article class="home-panel">
-        <div class="home-panel__eyebrow">빠른 이동</div>
-        <h2 class="section-title">자주 쓰는 화면으로 바로 이동</h2>
-        <div class="quick-links u-mt-24">
-          <a href="/teammanage/teammanage">
-            <strong>팀 관리</strong>
-            <span>팀 생성, 팀 상세, 멤버 찾기, 경기 기록 확인</span>
-          </a>
-          <a href="/payment/placelist">
-            <strong>구장 예약</strong>
-            <span>구장 목록, 이미지, 시간 슬롯, 결제 흐름 확인</span>
-          </a>
-          <a href="/blog/bloglist">
-            <strong>커뮤니티</strong>
-            <span>블로그 글 목록, 상세 읽기, 댓글 흐름 확인</span>
-          </a>
-          <a href="/notice/noticehome">
-            <strong>공지사항</strong>
-            <span>운영 공지, 수정, 상세 읽기 기능 접근</span>
-          </a>
-        </div>
-      </article>
-
-      <article class="home-panel">
-        <div class="home-panel__eyebrow">사용 흐름</div>
-        <h2 class="section-title">핵심 경험은 단순하게</h2>
-        <div class="timeline u-mt-24">
-          <div class="timeline__item">
-            <div class="timeline__num">1</div>
-            <div>
-              <strong>팀을 만들고 소개한다</strong>
-              <p>팀 소개, 지역, 연령대, 실력을 입력하고 운영 페이지로 이어집니다.</p>
-            </div>
-          </div>
-          <div class="timeline__item">
-            <div class="timeline__num">2</div>
-            <div>
-              <strong>구장을 예약하고 결제한다</strong>
-              <p>날짜와 시간 슬롯을 확인한 뒤 바로 결제 화면으로 넘어갑니다.</p>
-            </div>
-          </div>
-          <div class="timeline__item">
-            <div class="timeline__num">3</div>
-            <div>
-              <strong>공지와 커뮤니티로 소통한다</strong>
-              <p>게시글과 댓글 화면도 같은 스타일로 이어져 사용 맥락이 끊기지 않습니다.</p>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
 </main>
 </body>
 </html>
