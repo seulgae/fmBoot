@@ -1,12 +1,13 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell">
+<main class="page-shell" layout:fragment="content">
   <section class="page-head">
     <div>
-      <p class="page-head__subtitle">Venue Booking</p>
+      <p class="page-head__subtitle">구장 예약</p>
       <h1 class="page-head__title" th:text="${place.p_pname}"></h1>
     </div>
     <div class="chip-list">
@@ -81,10 +82,8 @@
     </article>
   </section>
 </main>
-<script src="/js/pages/place-read.js" defer></script>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<th:block layout:fragment="script">
+  <script src="/js/pages/place-read.js" defer></script>
+</th:block>
 </body>
 </html>
-
-
-

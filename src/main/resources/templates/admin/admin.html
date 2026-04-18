@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell">
+<main class="page-shell" layout:fragment="content">
   <section class="page-head">
     <div>
-      <p class="page-head__subtitle">Administrator</p>
-      <h1 class="page-head__title">Admin Console</h1>
+      <p class="page-head__subtitle">관리자</p>
+      <h1 class="page-head__title">관리자 콘솔</h1>
     </div>
   </section>
   <section class="panel">
     <p class="muted">관리자 전용 영역입니다. 현재 프로젝트는 화면 구조 정리에 집중되어 있으며, 이후 실제 운영 기능을 이 화면에 통합하면 됩니다.</p>
   </section>
 </main>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 </html>
-
-

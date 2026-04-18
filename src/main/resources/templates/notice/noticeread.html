@@ -1,12 +1,13 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell">
+<main class="page-shell" layout:fragment="content">
   <section class="page-head">
     <div>
-      <p class="page-head__subtitle">Announcement</p>
+      <p class="page-head__subtitle">공지</p>
       <h1 class="page-head__title" th:text="${notices.n_title}"></h1>
     </div>
     <div class="action-row">
@@ -24,8 +25,5 @@
     <div th:text="${notices.n_content}"></div>
   </article>
 </main>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 </html>
-
-

@@ -1,24 +1,26 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/popup_layout}">
 <body>
-  <main class="popup-shell">
-    <div class="popup-card">
-      <h1 class="page-head__title">팀 생성</h1>
-      <form action="/teammanage/teaminsert" method="post" data-team-popup class="form-grid form-grid--single">
-        <div class="field"><label for="t_name">팀명</label><input class="input" type="text" id="t_name" name="t_name" required></div>
-        <div class="field"><label for="t_region">연고</label><input class="input" type="text" id="t_region" name="t_region" required></div>
-        <div class="field"><label for="t_age">연령대</label><select class="select" id="t_age" name="t_age"><option value="10대~20대">10대~20대</option><option value="20대~30대">20대~30대</option><option value="30대~40대">30대~40대</option><option value="40대~50대">40대~50대</option></select></div>
-        <div class="field"><label for="t_skill">실력</label><input class="input" type="text" id="t_skill" name="t_skill" required></div>
-        <div class="field"><label for="t_uniform">유니폼</label><input class="input" type="text" id="t_uniform" name="t_uniform" required></div>
-        <div class="field"><label for="t_kind">유형</label><input class="input" type="text" id="t_kind" name="t_kind" required></div>
-        <div class="field"><label for="t_introduce">팀 소개</label><textarea class="textarea" id="t_introduce" name="t_introduce" maxlength="100" required></textarea></div>
-        <div class="action-row"><button class="btn btn--primary" id="teamPopupSubmit" type="button">등록</button></div>
-      </form>
-    </div>
-  </main>
+<main class="popup-shell" layout:fragment="content">
+  <div class="popup-card">
+    <h1 class="page-head__title">팀 생성</h1>
+    <form action="/teammanage/teaminsert" method="post" data-team-popup class="form-grid form-grid--single">
+      <div class="field"><label for="t_name">팀명</label><input class="input" type="text" id="t_name" name="t_name" required></div>
+      <div class="field"><label for="t_region">연고</label><input class="input" type="text" id="t_region" name="t_region" required></div>
+      <div class="field"><label for="t_age">연령대</label><select class="select" id="t_age" name="t_age"><option value="10대~20대">10대~20대</option><option value="20대~30대">20대~30대</option><option value="30대~40대">30대~40대</option><option value="40대~50대">40대~50대</option></select></div>
+      <div class="field"><label for="t_skill">실력</label><input class="input" type="text" id="t_skill" name="t_skill" required></div>
+      <div class="field"><label for="t_uniform">유니폼</label><input class="input" type="text" id="t_uniform" name="t_uniform" required></div>
+      <div class="field"><label for="t_kind">유형</label><input class="input" type="text" id="t_kind" name="t_kind" required></div>
+      <div class="field"><label for="t_introduce">팀 소개</label><textarea class="textarea" id="t_introduce" name="t_introduce" maxlength="100" required></textarea></div>
+      <div class="action-row"><button class="btn btn--primary" id="teamPopupSubmit" type="button">등록</button></div>
+    </form>
+  </div>
+</main>
+<th:block layout:fragment="script">
   <script src="/js/pages/team-popup.js" defer></script>
+</th:block>
 </body>
 </html>
-
-

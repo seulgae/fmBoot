@@ -1,22 +1,20 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell">
+<main class="page-shell" layout:fragment="content">
   <div class="panel">
     <div class="page-head">
       <div>
-        <p class="page-head__subtitle">Legacy Screen</p>
-        <h1 class="page-head__title">Join Modify</h1>
+        <p class="page-head__subtitle">사용하지 않는 화면</p>
+        <h1 class="page-head__title">회원 정보 수정 (미사용)</h1>
       </div>
     </div>
     <p class="muted">이 화면은 현재 사용하지 않는 레거시 페이지입니다. 회원 정보 수정은 마이페이지에서 진행해 주세요.</p>
     <a class="btn btn--primary" href="/mypage/mypage">마이페이지로 이동</a>
   </div>
 </main>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 </html>
-
-

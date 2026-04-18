@@ -1,28 +1,31 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <header th:fragment="headerFragment" class="site-header">
   <div class="site-header__inner">
     <a class="brand" href="/">
       <span class="brand__mark">FM</span>
       <span class="brand__text">
-        <strong>FM Manager</strong>
+        <span class="brand__eyebrow">도시형 풋살 시스템</span>
+        <strong>FM 매니저</strong>
         <span>풋살 팀과 구장을 위한 운영 플랫폼</span>
       </span>
     </a>
-    <nav class="site-nav" aria-label="주요 메뉴">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav"
+            aria-label="메뉴 열기" data-nav-toggle>
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+    </button>
+    <nav id="siteNav" class="site-nav" aria-label="주요 메뉴">
       <a href="/">홈</a>
       <a href="/teammanage/teammanage">팀</a>
       <a href="/payment/placelist">구장 예약</a>
-      <a href="/blog/bloglist">블로그</a>
+      <a href="/blog/bloglist">커뮤니티</a>
       <a href="/notice/noticehome">공지사항</a>
       <a href="/login/join" th:unless="${session.m_id}">회원가입</a>
       <a href="/login/login" th:unless="${session.m_id}">로그인</a>
       <a href="/mypage/mypage" th:if="${session.m_id}">마이페이지</a>
-      <a href="/admin/admin" th:if="${session.m_id == 'admin'}">관리</a>
+      <a href="/admin/admin" th:if="${session.m_id == 'admin'}">관리자</a>
       <a href="/login/logout" th:if="${session.m_id}">로그아웃</a>
     </nav>
   </div>
 </header>
 </html>
-
-

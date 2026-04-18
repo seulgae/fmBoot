@@ -1,13 +1,20 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<!--
+  공통 레이아웃
+  - 모든 페이지는 layout:decorate="~{layout/default_layout}" 로 상속
+  - 페이지가 본문 루트 요소(<main class="page-shell"> 또는 팝업용 <main class="popup-shell">)
+    위에 layout:fragment="content" 를 걸어 본문을 주입
+  - 페이지별 script 는 layout:fragment="script" 슬롯 사용
+  - 페이지별 css 는 fragments/config 의 layout:fragment="css" 슬롯 사용
+-->
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<th:block th:replace="~{fragments/config :: configFragment}"></th:block>
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<div>
-  <th:block layout:fragment="content"></th:block>
-</div>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+<th:block layout:fragment="content"></th:block>
+<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+<th:block layout:fragment="script"></th:block>
 </body>
 </html>

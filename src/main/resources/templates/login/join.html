@@ -1,14 +1,15 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell join-shell">
+<main class="page-shell join-shell" layout:fragment="content">
   <div class="panel join-card">
     <div class="page-head">
       <div>
-        <p class="page-head__subtitle">Create Account</p>
-        <h1 class="page-head__title">Join FM</h1>
+        <p class="page-head__subtitle">계정</p>
+        <h1 class="page-head__title">회원가입</h1>
       </div>
     </div>
     <form id="joinFrm" action="/login/joinInsert" method="post" class="join-form">
@@ -102,10 +103,9 @@
     </form>
   </div>
 </main>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/pages/join.js" defer></script>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<th:block layout:fragment="script">
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="/js/pages/join.js" defer></script>
+</th:block>
 </body>
 </html>
-
-

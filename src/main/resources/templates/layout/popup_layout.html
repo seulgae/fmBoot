@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<!--
+  팝업 전용 레이아웃 (window.open 으로 여는 서브 화면)
+  - 헤더/푸터 없이 공통 스타일(config) + 본문만 렌더링
+  - 페이지는 <main class="popup-shell"> 위에 layout:fragment="content" 사용
+  - 페이지별 script 는 layout:fragment="script" 슬롯 사용
+-->
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="~{fragments/config :: configFragment}"></th:block>
+<body class="popup-body">
+<th:block layout:fragment="content"></th:block>
+<th:block layout:fragment="script"></th:block>
+</body>
+</html>

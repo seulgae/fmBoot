@@ -1,40 +1,40 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/popup_layout}">
 <body>
-  <main class="popup-shell">
-    <div class="popup-card">
-      <div class="page-head">
-        <div>
-          <p class="page-head__subtitle">Reservation History</p>
-          <h1 class="page-head__title">Reservations</h1>
-        </div>
-      </div>
-      <div class="table-shell">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>번호</th>
-              <th>구장</th>
-              <th>시간</th>
-              <th>예약일</th>
-              <th>결제일</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="item : ${list1}">
-              <td th:text="${item.rownum}"></td>
-              <td><a th:href="|/payment/placeread?p_no=${item.r_p_no}|" th:text="${item.p_pname}"></a></td>
-              <td th:text="${item.r_time}"></td>
-              <td th:text="${item.r_date}"></td>
-              <td th:text="${item.r_wdate}"></td>
-            </tr>
-          </tbody>
-        </table>
+<main class="popup-shell" layout:fragment="content">
+  <div class="popup-card">
+    <div class="page-head">
+      <div>
+        <p class="page-head__subtitle">예약 내역</p>
+        <h1 class="page-head__title">예약 현황</h1>
       </div>
     </div>
-  </main>
+    <div class="table-shell">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>구장</th>
+            <th>시간</th>
+            <th>예약일</th>
+            <th>결제일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="item : ${list1}">
+            <td th:text="${item.rownum}"></td>
+            <td><a th:href="|/payment/placeread?p_no=${item.r_p_no}|" th:text="${item.p_pname}"></a></td>
+            <td th:text="${item.r_time}"></td>
+            <td th:text="${item.r_date}"></td>
+            <td th:text="${item.r_wdate}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
 </body>
 </html>
-
-

@@ -1,14 +1,15 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell">
+<main class="page-shell" layout:fragment="content">
   <div class="panel">
     <div class="page-head">
       <div>
-        <p class="page-head__subtitle">Payment</p>
-        <h1 class="page-head__title">Reservation Payment</h1>
+        <p class="page-head__subtitle">결제</p>
+        <h1 class="page-head__title">예약 결제</h1>
       </div>
     </div>
     <div class="grid grid--sidebar">
@@ -51,11 +52,9 @@
     </form>
   </div>
 </main>
-<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script src="/js/pages/pay-reservation.js" defer></script>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<th:block layout:fragment="script">
+  <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+  <script src="/js/pages/pay-reservation.js" defer></script>
+</th:block>
 </body>
 </html>
-
-
-

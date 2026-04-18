@@ -1,0 +1,27 @@
+{
+  "name": "FM Manager",
+  "short_name": "FM",
+  "description": "풋살 팀 운영, 구장 예약, 커뮤니티를 한 흐름으로 묶은 웹/앱 플랫폼",
+  "lang": "ko-KR",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#b3242d",
+  "background_color": "#f7efe9",
+  "categories": ["sports", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ]
+}

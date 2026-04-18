@@ -1,20 +1,20 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/popup_layout}">
 <body>
-  <main class="popup-shell">
-    <div class="popup-card popup-card--narrow">
-      <h1 class="page-head__title">프로필 사진 업로드</h1>
-      <form action="/mypage/addphoto.do" method="post" enctype="multipart/form-data" class="form-grid form-grid--single">
-        <div class="field">
-          <label for="m_thum">이미지 파일</label>
-          <input class="input" type="file" id="m_thum" name="m_thum">
-        </div>
-        <button class="btn btn--primary" type="submit">업로드</button>
-      </form>
-    </div>
-  </main>
+<main class="popup-shell" layout:fragment="content">
+  <div class="popup-card popup-card--narrow">
+    <h1 class="page-head__title">프로필 사진 업로드</h1>
+    <form action="/mypage/addphoto.do" method="post" enctype="multipart/form-data" class="form-grid form-grid--single">
+      <div class="field">
+        <label for="m_thum">이미지 파일</label>
+        <input class="input" type="file" id="m_thum" name="m_thum">
+      </div>
+      <button class="btn btn--primary" type="submit">업로드</button>
+    </form>
+  </div>
+</main>
 </body>
 </html>
-
-

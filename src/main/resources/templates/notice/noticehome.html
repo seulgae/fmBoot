@@ -1,13 +1,14 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell">
+<main class="page-shell" layout:fragment="content">
   <section class="page-head">
     <div>
-      <p class="page-head__subtitle">Announcements</p>
-      <h1 class="page-head__title">Notice Board</h1>
+      <p class="page-head__subtitle">안내</p>
+      <h1 class="page-head__title">공지사항</h1>
     </div>
     <a class="btn btn--primary" href="/notice/noticewrite" th:if="${m_id == 'admin'}">공지 등록</a>
   </section>
@@ -34,8 +35,5 @@
     </table>
   </section>
 </main>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 </html>
-
-

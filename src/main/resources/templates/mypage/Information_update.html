@@ -1,13 +1,14 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell">
+<main class="page-shell" layout:fragment="content">
   <div class="panel">
     <div class="page-head">
       <div>
-        <p class="page-head__subtitle">Profile Settings</p>
+        <p class="page-head__subtitle">프로필 설정</p>
         <h1 class="page-head__title">정보 수정</h1>
       </div>
     </div>
@@ -64,8 +65,5 @@
     </form>
   </div>
 </main>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 </html>
-
-

@@ -1,13 +1,14 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell">
+<main class="page-shell" layout:fragment="content">
   <section class="page-head">
     <div>
-      <p class="page-head__subtitle">Venue Booking</p>
-      <h1 class="page-head__title">Place List</h1>
+      <p class="page-head__subtitle">구장 예약</p>
+      <h1 class="page-head__title">구장 목록</h1>
     </div>
     <form action="/payment/placelist" class="action-row">
       <input class="input u-min-240" type="text" name="keyword" placeholder="구장명 검색">
@@ -42,8 +43,5 @@
     </div>
   </form>
 </main>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 </html>
-
-

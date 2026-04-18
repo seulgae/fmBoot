@@ -1,14 +1,15 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell">
+<main class="page-shell" layout:fragment="content">
   <div class="panel">
     <div class="page-head">
       <div>
-        <p class="page-head__subtitle">Venue Management</p>
-        <h1 class="page-head__title">Update Venue</h1>
+        <p class="page-head__subtitle">구장 관리</p>
+        <h1 class="page-head__title">구장 수정</h1>
       </div>
     </div>
     <form action="/mypage/mypage_update.do" method="post" enctype="multipart/form-data" class="form-grid">
@@ -65,10 +66,9 @@
     </form>
   </div>
 </main>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/pages/place-form.js" defer></script>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<th:block layout:fragment="script">
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="/js/pages/place-form.js" defer></script>
+</th:block>
 </body>
 </html>
-
-

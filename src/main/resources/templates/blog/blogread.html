@@ -1,13 +1,14 @@
-﻿<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <body>
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
-<main class="page-shell">
+<main class="page-shell" layout:fragment="content">
   <input type="hidden" id="blogPostNo" th:value="${blog.tb_no}">
   <section class="page-head">
     <div>
-      <p class="page-head__subtitle">Blog Article</p>
+      <p class="page-head__subtitle">블로그 글</p>
       <h1 class="page-head__title" th:text="${blog.tb_title}"></h1>
     </div>
     <div class="action-row">
@@ -27,11 +28,10 @@
   <div id="blogcmt" class="u-mt-24"></div>
   <div id="blogcmtform" class="u-mt-24"></div>
 </main>
-<script src="/js/pages/blog.js" defer></script>
-<script src="/js/pages/comment.js" defer></script>
-<script src="/js/pages/blog-read.js" defer></script>
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<th:block layout:fragment="script">
+  <script src="/js/pages/blog.js" defer></script>
+  <script src="/js/pages/comment.js" defer></script>
+  <script src="/js/pages/blog-read.js" defer></script>
+</th:block>
 </body>
 </html>
-
-

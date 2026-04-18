@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface CmtMapper {
 
-    // ?� 블로�??��?�?조회??
+    // 블로그 댓글 조회
     List<CmentDto> cmtlist(String c_no);
 
     List<CmentDto> tlist(String c_tbset);

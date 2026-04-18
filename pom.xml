@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  FM Manager / pom.xml
+  - 파일 인코딩: UTF-8 고정 (CP949/EUC-KR 저장 금지. 한글 주석 깨짐 방지)
+  - Spring Boot 2.7.18 : 2.7.x 최종 안정 릴리즈, Java 17 지원
+  - Java 17 + javax.* 기반이므로 Boot 3(jakarta) 이관 전까지 2.7 라인 유지
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Spring Boot 2.7.18 = 2.7.x 최종, Java 17 호환 안정 조합 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -17,79 +24,131 @@
     <name>fm</name>
     <description>FM Manager application</description>
 
+    <!--
+      properties 요약
+      - java.version / maven.compiler.release : JDK 17 타깃 고정
+      - source/reporting encoding            : UTF-8 강제 (컴파일·리소스·리포트 전부 UTF-8)
+      - project.build.resourceEncoding        : Spring Boot parent가 ${project.build.sourceEncoding} 참조하여 리소스까지 UTF-8 처리
+      - tomcat.version                       : Boot 2.7 기본보다 상향 (같은 메이저 내 최신)
+    -->
     <properties>
         <java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven.compiler.parameters>true</maven.compiler.parameters>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <tomcat.version>9.0.115</tomcat.version>
         <mybatis-spring-boot.version>2.3.2</mybatis-spring-boot.version>
-        <iamport.version>0.2.14</iamport.version>
+        <iamport.version>0.3.0</iamport.version>
     </properties>
 
     <dependencies>
+        <!-- Thymeleaf : 서버사이드 HTML 렌더링 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
+        <!-- Thymeleaf Layout Dialect : layout:decorate/fragment 지원 -->
         <dependency>
             <groupId>nz.net.ultraq.thymeleaf</groupId>
             <artifactId>thymeleaf-layout-dialect</artifactId>
         </dependency>
+
+        <!-- Spring Web : MVC + 내장 Tomcat (웹 레이어 핵심) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!-- MyBatis : SQL Mapper 기반 데이터 접근 -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis-spring-boot.version}</version>
         </dependency>
+
+        <!-- Oracle JDBC : 운영 DB 전환 시 활성화 (현재 H2 기본) -->
+        <!--
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc11</artifactId>
             <scope>runtime</scope>
         </dependency>
+        -->
+
+        <!-- H2 : 로컬 메모리 DB (기본 실행) -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- Lombok : DTO 보일러플레이트 축소 (산출물 제외) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <!-- Iamport : 결제 연동 (PayController 사용) -->
         <dependency>
             <groupId>com.github.iamport</groupId>
             <artifactId>iamport-rest-client-java</artifactId>
             <version>${iamport.version}</version>
         </dependency>
+
+        <!-- Spring Security : BCrypt 인코더 + 보안 설정 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
+        <!-- Spring Validation : @Valid 도입 시 활성화 (현재 미사용) -->
+        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        -->
+
+        <!-- Spring Mail : 아이디/비밀번호 찾기 메일 발송 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+
+        <!-- Configuration Processor : @ConfigurationProperties 도입 시 활성화 -->
+        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        -->
+
+        <!-- Spring Boot Test : 기본 테스트 묶음 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Spring Security Test : 보안 테스트 도입 시 활성화 -->
+        <!--
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        -->
     </dependencies>
 
+    <!-- JitPack : iamport-rest-client-java 해석용 -->
     <repositories>
         <repository>
             <id>jitpack.io</id>
@@ -98,7 +157,36 @@
     </repositories>
 
     <build>
+        <!-- 리소스 필터링 시에도 UTF-8 유지되도록 명시 -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+
         <plugins>
+            <!-- maven-compiler : JDK 17 + UTF-8 명시 (parent 기본값 재확인용) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>${java.version}</release>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <parameters>${maven.compiler.parameters}</parameters>
+                </configuration>
+            </plugin>
+
+            <!-- maven-resources : 리소스 복사 시 UTF-8 보장 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- spring-boot-maven-plugin : 실행 가능한 fat jar 생성 (Lombok 제외) -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

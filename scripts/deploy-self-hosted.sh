@@ -6,7 +6,7 @@ DEPLOY_ROOT="${DEPLOY_ROOT:-/home/seulgae/fmBoot-deploy}"
 APP_CONFIG_PATH="${APP_CONFIG_PATH:-/home/seulgae/fmBoot-runtime/application.properties}"
 APP_CONTAINER_NAME="${APP_CONTAINER_NAME:-fm-app}"
 CONTAINER_IMAGE="${CONTAINER_IMAGE:-docker.io/library/eclipse-temurin:17-jre}"
-APP_PORT="${APP_PORT:-8085}"
+APP_PORT="${APP_PORT:-8080}"
 JAR_NAME="${JAR_NAME:-fm-0.0.1-SNAPSHOT.jar}"
 PODMAN_BIN="${PODMAN_BIN:-podman}"
 

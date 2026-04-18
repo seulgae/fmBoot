@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
@@ -7,16 +7,25 @@
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
    <title>FM Manager</title>
    <meta name="description" content="FM Manager">
 
-   <th:block th:replace="common/styles"></th:block>
+   <!-- PWA / 모바일 홈화면 설치용 메타 -->
+   <meta name="theme-color" content="#b3242d" media="(prefers-color-scheme: light)">
+   <meta name="theme-color" content="#180f0e" media="(prefers-color-scheme: dark)">
+   <meta name="color-scheme" content="light dark">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+   <meta name="apple-mobile-web-app-title" content="FM Manager">
+   <link rel="manifest" href="/manifest.webmanifest">
+   <link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+   <link rel="apple-touch-icon" href="/icons/icon.svg">
+
+   <th:block th:replace="~{common/styles}"></th:block>
    <th:block layout:fragment="css"></th:block>
-   <th:block th:replace="common/scripts"></th:block>
+   <th:block th:replace="~{common/scripts}"></th:block>
    <th:block layout:fragment="script"></th:block>
 </head>
 </th:block>
 </html>
-
-

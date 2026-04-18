@@ -1,98 +1,149 @@
 # FM Manager
 
-풋살 팀 관리, 구장 예약, 결제, 공지사항, 커뮤니티 기능을 제공하는 Spring Boot 기반 웹 애플리케이션입니다.
+풋살 팀 관리, 구장 예약, 결제, 공지, 커뮤니티 기능을 제공하는 Spring Boot 기반 웹 애플리케이션입니다.
 
-## 1. 프로젝트 개요
+기존 JSP/Model 1 형태의 프로젝트를 Spring Boot + Thymeleaf 구조로 이전한 저장소이며, 현재 로컬 기본 실행 환경은 `H2` 메모리 DB 기준으로 맞춰져 있습니다. 운영/이관용 Oracle 관련 자료는 별도 문서로 분리되어 있습니다.
+
+## 개요
 
 - 프로젝트명: `FM Manager`
-- 그룹/아티팩트: `com.ucamp:fm`
+- Group / Artifact: `com.ucamp:fm`
 - 버전: `0.0.1-SNAPSHOT`
-- 실행 방식: Spring Boot 내장 Tomcat
-- 렌더링 방식: Thymeleaf 서버사이드 렌더링
-- 주요 기능:
-  - 회원가입 / 로그인
-  - 마이페이지
-  - 팀 생성 및 팀 관리
-  - 경기 기록 관리
-  - 구장 목록 조회 및 예약
-  - 결제
-  - 공지사항
-  - 블로그 / 댓글 커뮤니티
+- Java: `17`
+- Spring Boot: `2.7.18` (2.7.x 최종 안정 릴리즈, Java 17 호환)
+- 빌드 도구: `Maven Wrapper`
+- 렌더링 방식: `Thymeleaf` + `Thymeleaf Layout Dialect`
+- 데이터 접근: `MyBatis`
+- 보안/인증: `Spring Security` (BCrypt + 레거시 평문 호환 인코더)
+- 웹/앱 대응: `PWA` (installable, offline shell)
+- 부가 기능: 메일 발송, 아임포트 결제 연동
 
-## 2. 기술 스택
+## 주요 기능
+
+- 회원가입, 로그인, 아이디/비밀번호 찾기
+- 마이페이지 및 회원 정보 수정
+- 풋살팀 생성, 조회, 멤버 관리, 경기 기록 관리
+- 구장 등록, 수정, 조회, 예약
+- 결제 연동
+- 공지사항 관리
+- 블로그/댓글 기반 커뮤니티
+- 관리자 페이지
+
+## 기술 스택
 
 - Java 17
-- Spring Boot 2.7.5
+- Spring Boot 2.7.18
 - Spring Web
-- Thymeleaf
-- Thymeleaf Layout Dialect
-- MyBatis Spring Boot Starter 2.2.2
-- Oracle JDBC (`ojdbc11`)
 - Spring Security
 - Spring Mail
+- Thymeleaf
+- Thymeleaf Layout Dialect
+- MyBatis Spring Boot Starter 2.3.2
+- H2 Database (로컬 기본)
+- Oracle JDBC (운영 전환용, 현재 pom.xml 에는 주석 처리됨)
 - Iamport REST Client
-- Maven Wrapper
+- Pretendard Variable 폰트 (CDN)
 
-## 3. 현재 실행 설정
+## 현재 기본 실행 기준
 
-기준 파일: [application.properties](C:/Dev/WorkSpace/fmBoot/src/main/resources/application.properties)
+기준 설정 파일: [application.properties](/C:/Dev/WorkSpace/fmBoot/src/main/resources/application.properties)
 
-- 애플리케이션 포트: `8085`
-- 로컬 접속 주소: `http://localhost:8085`
-- DB URL: `jdbc:oracle:thin:@localhost:1521/XEPDB1`
-- DB 사용자: `fm`
+현재 저장소 기본값은 로컬 개발 편의를 위한 `H2 메모리 DB` 기준입니다.
+
+- 애플리케이션 포트: `8080`
+- 로컬 접속 주소: `http://localhost:8080`
+- 기본 DB: `jdbc:h2:mem:fmdb;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE`
+- H2 콘솔: `http://localhost:8080/h2-console`
+- H2 콘솔 경로: `/h2-console`
 - MyBatis alias 패키지: `com.ucamp.fm`
 - MyBatis mapper 위치: `classpath*:mapper/*.xml`
-- Thymeleaf cache: `false`
-- 파일 업로드 최대 크기: `500MB`
-- 메일 서버: Gmail SMTP
+- SQL 초기화: `spring.sql.init.mode=always`
+- 템플릿 캐시: `false`
+- 업로드 최대 크기: `500MB`
+- 메일 서버: `Gmail SMTP`
 
-주의:
-- 현재 `application.properties`에 DB 비밀번호, 메일 비밀번호 등 민감 정보가 직접 들어 있습니다.
-- 추후에는 환경 변수 또는 별도 외부 설정 파일로 분리하는 것이 좋습니다.
+초기화 스크립트:
 
-## 4. 실행 방법
+- 스키마: [schema.sql](/C:/Dev/WorkSpace/fmBoot/src/main/resources/schema.sql)
+- 데이터: [data.sql](/C:/Dev/WorkSpace/fmBoot/src/main/resources/data.sql)
 
-### 로컬 실행 전 준비
+## 실행 방법
+
+### 준비 사항
 
 - JDK 17 설치
 - `JAVA_HOME` 설정
-- Oracle XE 실행
-- `XEPDB1` 및 `fm` 계정 준비
 
-### 실행 명령
+### 로컬 실행
 
-```bash
-./mvnw spring-boot:run
-```
-
-Windows에서는 다음 명령을 사용합니다.
+Windows:
 
 ```bash
 mvnw.cmd spring-boot:run
 ```
 
-패키징 후 실행:
+macOS / Linux:
+
+```bash
+./mvnw spring-boot:run
+```
+
+### 패키징
+
+Windows:
+
+```bash
+mvnw.cmd -DskipTests package
+java -jar target/fm-0.0.1-SNAPSHOT.jar
+```
+
+macOS / Linux:
 
 ```bash
 ./mvnw -DskipTests package
 java -jar target/fm-0.0.1-SNAPSHOT.jar
 ```
 
-## 5. 현재 패키지 구조
+## 테스트 및 빌드
 
-기준 경로: [src/main/java/com/ucamp/fm](C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm)
+테스트 코드는 많지 않지만 Maven 기본 테스트 태스크는 아래처럼 실행할 수 있습니다.
+
+Windows:
+
+```bash
+mvnw.cmd test
+```
+
+macOS / Linux:
+
+```bash
+./mvnw test
+```
+
+참고:
+
+- 현재 CI와 배포 워크플로는 모두 `-DskipTests package` 기준으로 동작합니다.
+
+## 패키지 구조
+
+기준 경로: [src/main/java/com/ucamp/fm](/C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm)
 
 - `admin`
 - `blog`
 - `cmt`
+- `common`
+  - `config` — Web MVC 설정 (인터셉터 등록)
+  - `controller` — 전역 `@ControllerAdvice` (세션 아이디 일괄 주입)
+  - `dto`
+  - `interceptor` — 로그인 필수 경로 체크 (`LoginMemberInterceptor`)
 - `login`
 - `mypage`
 - `notice`
 - `pay`
+- `security` — `LegacyAwarePasswordEncoder` (BCrypt + 레거시 평문 호환)
 - `team`
 
-각 도메인 패키지는 대체로 아래 구조를 따릅니다.
+대부분의 도메인은 아래 구조를 따릅니다.
 
 - `controller`
 - `dto`
@@ -100,117 +151,98 @@ java -jar target/fm-0.0.1-SNAPSHOT.jar
 - `service`
 - `service/impl`
 
-## 6. 현재 템플릿 구조
+공통 설정 클래스:
 
-기준 경로: [src/main/resources/templates](C:/Dev/WorkSpace/fmBoot/src/main/resources/templates)
+- [FmApplication.java](/C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm/FmApplication.java)
+- [WebSecurityConfig.java](/C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm/WebSecurityConfig.java)
+- [AsyncConfig.java](/C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm/AsyncConfig.java)
 
-- `admin`
-- `blog`
-- `cmt`
-- `common`
-- `fragments`
-- `layout`
-- `login`
-- `mypage`
-- `notice`
-- `pay`
-- `team`
+## 화면/리소스 구조
 
-정리 원칙:
-- 화면 템플릿도 비즈니스 로직 패키지와 같은 도메인 기준으로 맞췄습니다.
-- 기존 `member` 폴더에 섞여 있던 화면은 아래처럼 분리했습니다.
-  - 로그인/회원 관련 화면 -> `login`
-  - 마이페이지 관련 화면 -> `mypage`
-- 기존 `adm`, `blogbbs`, `cmtbbs`, `noticebbs`, `placebbs` 구조는 각각 `admin`, `blog`, `cmt`, `notice`, `pay`로 정리했습니다.
+### 템플릿
 
-## 7. 이번에 반영된 내용
+기준 경로: [src/main/resources/templates](/C:/Dev/WorkSpace/fmBoot/src/main/resources/templates)
 
-이번 작업 기준으로 반영된 핵심 내용은 다음과 같습니다.
+- `layout` — **공통 레이아웃** (`default_layout`, `popup_layout`)
+  모든 페이지는 `layout:decorate="~{layout/default_layout}"` 로 상속되며, 본문은 `layout:fragment="content"` 로 주입됩니다. 팝업 화면(window.open 대상)은 `popup_layout` 을 사용합니다.
+- `fragments` — `header`, `footer`, `config` (meta/manifest/script 주입)
+- `common` — `styles.html`, `scripts.html` (공통 CSS/JS 로드 포인트)
+- `admin` / `blog` / `cmt` / `login` / `mypage` / `notice` / `pay` / `team` — 도메인별 페이지 템플릿
 
-1. 템플릿 디렉터리 구조를 도메인 기준으로 재정리했습니다.
-2. 컨트롤러의 뷰 반환 경로를 새 템플릿 위치에 맞게 수정했습니다.
-3. `member` 중심의 혼합된 화면 구조를 `login` / `mypage` 도메인으로 분리했습니다.
-4. 화면 구조와 Java 패키지 구조를 최대한 동일한 기준으로 맞췄습니다.
+### 정적 리소스
 
-수정된 대표 컨트롤러:
+기준 경로: [src/main/resources/static](/C:/Dev/WorkSpace/fmBoot/src/main/resources/static)
 
-- [AdminController.java](C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm/admin/controller/AdminController.java)
-- [BlogController.java](C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm/blog/controller/BlogController.java)
-- [CmtController.java](C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm/cmt/controller/CmtController.java)
-- [LoginController.java](C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm/login/controller/LoginController.java)
-- [MypageController.java](C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm/mypage/controller/MypageController.java)
-- [NoticeController.java](C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm/notice/controller/NoticeController.java)
-- [PayController.java](C:/Dev/WorkSpace/fmBoot/src/main/java/com/ucamp/fm/pay/controller/PayController.java)
+- `css/app.css` — 디자인 토큰(`:root`), 컴포넌트, 반응형 미디어쿼리(lg/md/sm/xs), `prefers-color-scheme: dark` 다크 모드 포함
+- `js/common.js` — 공통 인터랙션(팝업/토글/폼 보조), 서비스 워커 등록
+- `js/pages/*.js` — 페이지별 스크립트
+- `icons/icon.svg` · `icons/icon-maskable.svg` — PWA 아이콘 (SVG 기반)
+- `images/` — 히어로 배너 등 기본 이미지
+- `manifest.webmanifest` — PWA 매니페스트
+- `service-worker.js` — 오프라인 지원 및 정적 자원 캐시 전략
+- `offline.html` — 네트워크 단절 시 폴백 페이지
 
-## 8. 지금까지의 작업 히스토리
+업로드 경로: [src/main/webapp/uploadImg](/C:/Dev/WorkSpace/fmBoot/src/main/webapp/uploadImg)
 
-최근 작업 흐름을 기준으로 정리했습니다.
+## UI / UX 구성
 
-1. 프로젝트 기본 구조를 정리하고 `pom.xml`과 불필요한 배포 파일을 정리했습니다.
-2. Java 패키지 구조를 도메인별로 재구성했고 `service/impl` 구조를 정리했습니다.
-3. 서버 배포 구조를 `podman + oracle-xe + fm-app + nginx` 기준으로 맞췄습니다.
-4. GitHub Actions 기반 CI/배포 흐름을 추가했고, self-hosted runner 중심의 배포 방식으로 정리했습니다.
-5. 운영 환경 기준으로 README를 한 차례 갱신했습니다.
-6. 화면 템플릿 구조를 비즈니스 패키지 기준으로 다시 정리했습니다.
-7. 이번 README에서 현재 설정, 구조, 반영 내용, 다음 작업 항목까지 문서화했습니다.
+- **폰트**: Pretendard Variable (CDN) → Noto Sans KR → 시스템 폰트 폴백. 한글 가독성을 우선해 제목 weight/line-height/letter-spacing 을 조정.
+- **레이아웃 일원화**: 모든 페이지가 `default_layout` / `popup_layout` 에서 head/header/footer/script 슬롯을 주입받아 중복 제거.
+- **반응형**: 브레이크포인트 `lg 1080 / md 820 / sm 640 / xs 480`, 820px 이하에서 헤더 햄버거 드로어, 테이블 가로 스크롤, 버튼 세로 스택 등 모바일 최적화.
+- **다크 모드**: OS 설정(`prefers-color-scheme`) 을 따라 자동 전환. 브랜드 컬러는 유지하고 배경/표면/텍스트 토큰만 반전.
+- **PWA**: Chrome/Edge 등에서 "앱 설치" 가능, 홈 화면에 추가 시 스탠드얼론 실행. 오프라인 시 `offline.html` 표시.
+- **언어**: UI 라벨은 한국어를 기본으로 하며, 식별용 브랜드 마크(`FM`)와 숫자 표기는 그대로 유지.
 
-참고용 최근 커밋 흐름:
+## DB 관련 메모
 
-- `[길태형]templates 구조를 비즈니스 패키지 기준으로 정리`
-- `[길태형]CI, self-hosted runner 기반 배포 구조로 전환하고 AWS 확장 가능하게 정리`
-- `[길태형]도메인별 패키지 구조로 재구성하고 service 하위에 impl 정리`
-- `[길태형]pom 설정 정리 및 불필요한 배포 파일 삭제`
-- `[길태형]서버 배포 구조를 podman + oracle-xe + fm-app + nginx 기준으로 정리`
+현재 저장소에는 두 가지 DB 관점의 자료가 공존합니다.
 
-## 9. 현재까지 내가 한 일
+1. 로컬 기본 실행
+   `application.properties` 기준으로 H2 메모리 DB를 사용합니다.
+2. 운영/이관 참고
+   Oracle XE 기반 배포 문서와 스키마 스크립트가 `docs/`, `scripts/db/` 아래에 남아 있습니다.
 
-현재 기준으로 이미 되어 있는 일:
+관련 문서:
 
-- Spring Boot 프로젝트 기본 세팅 완료
-- Oracle 연동 설정 완료
-- 로그인 / 회원 / 마이페이지 기능 구현
-- 팀 관리 기능 구현
-- 공지사항 기능 구현
-- 블로그 및 댓글 기능 구현
-- 구장 목록 / 예약 / 결제 기능 구현
-- 배포 구조 정리
-- CI / Deploy 워크플로우 추가
-- 템플릿 구조를 도메인 기준으로 재정리
-- README를 현재 프로젝트 기준으로 정리
+- [db-schema.md](/C:/Dev/WorkSpace/fmBoot/docs/db-schema.md)
+- [db-ide-connection.md](/C:/Dev/WorkSpace/fmBoot/docs/db-ide-connection.md)
+- [create_schema.sql](/C:/Dev/WorkSpace/fmBoot/scripts/db/create_schema.sql)
+- [create_schema_ide.sql](/C:/Dev/WorkSpace/fmBoot/scripts/db/create_schema_ide.sql)
 
-## 10. 지금부터 해야 할 일
+## CI/CD
 
-우선순위 기준으로 정리하면 아래 순서가 적절합니다.
+GitHub Actions 워크플로:
 
-1. 로컬 개발 환경에서 `JAVA_HOME`을 설정하고 실제 빌드가 되는지 확인해야 합니다.
-2. 템플릿 이동 이후 전체 메뉴와 화면 진입 경로를 직접 눌러 보면서 뷰 깨짐이 없는지 확인해야 합니다.
-3. `application.properties`에 들어 있는 민감 정보를 외부 설정으로 분리해야 합니다.
-4. 테스트 코드가 거의 없는 상태라 핵심 기능 단위 테스트 또는 통합 테스트를 추가해야 합니다.
-5. 로그인, 권한, 관리자 화면 접근 제어가 실제로 의도대로 동작하는지 다시 점검해야 합니다.
-6. 배포 문서와 실제 서버 설정이 완전히 일치하는지 검증해야 합니다.
+- [ci.yml](/C:/Dev/WorkSpace/fmBoot/.github/workflows/ci.yml)
+- [deploy.yml](/C:/Dev/WorkSpace/fmBoot/.github/workflows/deploy.yml)
 
-## 11. 바로 확인해야 하는 체크리스트
+현재 구성:
 
-- `http://localhost:8085` 접속 확인
-- 로그인 페이지 동작 확인
-- 마이페이지 화면 이동 확인
-- 팀 관리 페이지 이동 확인
-- 공지사항 목록/상세 확인
-- 블로그 목록/상세/댓글 확인
-- 구장 목록/상세/예약/결제 흐름 확인
-- 관리자 화면 접근 확인
-- 업로드 기능 확인
+- CI: `pull_request`, `workflow_dispatch`
+- Deploy: `main` 브랜치 push, `workflow_dispatch`
+- Build runner: `ubuntu-latest`
+- Deploy runner: `self-hosted`, `linux`
+- 배포 산출물: `target/fm-0.0.1-SNAPSHOT.jar`
 
-## 12. 현재 알려진 주의사항
+배포 구조 참고 문서:
 
-- 현재 환경에서는 `JAVA_HOME`이 없어 Maven 컴파일 검증을 바로 수행하지 못했습니다.
-- 템플릿 구조는 정리되었지만 실제 브라우저 기준 화면 점검은 별도로 진행하는 것이 안전합니다.
-- 설정 파일에 민감 정보가 포함되어 있으므로 외부화가 필요합니다.
-- README의 운영/배포 관련 내용은 현재 커밋 히스토리와 설정 파일 기준으로 정리한 것이며, 실제 서버 상태는 별도 확인이 필요할 수 있습니다.
+- [deployment.md](/C:/Dev/WorkSpace/fmBoot/docs/deployment.md)
+- [deploy-self-hosted.sh](/C:/Dev/WorkSpace/fmBoot/scripts/deploy-self-hosted.sh)
 
-## 13. 참고 파일
+## 보안 / 정적 분석
 
-- [pom.xml](C:/Dev/WorkSpace/fmBoot/pom.xml)
-- [application.properties](C:/Dev/WorkSpace/fmBoot/src/main/resources/application.properties)
-- [PPT.pdf](C:/Dev/WorkSpace/fmBoot/PPT.pdf)
+- 비밀번호는 `LegacyAwarePasswordEncoder` 를 통해 **BCrypt** 로 저장되며, 마이그레이션 중인 레거시 평문 비밀번호에 대한 호환 비교도 동시에 지원합니다.
+- OWASP Dependency-Check 용 suppression: [dependency-check-suppressions.xml](/C:/Dev/WorkSpace/fmBoot/dependency-check-suppressions.xml)
+  - `CVE-2025-22235` 는 Spring Boot `EndpointRequest.to()` 관련 이슈로 보고되지만, 본 프로젝트는 `spring-boot-starter-actuator` 미포함 + `EndpointRequest` 미사용으로 실제 경로가 로드되지 않아 Not Exploitable 로 판정되어 suppression 처리되어 있습니다. Spring Boot 3.x 이관 시 제거 예정.
+
+## 주의 사항
+
+- [application.properties](/C:/Dev/WorkSpace/fmBoot/src/main/resources/application.properties) 에 메일 계정 정보가 직접 들어 있습니다.
+- Oracle 운영 정보도 문서에 남아 있으므로, 실제 운영 전에는 환경 변수 또는 외부 설정 파일로 분리하는 것이 좋습니다.
+- 업로드 경로는 일부 기능에서 서블릿 컨텍스트 기준 실제 경로를 사용하므로 로컬/배포 환경 차이에 주의가 필요합니다.
+- Service Worker 는 **HTTPS 또는 `localhost`** 에서만 등록됩니다. HTTP 로 배포된 환경에서는 PWA 기능이 동작하지 않습니다.
+
+## 참고 자료
+
+- 프로젝트 소개 자료: [PPT.pdf](/C:/Dev/WorkSpace/fmBoot/PPT.pdf)
 - 프로젝트 영상: `https://youtu.be/Cb8BTgsmOXY`
