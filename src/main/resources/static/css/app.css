@@ -854,6 +854,145 @@ a.stat-card:hover {
 .hero .btn--ghost { color: rgba(255, 255, 255, 0.85); }
 .hero .btn--ghost:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
 
+/* 히어로 2열 그리드(좌: 카피/CTA, 우: 실시간 경기 티커) */
+.hero__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+    gap: 36px;
+    align-items: center;
+}
+
+/* 실시간 경기 티커 - 어두운 히어로 배경 위에 올라가는 유리 패널 */
+.hero-ticker {
+    position: relative;
+    padding: 20px 22px 18px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+.hero-ticker__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+}
+
+.hero-ticker__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #ff5858;
+    box-shadow: 0 0 0 0 rgba(255, 88, 88, 0.6);
+    animation: fm-ticker-pulse 1.6s ease-out infinite;
+}
+
+.hero-ticker__label {
+    font-weight: 800;
+    color: #ffb1a3;
+}
+
+.hero-ticker__title {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.hero-ticker__viewport {
+    /* 3개 슬롯 * 82px = 246px */
+    height: 246px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-ticker__track {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.hero-ticker__item {
+    height: 82px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+}
+.hero-ticker__item:first-child { border-top: 0; }
+
+.hero-ticker__row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.hero-ticker__team {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hero-ticker__team:first-child { text-align: right; }
+.hero-ticker__team:last-child  { text-align: left; }
+
+.hero-ticker__score {
+    flex-shrink: 0;
+    padding: 3px 12px;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    font-variant-numeric: tabular-nums;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #fff;
+}
+
+.hero-ticker__score em {
+    font-style: normal;
+    margin: 0 2px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-ticker__meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-ticker__meta i { font-size: 13px; opacity: 0.85; }
+.hero-ticker__sep { opacity: 0.4; }
+
+@keyframes fm-ticker-pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(255, 88, 88, 0.55); }
+    70%  { box-shadow: 0 0 0 8px rgba(255, 88, 88, 0);    }
+    100% { box-shadow: 0 0 0 0   rgba(255, 88, 88, 0);    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-ticker__track { transition: none; }
+    .hero-ticker__dot { animation: none; }
+}
+
 /* 페이지 상단 헤드 */
 .page-head {
     display: flex;
@@ -1294,6 +1433,30 @@ a.stat-card:hover {
 
 .u-max-280 { max-width: 280px; }
 .u-min-220 { min-width: 220px; }
+
+/* 액션 행을 한 줄로 강제(버튼 + 검색 input 인라인 정렬) */
+.action-row--nowrap {
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.action-row--nowrap .input { flex: 0 1 auto; }
+@media (max-width: 640px) {
+    .action-row--nowrap { flex-wrap: wrap; }
+}
+
+/* 페이지 헤드 우측 액션 영역: 버튼과 검색 폼을 수직으로 쌓기 */
+.page-head__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+.page-head__actions > .btn,
+.page-head__actions > .action-row { margin: 0; }
+@media (max-width: 640px) {
+    .page-head__actions { align-items: stretch; width: 100%; }
+    .page-head__actions > .btn { width: 100%; }
+}
 .u-min-240 { min-width: 240px; }
 
 .u-radius-md   { border-radius: var(--radius-md); }
@@ -1329,6 +1492,12 @@ a.stat-card:hover {
     .page-shell { padding: 28px 0 56px; }
 
     .hero { padding: 44px 24px; }
+
+    /* 티커는 본문 아래로 내려 1열로 스택 */
+    .hero__grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
 
     .site-header__inner { flex-wrap: wrap; }
     .nav-toggle { display: inline-flex; }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="이미지 없음">
+  <rect width="800" height="500" fill="#f1ede8"/>
+  <g transform="translate(290 140)" stroke="#b8aea4" stroke-width="4" fill="none" stroke-linejoin="round">
+    <rect x="0" y="0" width="220" height="160" rx="18"/>
+    <circle cx="60" cy="58" r="16" fill="#b8aea4" stroke="none"/>
+    <path d="M18 138 L78 80 L130 122 L168 92 L204 138 Z" fill="#cdc3b8" stroke="none"/>
+  </g>
+  <text x="400" y="370" text-anchor="middle"
+        font-family="'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif"
+        font-size="26" font-weight="600" fill="#8a8078" letter-spacing="0.5">
+    이미지 없음
+  </text>
+</svg>

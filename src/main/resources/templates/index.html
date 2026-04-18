@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   메인 랜딩 페이지
-  - 히어로(브랜드 스테이트먼트 + 주요 CTA)
+  - 히어로(브랜드 스테이트먼트 + 주요 CTA + 실시간 경기 티커)
   - home-quick(아이콘 바로가기 카드 4개)
 -->
 <html lang="ko"
@@ -12,18 +12,96 @@
 <main class="page-shell" layout:fragment="content">
 
   <section class="hero">
-    <div class="hero__content">
-      <span class="hero__eyebrow"><i class="bi bi-stars"></i> 풋살 운영 플랫폼</span>
-      <h1 class="hero__title">정석대로 뛰고,<br>깔끔하게 이긴다</h1>
-      <p class="hero__subtitle">팀 운영·구장 예약·커뮤니티를 한 화면에서. 복잡한 스케줄과 정보를 단순하게 정리했습니다.</p>
-      <div class="hero__actions">
-        <a class="btn btn--primary btn--lg" href="/payment/placelist">
-          <i class="bi bi-calendar-check"></i> 구장 예약 시작
-        </a>
-        <a class="btn btn--secondary btn--lg" href="/teammanage/teammanage">
-          <i class="bi bi-people"></i> 팀 둘러보기
-        </a>
+    <div class="hero__grid">
+      <div class="hero__content">
+        <span class="hero__eyebrow"><i class="bi bi-stars"></i> 풋살 운영 플랫폼</span>
+        <h1 class="hero__title">정석대로 뛰고,<br>깔끔하게 이긴다</h1>
+        <p class="hero__subtitle">팀 운영·구장 예약·커뮤니티를 한 화면에서. 복잡한 스케줄과 정보를 단순하게 정리했습니다.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href="/payment/placelist">
+            <i class="bi bi-calendar-check"></i> 구장 예약 시작
+          </a>
+          <a class="btn btn--secondary btn--lg" href="/teammanage/teammanage">
+            <i class="bi bi-people"></i> 팀 둘러보기
+          </a>
+        </div>
       </div>
+
+      <!--
+        실시간 경기 티커: 샘플 데이터 기반 수직 슬라이드 (3.5s 주기).
+        실제 라이브 데이터 연동 시 #heroLiveTrack 내부 li 만 서버에서 갈아끼우면 된다.
+      -->
+      <aside class="hero-ticker" aria-label="실시간 경기 현황">
+        <div class="hero-ticker__head">
+          <span class="hero-ticker__dot" aria-hidden="true"></span>
+          <span class="hero-ticker__label">LIVE</span>
+          <span class="hero-ticker__title">진행 중 경기</span>
+        </div>
+        <div class="hero-ticker__viewport">
+          <ul class="hero-ticker__track" id="heroLiveTrack" aria-live="polite">
+            <li class="hero-ticker__item">
+              <div class="hero-ticker__row">
+                <span class="hero-ticker__team">FC 강남</span>
+                <span class="hero-ticker__score">2 <em>:</em> 1</span>
+                <span class="hero-ticker__team">판교 유나이티드</span>
+              </div>
+              <div class="hero-ticker__meta">
+                <i class="bi bi-clock"></i><span>전반 18분</span>
+                <span class="hero-ticker__sep">·</span>
+                <i class="bi bi-geo-alt"></i><span>레드아레나 송파점</span>
+              </div>
+            </li>
+            <li class="hero-ticker__item">
+              <div class="hero-ticker__row">
+                <span class="hero-ticker__team">송도 FC</span>
+                <span class="hero-ticker__score">0 <em>:</em> 0</span>
+                <span class="hero-ticker__team">부평 드림</span>
+              </div>
+              <div class="hero-ticker__meta">
+                <i class="bi bi-clock"></i><span>전반 6분</span>
+                <span class="hero-ticker__sep">·</span>
+                <i class="bi bi-geo-alt"></i><span>인천 실내구장</span>
+              </div>
+            </li>
+            <li class="hero-ticker__item">
+              <div class="hero-ticker__row">
+                <span class="hero-ticker__team">해운대 유스</span>
+                <span class="hero-ticker__score">3 <em>:</em> 2</span>
+                <span class="hero-ticker__team">동래 FC</span>
+              </div>
+              <div class="hero-ticker__meta">
+                <i class="bi bi-clock"></i><span>후반 22분</span>
+                <span class="hero-ticker__sep">·</span>
+                <i class="bi bi-geo-alt"></i><span>해운대 스포츠파크</span>
+              </div>
+            </li>
+            <li class="hero-ticker__item">
+              <div class="hero-ticker__row">
+                <span class="hero-ticker__team">홍대 스트라이커</span>
+                <span class="hero-ticker__score">1 <em>:</em> 1</span>
+                <span class="hero-ticker__team">마포 레인저스</span>
+              </div>
+              <div class="hero-ticker__meta">
+                <i class="bi bi-clock"></i><span>후반 5분</span>
+                <span class="hero-ticker__sep">·</span>
+                <i class="bi bi-geo-alt"></i><span>상수 풋살파크</span>
+              </div>
+            </li>
+            <li class="hero-ticker__item">
+              <div class="hero-ticker__row">
+                <span class="hero-ticker__team">수원 블루</span>
+                <span class="hero-ticker__score">4 <em>:</em> 2</span>
+                <span class="hero-ticker__team">용인 화이트</span>
+              </div>
+              <div class="hero-ticker__meta">
+                <i class="bi bi-clock"></i><span>종료 임박</span>
+                <span class="hero-ticker__sep">·</span>
+                <i class="bi bi-geo-alt"></i><span>수원 아레나</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -59,5 +137,109 @@
   </section>
 
 </main>
+
+<th:block layout:fragment="script">
+<script>
+  /*
+    히어로 실시간 경기 티커:
+    - 한 번에 3개 슬롯을 보여주고 N초 주기로 1칸씩 위로 밀어올림
+    - 리스트 끝 도달 시 끊김 없이 이어지도록 앞쪽 VISIBLE 개를 뒤에 clone
+      → 마지막 실제 아이템까지 보이면 transition 없이 원점으로 snap
+    - prefers-reduced-motion: 자동 회전 중단 (최초 3개만 정적 표시)
+    - 마우스 오버 / 포커스 / 탭 비활성 시 일시정지
+  */
+  (function () {
+    var track = document.getElementById("heroLiveTrack");
+    if (!track) return;
+    var originals = Array.prototype.slice.call(track.querySelectorAll(".hero-ticker__item"));
+    if (originals.length < 2) return;
+
+    var VISIBLE = 3;
+    var INTERVAL = 3000;
+    var TRANSITION = "transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)";
+    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var total = originals.length;
+
+    // 아이템 수가 visible 보다 적으면 회전 없이 그대로 표시
+    if (total <= VISIBLE || reduced) {
+      return;
+    }
+
+    // 끊김 없는 루프를 위해 앞쪽 VISIBLE 개를 뒤에 복제
+    for (var i = 0; i < VISIBLE; i++) {
+      var clone = originals[i].cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    }
+
+    var itemHeight = originals[0].getBoundingClientRect().height;
+    var index = 0;
+    var timer = null;
+    var isSnapping = false;
+
+    function setTranslate(px, animated) {
+      track.style.transition = animated ? TRANSITION : "none";
+      track.style.transform = "translateY(" + px + "px)";
+    }
+
+    function advance() {
+      if (isSnapping) return;
+      index++;
+      setTranslate(-index * itemHeight, true);
+
+      if (index === total) {
+        // 전환 끝난 직후 원점으로 순간 스냅
+        isSnapping = true;
+        window.setTimeout(function () {
+          index = 0;
+          setTranslate(0, false);
+          // 강제 reflow 후 transition 복구
+          void track.offsetHeight;
+          track.style.transition = TRANSITION;
+          isSnapping = false;
+        }, 560);
+      }
+    }
+
+    function start() {
+      if (timer) return;
+      timer = window.setInterval(advance, INTERVAL);
+    }
+
+    function stop() {
+      if (!timer) return;
+      window.clearInterval(timer);
+      timer = null;
+    }
+
+    setTranslate(0, false);
+    // 첫 advance 전 transition 세팅
+    window.requestAnimationFrame(function () {
+      track.style.transition = TRANSITION;
+      start();
+    });
+
+    var viewport = track.parentElement;
+    if (viewport) {
+      viewport.addEventListener("mouseenter", stop);
+      viewport.addEventListener("mouseleave", start);
+      viewport.addEventListener("focusin", stop);
+      viewport.addEventListener("focusout", start);
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop(); else start();
+    });
+
+    // 창 크기 바뀌면 item 높이 재측정(폰트 로드 후 폭 변경 등 대응)
+    window.addEventListener("resize", function () {
+      itemHeight = originals[0].getBoundingClientRect().height;
+      setTranslate(-index * itemHeight, false);
+      void track.offsetHeight;
+      track.style.transition = TRANSITION;
+    });
+  })();
+</script>
+</th:block>
 </body>
 </html>

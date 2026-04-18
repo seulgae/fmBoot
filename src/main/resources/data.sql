@@ -87,16 +87,16 @@ INSERT INTO notice (
 INSERT INTO teamblog (
     tb_no, tb_tbno, tb_id, tb_title, tb_content, tb_date, tb_thum, tb_state
 ) VALUES
-    (1, 'teamblog', 'player1', '강남 평일 저녁 매치팀 구합니다', '강남권에서 평일 저녁 8시 이후 맞춰서 경기 가능한 팀 찾고 있습니다.', DATEADD('DAY', -1, CURRENT_TIMESTAMP), 'banner2.jpg', '2'),
-    (2, 'teamblog', 'player2', '판교 근처 초보 환영 팀 모집', '가볍게 운동하실 분들 중심으로 판교 인근에서 주말 팀원을 모집합니다.', DATEADD('DAY', -2, CURRENT_TIMESTAMP), 'banner2.jpg', '2'),
-    (3, 'teamblog', 'manager1', '레드아레나 송파점 후기 남깁니다', '조명과 샤워실 상태가 좋아서 재방문하기 괜찮았습니다.', DATEADD('DAY', -3, CURRENT_TIMESTAMP), 'banner2.jpg', '2'),
-    (4, 'teamblog', 'player3', '부산 원정 매치 가능 팀 있나요', '해운대 쪽에서 다음 주 원정 경기 가능한 팀 있으면 댓글 부탁드립니다.', DATEADD('DAY', -4, CURRENT_TIMESTAMP), 'banner2.jpg', '2'),
-    (5, 'teamblog', 'admin', '테스트용 커뮤니티 게시글 1', '커뮤니티 레이아웃과 댓글 기능을 확인하기 위한 샘플 글입니다.', DATEADD('DAY', -5, CURRENT_TIMESTAMP), 'banner2.jpg', '2'),
-    (6, 'teamblog', 'manager2', '인천 야간 매치 추천 구장 공유', '인천 부평 쪽은 실내 구장이 많아서 우천 시에도 잡기 수월합니다.', DATEADD('DAY', -6, CURRENT_TIMESTAMP), 'banner2.jpg', '2'),
-    (7, 'teamblog', 'player1', '풋살화 추천 부탁드립니다', '실내 구장 위주로 쓰기 편한 풋살화 추천 있으면 공유 부탁드립니다.', DATEADD('DAY', -7, CURRENT_TIMESTAMP), 'banner2.jpg', '2'),
-    (8, 'teamblog', 'player2', '혼성팀 친선전 상대 구합니다', '분위기 좋은 혼성팀끼리 가볍게 친선전 진행하고 싶습니다.', DATEADD('DAY', -8, CURRENT_TIMESTAMP), 'banner2.jpg', '2'),
-    (9, 'teamblog', 'manager1', '구장 예약 시간 추천', '주말 오전보다 평일 늦은 저녁이 가격대비 만족도가 높았습니다.', DATEADD('DAY', -9, CURRENT_TIMESTAMP), 'banner2.jpg', '2'),
-    (10, 'teamblog', 'player3', '팀 프로필 사진 어디서 찍나요', '다른 팀들처럼 간단한 단체 사진을 찍으려면 어떤 방식이 좋을까요.', DATEADD('DAY', -10, CURRENT_TIMESTAMP), 'banner2.jpg', '2');
+    (1, 'teamblog', 'player1', '강남 평일 저녁 매치팀 구합니다', '강남권에서 평일 저녁 8시 이후 맞춰서 경기 가능한 팀 찾고 있습니다.', DATEADD('DAY', -1, CURRENT_TIMESTAMP), 'no-image.svg', '2'),
+    (2, 'teamblog', 'player2', '판교 근처 초보 환영 팀 모집', '가볍게 운동하실 분들 중심으로 판교 인근에서 주말 팀원을 모집합니다.', DATEADD('DAY', -2, CURRENT_TIMESTAMP), 'no-image.svg', '2'),
+    (3, 'teamblog', 'manager1', '레드아레나 송파점 후기 남깁니다', '조명과 샤워실 상태가 좋아서 재방문하기 괜찮았습니다.', DATEADD('DAY', -3, CURRENT_TIMESTAMP), 'no-image.svg', '2'),
+    (4, 'teamblog', 'player3', '부산 원정 매치 가능 팀 있나요', '해운대 쪽에서 다음 주 원정 경기 가능한 팀 있으면 댓글 부탁드립니다.', DATEADD('DAY', -4, CURRENT_TIMESTAMP), 'no-image.svg', '2'),
+    (5, 'teamblog', 'admin', '테스트용 커뮤니티 게시글 1', '커뮤니티 레이아웃과 댓글 기능을 확인하기 위한 샘플 글입니다.', DATEADD('DAY', -5, CURRENT_TIMESTAMP), 'no-image.svg', '2'),
+    (6, 'teamblog', 'manager2', '인천 야간 매치 추천 구장 공유', '인천 부평 쪽은 실내 구장이 많아서 우천 시에도 잡기 수월합니다.', DATEADD('DAY', -6, CURRENT_TIMESTAMP), 'no-image.svg', '2'),
+    (7, 'teamblog', 'player1', '풋살화 추천 부탁드립니다', '실내 구장 위주로 쓰기 편한 풋살화 추천 있으면 공유 부탁드립니다.', DATEADD('DAY', -7, CURRENT_TIMESTAMP), 'no-image.svg', '2'),
+    (8, 'teamblog', 'player2', '혼성팀 친선전 상대 구합니다', '분위기 좋은 혼성팀끼리 가볍게 친선전 진행하고 싶습니다.', DATEADD('DAY', -8, CURRENT_TIMESTAMP), 'no-image.svg', '2'),
+    (9, 'teamblog', 'manager1', '구장 예약 시간 추천', '주말 오전보다 평일 늦은 저녁이 가격대비 만족도가 높았습니다.', DATEADD('DAY', -9, CURRENT_TIMESTAMP), 'no-image.svg', '2'),
+    (10, 'teamblog', 'player3', '팀 프로필 사진 어디서 찍나요', '다른 팀들처럼 간단한 단체 사진을 찍으려면 어떤 방식이 좋을까요.', DATEADD('DAY', -10, CURRENT_TIMESTAMP), 'no-image.svg', '2');
 
 INSERT INTO cment (
     c_no, c_c_id, c_m_thum, c_tbno, c_tbset, c_content, c_date, c_dec
