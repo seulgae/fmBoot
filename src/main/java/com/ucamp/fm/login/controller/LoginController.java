@@ -133,7 +133,7 @@ public class LoginController {
     /**
      * 회원 정보 확인 후 비밀번호 재설정 메일을 발송한다.
      */
-    @RequestMapping("/wannaGetPw/{pw_id}/{pw_email}")
+    @RequestMapping("/wannaGetPw/{pw_id}/{pw_email:.+}")
     @ResponseBody
     public String wannaGetPw(@PathVariable String pw_id,@PathVariable String pw_email) throws MessagingException, IOException {
         int count = memberService.getCount(pw_id,pw_email);
@@ -144,7 +144,7 @@ public class LoginController {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setTo(pw_email);
             helper.setSubject("풋살 매니저 카페인 비밀번호 변경");
-            helper.setText("<html><a href='http://localhost:8080/login/pwChange?m_id=" + pw_id + "'>비밀번호 변경하기</a></html>",true);
+            helper.setText("<html><a href='http://localhost:8081/login/pwChange?m_id=" + pw_id + "'>비밀번호 변경하기</a></html>",true);
             javaMailSender.send(message);
 
             return "<script>alert('메일을 확인해주세요.'); window.close();</script>";

@@ -51,10 +51,10 @@
 
 현재 저장소 기본값은 로컬 개발 편의를 위한 `H2 메모리 DB` 기준입니다.
 
-- 애플리케이션 포트: `8080`
-- 로컬 접속 주소: `http://localhost:8080`
+- 애플리케이션 포트: `8081`
+- 로컬 접속 주소: `http://localhost:8081`
 - 기본 DB: `jdbc:h2:mem:fmdb;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE`
-- H2 콘솔: `http://localhost:8080/h2-console`
+- H2 콘솔: `http://localhost:8081/h2-console`
 - H2 콘솔 경로: `/h2-console`
 - MyBatis alias 패키지: `com.ucamp.fm`
 - MyBatis mapper 위치: `classpath*:mapper/*.xml`
